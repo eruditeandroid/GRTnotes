@@ -1,0 +1,328 @@
+\documentclass{article}
+
+\usepackage{notes}
+
+\title{GRT Seminar Fa23-Sp24 Notes}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+	The seminar covers Ben-Zvi--Sakellaridis--Venkatesh, ``Relative Langlands Duality.''
+\end{abstract}
+
+\tableofcontents
+
+\section{8/31 (David Nadler) -- ???}
+
+I missed this day.
+If you have good notes from this day, send them to me and I will type them up.
+
+\section{9/7 (Elliot Kienzle) -- Hamiltonian $G$-Spaces and Quantization}
+
+The original Langlands program studies a duality of Lie groups $G \leftrightarrow G^\vee$.
+Relative Langlands seeks to upgrade this to a duality of Hamiltonian $G$-actions $(G \curvearrowright M) \leftrightarrow (G^\vee \curvearrowright M^\vee)$.
+This is proposed for hyperspherical varieties $M$, of which a typical example is $M = T^* X$ for $X$ a spherical variety.
+
+We can approach and motivate this using quantization.
+Start by considering the action of $G$ on $L^2(X)$ for $X$ a spherical variety (discussed in an earlier paper of Sakellaridis-Venkatesh discussing ``harmonic analysis on spherical varieties'').
+
+\subsection{Symplectic geometry and quantization}
+
+The original motivation for symplectic geometry comes from classical mechanics.
+Suppose that we have a particle moving in $\RR^n$.
+We can capture the data of the position and momentum using the cotangent bundle $T^* \RR^n$.
+By Newton's second law, the time evolution of the particle is described by (the flow along) a vector field on $T^* \RR^n$.
+
+We can generalize this to a symplectic manifold $(M, \omega)$, which is a manifold $M$ with a closed, non-degenerate $2$-form $\omega$.
+To make this easier to work with, we can fix a metric $\ip{}{}$ on $M$ and write $\omega(x, y) = \ip{x}{Jy}$ where $J^2 = -1$ (i.e.\ $J^2$ is an almost complex structure).
+We think of $J^2$ as ``multiplication by $-i$.''
+Given a Hamiltonian $H \in \Cinfty(M)$, we obtain a Hamiltonian vector field $X_H = J \nabla H$.
+More invariantly, we can define $X_H$ via the formula $\omega(X_H, -) = dH$.
+
+Moving to quantum mechanics, we view a particle in $\RR^n$ as a $\CC$-valued function $\psi$ on $\RR^n$ (not $T^*\RR^n$).
+In this case, the Hilbert space is $L^2(\RR^n)$.
+A free particle evolves according to Schr\"odinger's equation:
+\[
+	i \dot{\psi} = \Delta \psi.
+\]
+We can summarize the classical and quantum pictures in the following table.
+
+\begin{center}
+\begin{tabular}{c|c|c}
+	& Classical & Quantum \\ \hline
+	State Space & Symplectic manifold $(M, \omega)$ & Hilbert space $\Hc$ \\
+	Observables & $f \in \Cinfty(M)$ & Bounded operators $A \in \End(\Hc)$ \\
+	Evolution & Vector fields $X_H$ for $H \in \Cinfty(M)$ & Unitary operators $U(t) = e^{itA}$ for $A \in \End(\Hc)$ \\
+	Lie Algebra of observables & Poisson bracket $\{ f, g \} = X_f(g)$ & Commutator $[A, B]$
+\end{tabular}
+\end{center}
+
+To obtain a quantum system from a classical system (heuristically), we pass from nonlinear evolution of points in $T^* M$ to linear evolution of functions on $M$.
+(This linearity is forced on us by our desire to have superposition of states.)
+The dream of quantization is, given a symplectic manifold $(M, \omega)$, to construct a Lie algebra homomorphism $(\Cinfty(M), \{ , \}) \to (\End(\Hc), [ , ])$ for some Hilbert space $\Hc$.
+Unfortunately, this is impossible to do consistently / functorially in general.
+However, there are some cases in which we can get good answers.
+
+We will focus on geometric quantization, which behaves (loosely) as follows:
+\begin{itemize}
+	\item For $M = T^*X$, we obtain $\Hc = L^2(X)$.
+	\item For $M$ a compact K\"ahler manifold, we obtain $\Hc = H^0(M, \Lc)$ for some line bundle $\Lc$ on $M$.
+\end{itemize}
+
+\subsection{$G$-Spaces}
+
+We want to incorporate symmetries into the previous picture.
+Suppose $G$ is a compact Lie group / reductive algebraic group (depending on context).
+We say a symplectic $G$-space is a symplectic manifold $(M, \omega)$ with $G$-action preserving $\omega$.
+We can hope to quantize this to a linear representation $G \curvearrowright \Hc$.
+(There are subtleties that arise here -- for geometric quantization, we would like a $G$-equivariant polarization.)
+
+In general, it is better to consider Hamiltonian $G$-actions, where $\gf$ acts by Hamiltonian vector fields.
+This allows us to construct a moment map $\mu: M \to \gf^*$ which is equivariant (with respect to the coadjoint action on $\gf^*$).
+
+Let us start by understanding the coadjoint action $G \curvearrowright \gf^*$ using Kirillov's ``orbit method.''
+For $\alpha \in \gf^*$, consider the coadjoint orbit $\Oc_\alpha$.
+This $\Oc_\alpha$ turns out to be a symplectic manifold (with ``Kirillov-Kostant-Souriau'' / ``KKS'' form) with Hamiltonian $G$-action, and the moment map $\Oc_\alpha \to \gf^*$ is just the inclusion.
+
+\begin{ex}
+	Consider $G = \SO(3)$.
+	The coadjoint action is just $\SO(3)$ acting on $\RR^3$ by rotations.
+	Thus the generic orbits are spheres $S^2$.
+\end{ex}
+
+The orbits $\Oc_\alpha$ will look like generalized flag manifolds, and conversely every generalized flag manifold arises in this way.
+(This is the first place where our compactness hypothesis comes in).
+
+\begin{prop}
+	A coadjoint orbit $\Oc_\alpha$ is quantizable if and only if $\alpha$ is in the orbit of an integer point of the root lattice $\tf_\ZZ^* \subset \tf^*$ (viewed as a subspace of $\gf^*$ via the Killing form).
+\end{prop}
+
+\begin{ex}
+	Continuing on with our $\SO(3)$ example, we see that a symplectic sphere is quantizable if and only if it has integer area.
+\end{ex}
+
+In these cases, the quantization of $\Oc_\alpha$ is $H^0(\Oc_\alpha, \Lc_\alpha)$ where $\Lc_\alpha$ is the line bundle corresponding to the character $\alpha$.
+By the Borel-Weil theorem, $H^0(\Oc_\alpha, \Lc_\alpha)$ is the irrep $V_\alpha$ of $G$ with highest weight $\Lc_\alpha$.
+
+We can summarize this in the following table:
+
+\begin{center}
+	\begin{tabular}{c|c}
+		Classical & Quantum \\ \hline
+		Symplectic action $G \curvearrowright M$ & Representation $G \curvearrowright \Hc$ \\
+		Coadjoint orbit $\Oc_\alpha$ & Highest weight representation $E_\alpha$
+	\end{tabular}
+\end{center}
+
+\section{9/14 (Elliot Kienzle) -- Continued}
+
+\subsection{Symplectic reduction}
+
+Suppose we have a Hamiltonian action $G \curvearrowright M$.
+This yields a $G$-equivariant moment map $\mu: M \to \gf^*$, and the image of $\mu$ will necessarily be a collection of coadjoint orbits $\Oc_\alpha$.
+We can use these orbits to decompose $M$.
+
+First consider the orbit $\Oc_0 = \{ 0 \}$.
+We note that $\mu\inv(0)$ is $G$-invariant, so we can consider the quotient $\mu\inv(0) / G$.
+We define this to be the \emph{symplectic quotient}: $M // G := \mu\inv(0) / G$.
+
+We will assume that $0$ is a regular value of the moment map and that $G$ acts on $\mu\inv(0)$ freely.
+We can drop these assumptions if we consider things in a suitable derived / stacky sense.
+
+\begin{thm}[Marsden-Weinstein]
+	The symplectic quotient $M \sslash G$ carries a natural symplectic structure.
+\end{thm}
+
+\begin{ex}
+	If $X$ is a (not necessarily symplectic) manifold with a $G$-action, then $T^*X \sslash G = T^* (X/G)$.
+\end{ex}
+
+\begin{ex}
+	Let $M = T^* \RR^2 \cong \CC^2$.
+	This has a $\U(1)$-action via 
+	\[
+		e^{i\theta} (z_1, z_2) = (e^{i \theta} z_1, e^{i \theta} z_2).
+	\]
+	We can define a (shifted) moment map $\mu: \CC^2 \to \RR$ via 
+	\[
+		\mu(z_1, z_2) = \abs{z_1}^2 + \abs{z_2}^2 - 1.
+	\]
+	Then $\CC^2 \sslash \U(1) = S^3 / \U(1) = S^2 = \PP^1$ (consider the Hopf fibration).
+\end{ex}
+
+Morally, we should think of every symplectic manifold as a symplectic reduction of a (possibly infinite-dimensional) affine space.
+
+Note that
+\[
+\dim M \sslash G = \dim M - 2 \dim G.
+\]
+The slogan is that ``in symplectic geometry, groups act twice.''
+
+\begin{thm}[Guillemin-Sternberg, etc.]
+	The geometric quantization of a symplectic quotient satisfies
+	\[
+		\Hc(M \sslash G) = \Hc(M)^G,
+	\]
+	where the right hand side is the subspace of $G$-invariant vectors in $G$.
+\end{thm}
+
+We can also define the symplectic reduction along any coadjoint orbit $\Oc_\alpha$ as $M \sslash_\alpha G = \mu\inv(\Oc_\alpha) / G$.
+This gives a decomposition of $M$ as 
+\[
+	M = \cup_{\alpha \in \mu(M)} \mu\inv(\Oc_\alpha) = \cup_{\alpha \in \mu(M)} (G\textrm{-bundles over } M \sslash_\alpha G),
+\]
+at least if we avoid critical points.
+
+Elliot has some fancy art of this decomposition.
+
+Let's focus on the simplest possible case:
+
+\begin{dfn}
+	A Hamiltonian $G$-space $M$ is \emph{multiplicity-free} if $\dim M \sslash_\alpha G = 0$ for all $\alpha$.
+\end{dfn}
+
+\begin{rmk}
+	If $M$ is compact, then a Morse theory argument shows that $M \sslash_\alpha G = \pt$ for all $\alpha$.
+\end{rmk}
+
+Here are some relevant examples.
+
+\begin{ex}
+	For a coadjoint orbit $\Oc_\alpha$, we have $\Oc_\alpha \sslash_\alpha G = \pt$, so coadjoint orbits are multiplicity-free.
+	Here we are ignoring stacky / derived quotients even though the action is typically nonfree.
+\end{ex}
+
+\begin{ex}
+	Consider $\PP^1$ with $\U(1)$ acting by rotation.
+	Then $\mu$ is the height function on $\PP^1 = S^2$.
+	If the top height is $1$ and the bottom height is $-1$, then $\mu\inv(1)$ and $\mu\inv(1)$ are both points.
+	For any $x \in (-1, 1)$, we have $\mu\inv(x) = S^1$ and therefore $\PP^1 \sslash_x \U(1) = \pt$.
+	Thus this action is multiplicity-free.
+\end{ex}
+
+\begin{ex}
+	Let $\U(1)^2$ acts on $\PP^2$ (extending the standard action on $\AA^2 \subset \PP^2$).
+	The fibers of the moment map over points in the interior of $\mu(M)$ are $2$-tori, which degenerate to circles on the boundary lines of $\mu(M)$ and points at the corners of $\mu(M)$.
+\end{ex}
+
+A non-example is given by the $\U(1)$ action on $\CC^2$ from earlier in the lecture.
+This is an obvious non-example because the dimension of the symplectic quotient is nonzero.
+The slogan is that ``multiplicity-free manifolds have maximal symmetry.''
+
+\subsection{(David) -- Interlude}
+
+For a Lie group $G$, we have $T^*G = G \times \gf^*$.
+Consider $G \curvearrowright T^*G$ induced by the adjoint action of $G$ on itself.
+We obtain a moment map $\mu: G \times \gf^* \to \gf^*$ given by the formula
+\[
+	\mu(g, x) = \Ad_g(x) - x.
+\]
+Then $\mu\inv(0) = \{ (g, x) \in G \times \gf^* \, | \, g \in G_x \}$, where $G_x$ is the centralizer of $x \in G$.
+
+The multiplicity-freeness property for a general Hamiltonian $G$-space $M$ can be understood as the requirement that the centralizers $G_x$ act transitively on the preimages $\mu\inv(x)$.
+
+It is a good exercise to classify multiplicity-free Hamiltonian $G$-spaces for $G = \U(1)$ or $G = \SU(2)$.
+
+\subsection{(Elliot) -- A few last words}
+
+Multiplicity-freeness has a useful consequence for quantization: if $M$ is multiplicity-free, then each highest weight representation $E_\alpha$ appears in $\Hc(M)$ at most once.
+In fact, $E_\alpha$ will appear if and only if $\Oc_\alpha \in \mu(M)$.
+
+We will be interested in hyperspherical varieties as a large family of multiplicity-free symplectic manifolds.
+More on that next time!
+
+\section{9/21 (Mark Macerato) -- Hyperspherical varieties}
+
+\subsection{(David) -- Multiplicity-freeness}
+
+There may have been minor errors in the discussion last time, but the basic ideas were right.
+Suppose for simplicity that $T$ is an \emph{abelian} Lie group, and consider the cotangent bundle $T^*T \cong T \times \tf^*$.
+The moment map for the translation action of $T$ on itself is the projection $T \times \tf^* \to \tf^*$.
+This gives a (trivial) family of abelian groups over $\tf^*$.
+
+If we have another Hamiltonian $T$-space $X$, we obtain a moment map $\mu_X: X \to \tf^*$.
+We can view our family of abelian groups over $\tf^*$ as acting fiberwise on $X$.
+The multiplicity-freeness condition is requiring that the orbits of this action are fiberwise discrete.
+
+This story still works for non-abelian $G$ (but you have to be careful about left versus right actions).
+In this case, the fiber over $v \in \gf^*$ will be given by the stabilizer $G_v$.
+
+\begin{ex}
+	We can describe Hamiltonian $\U(1)$-spaces as lying over $\uf(1) \cong \RR$.
+	The multiplicity-freeness condition implies that the fibers are (disjoint unions of) copies of $S^1$ and points.
+	For example, we can consider the height function on the sphere, or the projection of a cylinder $S^1 \times \RR$, or many related examples -- these all give multiplicity-free Hamiltonian $\U(1)$-spaces.
+\end{ex}
+
+\begin{ex}
+	If we take $G = \SU(2)$, we obtain a similar (but distinct) picture because $\suf(2) / \SU(2) \cong [0, \infty)$ (the $\SU(2)$-orbits in $\suf(2)$ are spheres).
+	The fibers of $T^*\SU(2) \to \suf(2)$ are $\SU(2)$ (over $0$) and $S^1$ (over points in $(0, \infty)$).
+	We can analyze multiplicity-free Hamiltonian $G$-spaces as before.
+\end{ex}
+
+In general, the left action $G \curvearrowright T^*G$ (via $g \cdot (h, v) = (gh, \Ad_g v)$) is not multiplicity-free.
+Consider the moment map $T^*G \cong G \times \gf^* \to \gf^*$ given by projection (this depends on how we trivialize $T^*G$).
+For a coadjoint orbit $\Oc$, the preimage $\mu\inv(\Oc)$ is $G \times \Oc$.
+The multiplicity-freeness here reduces to the question of whether the action $G_v \curvearrowright G$ has discrete orbits.
+This is not true in general (see e.g.\ the $\SU(2)$ example above), proving the claim.
+
+\emph{A later clarification:} 
+Really, we should think of $T^*G \rightrightarrows \gf^*$ as a groupoid, where the ``source'' and ``target'' maps are $\mu_L$ and $\mu_R$ (the moment maps for the left / right actions, respectively).
+Given a groupoid, we can obtain a group scheme (encapsulating the ``automorphism groups of points'') as a fiber product, e.g.\
+\[
+	\begin{tikzcd}
+		\{ [X, g] = 0 \} \rar \dar & T^* G \dar \\
+		\Delta \rar & \gf^* \times \gf^*.
+	\end{tikzcd}
+\]
+Understanding things from this perspective clears up the difficulties with left / right actions.
+
+Hamiltonian $G$-spaces ($M \to \gf^*$) will be module objects for this groupoid.
+
+\subsection{(Mark) -- Hyperspherical varieties}
+
+We will change settings to algebraic geometry (following section 3 of Ben-Zvi--Sakellaridis-Venkatesh).
+Fix an algebraically closed field $k$ of characteristic zero (e.g.\ $\CC$ or $\ol{\QQ_\ell}$).
+Let $G$ be a connected reductive group over $k$.
+
+Recall that a spherical variety is a normal $G$-variety $X$ such that there exists a Borel subgroup $B \subset G$ with an open orbit in $X$.
+We can rephrase the last condition without picking a Borel: we require that $G$ has an open orbit on $X \times \Fl_G$.
+If $X$ is affine, this is equivalent to requiring that the coordinate ring $k[X]$ is multiplicity-free as a $G$-module.
+
+\begin{ex}[``Group case'']
+	Let $H$ be a connected reductive group and $G = H \times H$.
+	For $X = H$ and $G \hookrightarrow X$ via $(h_1, h_2) \cdot h = h_1 h h_2\inv$, $H$ is a spherical variety.
+
+	If we fix a Borel $B \subset H$, we have a unipotent subgroup $U \subset B$ and a surjection $B \twoheadrightarrow T = B/U$.
+	By Levi's theorem, this splits, giving $T \hookrightarrow B \subset G$.
+	We get a vector space decomposition $\gf = \uf^- \oplus \tf \oplus \uf$.
+	Consider the open embedding $U^- \times B \to H$ given by $(u, b) \mapsto ub$.
+	The Borel subgroup $B^- \times B \subset G$ has an open orbit in $H$.
+	This leads to a Bruhat decomposition $H = \sqcup_{w \in W} B w B$.
+\end{ex}
+
+We can obtain Bruhat decompositions for more general spherical varieties.
+This is a rich theory that has been worked out by several authors (Knapp, Brion, etc.).
+But let's move on to hyperspherical varieties, which give a symplectic point of view.
+
+Instead of a spherical variety $X$, let us consider $M = T^*X$ with the moment map $\mu: T^*X \to M$.
+For simplicity, we will assume our base spherical variety $X$ is affine, smooth, and irreducible.
+In this case $M$ is \emph{coisotropic}, which means that the $G$-invariant function field $k(M)^G$ is Poisson-commutative.
+
+Another way of saying this is as follows.
+Let $\cf = \gf^* \sslash G \cong \gf \sslash G$ be the ``Chevalley space.''
+Letting $\eta \in M$ be the generic point, we obtain a Stein factorization $M \to \cf_M \to \cf$.
+The map $\tilde{\mu}: M \to \cf_M$ has connected generic fiber, and $\cf_M \to \cf$ is finite.
+The second definition of ``coisotropic'' is that the group $G_{K(\cf_M)}$ acts on $M_{K(\cf_M)}$ with an open (hence dense) orbit.
+
+\begin{thm}[Losev]
+	If $M$ is a smooth Hamiltonian $G$-variety, then \emph{all} of the fibers of $\tilde{\mu}: M \to \cf_M$ are connected.\footnote{This is the closest analogue in algebraic geometry of the connectedness theorem of Atiyah-Guillemin-Sternberg.}
+\end{thm}
+
+A third definition of coisotropic is that the generic $G$-orbit on $M$ is coisotropic in the usual sense.
+
+``Coisotropic'' is the algebraic geometry version of ``multiplicity-free.''
+Elliot gave a discussion of why this recovers the earlier condition in symplectic geometry, but it was a bit too fast to type up.
+
+\end{document}
