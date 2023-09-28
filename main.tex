@@ -21,6 +21,8 @@ If you have good notes from this day, send them to me and I will type them up.
 
 \section{9/7 (Elliot Kienzle) -- Hamiltonian $G$-Spaces and Quantization}
 
+Elliot's notes for his talks are available at \url{https://chessapig.github.io/files/notes/G-spaces.pdf}.
+
 The original Langlands program studies a duality of Lie groups $G \leftrightarrow G^\vee$.
 Relative Langlands seeks to upgrade this to a duality of Hamiltonian $G$-actions $(G \curvearrowright M) \leftrightarrow (G^\vee \curvearrowright M^\vee)$.
 This is proposed for hyperspherical varieties $M$, of which a typical example is $M = T^* X$ for $X$ a spherical variety.
@@ -233,7 +235,7 @@ In fact, $E_\alpha$ will appear if and only if $\Oc_\alpha \in \mu(M)$.
 We will be interested in hyperspherical varieties as a large family of multiplicity-free symplectic manifolds.
 More on that next time!
 
-\section{9/21 (Mark Macerato) -- Hyperspherical varieties}
+\section{9/21 (Mark Macerato) -- Hyperspherical Varieties}
 
 \subsection{(David) -- Multiplicity-freeness}
 
@@ -280,7 +282,7 @@ Understanding things from this perspective clears up the difficulties with left 
 
 Hamiltonian $G$-spaces ($M \to \gf^*$) will be module objects for this groupoid.
 
-\subsection{(Mark) -- Hyperspherical varieties}
+\subsection{(Mark) -- Towards hyperspherical varieties}
 
 We will change settings to algebraic geometry (following section 3 of Ben-Zvi--Sakellaridis-Venkatesh).
 Fix an algebraically closed field $k$ of characteristic zero (e.g.\ $\CC$ or $\ol{\QQ_\ell}$).
@@ -324,5 +326,108 @@ A third definition of coisotropic is that the generic $G$-orbit on $M$ is coisot
 
 ``Coisotropic'' is the algebraic geometry version of ``multiplicity-free.''
 Elliot gave a discussion of why this recovers the earlier condition in symplectic geometry, but it was a bit too fast to type up.
+
+\section{9/28 (Mark Macerato) -- Continued}
+
+\subsection{(David) -- Groupoids and Hamiltonian $G$-spaces}
+
+Recall the homework problem of classifying multiplicity-free $\SU(2)$-spaces.
+
+The corrected general picture is as follows.
+Consider the cotangent bundle $T^*G$ with natural Hamiltonian $G$-actions on the left and right.
+These yield moment maps $\mu_L, \mu_R: T^*G \to \gf^*$.
+If we trivialize $T^*G \cong G \times \gf^*$, these maps are given by $(g, X) \mapsto X$ and $(g, X) \mapsto \Ad_g X$.
+
+We should think of $T^*G \rightrightarrows \gf^*$ as a groupoid.
+The ``objects'' are $X \in G$, and the ``morphisms'' are $g: X \to \Ad_g X$.
+Composition is given by group multiplication.
+
+We may view any Hamiltonian $G$-space $Y$ (with moment map $\mu: Y \to \gf^*$) as a module over this groupoid.
+Specifically, we have a natural map $T^*G \times_{\gf^*} Y \to Y$, the projection of the fiber product onto the second factor.
+On elements, this is given by $(g, X, y) \mapsto gy$, which lies in the fiber of $Y$ over $\Ad_g X \in \gf^*$.
+
+Consider the pullback
+\[
+	\begin{tikzcd}
+		\Sc \rar \dar & T^*G \dar \\
+		\gf^* \rar["\Delta"] & \gf^* \times \gf^*.
+	\end{tikzcd}
+\]
+In equation, $\Sc = \{ [g, X] = 0 \}$.
+From the groupoid perspective, $\Sc \to \gf^*$ is obtained by only considering automorphisms of objects in our original groupoid (i.e.\ forgetting about isomorphisms between different objects).
+We can view $\Sc \to \gf^*$ as the relative group over $\gf^*$ with fibers given by stabilizers $\Stab_G(X)$.
+
+The ``multiplicity-free'' condition can now be restated: it means that the $\Sc$-action on $Y$ relative to $\gf$ has only finitely many orbits.
+
+For the exercise about $\SU(2)$, we have $\gf^* = \RR^3$, and $\Sc$ has fiber $\SU(2)$ over the identity and $\U(1)$ over other fibers.
+We really only care about $\gf^* / \SU(2)$, which looks like a real ray $[0, \infty)$.
+This allows us to produce some examples of multiplicity-free Hamiltonian $\SU(2)$-spaces - these spaces should have maps to $[0, \infty)$ with fibers over $X \in \gf^* / \SU(2) \cong [0, \infty)$ looking like (finite disjoint unions of) orbits of $\Stab_{\SU(2)}(X)$-actions.
+
+\begin{ex}
+	The $2$-sphere $S^2$ has multiplicity-free $\SU(2)$-action via the action coming from $\SU(2) \to \SO(3)$.
+\end{ex}
+
+\begin{ex}
+	The standard representation $\CC^2$ has multiplicity-free $\SU(2)$-action.
+\end{ex}
+
+\begin{ex}
+	The blowup of $\CC^2$ at the origin (with a corrected symplectic form) has multiplicity-free $\SU(2)$-action.
+\end{ex}
+
+Are these all of the possible examples (up to finite covers)?
+It would be good to figure this out.
+
+\subsection{(Mark) -- Coisotropic $G$-varieties}
+
+Recall our setup: $G$ is connected and reductive, and $M$ is a smooth affine Hamiltonian $G$-variety.
+We have a moment map $\mu: M \to \gf^*$, and we can compose this with a GIT quotient map to get $\ol{\mu}: M \to \cf_G$, where $\cf_G = \gf^* \sslash G$ is called the Chevalley base.
+This admits a ``Knop factorization''
+\[
+\begin{tikzcd}
+	M \ar[rr, "\ol{\mu}"] \ar[dr, "\tilde{\mu}_M"] & & \cf_G \\
+	& \cf_M \ar[ur, "\pi"] &
+\end{tikzcd}
+\]
+where $\pi$ is finite and $\tilde{\mu}_M$ has generically connected fiber.
+
+\begin{dfn}
+	We say that $M$ is \emph{coisotropic} if any of the following equivalent conditions hold.
+	\begin{enumerate}
+		\item $k(M)^G$ is Poisson-commutative.\footnote{In this setup, we can replace this by the condition that $k[M]^G$ is Poisson commutative, since $\mathrm{Frac} k[M]^G = k(M)^G$.}
+		\item The generic orbit of $G$ on $M$ is coisotropic.
+		\item The generic fiber of $\tilde{\mu}_M$ has a dense $G$-orbit.
+	\end{enumerate}
+\end{dfn}
+
+Let's see why $1$ and $2$ are equivalent.
+Choose $f_1, \dots, f_n \in K(M)$ which separate generic orbits (this is possible by a theorem of Rosenlicht).
+This yields $\ul{f} = (f_1, \dots, f_n): U \to \AA^n$ (for $U \subset M$ open), and we can restrict this to a surjective smooth map $U' \to W$  such that $U'$ is dense in $U$ and $W \subset \AA^n$ is a locally closed subvariety.
+Replace $U$ by $U'$.
+The fibers of $\ul{f}$ are exactly the $G$-orbits in $U$.
+Therefore, for $x \in U$, we see that $df_1(x), \dots, df_n(x)$ span the conormal space $T^*_U(G \cdot x)_x$.
+Thus $G \cdot x$ is coisotropic at $x$ if and only if $T_U^*(G \cdot x)_x$ is isotropic, if and only if the $f_1, \dots, f_n$ Poisson-commute at $x$.
+
+\subsection{Approaching hyperspherical varieties}
+
+Suppose that $M$ is a smooth affine Hamiltonian $G$-variety as before.
+We will also require that $M$ comes with a $\GG_m$-action (equivalently, a grading on $k[M]$) such that
+\begin{enumerate}
+	\item The $\GG_m$-action on $M$ commutes with the $G$-action.
+	\item The symplectic form $\omega$ on $M$ has weight $2$, i.e.\ $\lambda \cdot \omega = \lambda^2 \omega$.
+\end{enumerate}
+David noted that this latter condition implies that $\omega$ is exact: if $v$ is the vector field generating the $\GG_m$-action, then Cartan's magic formula (using that $\omega$ is closed) gives
+\[
+	2 \omega = \Lc_v \omega = d(i_v \omega).
+\]
+The $2$ here is needed to ensure that we can construct a ``$\GG_m$-equivariant Kostant slice.''
+
+We want to define what it means for $M$ to be hyperspherical.
+The first condition will be that $M$ is coisotropic.
+
+The second condition is that $\mu(M) \subset \gf^*$ meets the nilpotent cone $\Nc_G = \chi\inv(0)$ (for $\chi: \gf^* \twoheadrightarrow \gf^* \sslash G$).
+Equivalently, $\ol{\mu})(M)$ contains $0 \in \cf_G$.
+This implies that $M \sslash G \to \cf_M$ is surjective (it is always an open immersion, so we get $M \sslash G = \cf_M$).
+There will be two more conditions (which we will discuss next time).
 
 \end{document}
