@@ -430,4 +430,133 @@ Equivalently, $\ol{\mu})(M)$ contains $0 \in \cf_G$.
 This implies that $M \sslash G \to \cf_M$ is surjective (it is always an open immersion, so we get $M \sslash G = \cf_M$).
 There will be two more conditions (which we will discuss next time).
 
+\section{10/5 (Mark Macerato) -- Continued}
+
+\subsection{Pre-hyperspherical varieties}
+
+Let $G$ be a connected reductive group and $G_{\gr} = G \times \GG_m$.
+We consider a smooth affine Hamiltonian $G$-variety with auxiliary $\GG_m$-action governing the grading.
+This yields a map $M \to \gf^* \to \cf_G$, which has a Knop factorization $M \to \cf_M \to \cf_G$.
+Here $\GG_m \curvearrowright \gf^*$ quadratically, and the map $M \to \gf^*$ is $\GG_m$-equivariant.
+
+\begin{dfn}
+	We say that $M$ is \emph{pre-hyperspherical} if
+	\begin{enumerate}
+		\item $M$ is coisotropic, i.e.\ $k(M)^G$ is Poisson commutative (equivalently, the generic fiber of $M \to \cf_M$ has a dense $G$-orbit),
+		\item $\mu(M) \cap \Nc_G \neq \emptyset$ (for $\Nc_G$ the nilpotent cone of $G$), and
+		\item The stabilizer of a generic point of $M$ is connected.
+	\end{enumerate}
+\end{dfn}
+
+\begin{ex}
+	Let $G = \Sp_{2n}$ and $M = \CC^{2n} \oplus \CC^{2n}$.
+	Here $\mu_M: \CC^{2n} \oplus \CC^{2n} \to (\CC^{2n} \oplus \CC^{2n}) \sslash \Sp_{2n} \cong \AA^1$ via $(v, w) \mapsto \omega(v, w)$.
+	Thus
+	\[
+		\mu_M\inv(1) = \{ (v, w) \in \CC^{2n} \, | \, \omega(v, w) = 1 \},
+	\]
+	and $\Sp_{2n}$ acts transitively on this fiber.
+	Meanwhile, $\mu\inv(0)$ can be decomposed as:
+	\[
+		\mu\inv(0) = \{ (v, w) \, | \, v, w \textrm{ lin.\ ind.\, } \omega(v, w) = 0 \} \cup \{ (v, w) \, | \, v, w \textrm{lin. dep., not both } 0 \} \cup \{ (0, 0) \}.
+	\]
+	The first set here is the unique open orbit, and the last set is the unique closed orbit.
+	The middle set contains a $\PP^1$ worth of orbits.
+	In particular, $\mu(M)$ meets $\Nc_G$.
+	The stabilizer of a generic point of $M$ can be identified with $\Sp_{2n-2}$.
+\end{ex}
+
+\begin{prop}
+	In general, if $M$ is pre-hyperspherical, there exists a unique closed orbit $M_0 \subset M$ for $G_{\gr} = G \times \GG_m$.
+\end{prop}
+
+We call $M_0$ the \emph{core} of $M$.
+
+\begin{proof}
+	Consider the GIT quotient $M \to M \sslash G_{\gr}$, and recall that closed orbits of $G_{\gr}$ correspond to points of $M \sslash G_{\gr}$.
+	Thus it suffices to show that $M \sslash G_{\gr} = \pt$, or equivalently $k[M]^{G \times \GG_m} = k$.
+	Note
+	\[
+		k[M]^{G \times \GG_m} = k[\cf_M]^{\GG_m} = k[\cf_m]_0,
+	\]
+	the weight $0$ component.
+	By construction, $k[\cf_G] \to k[\cf_M]$ is finite (and therefore integral), so $k[\cf_M]_0 \to k[\cf_G]_0$ is integral (an exercise in counting degrees).
+	Now we have
+	\[
+		k[\cf_G]_0 = k[\cf_G]^{\GG_m} = k[\gf^*]^{G \times \GG_m} = k,
+	\]
+	so $k[\cf_M]_0$ is integral over $k$.
+	Since $k$ is algebraically closed, we see $k[\cf_M]_0 = k$.
+\end{proof}
+
+\subsection{(David) -- Weinstein manifolds}
+
+Suppose we have an exact symplectic manifold $(M, \omega = d\lambda)$.
+Take $Z = \omega\inv(\lambda)$ (this is a vector field on $M$).
+Then $Z$ gives a flow on $M$, and the core $M_0$ is the subset of points of $M$ which do not escape to infinity along this flow.
+Assuming $M_0$ is isotropic (this is implied by the Weinstein condition), the flow gives an action of $\CC^\times$ on $M_0$.
+
+\begin{ex}
+	Consider the surface singularity $x^2 + y^2 + z^{n+1} = 0$.
+	Let $M$ be a symplectic resolution of this.
+	The core $M_0$ is the chain of $\PP^1$'s appearing as the zero fiber.
+	In terms of geometric representation theory, we can call $M_0$ a ``subregular Springer fiber.''
+\end{ex}
+
+Suppose $M$ is $G$-Hamiltonian -- then we are in a situation very similar to what Mark is talking about.
+That is, \emph{pre-hyperspherical varieties are analogous to $G$-Hamiltonian Weinstein manifolds}.
+This precludes examples like the above, since the union of $\PP^1$'s cannot be a single $G$-orbit.
+This fact is essentially kin to the last Proposition.
+
+\begin{ex}
+	Consider $G \times G$ acting on $M = T^* G$ by left and right translation.
+	The core $M_0$ is the zero section.
+\end{ex}
+
+\subsection{(Mark) -- Hyperspherical varieties}
+
+Let $\mu_M: M \to M \sslash G$ be the GIT quotient map.
+
+\begin{prop}
+	The core $M_0$ is the unique closed $G$-orbit in $\mu_M\inv(0)$.
+\end{prop}
+
+\begin{proof}
+	Note that $G$ has a unique closed orbit $M_0' \subset \mu_M\inv(0)$ (by standard GIT).
+	Since $\GG_m$ commutes with $G$, the $\GG_m$ action takes closed $G$-orbits to closed $G$-orbits.
+	Therefore $\GG_m$ preserves $M_0'$, and we get $G \times \GG_m \curvearrowright M_0'$.
+	It follows that $M_0'$ contains a closed $G_{\gr}$ orbit, hence contains $M_0$.
+	But $M_0'$ is itself a $G$-orbit, so $M_0 = M_0'$.
+\end{proof}
+
+Pick $x \in M_0$, and let $H = \Stab_G(x)$, so $M_0 = G / H$.
+Since $M_0$ is affine, $H$ must be reductive.
+Since $\mu_M\inv(0)$ maps to $\Nc_G \subset \gf^*$, we get an element $f = \mu(x) \in \Nc_G$.
+
+Because $\GG_m \curvearrowright M_0 = G / H$, we get a homomorphism $\GG_M \to \Aut_G(G / H) \cong N_G(H) / H$.
+In fact, this factors through $(Z_G(H) / Z(H))^0$ (where ${}^0$ denotes the connected component of the identity element).
+Let $\ol{\pi}: \GG_M \to Z_G(H) / Z(H)$ be the induced map.
+
+\begin{dfn}
+	A pre-hyperspherical variety $M$ is hyperspherical if
+	\begin{enumerate}
+		\item $\ol{\pi}$ lifts to a homomorphism $\pi: \GG_m \to Z_G(H) \subset G$, which moreover lifts to a homomorphism $\rho: \SL_2 \to G$ such that
+			\[
+				d\rho \begin{pmatrix}
+					0 & 1 \\
+					0 & 0
+				\end{pmatrix} = f
+			\]
+			under the standard identification $\gf \cong \gf^*$.
+		\item Consider the \emph{sheared $\GG_m$-action} $(\GG_m)_{sh} \curvearrowright M$ induced by
+			\begin{align*}
+				(\GG_m)_{sh} &\to G \times \GG_m \\
+				g &\mapsto (\pi(g)\inv, g).
+			\end{align*}
+			By construction, $(\GG_m)_{sh}$ fixes $x$, and thus we get $(\GG_m)_{sh} \curvearrowright (T_x M_0)^\perp / (T_x M_0 \cap T_x M_0^\perp) := N_x M_0$, the \emph{symplectic normal space}.
+			The condition is that this $(\GG_m)_{sh}$-action on $N_x M_0$ is given by linear scaling.
+	\end{enumerate}
+\end{dfn}
+
 \end{document}
+
