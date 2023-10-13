@@ -558,5 +558,85 @@ Let $\ol{\pi}: \GG_M \to Z_G(H) / Z(H)$ be the induced map.
 	\end{enumerate}
 \end{dfn}
 
+\section{10/12 (Mark Macerato) -- Continued}
+
+\subsection{Refresher on the definition}
+
+Recall that $M$ is a smooth affine graded Hamiltonian $G$-variety with moment map $\mu: M \to \gf^*$.
+The grading means that we have a $\GG_m$ action (acting on $\omega_M$ with weight $2$) such that the $G$ and $\GG_m$ actions commute.
+Therefore $\mu$ is $\GG_m$-equivariant, where $\GG_m$ acts on $\gf^*$ with weight $2$.
+
+Recall that we say $M$ is pre-hyperspherical if:
+\begin{enumerate}
+	\item $M$ is coisotropic (i.e.\ $k(M)^G$ is commutative, equivalently generic $G$-orbits are cut out by Poisson-commuting $G$-invariant functions).
+	\item The image of $\mu$ meets the nilpotent cone $\Nc_G^*$.
+		Thus there exists a unique closed $G \times \GG_m$-orbit in $M$, the ``core'' $M_0$ of $M$.
+		This is the unique closed $G$-orbit in $\tilde{\mu}_M\inv(0)$, where $\tilde{\mu}_M: M \to \cf_M = M \sslash G$ and we write $0$ for an element of $\cf_M$ mapping to $0 \in \cf_G = \gf^* \sslash G$.)
+	\item The stabilizer of a generic point $m \in M$ is connected.
+\end{enumerate}
+
+We now move on to the full hyperspherical condition.
+Fix $x \in M_0$, and let $f = \mu(x) \in \Nc_G^*$.
+Then $M_0 \cong G / H$ where $H = \Stab_G(x)$, and $H$ is reductive.
+Let $\ol{\pi}: \GG_m \to \Aut_G(G/H) \cong N_G(H) / H$ be the natural map.
+
+Condition (4a) is that $\ol{\pi}$ lifts to a homomorphism $\pi: \GG_m \to N_G(H) \cap [G, G]$.
+
+\begin{prop}
+	The lift $\pi$ factors through $Z_G(H)$.
+\end{prop}
+
+\begin{proof}
+	Let $t = d\pi(1) \in \gf$, and let $\hf = \Lie(H)$.
+	We need to show that $t$ centralizes $\hf$.
+	Identify $\gf \cong \gf^*$, so we can view $f$ as an element of $\gf$.
+	Then $[t, f] = 2f$ (since $\GG_m$ acts on $\gf^*$ with weight $2$, and $\mu: M \to \gf^*$ is $G$-equivariant).
+	By the Jacobson-Morozov theorem, there exists $e \in \gf$ such that $[t, e] = -2e$ and $[f, e] = t$, giving an embedding $\slf_2 \hookrightarrow \gf$.
+	
+	View $\gf$ as an $\slf_2$-module via the above embedding.
+	Then $\hf$ is spanned by highest weight vectors in $\gf$, so all of the weights of $t$ on $\hf$ are nonnegative.
+	Write $\hf = \hf_+ \oplus \hf_0$, where $\hf_+$ is the sume of the strictly positive $t$-weight spaces.
+	We have $\hf_+ \subset \im (\ad(f)) \cap \gf^f$ (since $H$ fixes $x$, we see that $H$ fixes $f = \mu(x)$).
+
+	Note that $\im (\ad(f)) \cap \gf^f$ is an ideal in $\gf^f$ (by a direct Lie algebra computation), so $\im(\ad(f)) \cap \hf$ is an ideal of $\hf$.
+	Furthermore, $\im (\ad(f)) \cap \gf^f$ is a nilpotent Lie algebra (since contained in the positive weight part of $\gf$).
+	Thus $\im (\ad(f)) \cap \hf$ is a nilpotent ideal in $\hf$, but $\hf$ is reductive, so $\im (\ad(f)) \cap \hf$ must be central.
+	Since $\im (\ad(f)) \cap \hf \subset [\hf, \hf]$, it follows that $\im(\ad(f)) \cap \hf = 0$, and thus $\hf_+ = 0$.
+	We see that $\hf = \hf_0$, so in particular $x$ centralizes $\hf$.
+\end{proof}
+
+\begin{prop}
+	The lift $\pi$ is unique if it exists.
+\end{prop}
+
+To state condition (4b) for hyperspherical varieties, let $\tilde{\GG}_m$ be $\GG_m$ acting on $M$ via the sheared action $\GG_m \xrightarrow{(\pi(-)\inv, \id)} G \times \GG_m$.
+Thus $\tilde{\GG}_m$ acts on the symplectic normal space $T_x M_0^\perp / T_x M_0$, where $T_x M_0^\perp$ is the symplectic orthogonal subspace.
+Condition (4b) is that $\tilde{\GG}_m$ acts on the symplectic normal space by $t \cdot v = tv$ (i.e.\ the action has weight $1$).
+This is a useful condition, though the geometric interpretation is not clear.
+
+We are interested in considering sheared $\GG_m$ actions more generally -- this turns out to be the natural thing to do from the perspective of geometric Satake.
+
+\subsection{(David) -- More on shearing}
+
+Consider the vector field $2 p \partial_p - q \partial_q$ on $\RR^2 = T^*\RR$.
+This gives a hyperbolic $\GG_m$-action and corresponds to the Liouville form $\lambda = 2 p dq + q dp$.
+For $H = pq$, we get an action of $G = \GG_m$ via the Hamiltonian vector field $X_H = p \partial_p - q \partial_q$.
+Subtracting $X_H$ from our Liouville vector field, we get a $\tilde{\GG}_m$-action via the vector field $p \partial_p$.
+This $\tilde{\GG}_m$-action preserves the zero section!
+Thus, by considering shearing actions, we can preserve certain desirable isotropic / Lagrangian submanifolds.
+
+\subsection{(Mark) -- A construction}
+
+Let $H \subset G$ be a reductive group and $H \curvearrowright S$ be a symplectic representation of $H$.
+Let $\pi: \GG_m \to [G, G] \cap Z_G(H)$.
+Choose a nilpotent element $f \in \gf^*$.
+
+We equip $S$ with a commuting $\GG_m$ action via scaling (of weight $1$).
+Write $\gf = \jf \oplus \uf^- \oplus \gf_0 \oplus \uf$, where $\jf$ is the centralizer of $\pi$ and $f$, $\uf^-$ is the subspace with negative $\pi$ eigenvalues, $\gf_0$ is the subspace with zero $\pi$ eigenvalues (but nonzero $f$ eigenvalues), and $\uf$ is the subspace with positive $\pi$ eigenvalues.
+Integrate $\uf$ to a unipotent subgroup $U \subset G$.
+
+... And we're out of time -- we will finish next week.
+
+
 \end{document}
 
