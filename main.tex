@@ -637,6 +637,153 @@ Integrate $\uf$ to a unipotent subgroup $U \subset G$.
 
 ... And we're out of time -- we will finish next week.
 
+\section{10/19 (Mark Macerato) -- Concluded}
+
+The goal for today is to discuss the Ben-Zvi--Sakellaridis--Venkatesh construction of hyperspherical varieties via Whittaker induction.
+This will be a complicated story, but it covers several examples of interest.
+
+\subsection{Hamiltonian induction}
+
+Let $G$ be an algebraic group and $H$ a subgroup.
+We can view every $G$-variety as an $H$-variety by forgetting some of the action; this gives a restriction functor $\Res_H^G$ from $G$-varieties to $H$-varieties.
+More interestingly, this functor has a left adjoint, ``induction'' $\Ind_H^G$, sending an $H$-variety to a $G$-variety.
+Specifically, for a $G$-variety $Y$, we have a diagonal $H$-action on $G \times Y$ via $h \cdot (g, y) = (g h\inv, h y)$.
+The induction is the balanced product $G \times^H Y := (G \times Y) / H$.
+
+Every $G$-variety $X$ gives a Hamiltonian $G$-variety $T^* X$ (and similarly for $H$-varieties).
+The Hamiltonian condition here appears as follows: if $D(X)$ is differential operators on $X$, then we get a natural map $\Uc \gf \to D(X)$.
+Taking associated gradeds, we get a map $\Sym \gf \to \Oc(T^* X)$.
+This corresponds (under $\Spec$) to the moment map $T^* X \to \gf^*$.
+
+Given a Hamiltonian $G$-variety, we can restrict to the $H$-action and get a Hamiltonian $H$-variety.
+This defines a ``functor'' $h\Res_H^G$ from Hamiltonian $G$-varieties to Hamiltonian $H$-varieties.
+The term ``functor'' here is in quotes because the correct notion of a morphism between symplectic varieties is not the standard notion of morphism of varieties.
+Instead, we need to consider ($G$-stable) Lagrangian correspondences as our morphisms.
+
+To understand why, suppose we have a morphism $f: X \to Y$ of varieties.
+We do not obtain a natural morphism of varieties between $T^*X$ and $T^*Y$.
+Instead, we get a Lagrangian correspondence
+\[
+	T^*X \xleftarrow{f^*} T^*Y \times_Y X \xrightarrow{\pi_1} T^*Y.
+\]
+We can view $T^*Y \times_Y X$ as the conormal variety to $\Gamma_f \subset T^*X \times T^*Y$.
+Morally, we should think of Lagrangians as being the symplectic analogue of points (they give the maximum amount of information we can cut out by Poisson-commuting functions).
+
+The Hamiltonian induction functor acts on cotangent bundles by
+\[
+	h\Ind_H^G T^*Y = T^*(G \times^H Y) = T^*(G \times Y) \sslash H = (T^*G \times T^*Y) \sslash H.
+\]
+From this, we can understand what to do for a general Hamiltonian $H$-variety $M$.
+We define
+\[
+	h\Ind_H^G(M) = (T^*G \times M) \sslash H,
+\]
+where we use the diagonal $H$-action (from $h \mapsto (h\inv, h) \in H \times H$).
+Then $G$-stable Lagrangian correspondences between $h\Ind_H^G Y$ and $M$ correspond to $H$-stable Lagrangian correspondences between $Y$ and $h\Res_H^G M$ (i.e.\ $h\Ind_H^G$ is left adjoint to $h\Res_H^G$).
+
+\subsection{(David) -- The groupoid picture}
+
+Recall that we should think of Hamiltonian $H$-spaces $M \to \hf^*$ as coming with an action of the groupoid $T^*H \rightrightarrows \hf^*$.
+To construct the induced Hamiltonian $G$-space, we consider $T^*G$ with its natural maps to $\hf^* \times \hf^*$, and we combine this with $M$ as Mark was indicating above.
+
+\subsection{(Mark) -- Sheared Hamiltonian $G$-spaces}
+
+Recall that we started by considering \emph{graded} Hamiltonian $G$-variety i.e.\ those equipped with a commuting $\GG_m$-action (of weight $2$ on $\omega$).
+To discuss Whittaker induction, it is better to generalize to \emph{sheared} Hamiltonian $G$-variety.
+
+\begin{dfn}
+	Let $\pi: \GG_m \to \Aut(G)$.
+	A \emph{$\pi$-sheared Hamiltonian $G$-variety} is a Hamiltonian $G$-variety $M$ with a $\GG_m$-action such that, for $\lambda \in \GG_m$, $g \in G$, and $x \in M$, we have
+	\[
+		\lambda \cdot (g \cdot x) = \pi(\lambda)(g)(\lambda \cdot x)
+	\]
+	and such that $\mu: M \to \gf^*$ is $\GG_m$-equivariant, where $\GG_m$ acts on $\gf^*$ via 
+	\[
+		\lambda \cdot \xi = \lambda^2 \pi(\lambda)^t (\xi).
+	\]
+\end{dfn}
+
+\begin{ex}
+	Consider the action of $\GG_a$ on $\pt$, where we assume $\mu: \pt \to \AA^1$ sends $\pt$ to $x \in \AA^1$.
+	We can consider the action $\pi: \GG_m \curvearrowright \GG_a$ by $\lambda \cdot x = \lambda^2 x$.
+	Then $\pt$ is a $\pi$-sheared Hamiltonian $\GG_a$-variety, but is not a graded Hamiltonian $G$-variety.
+\end{ex}
+
+However, suppose that $\pi$ arises from an inner automorphism, i.e.\ we have $\pi: \GG_m \to G$ and the action is $\lambda \cdot g = \pi(\lambda) g \pi(\lambda)\inv$.
+Then we have an equivalence of categories between graded Hamiltonian $G$-varieties and $\pi$-sheared Hamiltonian $G$-varieties, given by sending a graded Hamiltonian $G$-variety $\GG_m \curvearrowright M$ to the sheared variety with $\GG_m$-action given by $(\pi(-)\inv, \id): \GG_m \hookrightarrow G \times \GG_m$.
+
+\begin{ex}
+	Let $\GG_m \curvearrowright \gf^*$ and consider $2\rho: \GG_m G$.
+	This gives the sheared action $\lambda \cdot \xi = 2\rho(-\lambda) \lambda^2 \xi$.
+\end{ex}
+
+\subsection{Whittaker induction}
+
+Suppose $G$ is connected and reductive, and say we have $\pi: \GG_m \to [G, G]$.
+Let $f \in \gf^*$ be nilpotent and assume $\pi(\lambda) \cdot f = \lambda^{-2} f$.
+Consider a reductive subgroup $H \subset G$ such that $H$ commutes with $\pi(\GG_m)$ and $H$ fixes $f$.
+We can write
+\[
+	\gf = \jf \oplus \gf_+ \oplus \gf_0 \oplus \gf_-
+\]
+where $\jf$ is the centralizer of $\Lie(\pi(\GG_m))$ and $f$, and $\gf_{+/0/-}$ collects the other $\pi$-eigenspaces according to their eigenvalues (whether positive, zero, or negative).
+Another way to construct this is using the Jacobson-Morozov theorem as discussed last time.
+
+Let $\uf = \gf_+$ and $\uf_+ = \oplus_{i \geq 1} \gf_i$ (the sum of eigenspaces of $\pi$-weight strictly greater than one).\footnote{For ease of reading, one is recommended to focus on examples where $\uf = \uf_+$, but $\uf / \uf_+$ is a point with a nontrivial moment map.}
+Then $\uf$ and $\uf_+$ integrate to subgroups $U_+ \subset U \subset G$.
+
+Whittaker induction sends graded Hamiltonian $H$-varieties to a graded Hamiltonian $G$-varieties, (but uses shearing and unshearing with respect to $\pi$ in the process).
+Note that $H \cap U$ is trivial (since our hypotheses imply $\hf \subset \jf$), $H$ normalizes $U$, and $HU \subset G$.\footnote{I had to leave at this point -- many thanks to Yuji Okitani for graciously sharing his notes.}
+
+\begin{ex}
+	Let $G = \GL_n$, $\pi: \GG_m \xrightarrow{2\rho} \GL_n$, and let $H$ be trivial.
+	Let
+	\[
+		f = \begin{bmatrix}
+			0 & & & \\
+			1 & 0 & & \\
+			  & \ddots & \ddots & \\
+			  & & 1 & 0
+		\end{bmatrix}.
+	\]
+	Then
+	\[
+		U = \begin{bmatrix}
+			1 & * & \dots & * \\
+			  & 1 & \dots & * \\
+			  & & \ddots & * \\
+			  & & & 1
+		\end{bmatrix}
+	\]
+	and $HU = U$.
+	In this case,
+	\begin{align*}
+		\WhitInd_{H,2\rho,f}^{\GL_n} &= h\Ind_{HU}^G(\pt \times (\uf / \uf_+)_f) \\
+		&= h\Ind_U^{\GL_n}(\pt_f) \\
+		&= T^* \GL_n \sslash_f U.
+	\end{align*}
+\end{ex}
+
+Suppose $M$ is a hyperspherical variety.
+Then $M = \WhitInd_{H,\pi,f}^G S$, where $H$ is the stabilizer of the unique closed $M_0$ and $S$ is the fiber of the symplectic normal bundle over any $x \in M_0$ (and $\pi$ and $f$ are as in the discussion from last time?). 
+
+\begin{ex}
+	Let $M = T^*X$ where $X = G/H$.
+	Taking $S = \pt$, $\pi$ the trivial homomorphism, and $f = 0$, we obtain $M$ via Whittaker induction.
+\end{ex}
+
+\begin{ex}
+	Let $G = \GL_{2n}$, $H = \Sp_{2n}$, and $V = \CC^{2n} \oplus (\CC^{2n})^*$.
+	Then
+	\[
+		\WhitInd_{H,1,0}^G(V) \simeq T^*((\GL_{2n} \times \CC^{2n}) / \Sp_{2n}),
+	\]
+	and this contains as an open dense subset
+	\[
+		\WhitInd_{1,2\rho,\psi}^G(\pt) \simeq T^*(\GL_{2n} \sslash_\psi U)
+	\]
+	where $\psi: U \to \GG_a$ takes a $2n \times 2n$ matrix in $U$ and sums the entries directly above the diagonal $1$s (except for the $n$th such entry, which is not contained in a diagonal block of the matrix).
+\end{ex}
 
 \end{document}
 
