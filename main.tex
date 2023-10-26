@@ -785,5 +785,78 @@ Then $M = \WhitInd_{H,\pi,f}^G S$, where $H$ is the stabilizer of the unique clo
 	where $\psi: U \to \GG_a$ takes a $2n \times 2n$ matrix in $U$ and sums the entries directly above the diagonal $1$s (except for the $n$th such entry, which is not contained in a diagonal block of the matrix).
 \end{ex}
 
+\section{10/26 (Jeremy Taylor) -- Relative Local Langlands and Examples}
+
+The goal of these lectures is to explain the next section of the paper and discuss the geometric Satake theorem.
+
+\subsection{The relative local Langlands conjecture}
+
+The relative local Langlands conjecture is that, given $G \curvearrowright M$ with $M$ hyperspherical (in particular affine), there is a dual action $\check{G} \curvearrowright \check{M}$ (with $\check{G}$ the Langlands dual of $G$ and $\check{M}$ some hyperspherical variety) satisfying an implicitly derived equivalence
+\[
+	\Sh(M_\Kc / G_\Oc) = \QCoh(\check{M} / \check{G}).
+\]
+Here $\Kc = k((t))$ (so $M_\Kc$ is the loop space of $M$) and $\Oc = k[[t]]$ (so $G_\Oc$ is the arc space of $G$).
+
+\begin{ex}
+	For $M = \pt$ and $G$ arbitrary, we have 
+	\[
+		\check{M} = T^*(\check{G} / (\check{N}, f)) = \check{G} \times (f + \check{\gf}^e),
+	\]
+	where $\check{N}$ is strictly upper triangular matrices and $f$ is a regular nilpotent lower triangular matrix (an element of $(\check{\nf})^- = \check{\nf}^*$).
+	The relative local Langlands conjecture gives
+	\[
+		\Sh(\pt / G) = \QCoh(f + \check{\gf}^e).
+	\]
+	Note that $f + \check{\gf}^e = \check{\gf} \sslash \check{G}$.
+\end{ex}
+
+Suppose that $M = T^*X$.
+We can construct $\check{M}$ from its Whittaker data as follows.
+For $\check{H}_X \subset \check{G}$ a reductive subgroup, $\check{H}_X \curvearrowright S_X$ a symplectic representation, and $f \in \check{\gf}$ nilpotent (all described later), we have
+\[
+	\check{M} = \WhitInd_{\check{H}_X,f}^{\check{G}}(S_X) = \big((S_X \times (\check{\uf} / \check{\uf}_+)_f) \times_{\check{\hf}_X^* \oplus \check{\uf}_f} T^* G\big) / (\check{H}_X \check{U}).
+\]
+This is analogous to parabolic induction from the classical theory of linear algebraic groups -- it is a process for constructing hyperspherical varieties for $\check{G}$ from hyperspherical varieties for simpler subgroups.
+Note that if the $\slf_2$-triple containing $f$ has even weights for its action on $\check{\gf}$, then $\check{\uf} / \check{\uf}_+ = \pt$.
+
+Coweights of $\check{H}_X$ should be spanned by $T$-weights in $k[X]^N$, where $N \subset G$ is the standard nilpotent subgroup.
+The highest weights of the representation $S_x$ can be determined by looking at divisors in $X$ which are stable under $G$.
+Let $P_X$ be the maximal subgroup of $G$ stabilizing the open $B$-orbit in $X$, and take $f$ to be a principal nilpotent element of the Lie algebra of the dual Levi $\check{L}_X \subset \check{P}_X$.
+
+\begin{ex}
+	If $S_X = 0$ and $f = 0$, then $\check{M} = T^*(\check{G} / \check{H})$.
+\end{ex}
+
+\subsection{An example: $M = \pt$}
+
+\begin{ex}
+	Let $M = T^*X = \pt$.
+	In this case, we see that coweights of $\check{H}_X$ are zero, and thus $\check{H}_x$ must be $1$.
+	The highest weights of $S_x$ must be empty, so $S_X = 0$.
+	Here $P_X = G$, so $\check{L}_X = \check{P}_X = \check{G}$, and $f$ is a principal nilpotent element of $\check{G}$.
+	The Whittaker induction formula yields 
+	\[
+		\check{M} = T^*(\check{G} / (\check{N}, f)) = \big((f + \check{n}^\perp) \times \check{G}\big) / \check{N}.
+	\]
+	There is an isomorphism $(f + \check{n}^\perp) \Leftrightarrow \check{N} \times (f + \check{g}^e)$ given by $\Ad_n(x) \leftrightarrow (n, x)$.
+	Thus we may identify $\check{M} = (f + \check{\gf}^e) \times \check{G}$.
+
+	This has commuting $\GG_m$-action given by
+	\[
+		z \cdot (x, g) = \big(\Ad_{2\rho(z)}(z^2 x), g \cdot 2\rho(z)\big).
+	\]
+	The core $\check{M}_0$ (i.e.\ the unique closed $\check{G} \times \GG_m$-orbit) is $f \times \check{G}$ (which is isomorphic to $\check{G} / \check{H_X} = \check{G}$).
+
+	The automorphic side of relative local Langlands is 
+	\[
+		\Sh(M_\Kc / G_\Oc) = \Sh(\pt / G) = \Mod_{\mathrm{Nilp}}(H^*(\pt / G)) = \Mod_{\mathrm{Nilp}}\big((\Sym \gf[-2])^G\big).
+	\]
+	The spectral side of relative local Langlands is
+	\[
+		\QCoh(\check{M} / \check{G}) = \QCoh(f + \check{g}^e) = \QCoh(\check{\gf} \sslash \check{G}).
+	\]
+	We can identify the two, proving relative local Langlands in this case.
+\end{ex}
+
 \end{document}
 
