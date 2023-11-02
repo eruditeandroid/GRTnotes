@@ -858,5 +858,87 @@ Let $P_X$ be the maximal subgroup of $G$ stabilizing the open $B$-orbit in $X$, 
 	We can identify the two, proving relative local Langlands in this case.
 \end{ex}
 
+\section{11/2 (Jeremy Taylor) -- Continued}
+
+Recall that if we have a hyperspherical variety $G \curvearrowright M$, there should exist a dual hyperspherical variety $\check{G} \curvearrowright \check{M}$.
+The operation $\check{(-)}$ should be an involution.
+
+\subsection{Whittaker data of the dual}
+
+For simplicity, let's assume $M = T^*X$ for some spherical variety $X$.\footnote{For a simple example, one can consider the case where $G$ is a torus, so $X$ is a toric variety.
+This recovers known constructions / data in the theory of toric varieties.}
+Then $\check{M}$ can be constructed from its Whittaker data.
+This Whittaker data consists of:
+\begin{itemize}
+	\item A reductive subgroup $\check{H}_X \subset \check{G}$
+	\item A symplectic representation $\check{H}_X \curvearrowright S_X$
+	\item A nilpotent element $f \in \check{\gf}$
+\end{itemize}
+all satisfying some compatibility conditions.
+We can identify the core $\check{M}_0$ with $\check{G} / \check{H}_X$.
+The symplectic normal bundle to $\check{M}_0$ is $S_X$.
+
+This data arises from $X$ in the following way.
+The group $\check{H}_X$ has coweights $\Lambda_{\check{H}_X} \subset \Lambda_{\check{G}}$ spanned (over $\ZZ$) by the $T$-weights in $k[X]^N$.
+Let the \emph{valuation cone} $V$ be the set of $G$-invariant valuations $k(X) \to \QQ \cup \{ \infty \}$; then $V$ embeds in $\check{\Lambda}_{\check{H}_X} \otimes \QQ$ as a fundamental domain for the action of the Weyl group $W_X$.\footnote{We consider valuations because we like to think about compactifying varieties by adding divisors, and each divisor gives a valuation.
+This gives the classical construction of projective algebraic curves from their function fields.}
+The simple coroots $\Delta_X$ are generators of the dual cone in $\Lambda_{\check{H}_X} \otimes \QQ$, normalized to be primitive in $\ZZ \cdot R$ (where $R$ is the set of roots of $G$).
+We still need to find the simple roots.
+
+\begin{prop}
+	If $\alpha \in \Delta_X$, then one (or both) of the following is true:
+	\begin{enumerate}
+		\item $\alpha$ is a root of $G$
+		\item $\alpha$ is a sum of two roots of $G$.
+	\end{enumerate}
+\end{prop}
+
+If $\alpha = \gamma \in R$, then the corresponding simple root $\check{\alpha}$ is $\check{\gamma}$ restricted to the torus of $\check{H}_X$.
+If $\alpha = \gamma_1 + \gamma_2$ for $\gamma_i \in R$, then we can choose the $\gamma_i$ to be ``strongly orthogonal,'' and then $\check{\alpha}$ is $\check{\gamma}_1$ restricted to the torus of $\check{H}_X$ (and this is equal to the corresponding restriction of $\check{\gamma}_2$).
+
+The symplectic representation $\check{H}_X \curvearrowright S_X$ has highest weights given by $B$-invariant but not $G$-invariant divisors in $X$.
+To construct the nilpotent $f \in \check{\gf}$, let $P_X \subset G$ be the maximal subgroup stabilizing an open $B$-orbit and $L_X$ the corresponding Levi.
+Let $f$ be a principal element of $\Lie(\check{L}_X)$, where $\check{L}_X$ is the dual Levi to $L_X$.
+
+\subsection{An example: $G = \PGL_2$, $X = \PGL_2 / T$}
+
+We may view $X = \PGL_2 / T = (\PP^1 \times \PP^1) \setminus \Delta$, where the correspondence is given by
+\[
+	\begin{bmatrix}
+		a & b \\
+		c & d
+	\end{bmatrix} \Leftrightarrow \left(\frac{c}{a}, \frac{d}{b}\right).
+\]
+One can draw this as a (ruled) quadric in $3$-dimensional space.
+The diagonal $\Delta$ corresponds to the divisor of points at infinity.
+
+The coweights are given by
+\[
+	k[X]^N = \oplus_n L(2n)^N \otimes L(2n)^T = \oplus_n L(2n)_{2n}
+\]
+(where $L(\lambda)$ is the representation with highest weight $\lambda$), so we have $\Lambda_{\check{H}_X} = \Lambda_{\check{G}}$.
+We can describe a generator of this (labeled by a root $\alpha of \check{G}$) as
+\[
+	f_\alpha = \frac{cd}{ad - bc} \in k[X].
+\]
+One can check that
+\[
+	\begin{bmatrix}
+		x & z \\
+		0 & y
+	\end{bmatrix} f_\alpha = \frac{x}{y} f_\alpha.
+\]
+The valuation cone is spanned by the function giving the order of vanishing at $\Delta$.
+Thus $\check{H}_X = \SL_2$.
+
+The highest weights of $S_X$ are given by $B$-invariant but not $G$-invariant divisors.
+These are $\{0\} \times (\PP^1 \setminus \{0\})$ and $(\PP^1 \setminus \{0\}) \times \{0\}$.
+We can compute $S_X = L(\epsilon_1) \oplus L(-\epsilon_2)$.
+Furthermore, $f = 0$.
+Thus $\check{M} = (S_X \times T^* \check{G}) \sslash \check{H}_X = S_X$.
+
+David talked a bit about how this contrasts with the picture of $T$ acting on $T^*T$.
+In the latter picture, we have two missing divisors ($\{0\}$ and $\{\infty\}$).
+The valuation cone is the whole $\check{\Lambda}_{\check{H}_X} \otimes \QQ$, and there is no $\alpha$.
 \end{document}
 
