@@ -827,7 +827,7 @@ Let $P_X$ be the maximal subgroup of $G$ stabilizing the open $B$-orbit in $X$, 
 	If $S_X = 0$ and $f = 0$, then $\check{M} = T^*(\check{G} / \check{H})$.
 \end{ex}
 
-\subsection{An example: $M = \pt$}
+\subsection{Example 1: $M = \pt$}
 
 \begin{ex}
 	Let $M = T^*X = \pt$.
@@ -900,7 +900,7 @@ The symplectic representation $\check{H}_X \curvearrowright S_X$ has highest wei
 To construct the nilpotent $f \in \check{\gf}$, let $P_X \subset G$ be the maximal subgroup stabilizing an open $B$-orbit and $L_X$ the corresponding Levi.
 Let $f$ be a principal element of $\Lie(\check{L}_X)$, where $\check{L}_X$ is the dual Levi to $L_X$.
 
-\subsection{An example: $G = \PGL_2$, $X = \PGL_2 / T$}
+\subsection{Example 2: $G = \PGL_2$, $X = \PGL_2 / T$}
 
 We may view $X = \PGL_2 / T = (\PP^1 \times \PP^1) \setminus \Delta$, where the correspondence is given by
 \[
@@ -940,5 +940,77 @@ Thus $\check{M} = (S_X \times T^* \check{G}) \sslash \check{H}_X = S_X$.
 David talked a bit about how this contrasts with the picture of $T$ acting on $T^*T$.
 In the latter picture, we have two missing divisors ($\{0\}$ and $\{\infty\}$).
 The valuation cone is the whole $\check{\Lambda}_{\check{H}_X} \otimes \QQ$, and there is no $\alpha$.
-\end{document}
 
+\section{11/9 (Jeremy Taylor) -- Continued}
+
+\subsection{Review of examples}
+
+We have constructed two examples of dual hyperspherical varieties:
+\begin{itemize}
+	\item $G \curvearrowright \pt$ is dual to $\check{G} \curvearrowright T^*(\check{G} / (\check{N},f)) = \check{G} \times (f + \check{g}^e)$.
+	\item $\PGL_2 \curvearrowright T^*(\PGL_2 / T)$ is dual to $\SL_2 \curvearrowright T^* L(1)$.
+\end{itemize}
+In both examples, we should be able to go backwards.
+
+For the second example, let $X = \PGL_2 / T$, which we can view as a quadric surface.
+The space $L(1)$ is not a homogeneous space for $\SL_2$, but we can view it as a closure of the open $\SL_2$-orbit $\SL_2 / N = \AA^2 \setminus \{0\}$.
+Note that there is one minimal $\PGL_2$-invariant compactification of $X$, namely adding in a $\PP^1$ at infinity.
+By contrast, $L(1)$ has two natural $\SL_2$-invariant divisors in the compactification of $\AA^2 \setminus \{0\}$, namely divisors at zero and infinity.
+This is reflected in the corresponding valuation cones: $T^*(\PGL_2 / T)$ has valuation cone pointing off in one direction of $\QQ$, while $T^* L(1)$ has valuation cone pointing off in both directions of $\QQ$.
+
+All of the preceding data can be understood in terms of toric varieties / toric compactifications (where the relevant torus is a maximal torus in the acting reductive group).
+
+
+Our construction of the dual hyperspherical variety $\check{G} \curvearrowright \check{M}$ to $G \curvearrowright M = T^*X$ relied on Whittaker induction.
+This requires the following data:
+\begin{enumerate}
+	\item A reductive subgroup $\check{H}_X \subset \check{G}$
+	\item A symplectic representation $\check{H}_X \curvearrowright S_X$
+	\item A nilpotent element $f \in \check{\gf}$
+\end{enumerate}
+satisfying some compatibility conditions.
+In our first example, the first and second pieces of data were trivial.
+In our second example, the third piece of data was trivial.
+Let's consider an example where all three are nontrivial.
+
+\subsection{Example 3: $G = \SO_5$, $X = \SO_5 / \SO_4$}
+
+Let's consider $G = \SO_5$ acting on $T^*X$ where 
+\[
+	X = G / \SO_4 = \{ x_1 x_5 + x_2 x_4 + x_3^2 = 1 \}.
+\]
+If we worked over $\RR$, $X$ would be the $4$-sphere.
+Note that this fits into the same pattern of $\SO_{2n+1} \curvearrowright T^*(\SO_{2n+1}/\SO_{2n})$ as our second example (since $\PGL_2 = \SO(3)$).
+
+We can write the Lie algebra $\sof_5 = \{ X^T J + JX = 0 \}$ where $J$ is the $5 \times 5$ matrix with ones on the skew diagonal and zeroes elsewhere.
+The maximal torus $T$ has Lie algebra $\tf$ consisting of matrices of the form
+\[
+	\begin{bmatrix}
+		y_1 & & & & \\
+		& y_2 & & & \\
+		& & 0 & & \\
+		& & & -y_2 & \\
+		& & & & -y_1
+	\end{bmatrix}.
+\]
+Let $\epsilon_i \in \tf^*$ send such a matrix to $y_i$.
+The simple roots are $\epsilon_1 - \epsilon_2$ and $\epsilon_2$.
+The other positive roots are $\epsilon_1$ and $\epsilon_1 + \epsilon_2$.
+Here $L(\epsilon_1)$ is the standard $5$-dimensional representation.
+
+To find $\check{H}_X$, we start by finding the coweight lattice $\Lambda_{\check{H}_X}$, which in this case is $\ZZ \epsilon_1$.
+To see this, note that $k[X]^U = \oplus_\lambda L(\lambda)^U \otimes L(\lambda^*)^{\SO_4}$.
+Then we can see that all nonzero summands come from $L(n \epsilon_1)$ for some $n \in \ZZ$.
+Another proof involves noting that the elements $b$ of the standard Borel subalgebra act on the function $x_5 \in k[X]$ via multiplication by $\epsilon_1(b)$.
+
+The valuation cone consists of the half of $\Lambda_{\check{H}_X} \otimes \QQ$ containing the valuation $v: k(X) \to \ZZ$ measuring the order of vanishing at infinity.
+Thus $\check{H}_X$ has a root, so it must be a copy of $\SL_2$ or $\PGL_2$ corresponding to the coroot $\epsilon_1$ of $\Sp_4$.
+Looking at $\Sp_4$ shows that $\check{H}_X$ must be a copy of $\SL_2$.
+
+We're pressed for time, so we'll just list the remaining data.
+The symplectic representation $S_X$ is $L(1)$.
+The parabolic $P_X$ is the parabolic corresponding to $\epsilon_2$.
+Since $\epsilon_1$ and $\epsilon_2$ are orthogonal, we have $(\SL_2)_{\epsilon_1} \times (\SL_2)_{\epsilon_2} \curvearrowright \Sp_4$.
+Similar phenomena hold as we continue the pattern.
+
+\end{document}
