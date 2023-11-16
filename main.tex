@@ -791,11 +791,11 @@ The goal of these lectures is to explain the next section of the paper and discu
 
 \subsection{The relative local Langlands conjecture}
 
-The relative local Langlands conjecture is that, given $G \curvearrowright M$ with $M$ hyperspherical (in particular affine), there is a dual action $\check{G} \curvearrowright \check{M}$ (with $\check{G}$ the Langlands dual of $G$ and $\check{M}$ some hyperspherical variety) satisfying an implicitly derived equivalence
+The relative local Langlands conjecture is that, given $G \curvearrowright M = T^*X$ with $M$ hyperspherical (in particular affine), there is a dual action $\check{G} \curvearrowright \check{M}$ (with $\check{G}$ the Langlands dual of $G$ and $\check{M}$ some hyperspherical variety) satisfying an implicitly derived equivalence
 \[
-	\Sh(M_\Kc / G_\Oc) = \QCoh(\check{M} / \check{G}).
+	\Sh(X_\Kc / G_\Oc) = \QCoh(\check{M} / \check{G}).
 \]
-Here $\Kc = k((t))$ (so $M_\Kc$ is the loop space of $M$) and $\Oc = k[[t]]$ (so $G_\Oc$ is the arc space of $G$).
+Here $\Kc = k((t))$ (so $X_\Kc$ is the loop space of $M$) and $\Oc = k[[t]]$ (so $G_\Oc$ is the arc space of $G$).
 
 \begin{ex}
 	For $M = \pt$ and $G$ arbitrary, we have 
@@ -960,7 +960,6 @@ This is reflected in the corresponding valuation cones: $T^*(\PGL_2 / T)$ has va
 
 All of the preceding data can be understood in terms of toric varieties / toric compactifications (where the relevant torus is a maximal torus in the acting reductive group).
 
-
 Our construction of the dual hyperspherical variety $\check{G} \curvearrowright \check{M}$ to $G \curvearrowright M = T^*X$ relied on Whittaker induction.
 This requires the following data:
 \begin{enumerate}
@@ -1012,5 +1011,103 @@ The symplectic representation $S_X$ is $L(1)$.
 The parabolic $P_X$ is the parabolic corresponding to $\epsilon_2$.
 Since $\epsilon_1$ and $\epsilon_2$ are orthogonal, we have $(\SL_2)_{\epsilon_1} \times (\SL_2)_{\epsilon_2} \curvearrowright \Sp_4$.
 Similar phenomena hold as we continue the pattern.
+
+\section{11/16 (Jeremy Taylor) -- Concluded}
+
+This is the last talk for the next semester.
+We will meet again on Thursday of RRR week to go for a hike.
+
+\subsection{Review}
+
+For a hyperspherical variety $G \curvearrowright M = T^*X$, we can construct a dual hyperspherical variety $\check{G} \curvearrowright \check{M}$ via Whittaker induction.
+These have many interesting conjectural relations, e.g.\ the relative local Langlands conjecture:
+\[
+	\Sh(X_\Kc / G_\Oc) \simeq \QCoh(\check{M} / \check{G})
+\]
+
+We have discussed three examples so far:
+\begin{itemize}
+	\item $G \curvearrowright \pt$ is dual to $\check{G} \curvearrowright T^*(\check{G} / (\check{N},f)) = \check{G} \times (f + \check{g}^e)$.
+	\item $\PGL_2 \curvearrowright T^*(\PGL_2 / T)$ is dual to $\SL_2 \curvearrowright T^* L(1)$.
+	\item $\SO_5 \curvearrowright T^*(\SO_5 / \SO_4)$ is dual to the hyperspherical $\Sp_4$-variety with Whittaker induction data $\check{H}_X = (\SL_2)_{\epsilon_2} \subset \Sp_4$, $S_X = L(1)$, and
+		\[
+			f = \begin{bmatrix}
+				0 & 0 & 0 & 1 \\
+				0 & 0 & 0 & 0 \\
+				0 & 0 & 0 & 0 \\
+				0 & 0 & 0 & 0 \\
+			\end{bmatrix} \in (\slf_2)_{\epsilon_1} \subset \spf_4.
+		\]
+		The highest weights of $S_X$ are given by $B$-invariant but not $G$-invariant divisors on $X$.
+		Write $X = \{ x_1 x_5 + x_2 x_4 + x_3^2 = 1 \}$.
+		Taking $D = \{ x_5 = 0 \}$, we know that $x_5$ has $T$-weight $\epsilon_2$, and we have $v_D(x_5) = 1 = \ip{\lambda}{\check{\epsilon}_2}$.
+\end{itemize}
+
+\subsection{Example 4: $G = H \times H$, $M = T^*H$}
+
+Considering $G = H \times H$ acting on itself by left and right multiplication, we will show that the dual is $\check{H} \times \check{H} \curvearrowright T^*(\check{H} \times \check{H} / \check{H})$, where we embed $\check{H} \hookrightarrow \check{H} \times \check{H}$ via $h \mapsto (h, w_0\inv (h\inv)^T w_0)$.
+The second factor of the embedding here is the ``Cartan involution.''
+We may identify $T^*(\check{H} \times \check{H} / \check{H})$ with $\check{H} \times \check{\hf}^*$.
+
+The relative local Langlands conjecture for this pair will recover the geometric Satake theorem for $H$.
+The conjecture states
+\[
+	\Sh(H_\Kc / (H_\Oc \times H_\Oc)) \simeq \QCoh(\check{\hf}^* / \check{H}),
+\]
+and we can unfold everything to obtain the usual statement of (derived) geometric Satake.
+
+Let's explain the computation in more detail.
+Note
+\[
+	k[H]^{N \times N} = \oplus_{\lambda} L(\lambda)^N \otimes L(-w_0(\lambda))^N,
+\]
+where each summand is one-dimensional with $T \times T$-weight $(\lambda, -w_0 \lambda)$.
+Thus the coweights $\Lambda_{\check{H}_X} = \Lambda_{\check{H}}$ embed into $\Lambda_{\check{H}} \times \Lambda_{\check{H}}$ via $\lambda \mapsto (\lambda, -w_0 \lambda)$.
+
+Let's figure out the roots first in the case of $\PGL_2$.
+
+\begin{ex}
+	For $H = \PGL_2$, we may consider the usual embedding $G \hookrightarrow \PP^3$, viewing $\PGL_2$ as an open subvariety with complement $X_1 = \{ ad - bc = 0 \} = G/B \times G/B^-$.
+	The function
+	\[
+		f_\alpha = \frac{c^2}{ad-bc} \in k[H]
+	\]
+	is $U \times U$-invariant and has $T \times T$-weight $(\alpha, \alpha)$ for $\alpha$ the root of $\PGL_2$.
+	We have $v_{X_1}(f_\alpha) = -1$, so the valuation cone $V$ is a ray in $\Lambda_{\check{H}} \otimes \QQ$.
+\end{ex}
+
+For general $H$, we must use the wonderful compactification to understand the behavior at infinity.
+
+\subsection{The wonderful compactification}
+
+Let $G$ be an adjoint reductive group, and let $V$ be an irrep of $H$ with highest weight $\lambda$ and highest weight vector $v_\lambda$.
+Assume $\lambda$ is regular.
+The representation gives us a natural map $G \to \PP(\End(V))$.
+The \emph{wonderful compactification} is $X = \ol{\psi(G)}$, which is independent of $V$ so long as $\lambda$ is regular.
+
+Let 
+\[
+	\PP_0 = \{ [A] \in \PP(\End(V)) \, | \, v_\lambda^* A v_\lambda \neq 0 \}.
+\]
+Let $Z = \ol{\psi(T)} \cap \PP_0 = \CC^r$ where $r = \rk T = \# \Delta$ (where $\Delta$ is the set of simple roots).
+Note that $\PP_0 \cap X = U^- Z U$.
+
+\begin{rmk}
+	The intuition is that we want to understand the points in the closure of $T$ at $\infty$, as $\ol{\psi(T)}$ is toric (and therefore accessible in terms of combinatorics).
+	There are theorems telling us that ``the geometry of $G$ at infinity is smoothly equivalent to that of $T$ at infinity.''
+	The closure $\ol{\psi{T}}$ is given by the toric variety with fan consisting of the Weyl chambers.
+	Here $\PP_0$ should pick out a single Weyl chamber.
+\end{rmk}
+
+Note the following properties:
+\begin{enumerate}
+	\item The $T$-orbits in $Z$ are given by $Z_I = \{ \alpha_i(z) = 0 \forall i \in I\}$, where $I$ ranges over all subsets of $\Delta$.
+	\item The $G \times G$-orbits are $X_I \subset X$ indexed by the same sets $I$ and satisfying $X_I \cap Z = Z_I$.
+	\item We have $X \setminus G = \cup_{i \in \Delta} X_i$.
+	\item The orbit $X_I$ is naturally a $L_I / Z$-bundle over $G/P_I \times G/P_I^-$
+	\item The closures $\ol{X}_I$ are naturally bundles over $G/P_I \times G/P_I^-$ with fibers given by the wonderful compactifications of $L_I / Z$.
+\end{enumerate}
+
+We can use this last property to inductively compute the divisors / roots appearing in the construction of the Whittaker data above.
 
 \end{document}
