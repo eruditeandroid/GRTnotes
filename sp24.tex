@@ -1,0 +1,198 @@
+\documentclass{article}
+
+\usepackage{notes}
+
+\title{GRT Seminar Sp24 Notes}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+	This semester, we will discuss \emph{Sheaves of categories and the notion of 1-affineness} by Gaitsgory, \emph{Tannaka duality and 1-affineness} by Stefanich, and related papers.
+	The material this semester is logically independent of that from last semester.
+\end{abstract}
+
+\tableofcontents
+
+\section{1/25 (David Nadler) -- Introduction}
+
+\subsection{Logistics and announcements}
+
+There will be a more basic discussion in the hour after the usual seminar time (starting with Borel-Weil-Bott).
+The Lie Groups course this semester will also be discussing GRT -- we will not attempt to compete with this.
+There will be no seminar next week, but we are seeking volunteers to talk in the following weeks.
+
+\subsection{Overview}
+
+The papers we will study show (in various instantiations) that for ``reasonable'' algebraic varieties or stacks $X$, there is an equivalence between the 2-category of ``quasicoherent sheaves of categories\footnote{This being the GRT seminar, ``category'' means $\infty$-category or DG-category.} on $X$'' (i.e.\ quasicoherent modules over the sheaf of categories $\QC_X$) and module categories for the tensor category $\QC(X)$.
+This equivalence is given by ``taking global sections'' / ``evaluating on $X$.''
+In effect, we are saying that in ``reasonable'' cases, working locally and working globally are equivalent, so long as we are asking questions about the whole category $\QC(X)$.
+
+Of course, the analogous statement rarely holds for the category of quasicoherent sheaves of $\Oc_X$-modules and the category of $\Oc(X)$-modules.
+Said analogue would force $X$ to be (0-)affine (at least for $X$ quasiseparated).
+There are many more 1-affine objects than 0-affine objects.
+The 1-affineness statement is interesting even for simple varieties like $\PP^n$.
+
+Note that there are other important distinctions between plain quasicoherent sheaves and quasicoherent sheaves of categories.
+For example, the former are ``stable'' (admitting cones, shifts, etc.) while the latter are not.
+
+We will (most likely) work over $k = \CC$ throughout.
+When we mention $\Oc$-modules, we will usually implicitly mean ``quasicoherent.''
+
+\subsection{Key Examples}
+
+There are many important (and perhaps surprising) classes of 1-affine varieties:
+
+\begin{enumerate}
+	\item Projective varieties $X \subset \PP^n$.
+	\item Stacky quotients $[Y / G]$ for $Y$ a reasonable (e.g.\ projective) variety and $G$ an affine algebraic group. (We need affineness in the denominator -- non-affine $G$ lead to pathologies.)
+	\item Many more...
+\end{enumerate}
+
+Let's consider some concrete examples.
+
+\begin{ex}
+	Let $X = \Spec k$ be a point.
+	Then $\Oc(X) = k$, so $\Oc(X)\dMod \simeq \Vect_k$.
+	Similarly (since the only nonempty open of $X$ is all of $X$), we get an equivalence $\Oc_X\dMod \simeq \Vect_k$ via $\Mc \mapsto \Mc(X)$.
+	Thus $X$ is 0-affine.
+
+	For 1-affineness, note that $\QC(X) \simeq \Vect_k$.
+	Thus $\QC(X)\dMod$ is the category of $k$-linear categories tensored over $\Vect$ (i.e.\ for $V \in \Vect$ and $c \in \Cc$, there is a natural object $V \otimes c \in \Cc$).
+	In particular, if $Z \to \Spec k$ is a variety, then we get an action $\QC(X) \curvearrowright \QC(Z)$.
+	We can understand this concretely for categories with quiver presentations (e.g.\ $\QC(\PP^1)$ viewed as the category of representations of the Kronecker quiver).
+	Because $\QC_X$ is determined by its value on the nonempty open, we can identify $\QC_X\dMod \simeq \QC(X)\dMod$ as before.
+\end{ex}
+
+\begin{ex}
+	Let $X = \PP^1$.
+	Then $\Oc(\PP^1) = k$, so $\Oc(\PP^1)\dMod \simeq \Vect_k$.
+	But there are many more interesting $\Oc_{\PP^1}$-modules, e.g.\ $\Oc_{\PP^1}(1)$.
+	This comes from the fact that $\Oc_{\PP^1}$ has much more data than just its global sections.
+
+	One categorical level up, we note that $\QC(\PP^1)$-modules are categories in which we can ``tensor with $\Oc(n)$'' (while satisfying various compatibility conditions).
+	Its counterpart, $\QC_{\PP^1}\dMod$, consists of sheaves which assign, to each open $U \subset \PP^1$, a $\QC(U)$-module $\Mc(U)$ (in a ``sheafy'' manner).
+	The theorem tells us that such an $\Mc$ is determined by $\Mc(\PP^1)$ with its $\QC(\PP^1)$-module structure.
+\end{ex}
+
+\section{2/8 (Peter Haine) -- Monoidal Categories}
+
+A monoidal category is a monoid (or associative algebra) in categories.
+What does this mean?
+
+\subsection{Monoids}
+
+\begin{dfn}[1-categorical monoids]
+	Let $\Csf$ be a category with finite products (including a terminal object $*$).
+	A \emph{monoid} in $\Csf$ is an object $A \in \Csf$ equipped with maps $m: A \times A \to A$ (multiplication) and $u: * \to A$ (unit) satisfying associativity and unitality, i.e.\ certain expected diagrams commute.
+\end{dfn}
+
+\begin{ex}
+	Let $A$ be a commutative ring and $\Csf = R\dMod$ (more generally this works for $X$ a scheme and $\Csf = \QC(X)$).
+	Then
+	\[
+		\otimes_A : R\dMod \times R\dMod \to R\dMod
+	\]
+	should give a monoidal structure on $R\dMod$.
+	However, this is a little bit looser than the above definition: associativity holds only up to coherent isomorphism.
+	That is, $(L \otimes_R M) \otimes_R N$ and $L \otimes_R (M \otimes_R N)$ are not \emph{equal}, but only \emph{naturally isomorphic} (with the isomorphisms satisfying certain compatibilities).
+\end{ex}
+
+So to define a monoidal \emph{category}, we need to provide compatible natural isomorphisms.
+The compatibility conditions can be spelled out using pentagon axioms etc.
+It's perfectly doable, but a bit non-obvious / non-homotopical.
+We'll give a better definition later.
+
+\subsection{Modules}
+
+We also want to discuss monoid actions.
+
+\begin{dfn}[1-categorical modules]
+	Let $\Csf$ be a category with finite products, and let $(A, m, u)$ be a monoid in $\Csf$.
+	An \emph{$A$-module}, or \emph{object with $A$-action}, is an object $M \in \Csf$ and a map $a: A \times M \to M$ which is associative and unital.
+	These conditions can be described using commutative diagrams as before.
+\end{dfn}
+
+\begin{ex}
+	Let $f: X \to Y$ be a morphism of schemes.
+	Then there should be an action of $\QC(Y)$ on $\QC(X)$ given by $(\Fc, \Gc) \mapsto f^* \Fc \otimes_{\Oc_X} \Gc$.
+	Associativity means
+	\[
+		f^*(\Fc \otimes \Fc') \otimes \Gc \cong f^* \Fc \otimes (f^* \Fc' \otimes \Gc)
+	\]
+	and unitality means
+	\[
+		f^* \Oc_Y \otimes \Gc \cong \Gc.
+	\]
+	Again, these conditions only hold up to coherent isomorphism, which we can characterize in terms of certain commutative diagrams.
+\end{ex}
+
+The above shows the following important principle: \emph{categories of quasicoherent sheaves often have actions that don't come from actions on the underlying schemes}.
+There are, of course, a few actions that do come from actions on the underlying schemes:
+
+\begin{ex}
+	Let $G$ be a group scheme, and $a: G \times X \to X$ an action.
+	This induces an action of $\QC(G)$ on $\QC(X)$ via $(\Fc, \Fc') \mapsto a_*(\pi_1^* \Fc \otimes_{\Oc_{G \times X}} \pi_2^* \Fc'))$.
+	The unit object here is the skyscraper sheaf at the identity of $G$.
+	As above, everything holds up to coherent isomorphism.
+\end{ex}
+
+\subsection{Better definitions}
+
+How can we give a more intuitive definition of monoids?
+
+Suppose we have a monoid object $(A, m, u)$ in a 1-category.
+We can encapsulate this data via the truncation of the bar resolution.
+This is a simplicial set (which is easy to write on the board but hard to TeX up, at least at this moment).
+Let's remind ourselves how this works.
+
+\begin{dfn}
+	The \emph{simplex category} $\Delta$ is the category of nonempty linearly ordered finite sets.
+	We write $[n] = \{ 0 < \dots < n \}$ for standard representatives of the isomorphism classes of $\Delta$.
+	A \emph{simplicial object} in a category $\Csf$ is a functor $X: \Delta\op \to \Csf$.
+	We call $X_n = X([n])$ the object of \emph{$n$-simplices} of $X$.
+\end{dfn}
+
+\begin{dfn}
+	For a category $\Csf$, we define the \emph{nerve} $N(\Csf) \in \sSet := \Fun(\Delta\op, \Set)$ by setting $N(\Csf)_n = \Fun([n], \Csf)$, the collection of sequences of $n$ composable arrows in $\Csf$.
+	(Here we are viewing $[n]$ as a poset category.)
+\end{dfn}
+
+Note in particular that:
+\begin{itemize}
+	\item $N(\Csf)_0$ is the set of objects of $\Csf$.
+	\item $N(\Csf)_1$ is the set of \emph{all} morphisms in $\Csf$.
+\end{itemize}
+
+\begin{thm}[Grothendieck]
+	The nerve functor $N: \Cat \to \sSet$ is fully faithful with essential image consisting of those simplicial sets $X_\bullet$ satisfying the \emph{Segal condition}:
+	For all $n \geq 1$ and $i \in [n]$, the square
+	\[
+		\begin{tikzcd}
+			X([n]) \rar \dar & X(\{i < \dots < n \}) \dar \\
+			X(\{ 0 < \dots < i \}) \rar & X(\{ i \})
+		\end{tikzcd}
+	\]
+	is a pullback.
+	Equivalently, for all $n \geq 1$, the map $X([n]) \to X(\{0 < 1\}) \times_{X(\{1\})} X(\{1 < 2\}) \times_{X(\{2\})} \dots \times_{X(\{n-1\})} X(\{n-1,n\})$ is an equivalence.\footnote{
+		Sometimes people write the codomain as $X_1 \times_{X_0} X_1 \times_{X_0} \dots \times_{X_0} X_1$, but this is ambiguous notation!
+		In particular, if we required $X([2]) \xrightarrow{\sim} X(\{0 < 2\}) \times_{X(\{0\})} X(\{0 < 1\})$, this would force the category to be a groupoid.}
+\end{thm}
+
+One can reconstruct the composition in $\Csf$ from $N(\Csf)$ by using the inverse of the equivalence in the Segal condition.
+
+Consider the functor $\Monoid \to \Cat$ given by sending a monoid $A$ to the category with one object $*$ and $\Hom(*, *) = A$.
+
+\begin{cor}[Milnor]
+	The composite functor $\Barop: \Monoid \to \Cat \xrightarrow{N} \sSet$ is fully faithful with essential image consisting of simplicial sets $X$ satisfying the Segal condition together with the requirement $X_0 = \{ * \}$.
+\end{cor}
+
+This gives a higher categorical definition of monoid objects.
+
+\begin{dfn}
+	A \emph{monoid} in a higher category $\Csf$ is a simplicial object $X$ in $\Csf$ satisfying the Segal condition and such that $X_0$ is terminal.
+\end{dfn}
+
+
+\end{document}

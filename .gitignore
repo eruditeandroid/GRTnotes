@@ -1,4 +1,3 @@
-
-main.tex~
-main.synctex.gz
-.main.tex.un~
+*.tex~
+*.un~
+*.gz
