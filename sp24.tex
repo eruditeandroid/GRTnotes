@@ -9,7 +9,7 @@
 \maketitle
 
 \begin{abstract}
-	This semester, we will discuss \emph{Sheaves of categories and the notion of 1-affineness} by Gaitsgory, \emph{Tannaka duality and 1-affineness} by Stefanich, and related papers.
+	This semester, we will discuss \emph{Sheaves of categories and the notion of 1-affineness} by Dennis Gaitsgory, \emph{Tannaka duality and 1-affineness} by Germ\'an Stefanich, and related papers.
 	The material this semester is logically independent of that from last semester.
 \end{abstract}
 
@@ -194,5 +194,125 @@ This gives a higher categorical definition of monoid objects.
 	A \emph{monoid} in a higher category $\Csf$ is a simplicial object $X$ in $\Csf$ satisfying the Segal condition and such that $X_0$ is terminal.
 \end{dfn}
 
+\section{2/15 (Peter Haine) -- Continued}
+
+\subsection{Monoidal $\infty$-categories}
+
+Recall our two issues from last time:
+\begin{itemize}
+	\item We wanted to nicely package the data of a monoid.
+		This was accomplished using simplicial objects.
+	\item We wanted to handle higher coherences of isomorphisms.
+		We solve this using $\infty$-categories / dg-categories / other homotopical settings.
+		When we use simplicial objects as above, this gives the correct notions (because asking that certain diagrams commute is now requiring \emph{structure} rather than just \emph{properties}). 
+\end{itemize}
+
+\begin{dfn}
+	Let $\Csf$ be an $\infty$-category with finite products.
+	A \emph{monoid} (or \emph{algebra}) in $\Csf$ is a simplicial object $A_\bullet: \Delta\op \to \Csf$ satisfying:
+	\begin{enumerate}
+		\item $A_0 \simeq *$
+		\item (Segal condition) The squares
+			\[
+				\begin{tikzcd}
+					A([n]) \rar \dar & A(\{i < \dots < n\}) \dar \\
+					A(\{0 < \dots < i\}) \rar & A(\{i\}).
+				\end{tikzcd}
+			\]
+			are Cartesian.
+	\end{enumerate}
+	The \emph{underlying object} of $A_\bullet$ is $A_1$.
+\end{dfn}
+
+\begin{dfn}
+	A \emph{monoidal $\infty$-category} is a monoid in $\Cat_\infty$, the $\infty$-category of $\infty$-categories.
+\end{dfn}
+
+Here are some key examples.
+
+\begin{ex}
+	Let $X$ be a scheme, and let $\QC(X)$ be the $\infty$-category / derived category of quasicoherent sheaves.
+	This is a monoidal $\infty$-category with $\otimes_{\Oc_X}$ and $\onebb = \Oc_X$.
+	Setting this up according to the above formalism is nontrivial and relies on some unintuitive straightening / unstraightening arguments.
+\end{ex}
+
+\begin{ex}
+	Let $G$ be a group scheme.
+	Then $\QC(G)$ acquires an additional monoidal structure $*_G$ (convolution) from the group structure on $G$.
+	Informally, this is given by $\Fc *_G \Gc = m_*(\pi_1^* \Fc \otimes \pi_2^* \Gc)$, where $\pi_i: G \times G \to G$ is projection onto the $i$th factor.
+\end{ex}
+
+Note that the former example should be ``commutative'' -- this would be additional structure (rather than a property).
+The role of $\Delta$ above is to encode the order of multiplication.
+If we wanted to describe commutative monoid objects, we would use the category of finite pointed sets (with no orders in sight) rather than $\Delta$.
+
+\begin{rmk}
+	Let $F: \Csf \to \Dsf$ be a functor between categories with finite products.
+	\begin{itemize}
+		\item If $F$ preserves finite limits, then $F$ induces a functor $\Alg(\Csf) \to \Alg(\Dsf)$.
+		\item More generally, if $F$ has a ``lax structure'' $F(X) \times F(Y) \to F(X \times Y)$, then $F$ still induces a functor $F: \Alg(\Csf) \to \Alg(\Dsf)$, where the multiplication on $F(A)$ is defined via
+			\[
+				F(A) \times F(A) \to F(A \times A) \xrightarrow{F(m)} F(A).
+			\]
+			This can be used to construct the convolution structure on $\QC(G)$.
+			\end{itemize}
+\end{rmk}
+
+The following gives a practical application of this viewpoint:
+
+\begin{ex}
+	The work of Nadler-Yun on automorphic gluing gives a presentation of the affine Hecke category $\Hc$ in terms of bubbling.
+	That is, they construct a monoidal category $\Hc^{bub}$ using bubbling and prove an equivalence of monoidal categories $\Hc \simeq \Hc^{bub}$.
+	The simplicial objects here are constructed using geometry.
+\end{ex}
+
+\subsection{Digression on loop spaces}
+
+In topology, the based loop space $\Omega_x X$ can be defined as a pullback
+\[
+	\Omega_x X  = PX \times_X \{ x \}
+\]
+where $PX$ is the space of paths $\gamma: [0, 1] \to X$ with $\gamma(0) = x$, and $PX \to X$ is evaluation at $1$.
+Note that $PX$ is contractible and $PX \to X$ is a fibration, so $\Omega_x X$ can be viewed as the homotopy pullback $\pt \times_X \pt$.
+
+\begin{dfn}
+	Let $\Csf$ be an $\infty$-category with finite limits, and let $\pt \to X$ be a pointed object.
+	The \emph{loop object} $\Omega_x X$ is the pullback $\Omega_x X = \pt \times_X \pt$.
+\end{dfn}
+
+The loop object $\Omega_x X$ has a natural monoid structure coming from the \v{C}ech nerve construction (applied to $\pt \to X$):
+
+\begin{dfn}
+	If $W \to X$ is a morphism, the \emph{\v{C}ech nerve} is the simplicial object $C_\bullet$ with $C_0 = W$, $C_1 = W \times_X W$, $C_2 = W \times_X W \times_X W$, etc.\ where all morphisms come from projections / diagonals.
+\end{dfn}
+
+Similarly, this gives a monoid structure on the \emph{free loop space} $\Lc X = X \times_{X \times X} X$.
+(In the context of algebraic stacks, this recovers the \emph{inertia stack}.)
+
+\subsection{Actions}
+
+\begin{dfn}
+	Let $\Csf$ be an $\infty$-category with finite products and $A: \Delta\op \to \Csf$ a monoid.
+	A \emph{(left) action} of $A$ on an object $M$ (equivalently, a \emph{left $A$-module}) is a simplicial object $M_\bullet: \Delta\op \to \Csf$ together with a map of simplicial objects $p: M_\bullet \to A$ such that
+	\begin{enumerate}
+		\item $M_0 \simeq M$
+		\item For all $n$, the maps $p([n]): M([n]) \to A([n])$ and $M([n]) \to M(\{n\})$ exhibit $M([n])$ as the product $A([n]) \times M(\{n\})$.\footnote{If we used $M(\{0\})$ throughout in place of $M(\{n\})$, we would obtain a right action.}
+	\end{enumerate}
+	The category of \emph{left $A$-modules} $\LMod_A$ is the full sub-$\infty$-category of $\Fun(\Delta\op, \Csf)_{/A}$ spanned by such objects.
+\end{dfn}
+
+Informally, $M_\bullet$ has $M_0 \simeq M$, $M_1 \simeq A_1 \times M_0$ (with $M_1 \to M_0$ encoding the na\"ive action), and more generally $M_n \simeq A_1^{\times n} \times M_0$, etc.\ with higher morphisms encoding coherences.
+
+The quotient $M / A$ is the colimit of the diagram $M_\bullet: \Delta\op \to \Csf$.
+For example, we can obtain the stack $BG$ as $\pt / G$.
+
+\begin{ex}
+	Let $f: X \to Y$ be a morphism of schemes.
+	Then $(\QC(Y), \otimes_{\Oc_Y})$ acts on $\QC(X)$ via $(\Fc, \Gc) \mapsto f^* \Fc \otimes \Gc$.
+\end{ex}
+
+\begin{ex}
+	If $G$ is a group scheme and $G \curvearrowright X$ is an action, then $(\QC(G), *_G)$ acts on $\QC(X)$.
+\end{ex}
 
 \end{document}
