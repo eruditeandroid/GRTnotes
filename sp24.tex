@@ -182,10 +182,10 @@ Note in particular that:
 
 One can reconstruct the composition in $\Csf$ from $N(\Csf)$ by using the inverse of the equivalence in the Segal condition.
 
-Consider the functor $\Monoid \to \Cat$ given by sending a monoid $A$ to the category with one object $*$ and $\Hom(*, *) = A$.
+Consider the functor $\mathsf{Monoid} \to \Cat$ given by sending a monoid $A$ to the category with one object $*$ and $\Hom(*, *) = A$.
 
 \begin{cor}[Milnor]
-	The composite functor $\Barop: \Monoid \to \Cat \xrightarrow{N} \sSet$ is fully faithful with essential image consisting of simplicial sets $X$ satisfying the Segal condition together with the requirement $X_0 = \{ * \}$.
+	The composite functor $\Barop: \mathsf{Monoid} \to \Cat \xrightarrow{N} \sSet$ is fully faithful with essential image consisting of simplicial sets $X$ satisfying the Segal condition together with the requirement $X_0 = \{ * \}$.
 \end{cor}
 
 This gives a higher categorical definition of monoid objects.
@@ -255,7 +255,7 @@ If we wanted to describe commutative monoid objects, we would use the category o
 				F(A) \times F(A) \to F(A \times A) \xrightarrow{F(m)} F(A).
 			\]
 			This can be used to construct the convolution structure on $\QC(G)$.
-			\end{itemize}
+	\end{itemize}
 \end{rmk}
 
 The following gives a practical application of this viewpoint:
@@ -314,5 +314,125 @@ For example, we can obtain the stack $BG$ as $\pt / G$.
 \begin{ex}
 	If $G$ is a group scheme and $G \curvearrowright X$ is an action, then $(\QC(G), *_G)$ acts on $\QC(X)$.
 \end{ex}
+
+\section{2/22 (Peter Haine) -- Continued}
+
+Last time: Let $\Csf$ be a (implicitly $\infty$-)category with finite products.
+Then we can construct a category of algebras $\Alg(C) \subset \Fun(\Delta\op, \Csf)$.
+In particular, the category of monoidal categories is $\MonCat_\infty = \Alg(\Cat_\infty)$.
+Given an algebra $A$, we can construct an category of modules $\LMod_A(\Csf) \subset \Fun(\Delta\op, \Csf)_{/A}$.
+
+The forgetful functors $\Alg(\Csf) \to \Csf$ and $\LMod_A(\Csf) \to \Csf$ (both given by $X_\bullet \mapsto X_1$) preserve all limits that $\Csf$ admits.
+In particular, $\MonCat_\infty \to \Cat_\infty$ preserves limits.
+
+\subsection{Commutative algebras}
+
+\begin{dfn}
+	Let $\Csf$ be a category with finite products.
+	A \emph{commutative algebra} in $\Csf$ is a functor $A: \Set_*^\fin \to \Csf$ such that:
+	\begin{enumerate}
+		\item $A(*) \simeq *$
+		\item (Analogue of Segal condition) For all finite pointed sets $S$ and $T$, the natural diagram
+			\[
+				\begin{tikzcd}
+					A(S \vee T) \rar \dar & A(T) \dar \\
+					A(S) \rar & A(*)
+				\end{tikzcd}
+			\]
+			is a pullback diagram.
+	\end{enumerate}
+	We write $\CAlg(\Csf) \subset \Fun(\Set_*^\fin, \Csf)$ for the category of commutative algebras in $\Csf$.
+\end{dfn}
+
+Write $S_+ = S \sqcup \{ * \}$ for the pointed set obtained by freely adjoining a point to a set $S$.
+The \emph{underlying object} of a commutative algebra $A$ is $A(\{1\}_+)$.
+
+\begin{rmk}
+	Given the first condition, the Segal-type condition is equivalent to the condition that, for all $n \geq 1$, the collapse maps $\{ 1, \dots, n \}_+ \to \{ i \}_+$, defined by $i \mapsto i$ and $j \mapsto *$ for $j \neq i$, induce an equivalence
+	\[
+		A(\{1, \dots, n\}_+) \xrightarrow{\sim} \prod_{i=1}^n A(\{i\}_+).
+	\]
+\end{rmk}
+
+\begin{ex}
+	A \emph{symmetric monoidal category} is a commutative algebra in $\Cat_\infty$.
+\end{ex}
+
+\subsection{Eckmann-Hilton and $\EE_n$-algebras}
+
+In some (highly connected) cases, commutativity is equivalent to the existence of compatible algebra structures.
+
+\begin{lem}[Eckmann-Hilton]
+	Let $X$ be a set with operations $\cdot$ and $\star$ which are unital and satisfy
+	\[
+		(a \cdot b) \star (c \cdot d) = (a \star c) \cdot (b \star d).
+	\]
+	Then $\cdot = \star$, both operations are associative and commutative, and $1_\cdot = 1_\star$.
+\end{lem}
+
+This has some useful consequences.
+
+\begin{cor}
+	For $(X, x_0)$ a pointed topological space, the groups $\pi_n(X, x_0)$ are abelian for $n \geq 2$.
+\end{cor}
+
+\begin{cor}
+	If $\Csf$ is an ordinary category with finite products, then $\Alg(\Alg(\Csf)) \simeq \CAlg(\Csf)$.
+\end{cor}
+
+Note that this is not true for $\infty$-categories.
+Instead we define:
+
+\begin{dfn}
+	The \emph{category of $\EE_n$-algebras} in an $\infty$-category $\Csf$ is $\Alg_{\EE_n}(\Csf) := \Alg^n(\Csf) = \Alg(\dots\Alg(\Csf)\dots)$.
+	We also write $\Alg_{\EE_\infty}(\Csf)$ for $\CAlg(\Csf)$.
+\end{dfn}
+
+The equivalence of this with the operadic definition of $\EE_n$-algebras is the ``Dunn-Lurie additivity theorem.''
+
+\begin{thm}
+	\[
+		\CAlg(\Csf) = \lim_n \Alg_{\EE_n}(\Csf)
+	\]
+	where the limit is taken along the forgetful maps $\Alg_{\EE_{n+1}}(\Csf) \to \Alg_{\EE_n}(\Csf)$.
+\end{thm}
+
+\begin{thm}
+	If $\Csf$ is an $n$-category, then $\CAlg(\Csf) \simeq \Alg_{\EE_{n+1}}(\Csf)$.
+\end{thm}
+
+In particular, $\EE_3$-algebras in the 2-category of ordinary categories are symmetric monoidal (ordinary) categories.
+We call $\EE_2$-algebras in this $2$-category ``braided monoidal (ordinary) categories.''
+
+\subsection{Comparison with associative algebras}
+
+To obtain an associative algebra from a commutative algebra, we need a functor $\Delta\op \to \Set_*^\fin$ which sends $[n]$ to $\{ 1, \dots, n\}_+$.
+This will be constructed using the following observation of Joyal.
+
+Let $\Int$ be the category of linearly ordered finite sets of cardinality at least two and order preserving maps that preserve minimum and maximum elements.
+(The notation $\Int$ is meant to suggest intervals.)
+
+\begin{lem}
+	The functor $\Delta^1 = \Hom_\Delta(-, [1]): \Delta\op \to \Int$ is an equivalence of categories with inverse $\Hom_\Int(-, \{ \bot < \top \}): \Int\op \to \Delta$.
+\end{lem}
+
+The desired functor is the composite
+\[
+	\cut: \Delta\op \xrightarrow{\sim} \Int \to \Set_*^\fin,
+\]
+where $\Int \to \Set_*^\fin$ is given by identifying the maximum and minimum elements with each other (and setting the equivalence class to be the distinguished point).
+One can think of $\cut$ as wrapping an interval around a circle.
+Note that $\cut$ factors through Connes' cyclic category $\Lambda_*$.
+
+We can use $(-) \circ \cut$ to map $\CAlg(\Csf)$ to $\Alg(\Csf)$.
+
+\subsection{Tensor product of modules}
+
+Let $\Csf$ be a category, $A \in \Alg(\Csf)$, $M \in \RMod_A(\Csf)$, and $N \in \LMod_A(\Csf)$.
+We can form a bar complex / simplicial object with terms $\Barop(M, N)_i = M \times A^i \times N$ and face maps given by the action of $A$ (with degeneracy maps given by the algebra structure on $A$).
+We define
+\[
+	M \otimes_A N = \colim_{\Delta\op} \Barop(M, N).
+\]
 
 \end{document}
