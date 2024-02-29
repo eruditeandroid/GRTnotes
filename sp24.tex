@@ -435,4 +435,90 @@ We define
 	M \otimes_A N = \colim_{\Delta\op} \Barop(M, N).
 \]
 
+\section{2/29 (Ansuman Bardalai) -- Defining $\QC$}
+
+Let $X$ be a scheme over a field $k$ (it's safe to assume characteristic zero).
+We define
+\[
+	\QCoh_\infty(X) = \lim_{\Spec R \to X} \Mod_\infty(R),
+\]
+where $\Mod_\infty(R)$ is the (unbounded) derived category of $R$-modules for a (non-derived) commutative $k$-algebra $R$.
+
+To construct $\Mod_\infty(R)$, first define the \emph{homotopy category} $\Ksf_R$ to be the dg-category where:
+\begin{itemize}
+	\item Objects are cochain complexes over $k$.
+	\item Morphisms are given by 
+		\[
+			\ul{\Hom}_{\Ksf_R}(M^\bullet, N^\bullet)_i = \prod_j \Hom_R(M^j, M^{j+i})
+		\]
+		with
+		\[
+			d(f^j)^j = d_N^{j+i} f^j + (-1)^{i-1} f^{j+1} d^j_M.
+		\]
+		In particular, $0$-cocycles in $\ul{\Hom}_{\Ksf_R}(M^\bullet, N^\bullet)$ are usual chain maps.
+\end{itemize}
+We then construct $\Mod_\infty(R)$ by localizing $\Ksf_R$ at quasi-isomorphisms / quotienting out by the thick subcategory $\Asf_R$ of acyclic complexes.
+Note that $\Ksf_R$ is naturally equivalent to the dg-category $\Psf_R$ of projective complexes (i.e. $P^\bullet$ such that $\ul{\Hom}_{\Ksf_R}(P^\bullet, A^\bullet)$ is acyclic whenever $A^\bullet$ is acyclic).
+Similarly, $\Ksf_R$ is also naturally equivalent to the dg-category $\Isf_R$ of injective complexes (defined dually to the above).
+We can view these natural equivalences as adjoints to / sections of $\Ksf_R \to \Mod_\infty(R)$.
+
+Objects $\Fc$ of $\QCoh_\infty(X)$ can be identified with compatible collections of objects $f^* \Fc \in \Mod_\infty(R)$ (for every $f: \Spec R \to X$).
+For a commutative triangle
+\[
+	\begin{tikzcd}
+		\Spec R \rar["f"] \dar["h"] & X \\
+		\Spec S \ar[ur, "g"],
+	\end{tikzcd}
+\]
+we need to specify isomorphisms
+\[
+	h^* g^* \Fc := R \otimes_S^{\LL} g^* \Fc \simeq f^* \Fc
+\]
+together with higher compatibilities.
+These higher compatibilities appear because we are implicitly working in the $\infty$-category of dg-categories.
+
+\begin{rmk}
+	A similar description works for the classical category of quasicoherent sheaves.
+	This was known to (and used by) Grothendieck.
+\end{rmk}
+
+For this to be a reasonable definition of $\QCoh_\infty$, we need to know two things:
+\begin{itemize}
+	\item It recovers the correct definition on affines.
+	\item It glues well.
+\end{itemize}
+
+The former is easy.
+
+\begin{ex}
+	If $X = \Spec R$, then the slice category $\Aff_{/X}$ has a final object, namely $\Spec R$.
+	Thus
+	\[
+		\QCoh_\infty(\Spec R) = \lim_{\Spec S \to X} \Mod_\infty(S) = \Mod_\infty(R).
+	\]
+\end{ex}
+
+The latter is harder.
+
+\begin{thm}[Grothendieck]
+	The assignment $U \to \QCoh_\infty(U)$ satisfies flat descent, i.e.\ we obtain $\QCoh_\infty$ via gluing along flat covers.
+\end{thm}
+
+Note that this fails for the triangulated category $\QCoh_\Delta$.
+
+\begin{ex}
+	Consider the sheaves $\Oc_{\PP^1}(d) \in \QCoh_\Delta(\PP^1)$.
+	We have $\Hom_\Delta(\Oc, \Oc(d)[i]) = H^i(\PP^1, \Oc(d))$.
+	For $d < -1$, fix a nonzero class $[\xi] \in H^1(\PP^1, \Oc(d))$.
+	When we restrict $[\xi]$ to the standard open affines $D_i \subset \PP^1$ ($i = 0, 1$), we get $[\xi]|_{D_i} = 0$.
+	This implies that $U \mapsto \Hom_\Delta(\Oc_U, \Oc_{\PP^1}(d)[1]|_U)$ is not a sheaf, and thus descent cannot hold (as $\Hom$s of limits are limits of $\Hom$s).
+
+	We can fix this in the $\infty$-categorical context by lifting $\xi$ to a class in $\Hom_\infty(\Oc, \Oc(d))_1$.
+	Then $[\xi]|_{D_i} = 0$ corresponds to the claim that $\xi|_{D_i} = d(\psi_i)$ for some $\psi_i \in \Hom_\infty(\Oc_{D_i}, \Oc_{D_i}(d))_0$.
+	The nonvanishing of $[\xi]$ is witnessed by the failure of the $\psi_i$ to glue.
+	More precisely, if we resolve $\Oc_{\PP^1}(d) \simeq I^\bullet$, then the classes $\psi_i$ can be viewed as elements of $\Hom_{\Ksf_R}(\Oc_{D_i}, I^\bullet|_{D_i})$, i.e.\ the $\psi_i$ are local sections of $I^\bullet|_{D_i}$.
+	Note that $d(\psi_0|_{D_{01}} - \psi_1|_{D_{01}}) = \xi|_{D_{01}} - \xi|_{D_{01}} = 0$, so we may view $\psi_0|_{D_{01}} - \psi_1|_{D_{01}}$ as a section of $I^\bullet|_{D_{01}}$.
+	The condition $[\xi] \neq 0$ yields an obstruction to choosing representatives $\psi_i$ so that $\psi_0|_{D_{01}} - \psi_1|_{D_{01}} = 0$ (equivalently, to viewing $\psi_0|_{D_{01}} - \psi_1|_{D_{01}}$ for arbitrary $\psi_i$ as a coboundary).
+\end{ex}
+
 \end{document}
