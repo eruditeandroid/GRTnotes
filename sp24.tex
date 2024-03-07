@@ -40,7 +40,7 @@ For example, the former are ``stable'' (admitting cones, shifts, etc.) while the
 We will (most likely) work over $k = \CC$ throughout.
 When we mention $\Oc$-modules, we will usually implicitly mean ``quasicoherent.''
 
-\subsection{Key Examples}
+\subsection{Key examples}
 
 There are many important (and perhaps surprising) classes of 1-affine varieties:
 
@@ -435,7 +435,9 @@ We define
 	M \otimes_A N = \colim_{\Delta\op} \Barop(M, N).
 \]
 
-\section{2/29 (Ansuman Bardalai) -- Defining $\QC$}
+\section{2/29 (Ansuman Bardalai) -- Defining $\QCoh_\infty(X)$}
+
+\subsection{Construction}
 
 Let $X$ be a scheme over a field $k$ (it's safe to assume characteristic zero).
 We define
@@ -482,6 +484,8 @@ These higher compatibilities appear because we are implicitly working in the $\i
 	This was known to (and used by) Grothendieck.
 \end{rmk}
 
+\subsection{Desiderata}
+
 For this to be a reasonable definition of $\QCoh_\infty$, we need to know two things:
 \begin{itemize}
 	\item It recovers the correct definition on affines.
@@ -520,5 +524,126 @@ Note that this fails for the triangulated category $\QCoh_\Delta$.
 	Note that $d(\psi_0|_{D_{01}} - \psi_1|_{D_{01}}) = \xi|_{D_{01}} - \xi|_{D_{01}} = 0$, so we may view $\psi_0|_{D_{01}} - \psi_1|_{D_{01}}$ as a section of $I^\bullet|_{D_{01}}$.
 	The condition $[\xi] \neq 0$ yields an obstruction to choosing representatives $\psi_i$ so that $\psi_0|_{D_{01}} - \psi_1|_{D_{01}} = 0$ (equivalently, to viewing $\psi_0|_{D_{01}} - \psi_1|_{D_{01}}$ for arbitrary $\psi_i$ as a coboundary).
 \end{ex}
+
+\section{3/7 (Ansuman Bardalai -- Continued)}
+
+Recall that we defined $\QCoh_\infty(X) = \lim_{\Spec R \to X} \Mod_\infty(R)$.
+
+\subsection{Descent and examples}
+
+\begin{thm}
+	The assignment
+	\[
+		X \to \QCoh_\infty(X)
+	\]
+	satisfies flat descent.
+\end{thm}
+
+We can interpret this theorem as follows.
+Let $\Uc \to X$ be any morphism.
+The \emph{\v{C}ech nerve} $C^\bullet(\Uc/X)$ is the simplicial object with $C^0(\Uc/X) = \Uc$, $C^1(\Uc/X) = \Uc \times_X \Uc$, and more generally $C^n(\Uc/X) = \Uc \times_X \dots \times_X \Uc$.
+The theorem states that, if $\Uc \to X$ is a flat cover, then $\QCoh_\infty(X)$ is the limit of the cosimplicial object $\QCoh_\infty(C^\bullet(\Uc/X))$ (where the structure maps are given by pullbacks along the structure maps of $C^\bullet(\Uc/X)$.
+
+\begin{ex}
+	If $X$ is a scheme, $\{ U_i \}_{i \in I}$ is an open cover of $X$, and $\Uc = \sqcup_i U_i$, then we get an open cover $\Uc \to X$.
+	The \v{C}ech nerve of this cover has $C^n(\Uc/X)$ consisting of the disjoint union of all intersections of $n$ objects from $\{ U_i \}_{i \in I}$.
+	For example, $C^2(\Uc/X) = \sqcup_{i,j} (U_i \cap U_j)$.
+\end{ex}
+
+Let's work out what this means for $BG$.
+
+\begin{ex}
+	For a linear algebraic group $G$, we have $\QCoh_\infty(BG) \simeq \Rep G$.
+	We can take the relevant cover to be $\pt \to BG$ (analogous to topologists' fibration $EG \to BG$), which has $\pt \times_{BG} \pt = G$, $\pt \times_{BG} \pt \times_{BG} \pt$, and so on and so forth.
+	The \v{C}ech nerve of this cover is the bar complex of $G$.
+	Apply $\QCoh_\infty$ and note that $\QCoh_\infty(\pt) = \Vect_\CC$, with the first two coface maps both giving the usual pullbacks $\alpha_G^*: \Vect_\CC \to \QCoh_\infty(G)$.
+	Thus the data of an object in $\QCoh_\infty(BG)$ (viewed as the limit of this cosimplicial category, using flat descent / Barr-Beck) consists of a complex of vector spaces $V$ together with an isomorphism $\alpha_G^* V \to \alpha_G^* V$, plus various higher coherence data.
+	The isomorphism here is equivalent to a map $V \to \alpha_{G*} \alpha_G^* V \simeq \Oc(G) \otimes V$, which the higher coherences force to be an $\Oc(G)$-coaction.
+	But $\Oc(G)$-comodules are the same as algebraic representations of $G$.
+	Thus we obtain $\QCoh_\infty(BG) \simeq \Rep G$.
+\end{ex}
+
+\subsection{Symmetric monoidal structure}
+
+The symmetric monoidal structure on $\QCoh_\infty(X)$ can be described as follows.
+Recall that the data of $\Fc \in \QCoh_\infty(X)$ is given by a compatible collection of modules $f^* \Fc \in \Mod_\infty(R)$ for every $f: \Spec R \to X$.
+Thus we may define the symmetric monoidal structure $\otimes_{\Oc_X}$ by
+\[
+	f^*(\Fc \otimes_{\Oc_X} \Gc) = f^* \Fc \otimes_R^\LL f^* \Gc
+\]
+for every $f: \Spec R \to X$.
+All of the symmetric monoidal structure is lifted from that of $\Mod_\infty(R)$.\footnote{According to Peter, it is possible but lengthy to construct the symmetric monoidal structure on $\Mod_\infty(R)$ by constructing $\Mod_\infty(R)$ from the ordinary category of finite projective $R$-modules and using the symmetric monoidal structure on the latter.}
+This can also be defined abstractly by taking the limit defining $\QCoh_\infty$ in symmetric monoidal $\infty$-categories (rather than just $\infty$-categories).
+
+\subsection{Module categories and affineness}
+
+Because $\QCoh_\infty(X) \in \CAlg(\Cat_\infty)$, we may consider module categories over $\QCoh_\infty(X)$.
+These are categories $\Mc$ in which we can ``take tensor products on the left with objects of $\QCoh_\infty(X)$.''
+That is, for $m \in \Mc$ and $\Fc \in \QCoh_\infty(X)$, we obtain $\Fc \otimes m \in \Mc$, satisfying the usual module axioms (up to coherent equivalence).
+
+\begin{dfn}
+	The \emph{category of quasicoherent sheaves of categories on $X$} is
+	\[
+		\ShvCat(X) = \lim_{\Spec R \to X} \QCoh_\infty(\Spec R)\dMod.
+	\]
+\end{dfn}
+
+The data of $\Cc \in \ShvCat(X)$ consists of a compatible family of $f^* \Cc = \Gamma(\Spec R, \Cc) \in \Mod_\infty(R)\dMod$ for every $f: \Spec R \to X$.
+Compatibility means that, for a triangle
+\[
+	\begin{tikzcd}
+		\Spec R \rar["f"] \dar["h"] & X, \\
+		\Spec S \ar[ur, "g"]
+	\end{tikzcd}
+\]
+we have an equivalence $h^* g^* \Cc := \Mod_\infty(R) \otimes_{\Mod_\infty(S)} g^* \Cc \simeq f^* \Cc$, satisfying higher coherences.
+
+We can imitate some standard sheaf-theoretic constructions in $\ShvCat(X)$.
+For example, recall that the structure sheaf $\Oc_X \in \QCoh_\infty(X)$ is defined via $f^* \Oc_X = R$ for every $f: \Spec R \to X$.
+This has an algebra structure $m: \Oc_X \otimes \Oc_X \to \Oc_X$ defined on affines from the multiplication $R \otimes R \to R$.
+Working by analogy, we define:
+
+\begin{dfn}
+	The sheaf of categories $\QCc_X \in \ShvCat(X)$ is defined via $f^* \QCc_X = \Mod_\infty(R)$ for every $f: \Spec R \to X$.
+	This is a commutative algebra in $\ShvCat(X)$, i.e.\ an object of
+	\[
+		\CAlg(\ShvCat(X)) = \lim_{\Spec R \to X} \CAlg(\Mod_\infty(R)\dMod).
+	\]
+\end{dfn}
+
+Similarly, we can define global sections of a sheaf of categories.
+For $\Fc \in \QCoh(X)$, we have 
+\[
+	\Gamma(X, F) = \lim_{f: \Spec R \to X} f^* \Fc \in \Gamma(X, \Oc_X)\dMod
+\]
+where we view $\Gamma(X, \Oc_X)$ as a commutative algebra object in $\Mod_\infty(k)$.
+
+\begin{dfn}
+	For $\Cc \in \ShvCat(X)$, we define
+	\[
+		\Gamma(X, \Cc) = \lim_{f: \Spec R \to X} f^* \Cc \in \Cat_\infty.
+	\]
+	In fact, $\Gamma(X, \Cc)$ is naturally a module over $\Gamma(X, \QCc_X) = \QCoh_\infty(X) \in \CAlg(\Cat_\infty)$.
+\end{dfn}
+
+We are finally prepared to define 1-affineness.
+
+\begin{dfn}
+	We say $X$ is 1-affine if
+	\[
+		\Gamma(X, -): \ShvCat(X) \to \QCoh_\infty(X)\dMod
+	\]
+	is an equivalence.
+\end{dfn}
+
+For comparison:
+
+\begin{dfn}
+	We say $X$ is 0-affine if
+	\[
+		\Gamma(X, -): \QCoh_\infty(X) \to \Gamma(X, \Oc_X)\dMod
+	\]
+	is an equivalence.
+\end{dfn}
 
 \end{document}
