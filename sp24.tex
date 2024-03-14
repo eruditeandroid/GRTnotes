@@ -646,4 +646,114 @@ For comparison:
 	is an equivalence.
 \end{dfn}
 
+\section{3/14 (Germ\'an Stefanich) -- Guest Lecture on Tannaka Duality}
+
+Recall that for a scheme / stack $X$, we construct $\ShvCat(X)$, the category of (quasicoherent) sheaves of categories on $X$, as follows.
+Locally, on $X = \Spec A$, we define $\ShvCat(\Spec A)$ as the category of $\QCoh_\infty(\Spec A)$-module categories.
+Globally, we glue these together (by taking the limit over all $\Spec A \to X$).
+There is a natural ``global sections'' map
+\[
+	\Gamma: \ShvCat(X) \to \QCoh_\infty(X)\dMod.
+\]
+We say $X$ is 1-affine if $\Gamma$ is an equivalence.
+
+Today, we will discuss how this can be applied to Tannaka duality.
+We will focus on the case of abelian categories (though similar results hold for derived categories, modulo some connectivity conditions).
+
+\subsection{Classical Tannaka duality}
+
+Let $G$ be a linear algebraic group.
+Can we understand $G$ via its representation theory?
+If so, how?
+
+\begin{ex}
+	Consider the case when $G$ is a finite abelian group, viewed as a $\CC$-scheme.
+	Irreps of $G$ (up to isomorphism) are the same as characters $G \to \CC^\times$.
+	As a set, this only remembers the cardinality of $G$.
+	But we can equip the characters with an abelian group structure (via pointwise multiplication) to get a group $G^*$.
+	Then we can recover $G$ via $G \cong G^{**}$.
+\end{ex}
+
+We'd like to extend this to the case of $G$ non-abelian, non-finite, possibly defined over a general field, etc.
+First note that the multiplication of characters corresponds to tensor product of irreps.
+For nonabelian $G$, the tensor product of irreps need not be an irrep, so we should instead consider the whole category $\Rep(G)$ with its symmetric monoidal structure.
+
+\begin{thm}[Tannaka-Krein, Grothendieck, Saavedra-Rivano, Deligne, \dots]
+	Let $F: \Rep(G) \to \Vect_k$ be the natural (symmetric monoidal) forgetful functor.
+	Then $G(k) \cong \Aut^\otimes(F)$.
+\end{thm}
+
+\begin{ex}
+	Let $G$ be a discrete finite group.
+	Then we can write
+	\[
+		F(V) = \Hom_{\Rep(G)}(k[G], V).
+	\]
+	It follows that $\Aut(F) = \Aut_{\Rep(G)}(k[G])$ consists of the units in $k[G]$.
+	Requiring compatibility with tensor products restricts us to $\Aut^\otimes(F) = G \subset k[G]$.
+	We can think of this condition as restricting to grouplike elements in the Hopf algebra.
+\end{ex}
+
+David suggested the following perspective.
+Remembering the category $\Rep(G)$ is similar to remembering the group algebra $k[G]$.
+If we also remember the tensor structure, we recover the Hopf algebra structure on $k[G]$.
+
+\subsection{Geometric perspective}
+
+To understand Tannaka duality using geometry, we should think of $\Rep(G)$ as $\QCoh(BG)$.\footnote{Modulo finiteness conditions?}
+We can ask more generally: is any $X$ determined by $(\QCoh(X), \otimes)$?
+As algebraic geometers, we are naturally interested in asking a relative version of this question.
+
+\begin{thm}[Lurie, Deligne]
+	Let $X$ and $Y$ be geometric stacks.
+	Then
+	\begin{align*}
+		\Hom(Y, X) &\to \Fun^{\otimes, L}(\QCoh(X), \QCoh(Y)) \\
+		f &\mapsto f^*
+	\end{align*}
+	is an embedding, with image consisting precisely of ``tame'' functors.
+\end{thm}
+
+Here $\Fun^{\otimes, L}(-, -)$ denotes the category of colimit-preserving tensor functors.
+
+\begin{thm}[Stefanich and others]
+	Every $F: \QCoh(X) \to \QCoh(Y)$ is tame, so
+	\[
+		\Hom(Y, X) \simeq \Fun^{\otimes, L}(\QCoh(X), \QCoh(Y)).
+	\]
+\end{thm}
+
+\begin{ex}
+	Taking $Y = \Spec k$, we can prove the classical version of Tannaka duality.
+\end{ex}
+
+\begin{rmk}
+	The above construction is a categorification of the natural map
+	\[
+		\Hom_{\Sch}(Y, X) \to \Hom_{\CAlg}(\Gamma(X, \Oc_X), \Gamma(Y, \Oc_Y)).
+	\]
+	The ``colimit preserving'' condition corresponds to the homomorphisms on the right preserving $+$, and the tensor structure corresponds to the homomorphisms on the right preserving multiplication.
+	Note that this natural map is an isomorphism when $X$ is affine.
+\end{rmk}
+
+\subsection{Connection to 1-affineness}
+
+Consider a tensor functor $F: \QCoh(X) to \QCoh(Y)$.
+We'd like to write $F = f^*$ for some $f: Y \to X$.
+Without loss of generality we may take $Y$ to be affine.
+Consider the $\QCoh(X)$-module structure on $\QCoh(Y)$ given by
+\[
+	(\Fc \in \QCoh(X), \Gc \in \QCoh(Y)) \mapsto F(\Fc) \otimes \Gc.
+\]
+A general 1-affineness theorem allows us to pass to the local case, in which we can replace $\QCoh(Y)$ by some $\QCoh(Y')$ where the tensor functor is given by some $f': Y' \to X$.
+We can then identify $\QCoh(Y) \simeq \QCoh(Y')$ and $F \cong (f')^*$.
+
+The real 1-affineness result here is given by:
+
+\begin{thm}[Stefanich]
+	Every geometric stack $X$ is 1-affine with respect to sheaves of Grothendieck abelian categories.
+\end{thm}
+
+This is a bit different than what Gaitsgory does.
+
 \end{document}
