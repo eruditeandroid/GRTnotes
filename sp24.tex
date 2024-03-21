@@ -525,7 +525,7 @@ Note that this fails for the triangulated category $\QCoh_\Delta$.
 	The condition $[\xi] \neq 0$ yields an obstruction to choosing representatives $\psi_i$ so that $\psi_0|_{D_{01}} - \psi_1|_{D_{01}} = 0$ (equivalently, to viewing $\psi_0|_{D_{01}} - \psi_1|_{D_{01}}$ for arbitrary $\psi_i$ as a coboundary).
 \end{ex}
 
-\section{3/7 (Ansuman Bardalai -- Continued)}
+\section{3/7 (Ansuman Bardalai) -- Continued}
 
 Recall that we defined $\QCoh_\infty(X) = \lim_{\Spec R \to X} \Mod_\infty(R)$.
 
@@ -755,5 +755,123 @@ The real 1-affineness result here is given by:
 \end{thm}
 
 This is a bit different than what Gaitsgory does.
+
+\section{3/21 (Ansuman Bardalai) -- Why $BG$ is 1-Affine}
+
+Recall that we have a ``global sections functor'' $\Gamma(Y, -): \ShvCat(Y) \to \QCoh(Y)\dMod$.
+We say that $Y$ is 1-affine if this functor is an equivalence.
+Our goal for today is to prove the following:
+
+\begin{thm}
+	Let $G$ be a finite-type affine algebraic group.
+	Then the stack $BG$ is 1-affine.
+\end{thm}
+
+\begin{rmk}
+	There are counterexamples in infinite type.
+\end{rmk}
+
+\subsection{Some criteria for 1-affineness}
+
+Suppose $Y$ is an affine algebraic stack with fppf cover $f: U \to Y$ where $U$ is a qcqs scheme.
+We can define a cosimplicial $\infty$-category $\QCoh(U^\bullet/Y)^?$ with:
+\begin{itemize}
+	\item $i$-simplices $\QCoh(U^i / Y)$
+	\item For every $\alpha: [i] \to [j]$, a morphism $(f^\alpha)^?: \QCoh(U^i / Y) \to \QCoh(U^j / Y)$ given by the right adjoint of $*$-pushforward along the natural map $f^\alpha: U^j / Y \to U^i / Y$.
+\end{itemize}
+
+Note that $?$-pullback is hard to understand in general.
+However, because we use $?$-pullback, we have a natural map $\QCoh(Y) \to \Tot(\QCoh(U^\bullet / Y)$.
+Let's take the following on faith:
+
+\begin{thm}[6.2.7d in Gaitsgory]
+	$Y$ is 1-affine if and only if $\QCoh(Y) \xrightarrow{\sim} \Tot(\QCoh(U^\bullet / Y)^?)$.
+\end{thm}
+
+Note that $\QCoh(U^\bullet / Y)$ satisfies the \emph{Beck-Chevalley conditions}:
+\begin{enumerate}
+	\item $\ev^0: \Tot(\QCoh(U^\bullet / Y)^?) \to \QCoh(Y)$ admits a left adjoint $(\ev^0)^L$.
+	\item $\ev^0$ is monadic, i.e.\ if $\Av = \ev^0 \circ (\ev^0)^L$, then $\Tot(\QCoh(U^\bullet / Y)^?) \xrightarrow{\sim} \Av\dMod(\QCoh(U))$ as categories over $\QCoh(U)$.
+\end{enumerate}
+
+We claim that $\Av = f^? \circ f_*$.
+To see this, consider the pullback square
+\[
+	\begin{tikzcd}
+		U \times_Y U \rar["\pr_1"] \dar["\pr_2"] & U \dar["f"] \\
+		U \rar["f"] & Y.
+	\end{tikzcd}
+\]
+It follows from the Beck-Chevalley conditions that $\Av \simeq (\pr_1)_* \circ (\pr_2)^?$.
+By base change, we have $f^* \circ f_* \simeq (\pr_2)_* \circ (\pr_1)^*$, and passing to right adjoints gives $f^? \circ f_* \simeq (\pr_1)_* \circ \pr_2^? \simeq \Av$, proving the claim.
+
+It follows that
+\[
+	\Tot(\QCoh(U^\bullet / Y)^?) \simeq (f^? \circ f_*)\dMod(\QCoh(U)).
+\]
+We get a diagram
+\[
+	\begin{tikzcd}
+		\QCoh(Y) \ar[dr, "f^?", swap] \ar[r] & \Tot(\QCoh(U^\bullet / Y)^?) \rar["\sim"] & {(f^? \circ f_*)\dMod(\QCoh(U))} \ar[dl, "\textrm{forget}"] \\
+		& \QCoh(U) & 
+	\end{tikzcd}
+\]
+and therefore:
+
+\begin{thm}
+	The following are equivalent, for $f: U \to Y$ as above:
+	\begin{enumerate}
+		\item $Y$ is 1-affine.
+		\item $\QCoh(Y) \xrightarrow{\sim} \Tot(\QCoh(U^\bullet / Y)^?)$.
+		\item $f^?$ is monadic.
+	\end{enumerate}
+\end{thm}
+
+\subsection{Proof for $BG$}
+
+As before, let $G$ be a finite-type affine algebraic group, so $G \hookrightarrow \GL_n$.
+We will take our fppf cover to be the usual $f: \pt \to BG$.
+
+\begin{prop}[3.2.7 in Gaitsgory]
+	Let $f: Y_1 \to Y_2$ be a map with $Y_2$ 1-affine.
+	If the base change $S \times_{Y_2} Y_1$ is 1-affine for every $S \to Y_2$ with $S$ a derived affine scheme, then $Y_1$ is 1-affine.
+\end{prop}
+
+The maps $G \hookrightarrow \GL_n$ and $BG \to B\GL_n$ have this property.
+Thus we may reduce to proving the claim for $G = \GL_n$.
+In particular, if we prove $BG$ is 1-affine when $G$ is reductive, then the analogous result holds for general $G$.
+
+Let's identify $\QCoh(BG) \simeq \Rep(G)$ and $\QCoh(\pt) \simeq \Vect$.
+Taking $f: \pt \to BG$, we can identify $f^*$ with $\Res_e^G: \Rep(G) \to \Vect$, and we can identify $f_*$ with $\Coind_e^G: \Vect \to \Rep(G)$.
+
+If $G$ is reductive, then $\Rep(G)$ is semisimple, i.e.\ $\Rep(G) \simeq \Vect^A$, where $A$ is the set of irreps of $G$.
+Thus $\Coind_e^G V = \oplus_{a \in A} V_a \otimes V$.
+Identifying $\Rep(G) \simeq \Vect^A$, the coinduction map is just $V \mapsto (V)_{a \in A}$.
+The right adjoint $T = (\Coind_e^G)^R : \Vect \to \Vect^A$ is therefore given by
+\[
+	T((V^a)_{a \in A}) = \prod_{a \in A} V^a.
+\]
+We want to show $T$ is monadic.
+This is best done using the following result:
+
+\begin{thm}[Barr-Beck]
+	A right adjoint functor $T: \Dsf \to \Csf$ is monadic if and only if both of the following hold:
+	\begin{enumerate}
+		\item $T$ is conservative.
+		\item $T$ preserves certain colimits (specifically, $T$-split geometric realizations).
+	\end{enumerate}
+\end{thm}
+
+It is obvious from the formula that $T$ is conservative, so we'll focus on the last condition.
+To prove that this condition holds, note that if $\Csf = \lim_i \Csf_i$ and $\Dsf = \lim_i \Dsf_i$ and we have a compatible collection of monadic adjunctions $S_i: \Csf_i \leftrightarrows \Dsf_i: T_i$, then we get a monadic adjunction $S: \Csf \leftrightarrows \Dsf: T$.
+In our case, we will write $\Vect = \lim_{i \in \ZZ} \Vect^{\leq i}$ and $\Vect^A = \lim_{i \in \ZZ} (\Vect^A)^{\leq i}$, with the adjoint functors being the restrictions of the functors $\Vect \leftrightarrows \Vect^A$.
+All of these are individually equivalent to $\Vect^{\leq 0} \leftrightarrows \Vect^A$.
+Now use the following theorem:
+
+\begin{thm}
+	Let $\Csf_1$ and $\Csf_2$ have $t$-structures such that $T: \Csf_1 \to \Csf_2$ induces $T: \Csf_1^{\leq 0} \to \Csf_2^{\leq k}$ for some $k$.
+	Assume $\Csf_2$ is left-complete, i.e.\ $\Csf_2 = \lim_i \Csf_2^{\geq i}$.
+	Then $T$ preserves geometric realizations in $\Csf_1^{\leq 0}$.
+\end{thm}
 
 \end{document}
