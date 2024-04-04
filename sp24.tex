@@ -874,4 +874,83 @@ Now use the following theorem:
 	Then $T$ preserves geometric realizations in $\Csf_1^{\leq 0}$.
 \end{thm}
 
+\section{4/4 (Jeremy Taylor) -- 1-Affineness of QCQS Schemes}
+
+Let's recall our definitions.
+For a prestack $\Yc$, we define $\ShvCat(\Yc) = \lim_{S \in \Aff_{/\Yc}\op} \Mod(\QC(S))$, where the transition functors are given by $\QC(S_1) \otimes_{\QC(S_2)} (-)$.
+In particular, if $\Yc$ is affine, then $\Yc$ is initial in $\Aff_{/\Yc}\op$, so $\ShvCat(\Yc) = \Mod(\QC(Y))$.
+There's an adjunction
+\[
+	\Loc: \Mod(\QC(\Yc)) \leftrightarrows \ShvCat(\Yc) :\Gamma
+\]
+where $\Loc(\Csf)(S) = \QC(S) \otimes_{\QC(\Yc))} \Csf$ and $\Gamma(\Cc) = \lim_{S \in \Aff_{/\Yc}\op} \Gamma(S, \Cc)$.
+We say that $\Yc$ is 1-affine if $\Loc$ and $\Gamma$ are equivalences.
+
+Our main theorem for today is the following.
+
+\begin{thm}
+	Every qcqs scheme $X$ is 1-affine.
+\end{thm}
+
+\subsection{Refresher on qcqs schemes / prestacks}
+
+Recall that qcqs means quasicompact and quasiseparated:
+\begin{itemize}
+	\item A scheme is quasicompact if it can be covered by finitely many open affines.
+	\item A morphism of schemes is quasicompact if the preimage of every open affine is a finite union of open affines.
+	\item A scheme $\Yc$ is quasiseparated if the diagonal $\Delta: \Yc \to \Yc \times \Yc$ is quasicompact.
+		Equivalently, for every $S, T \in \Aff_{/\Yc}$, the fiber product $S \times_{\Yc} T$ is quasicompact.
+		Also equivalently, the intersection of quasicompact opens is quasicompact.
+	\item A morphism of schemes is quasiseparated if the relative diagonal is quasicompact.
+\end{itemize}
+
+\begin{ex}
+	The scheme $\AA^\infty \cup_{\AA^\infty \setminus 0} \AA^\infty$ (where $\AA^\infty = \Spec k[x_1, x_2, \dots]$) is not quasiseparated because $\AA^\infty \setminus 0$ is not quasiseparated.
+	This is similar to the fact that $\AA^n \cup_{\AA^n \setminus 0} \AA^n$ is not separated.
+\end{ex}
+
+One reason the qcqs hypothesis is so ubiquitous is the following.
+If $f: \Yc \to \Yc'$ is any morphism of prestacks, then the pullback functor $f^*: \QC(\Yc') \to \QC(\Yc)$ is continuous (i.e.\ commutes with colimits) and therefore admits a right adjoint $f_*$.
+However, if $f$ is not schematic and qcqs, the functor $f_*$ may be badly behaved:
+\begin{itemize}
+	\item $f_*$ may be discontinuous.
+	\item For $S \in \Aff_{\Yc'}$, there is no formula for $f_* F|_S$.
+	\item More generally, $f_*$ does not satisfy base change.
+\end{itemize}
+
+\begin{ex}
+	Consider the morphism $f: \ZZ \to \pt$ with $\ZZ$ viewed as $\sqcup_{n \in \ZZ} \Spec k$.
+	Then $f_*((V_n)_{n \in \ZZ}) = \prod_{n \in \ZZ} V_n$, so $f_*$ does not commute with colimits.
+	Furthermore, if we base change to $\AA^1$, we get a Cartesian square
+	\[
+		\begin{tikzcd}
+			\AA^1 \times \ZZ \rar \dar & \ZZ \dar \\
+			\AA^1 \rar & \pt.
+		\end{tikzcd}
+	\]
+	The base change map (between functors $\QC(\ZZ) \to \QC(\AA^1)$) is given by
+	\[
+		\left(\prod_n V_n\right) \otimes_k k[t] \to \prod_n (V_n \otimes_k k[t]).
+	\]
+	This is not surjective in general: if we take $V_n = k$ for all $n$, then $(\dots, 1, t, t^2, \dots)$ is in the RHS but not in the image.
+\end{ex}
+
+These problems are all solved if $f$ is schematic and qcqs.
+
+\subsection{Fully-faithfulness of $\Loc$}
+
+Suppose that $\Yc$ is a qcqs scheme.
+We would like to show that $\Loc: \Mod(\QC(\Yc)) \to \ShvCat(\Yc)$ is fully faithful, or equivalently that $\Csf \xrightarrow{\sim} \Gamma(\Yc, \Loc(\Csf))$ naturally for $\Csf \in \Mod(\QC(\Yc))$.
+
+First consider the case when $\Yc$ is quasicompact and \emph{separated}.
+Proceed by induction on the minimum number $n$ of open affines covering $\Yc$.
+Write $\Yc = U_1 \cup U_2$ where $U_1$ is affine and $U_2$ is a union of $n-1$ open affines.
+Separatedness implies that $U_{12} = U_1 \cap U_2$ can be covered by $n-1$ open affines.
+If $\Csf \in \Mod(\QC(\Yc))$, then $\Csf \otimes_{\QC(\Yc)} \QC(-)$ satisfies Zariski descent.\footnote{Allegedly this is as easy as showing that $\QC(-)$ satisfies Zariski descent.
+This is the key ``commuting a limit with a colimit'' statement we need.}
+We also know $\Gamma(-, \Loc \Csf)$ satisfies Zariski descent (because $\Loc \Csf$ is a sheaf of categories).
+Since we know $\Csf \otimes_{\QC(\Yc)} \QC(U_1) \simeq \Gamma(U_1, \Loc \Csf)$ and likewise for $U_2$ and $U_{12}$, descent gives the claim for $\Yc$.
+
+For general qcqs $\Yc$, we repeat the same argument, but now $U_{12}$ is quasicompact and separated (which is taken care of by the above).
+
 \end{document}
