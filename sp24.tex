@@ -953,4 +953,99 @@ Since we know $\Csf \otimes_{\QC(\Yc)} \QC(U_1) \simeq \Gamma(U_1, \Loc \Csf)$ a
 
 For general qcqs $\Yc$, we repeat the same argument, but now $U_{12}$ is quasicompact and separated (which is taken care of by the above).
 
+\section{4/11 (Jeremy Taylor) -- Continued}
+
+\subsection{One category level down}
+
+We would like to decategorify our discussion above, i.e.\ to talk about $0$-affineness.
+The correct analogue is the following:
+
+\begin{prop}
+	Let $Y$ be a quasicompact separated scheme.
+	Then $\Loc: \Mod(\Oc(Y)) \to \QC(Y)$ is fully faithful.
+\end{prop}
+
+\begin{proof}[1]
+	We need to show that the counit $(-) \to \Gamma(Y, \Loc(-))$ is an isomorphism.
+	This is easily seen for $(-) = \Oc(Y)$.
+	For the general case, note that $\Mod(\Oc(Y))$ is generated under colimits by $\Oc(\Yc)$, so our hypotheses on $\Yc$ imply that the counit is an isomorphism in general.
+	(The hypotheses on $Y$ are needed to translate colimits into finite limits so that we can claim $\Gamma(\Yc, \Loc(-))$ preserves colimits.)
+\end{proof}
+
+\begin{proof}[2]
+	Take a Zariski cover $Y = U_1 \cup_{U_{12}} U_2$.
+	For $M \in \Mod(\Oc(Y))$, we can write 
+	\[
+		M = (M \otimes_{\Oc(Y)} \Oc(U_1)) \otimes_{M \otimes_{\Oc(Y)} \Oc(U_{12})} (M \otimes_{\Oc(Y)} \Oc(U_2))
+	\]
+	By an inductive argument and gluing, we can also write $\Gamma(Y, \Loc(-))$ via the same formula.
+\end{proof}
+
+\subsection{Zariski descent}
+
+Let us return to the question of 1-affineness of qcqs schemes.
+We will assume throughout that $Y$ is quasicompact and \emph{separated} (an argument similar to last time can be used to extend to the case when $Y$ is quasi-separated).
+
+\begin{prop}
+	If $\Csf \in \Mod(\QC(Y))$, then the functor $\Aff_{/Y}\op \to \DGCat_{\cont}$ given by
+	\[
+		S \mapsto \QC(S) \otimes_{\QC(Y)} \Csf
+	\]
+	satisfies Zariski descent.
+\end{prop}
+
+\begin{proof}
+	First suppose $\Csf = \QC(Y)$.
+	The natural restriction functor $\QC(Y) \to \QC(U_1) \otimes_{\QC(U_{12})} \QC(U_2)$ admits a right adjoint given by
+	\[
+		(\Fc_1, \Fc_2, \Fc_{12} \simeq \Fc_1|_{U_{12}} \simeq \Fc_2|_{U_{12}}) \mapsto \cone(j_{1*} \Fc_1 \oplus j_{2*} \Fc_2 \to j_{12*} \Fc_{12})[-1].
+	\]
+	In fact, these functors are inverse equivalences (by descent for $\QC$).
+
+	We can use the same formula to define a right adjoint to the restriction functor
+	\[
+		\Csf = \QC(Y) \otimes_{\QC(Y)} \Csf \to (\QC(U_1) \otimes_{\QC(Y)} \Csf) \otimes_{\QC(U_{12}) \otimes_{\QC(Y)} \Csf} (\QC(U_2) \otimes_{\QC(Y)} \Csf)
+	\]
+	The counit and unit of this adjunction are obtained from the case of $\Csf = \QC(Y)$ via $\otimes_{\QC(Y)} \Csf$, hence are still isos.
+\end{proof}
+
+\subsection{1-affineness for qcqs schemes}
+
+We can now establish our main theorem.
+As above, we'll actually assume separated rather than quasi-separated.
+
+\begin{thm}
+	Let $Y$ be a qcqs scheme.
+	Then $Y$ is 1-affine.
+\end{thm}
+
+\begin{proof}
+	We have already shown that $\Loc$ is fully faithful.
+	To show that $\Gamma: \ShvCat(Y) \to \Mod(\QC(Y))$ is fully faithful, we need to show that the unit $\Loc \Gamma(Y, \Csf) \to \Csf$ is an equivalence for all $\Csf$.
+	For $T \in \Aff_{/Y}$, we look at the component $\QC(T) \otimes_{\QC(Y)} \Gamma(Y, \Csf) \to \Gamma(T, \Csf)$.
+	Note that
+	\[
+		\QC(T) \otimes_{\QC(Y)} \Gamma(Y, \Csf) \simeq \QC(T) \otimes_{\QC(Y)} \lim_{S \in \Aff_{/Y}\op} \Gamma(S, \Csf) \simeq \lim_{S \in (\Aff_{/Y}\op)} \QC(T) \otimes_{\QC(Y)} \Gamma(S, \Csf).
+	\]
+	This last equality holds because $\QC(T)$ is a dualizable $\QC(Y)$-module -- alternatively, we can work with a finite cover of $Y$ and not have to worry about issues of dualizability.
+	Continuing on, we get
+	\begin{align*}
+		\QC(T) \otimes_{\QC(Y)} \Gamma(Y, \Csf) &\simeq \lim_{S \in \Aff_{/Y}\op} \QC(T) \otimes_{\QC(Y)} \QC(S) \otimes_{\QC(S)} \Gamma(S, \Csf) \\
+		&\simeq \lim_{S \in \Aff_{/Y}\op} \QC(T \times_Y S) \otimes_{\QC(S)} \Gamma(S, \Csf) \\
+		&\simeq \lim_{S \in \Aff_{/Y}\op} \Gamma(T \times_Y S, \Csf) \simeq \Gamma(T, \Csf).
+	\end{align*}
+	The computation $\QC(T) \otimes_{\QC(Y)} \QC(S) \simeq \QC(T \times_Y S)$ really requires us to be working with sheaves of categories rather than sheaves of modules.\footnote{For example, if $T = \PP^1 \setminus \infty$, $S = \PP^1 \setminus 0$, and $Y = \PP^1$, then $\Oc(T \times_Y S) = k[t, t\inv]$ but $\Oc(T) \otimes_{\Oc(\PP^1)} \Oc(S) = k[t, s]$.}
+
+	Here are some more details on why a few of these equivalences hold:
+	\begin{itemize}
+		\item $\Gamma(T, \Csf) \simeq \lim_{S \in \Aff_{/Y}\op} \Gamma(T \times_Y S, \Csf)$ follows from the fact that $(-) \times_Y T : \Aff_{/Y} \to \Aff_{/T}$ is final (which in turn holds because it admits a left adjoint, namely pre-composition of the structure morphism with $T \to Y$).
+		\item $\QC(T \times_Y S) \otimes_{\QC(S)} \Gamma(S, \Csf) \simeq \Gamma(T \times_Y S)$ follows because the RHS is defined as $\lim_{S' \in \Aff_{/T \times_Y S}} \Gamma(S', \Csf)$, and we can view the natural map from the LHS to the RHS as one component of the counit of $\id \to \Gamma(T \times_Y S, \Loc(-))$.
+			If $Y$ is separated, then $T \times_Y S$ is affine, so this counit is an isomorphism.
+			If $Y$ is only quasiseparated, then $T \times_Y S$ is qcqs, and we can appeal to our earlier proof that $\Loc$ is fully faithful.
+		\item $\QC(T) \otimes_{\QC(Y)} \QC(S) \simeq \QC(T \times_S Y)$ follows from $\QC(T)$ being a dualizable (in fact, self-dual) $\QC(Y)$-module.
+			This often fails one category level down (i.e.\ for $\Oc$ rather than $\QC$).
+	\end{itemize}
+\end{proof}
+
+
 \end{document}
