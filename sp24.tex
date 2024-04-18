@@ -1047,5 +1047,110 @@ As above, we'll actually assume separated rather than quasi-separated.
 	\end{itemize}
 \end{proof}
 
+\section{4/18 (Jeremy Taylor) -- Non-1-affineness of the classifying stack of an abelian variety}
+
+Let's recall the definition of 1-affineness.
+For a prestack $\Yc$, we define
+\[
+	\ShvCat(\Yc) = \lim_{S \in \Aff_{/\Yc}\op} \Mod(\QC(S))
+\]
+where the transition functors are $\QC(S_1) \otimes_{\QC(S_2)} (-)$.
+We have a functor $\Loc: \Mod(\QC(\Yc)) \to \ShvCat(\Yc)$, defined by $\Gamma(S, \Loc \Csf) = \QC(S) \otimes_{\QC(\Yc)} \Csf$.
+This is left adjoint to $\Gamma: \ShvCat(\Yc) \to \Mod(\QC(\Yc))$, which is defined by $\Cc \mapsto \lim_{S \in \Aff_{/\Yc}\op} \Gamma(S, \Cc)$.
+We say that $\Yc$ is 1-affine if $\Loc$ and $\Gamma$ are equivalences.
+
+\subsection{1-affineness}
+
+Last time, we saw that 1-affineness is a much weaker condition than affineness.
+For example, every qcqs scheme is 1-affine.
+The underlying reason is that, for a fiber product $\Yc_1 \times_{\Yc} \Yc_2$, the natural map 
+\begin{equation} \label{eq:fiberproductQC}
+	\QC(\Yc_1) \otimes_{\QC(\Yc)} \QC(\Yc_2) \to \QC(\Yc_1 \times_{\Yc} \Yc_2)
+\end{equation}
+is often an isomorphism, while the natural map 
+\[
+	\Oc(\Yc_1) \otimes_{\Oc(\Yc)} \Oc(\Yc_2) \to \Oc(\Yc_1 \times_{\Yc} \Yc_2)
+\]
+is only rarely an isomorphism.
+Let's understand why this is the case.
+
+\begin{prop}
+	Suppose that
+	\begin{enumerate}
+		\item $\QC(\Yc_1)$ is dualizable as a dg-category,
+		\item $\QC(\Yc)$ is a rigid monoidal category, and
+		\item $\Yc$ has quasicompact quasiaffine diagonal.
+	\end{enumerate}
+	Then \eqref{eq:fiberproductQC} is an equivalence.
+\end{prop}
+
+\begin{proof}
+	The first and second conditions imply that $\QC(\Yc_1)$ is dualizable as a $\QC(\Yc)$-module.
+	Thus $\QC(\Yc_1) \otimes_{\QC(\Yc)} (-) = \Hom(\QC(\Yc_1)^\vee, -)$ commutes with limits, so we can assume $\Yc_2$ is affine.
+	In particular, the maps $p: \Yc_2 \to \Yc$ and $p': \Yc_1 \times_{\Yc} \Yc_2 \to \Yc_1$ are qcqa.
+	By Barr-Beck and base change, we obtain
+	\begin{align*}
+		\QC(\Yc_1) \otimes_{\QC(\Yc)} \QC(\Yc_2) &\simeq \QC(\Yc_1) \otimes_{\QC(\Yc)} \Mod_{\QC(\Yc)}(p_* \Oc_{\Yc_2}) \\
+		&\simeq \Mod_{\QC(\Yc_1)}(q^* p_* \Oc_{\Yc_2}) \\
+		&\simeq \Mod_{\QC(\Yc_1)}(p'_* \Oc_{\Yc_1 \times_{\Yc} \Yc_2}) \\
+		&\simeq \QC(\Yc_1 \times_{\Yc} \Yc_2).
+	\end{align*}
+\end{proof}
+
+\subsection{Where does this fail?}
+
+To find an example of a non-1-affine stack, let's look for an example where \eqref{eq:fiberproductQC} is not an equivalence.
+Take $\Yc_1 = \Yc_2 = \pt$, and let $\Yc = \pt / A$ for an abelian variety $A$.
+Then 
+\[
+	\QC(\pt / A) = \Comod(\Gamma(A, \Oc)) = \QC(\Sym H^0(A, \Omega)[1])
+\]
+using the fact that $\Sym H^0(A, \Omega)$ is the linear dual of $\Gamma(A, \Oc)$.\footnote{This is nontrivial as a derived category / stable $\infty$-category, even though the corresponding construction at the abelian level would just give the category of vector spaces.}
+We can also compute
+\begin{align*}
+	\QC(\pt) \otimes_{\QC(\pt / A)} \QC(\pt) &\simeq \Mod(k \otimes_{\Sym H^0(A, \Omega)[1]} k) \\
+	&\simeq \Mod(\Sym H^0(A, \Omega)[2]) \\
+	&\simeq \Ind\Coh(\Spec \Sym H^1(A, \Oc)[-1])
+\end{align*}
+where the last equivalence follows from Koszul duality.
+In particular, $\QC(\pt) \otimes_{\QC(\pt / A)} \QC(\pt)$ is not equivalent to $\QC(A)$.
+
+\subsection{Construction of sheaves of categories}
+
+The above computation shows that $\pt / A$ is probably not 1-affine, but let's give an actual proof.
+This will require us to construct some sheaves of categories on $\pt / A$ which do not come from module categories over $\QC(\pt / A)$.
+We can do this using the following (a modification of $\Loc$ to replace a tensor product of $\QC$s by $\QC$ of a fiber products).
+
+\begin{prop}
+	Let $\Xc \to \Yc$ be a map of prestacks.
+	Then we can construct a sheaf of categories $\Cc$ on $\Yc$ via the formula $\Gamma(S, \Cc) = \QC(S \times_{\Yc} X)$.
+\end{prop}
+
+\begin{proof}
+	For a map $S \to S'$ in $\Aff_{/\Yc}$, we need to show that $\QC(S) \otimes_{\QC(S')} \Gamma(S', \Cc) \xrightarrow{\sim} \Gamma(S, \Cc)$.
+	Note that
+	\begin{align*}
+		\QC(S) \otimes_{\QC(S')} \QC(S' \times_{\Yc} \Xc) &\simeq \QC(S) \otimes_{\QC(S')} \lim_{T \in \Aff_{/S' \times_{\Yc} \Xc}\op} \QC(T) \\
+		&\simeq \lim_{T \in \Aff_{/S' \times_{\Yc} \Xc}\op} \QC(S) \otimes_{\QC(S')} \QC(T) \\
+		&\simeq \QC(S \times_{\Yc} X),
+	\end{align*}
+	where the last equivalence is induced by the functor $\Aff_{/ S' \times_{\Yc} \Xc} \to \Aff_{/ S \times_{\Yc} \Xc}$, $T \mapsto S \times_{S'} T$, which is final because it admits a left adjoint (i.e.\ composition of the structure morphism).
+\end{proof}
+
+We can now prove our result.
+
+\begin{thm}
+	The stack $\pt / A$ is not 1-affine.
+\end{thm}
+
+\begin{proof}
+	By the above Proposition applied to the universal $A$-bundle $\pt \to \pt / A$, we get $\Cc \in \ShvCat(\pt / A)$ with $\Gamma(S, \Cc) = \QC(S \times_{\pt / A} \pt)$.
+	Then the unit of the $\Loc$ / $\Gamma$ adjunction, evaluated at $S = \pt$, is
+	\[
+		\QC(pt) \otimes_{\QC(\pt / A)} \QC(\pt) \to \QC(\pt \times_{\pt / A} \pt)
+	\]
+	which as we have established above is not an equivalence.
+	Thus $\Gamma$ is not fully faithful.
+\end{proof}
 
 \end{document}
