@@ -4,6 +4,8 @@
 
 \title{GRT Seminar Sp24 Notes}
 
+\author{Notes by John S.\ Nolan, speakers stated below}
+
 \begin{document}
 
 \maketitle
@@ -1152,5 +1154,87 @@ We can now prove our result.
 	which as we have established above is not an equivalence.
 	Thus $\Gamma$ is not fully faithful.
 \end{proof}
+
+\section{4/25 (David Nadler) -- Singular Support for Sheaves of Categories}
+
+Next week, there will be a guest lecture by Ben Webster (discussing 3d mirror symmetry).
+The week after that will be the customary hike.
+
+\subsection{Support}
+
+Recall: if $A$ is a commutative ring and $X = \Spec A$, then there is an equivalence $A\dMod \xrightarrow{\sim} \QC(X)$.
+This is given by $M \mapsto \Mc$, where $\Mc(U) = M \otimes_A \Oc_X(U)$.
+
+\begin{dfn}
+	The \emph{support} of $M$, denoted $\Supp M$, is the smallest closed subset $Z \subset X$ such that $\Mc|_{X \setminus Z} = 0$.
+\end{dfn}
+
+If $A$ is noncommutative, we can consider the pass to the center $Z(A)$ and get a notion of $\Supp M \subset \Spec Z(A)$.
+
+\begin{rmk}
+	There is a fruitful TFT perspective on this.
+	Suppose that we have a 2d TFT $F_A$ with $F_A(\pt) = A\dMod$, the category of ``branes.''
+	Then $F_A(S^1)= Z(A)$ (provided we equip $S^1$ with a specific framing).
+	People who study such theories are often interested in ``upgrading'' $\Spec A$ to reflect the behavior of $A\dMod$.
+\end{rmk}
+
+We will obtain a notion of singular support by thinking carefully about these notions.
+
+\subsection{Centers}
+
+First, we should consider what we mean by ``center.''
+Our traditional definition of center, as $Z(A) = \{ a \in A \, | \, ab = ba \forall b \in A \}$, is quite set-theoretic: it requires saying that two elements are \emph{equal}.
+For classical algebras, this is equivalent to the more categorical construction 
+\[
+	Z(A) = \Hom_{A \otimes A\op}(A, A).
+\]
+However, the latter construction generalizes better and turns an $\EE_1$-algebra $A$ into an $\EE_2$-algebra $Z(A)$.
+We will focus on this latter construction.
+
+\begin{ex}
+	Let $A = \CC[x]$, so $\Spec A = \AA^1$.
+	Using our above construction in the derived setting, we get $Z(A) = A[v] = A \oplus A \cdot v$, where $v$ has degree $1$.
+	Thus, in general, taking the $\EE_1$-center (even of a commutative algebra) may introduce interesting higher operations.
+	This $v$ doesn't add anything new to the topology of $\AA^1$ (it's just a degree 1 nilpotent), so we don't get anything different than the classical notion of support.
+	However, if we started with a singular variety $\Spec A$, then taking $Z(A)$ would introduce elements of even degree and lead to a more interesting notion of support (developed by Arinkin and Gaitsgory).
+\end{ex}
+
+In the derived context, people often write $HC^\bullet(A)$ (for \emph{Hochschild cochains}) in place of $Z(A)$.
+The Hochschild-Kostant-Rosenberg theorem relates this to polyvector fields on $\Spec A$.
+
+\subsection{Singular support of $\QC(X)$-modules}
+
+Suppose $X$ is a smooth algebraic variety (e.g.\ $X = \AA^1$).
+Define the \emph{derived loop space of $X$} as $\Lc X = \Map(S^1, X) = X \times^{\Rbf}_{X \times X} X$, the (derived) self-intersection of the diagonal in $X \times X$.
+When $X$ is smooth, HKR tells us $\Lc X \simeq TX[-1]$, the shifted tangent bundle of $X$.
+We can compute:
+
+\begin{thm}
+	There is an equivalence $Z(\QC(X)) = \QC(TX[-1])$ taking $\otimes$ on the left to convolution on the right.
+\end{thm}
+
+We run into a problem: the ``center'' is a category, so how can we take $\Spec$ of $\QC(TX[-1])$?
+The best thing we can do is take the monoidal unit $\Oc_X$ and consider $\End_{\QC(TX[-1])}(\Oc_X)$.
+Koszul duality tells us
+\[
+	\End_{\QC(TX[-1])}(\Oc_X) \simeq \Oc(T^* X[2])
+\]
+where $\Oc(T^* X[2])$ can be viewed as an $\EE_3$-algebra.
+For $M \in \QC(X)\dMod$, we have $M = \Oc_X \star M$, so $\Oc(T^* X[2])$ secretly acts on $M$.
+In other words, we get $\Oc(T^* X[2]) \to \End(M)$, and thus a notion of singular support $\Sing\Supp(M) \subset T^*X[2]$.
+
+\subsection{Why should we care?}
+
+There are two big reasons to care about singular support.
+
+\begin{enumerate}
+	\item There are hidden symmetries / Fourier transforms on $\QC(X)\dMod$.
+		Thinking in terms of $T^*X[2]$ can tell us more about how such symmetries must behave.
+		For example, we can think of a Fourier transform on $\AA^1$ exchanging the structure sheaf with the skyscraper sheaf at the origin.
+	\item There is a 3d TFT, Rozansky-Witten theory, defined with target a holomorphic symplectic manifold $M$.
+		For $M = T^*X$, $RW(\pt)$ is something like $\QC(X)\dMod$.
+		(Really, $\QC(X)\dMod$ is the ``conic part of the theory,'' and $RW(\pt)$ is more like $\QC(X \times \AA^1)\dMod$.)
+		Work of Dominic Joyce and many others deals with similar problems.
+\end{enumerate}
 
 \end{document}
