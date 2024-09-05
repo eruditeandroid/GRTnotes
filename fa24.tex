@@ -1,0 +1,92 @@
+\documentclass{article}
+
+\usepackage{notes}
+
+\title{GRT Seminar Fall 2024 -- Categorical Representation Theory}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+	This semester, the GRT Seminar will focus on ``categorical representation theory.''
+	A good reference is the recent notes of Gurbir Dhillon.
+\end{abstract}
+
+\tableofcontents
+
+\section{9/5 (David Nadler) -- Introduction}
+
+Today will be fairly informal -- we'll just talk about basic definitions and the example of Lusztig's character sheaves.
+
+\subsection{What is a representation of a group?}
+
+Consider the following well-studied classes of groups:
+\begin{itemize}
+	\item Finite groups
+	\item Groups over local fields (e.g. Lie groups, $p$-adic groups, \dots)
+\end{itemize}
+Many interesting examples (e.g.\ finite groups of Lie type) arise as the points of an algebraic group.
+These algebraic groups often have a \emph{geometric} interpretation.
+
+Representations of groups are interesting for two reasons:
+\begin{itemize}
+	\item They allow us to understand abstract groups concretely.
+	\item They allow us to study the symmetries of objects we already cared about.
+\end{itemize}
+We can describe a representation of a group as a homomorphism $G \to \Aut_{\Cc}(c)$ for some object $c$ of a category $\Cc$.
+
+\begin{ex}
+	In the most classical setup, we take $\Cc = \Vect_\CC$, the category of complex vector spaces.
+	Here $\Aut_{\Vect_\CC}(V) = \GL(V)$, the \emph{general linear group}.
+	Note that, at some point, we have to account for the presence of $\CC$ here.
+	We also have to ask: do we consider continuous representations? Algebraic representations?
+\end{ex}
+
+Let's try to reformulate this in a way that makes the dependence on choices clearer.
+Given a group $G$ and a coefficient field $k$, we can construct a \emph{coalgebra of functions} $\Funop_k(G)$ and an \emph{algebra of distributions} $\Dist_k(G)$.
+For a finite group $G$, these are the same.
+A representation of $G$ can be interpreted as either a \emph{comodule} over $\Funop_k(G)$ or a \emph{module} over $\Dist_k(G)$.
+
+The choices we make are:
+\begin{itemize}
+	\item The coefficient field $k$
+	\item The types of representation (i.e.\ types of ``functions'' or ``distributions'' considered)
+\end{itemize}
+
+Let's see this in an example.
+
+\begin{ex}
+	What are representations of $S^1$?
+	\begin{itemize}
+		\item One answer comes by viewing $S^1$ as a compact Lie group, so a representation $V$ decomposes as $\oplus_{n \in \ZZ} V_n$, where $e^{i \theta}$ acts on $V_n$ by multiplication by $e^{in\theta}$.
+		\item If we use homotopy theory, all we can see about $S^1$ is the homotopy type -- in particular, $S^1$ and $\CC^\times$ should ``have the same representation theory.''
+			The correct notion of a ``distribution'' here is $\Dist_\CC(S^1) = C_{-\bullet}(S^1; \CC) \simeq \CC[\epsilon]$, where $\deg \epsilon = -1$ and $\epsilon^2 = 0$.
+			Thus representations of $S^1$ are $\CC[\epsilon]$-modules.
+
+			Representations in the ordinary category $\Vect_\CC$ are not interesting -- $\epsilon$ must always act trivially.
+			However, if we consider representations in the dg-category of $\CC$-dg-vector spaces, we get a more interesting answer -- the category of dg-representations of $S^1$ is $\CC[\epsilon]$-dg-modules.
+	\end{itemize}
+\end{ex}
+
+\subsection{Why study categorical representation theory?}
+
+Categorical representation theory is based on an old ``miracle.''
+
+Consider the representation theory of finite groups (especially those of Lie type).
+There are two classical ways to construct representations of such groups:
+\begin{itemize}
+	\item Induction from abelian groups (e.g.\ tori)
+	\item Prayer (e.g.\ ``cuspidal representations'')
+\end{itemize}
+Lusztig realized a good way to make sense of cuspidal representations.
+Recall that representations of a finite group $G$ are equivalent to characters of class functions on $G$.
+So we can rephrase our problem: how do we construct characters of cuspidal representations?
+The trick is to instead construct character \emph{sheaves} on the corresponding algebraic groups.
+Once we have the character sheaves, we can recover the character functions by decategorification.
+
+The ``miracle'' is that character sheaves can be accessed via induction from tori!
+One can explain this by appealing to topological field theory: there's a tradeoff between asking seemingly ``easy'' questions about complicated manifolds and asking seemingly ``hard'' questions about simpler manifolds (e.g.\ points).
+In many cases, one can answer questions about the former by finding the right questions to ask about the latter.
+
+\end{document}
