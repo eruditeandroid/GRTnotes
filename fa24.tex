@@ -200,13 +200,99 @@ As a quasicoherent sheaf, $f^* \Fc$ is just the usual $f^* \Fc := \Oc_X \otimes_
 	A standard left $D$-module is $\Oc_X = \Dc / \Dc \cdot \Vectc_X$, with sections looking like $f$.
 	Stated differently, functions are a left $D$-module.
 
-	A standard right $D$-module is $\Omega_X^{\mathrm{top}}$, with sections looking like $f \cdot dx_1 \dots dx_n$ on charts.
+	A standard right $D$-module is $\Omega_X^{\toprm}$, with sections looking like $f \cdot dx_1 \dots dx_n$ on charts.
 	Here $\Dc_X$ acts (in a chart) by Lie derivatives.
-	We can write $\Omega_x^{\mathrm{top}} = \det(T_X)^{\pm 1} \otimes (\Vectc_X \cdot \Dc_X) \backslash \Dc$.
+	We can write $\Omega_x^{\toprm} = \det(T_X)^{\pm 1} \otimes (\Vectc_X \cdot \Dc_X) \backslash \Dc$.
 	Stated differently, distributions are a right $D$-module.
 	Note that we need to work with distributions to be able to pushforward.
 
 	We can convert between left and right $D$-modules by $\Fc \leftrightarrow \Omega_X^{\mathrm{top}} \otimes_{\Dc_X} \Fc$.
 \end{rmk}
+
+\section{9/19 (Raymond Guo) -- Continued}
+
+\subsection{Refresher}
+
+Suppose $X = \Spec A$ is a smooth affine variety.
+Recall that we have a module of vector fields / derivations
+\[
+	\Vectrm_X = \{ v: \Oc_X \to \Oc_X \,|\, v(fg) = v(f)g + f v(g) \}.
+\]
+the module of K\"ahler differentials $\Omega_{A/k}$ is the universal receiver of $k$-linear derivations from $A$.
+That is,
+\[
+	\Der_k(A, M) \cong \Hom_A(\Omega_{A/k}, M).
+\]
+In particular, $\Vectrm_X \cong \Der_k(A, A) \cong \Hom_A(\Omega_{A/k}, A)$.
+
+We can globalize / sheafify all of these definitions to obtain sheaves of vector fields and differentials.
+Thus, in the following, we let $X$ be any smooth variety.
+
+\subsection{Distributions}
+
+Let $n = \dim X$, and let $\Omega_X^\toprm = \wedge^n \Omega_X$.
+Given a vector field $\xi$ and a top form $\omega$, we define the \emph{Lie derivative} $\Lie(\xi)(\omega)$ by
+\[
+	\Lie(\xi)(\omega)(\xi_1, \dots, \xi_n) = \xi\big(\omega(\xi_1, \dots, \xi_n)\big) - \sum_{i=1}^n \omega(\xi_1, \dots, [\xi, \xi_i], \dots).
+\]
+This satisfies
+\begin{align*}
+	(\Lie(f\xi))(\omega) &= (\Lie(\xi))(f\omega) \\
+	(\Lie(\xi))(f\omega) &= (\xi(f)) \omega + f \Lie(\xi)(\omega) \\
+	(\Lie([\xi_1, \xi_2]))(\omega) &= -[\Lie(\xi_1), \Lie(\xi_2)] \omega.
+\end{align*}
+Thus we obtain a \emph{right} action of $\Dc_X$ on $\Omega_X^\toprm$.
+
+\begin{rmk}
+	David explains this as follows.
+	In calculus, functions $f(t)$ have a left action by differential operators.
+	Distributions $g(t) dt$ can be paired with functions via integration.
+	Because functions have a left action by differential operators, the dual of functions (i.e.\ distributions) must admit a right action.
+	Ansuman pointed out that the presence of minus signs in the above equations can be understood from this perspective: it's just the usual integration by parts!
+\end{rmk}
+
+\subsection{Passing between left and right}
+
+There is a pair of equivalences
+\[
+	\Omega_X^\toprm \otimes_{\Oc_X} (-): \Dc_X\dMod \leftrightarrow \Dc_X\op\dMod :(-) \otimes_{\Oc_X} (\Omega_X^\toprm)\inv
+\]
+Here $\Dc_X$ acts on $M \otimes_{\Oc_X} \Omega_X^\toprm$ (on the right) via something like $\xi \cdot (m \omega) = -\xi(m) \omega + m \xi(\omega)$.
+
+\begin{rmk}
+	David explained that we can consider $\Diffc(\Oc_X, \Omega_X^\toprm)$, the sheaf of ``differential operators from $\Oc_X$ to $\Omega_X^\toprm$.''
+	The left action of $\Dc_X$ on $\Oc_X$ and the right action of $\Dc_X$ on $\Omega_X^\toprm$ gives us a right $\Dc_X \otimes \Dc_X$-action on $\Diffc(\Oc_X, \Omega_X^\toprm)$ (so we may view this as a $(\Dc_X\op, \Dc_X)$-bimodule).
+	The functor $\Dc_X\dMod \to \Dc_X\op\dMod$ can also be described as $\Diffc(\Oc_X, \Omega_X^\toprm) \otimes_{\Dc_X} (-)$.
+	The inverse functor admits an analogous description.
+\end{rmk}
+
+\subsection{Functoriality and convolution}
+
+Let's focus on the affine case, so everything is a module.
+Given $f: X \to Y$, let $\Dc_{X \to Y} = \Oc_X \otimes_{\Oc_Y} \Dc_Y$.
+We may define a pullback of $\Dc$-modules via
+\[
+	f^* M = \Dc_{X \to Y} \otimes_{\Dc_Y} M.
+\]
+This can also be interpreted as tensoring with the bimodule $\Diffc(f^* \Oc_Y, \Oc_X)$.
+
+To define a pushforward of $\Dc$-modules, we need to pass from left to right $\Dc$-modules.
+We define
+\[
+	f_*(M) = (\Omega_X^\toprm \otimes_{\Oc_X} M) \otimes_{\Dc_X} \Dc_{X \to Y}) \otimes_{\Oc_Y} (\Omega_X^\toprm)\inv
+\]
+As above, this can be interpreted as tensoring with a bimodule (in this case $\Diffc(f^* \Omega_Y^\toprm, \Omega_X^\toprm)$).
+
+We may use these to define convolution products.
+
+Let $G$ be an algebraic group (with multiplication $m: G^2 \to G$) over $\CC$.
+At closed points $a \in G$, we may construct $\delta$-modules $\delta_a = \Dc_G / \Dc_G \cdot \mf_{G,a}$.
+The convolution product of $\delta_a$ and $\delta_b$ is
+\[
+	m_*\big(\pi_1^* \delta_a \otimes_{\Oc_{G \times G}} \pi_2^* \delta_b\big) = \delta_{m(a,b)}
+\]
+In general, the convolution product defines a monoidal structure $\star$ on $\Dc_G\dMod$.
+The monoidal category $(\Dc_G\dMod, \star)$ is the \emph{smooth categorical group algebra}.
+Actions of $G$ on a space (e.g.\ $G / B$) give rise to module categories for the smooth categorical group algebra.
 
 \end{document}
