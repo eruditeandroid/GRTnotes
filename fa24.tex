@@ -10,7 +10,7 @@
 
 \begin{abstract}
 	This semester, the GRT Seminar will focus on ``categorical representation theory.''
-	A good reference is the recent notes of Gurbir Dhillon.
+	A good reference is ``An informal introduction to categorical representation theory and the local geometric Langlands program'' by Gurbir Dhillon.
 \end{abstract}
 
 \tableofcontents
@@ -294,5 +294,134 @@ The convolution product of $\delta_a$ and $\delta_b$ is
 In general, the convolution product defines a monoidal structure $\star$ on $\Dc_G\dMod$.
 The monoidal category $(\Dc_G\dMod, \star)$ is the \emph{smooth categorical group algebra}.
 Actions of $G$ on a space (e.g.\ $G / B$) give rise to module categories for the smooth categorical group algebra.
+
+\section{9/26 (Brian Yang) -- Beilinson-Bernstein Localization}
+
+Let $G$ be a semisimple Lie group with Lie algebra $\gf$.
+Let $B \subset G$ be a Borel subgroup, so $G / B$ is the flag variety.
+
+Beilinson-Bernstein localization gives an adjunction between:
+\begin{itemize}
+	\item Representations of $\gf$ with central character $0$ (this will be defined later).
+	\item $D$-modules on $G / B$.
+\end{itemize}
+We can go from $D$-modules to representations by taking global sections.
+The left adjoint of this is Beilinson-Bernstein localization.
+
+Really, we should think of our representations as living in category $\Oc$, which includes the finite dimensional representations and the Verma modules.
+This essentially consists of ``highest weight'' representations which can possibly be infinite-dimensional.
+We'd like to connect this with $D$-modules on the flag varieties.
+
+\subsection{Review of $\slf_2$}
+
+Let $\gf = \slf_2(\CC)$, with basis
+\[
+	e = \begin{bmatrix}
+		0 & 1 \\
+		0 & 0
+	\end{bmatrix}, \hspace{2em}
+	f = \begin{bmatrix}
+		0 & 0 \\
+		1 & 0
+	\end{bmatrix}, \hspace{2em}
+	h = \begin{bmatrix}
+		1 & 0 \\
+		0 & -1 
+	\end{bmatrix}.
+\]
+Let $V$ be a representation of $\gf$.
+We say that $v \in V$ is a \emph{heighest weight} vector of weight $n \geq 0$ if, letting $v_k = \frac{1}{k!} f^k v$ for $k \geq 0$, we have
+\[
+	h v_k = (n - 2k) v_k, \hspace{2em} f v_k = (k + 1) v_{k+1}, \hspace{2em} e v_k = (n - k + 1) v_{k-1} \textrm{ with } e v_0 = 0.
+\]
+In particular, the weight $n$ is the eigenvalue of $h$ corresponding to the eigenvector $v$.
+
+For fixed $n$, we define the \emph{Verma module} $M(n) = \Span_\CC \{ v_0, v_1, \dots \}$ as the free (infinite-dimensional) $\gf$-representation with a highest weight vector of weight $n$.
+Letting $\bfr = \Span_\CC \{e, h\}$, we can also define $M(n)$ as $\Uc \gf \otimes_{\Uc \bfr} \CC_n \cdot v_0$.
+
+We may view $M(-n-2)$ as $\Span_\CC \{v_{n+1}, v_{n+2}, \dots\} \subset M(n)$.
+The quotient $V(n) = M(n) / M(-n-2)$ is the unique irrep of dimension $n + 1$.
+We call the resolution
+\[
+	\SES{M(-n-2)}{M(n)}{V(n)}
+\]
+the \emph{Bernstein-Gelfand-Gelfand resolution}.
+
+\subsection{$D$-modules on $\PP^1$ and representations}
+
+Let $G = \SL_2(\CC)$.
+The flag variety of $G$ is $X = \PP^1$.
+We may write $X = U_\infty \cup U_0$ where $U_\infty = \{ [w : 1] \}$ and $U_0 = \{ [1 : z] \}$.
+The sheaf $\Dc_X$ satisfies $\Dc_X(U_0) = \CC\langle z, \partial_z \rangle$ and $\Dc_X(U_\infty) = \CC\langle w, \partial_w \rangle$.
+
+We have an action of $G$ on $X$ by
+\[
+	\begin{bmatrix}
+		a & b \\
+		c & d
+	\end{bmatrix}
+	[x : y] = [ax + by : cx + dy].
+\]
+This induces a Lie algebra homomorphism $\gf \to \Vectrm(X)$.
+
+In the $U_0$ chart, we can compute
+\begin{align*}
+	e \cdot f(z) &= \frac{d}{dt}\bigg|_{t=0} \exp(te) f(z) \\
+		     &= \frac{d}{dt}\bigg|_{t=0} f(\exp(-te) z) \\
+		     &= \frac{d}{dt}\bigg|_{t=0} f\left(\begin{bmatrix}1 & -t\\ 0 & 1\end{bmatrix} [1 : z]\right) \\
+		     &= z^2 f'(z).
+\end{align*}
+That is, $e$ acts by $z^2 \partial_z$.
+
+We can make similar computations for other elements / charts: 
+\begin{itemize}
+	\item In $U_0$, we have $e \mapsto z^2 \partial_z$, $f \mapsto -\partial_z$, and $h \mapsto 2z\partial_z$.
+	\item In $U_\infty$, we have $e \mapsto -\partial_w$, $f \mapsto w^2 \partial_w$, and $h \mapsto -2w\partial_w$.
+\end{itemize}
+These can all be interpreted geometrically: $e$ is a vector field with a zero of order two at $0$, $f$ is a vector field with a zero of order two at $\infty$, and $h$ generates the scaling action of $\CC^\times$.
+
+Using the homomorphism $\gf \to \Vectrm(X)$, we see that the global sections of any $D$-module on $\PP^1$ give a representation of $\gf$!
+
+\begin{ex}
+	Letting $\Oc_X$ be the structure sheaf with the usual action of $\Dc_X$, we see that $\Gamma(X, \Oc_X) = \CC$ consists of constant functions.
+	Because $\Vectrm(X)$ acts trivially on constant functions, we get $\Gamma(X, \Oc_X) \cong V(0)$ as $\gf$-representations.
+\end{ex}
+
+\begin{ex}
+	Let
+	\[
+		N = \left\{ \begin{bmatrix}1 & *\\ 0 & 1\end{bmatrix}\right\}
+	\]
+	act on $X$ by restricting the $G$-action to $N$.
+	This has two orbits: $\{0 \}$ and $U_\infty$.
+	We can pushforward the structure sheaves of the orbits to $X$ and obtain $D$-modules on $X$.
+
+	Let $\Mc_{\pt} = i_{\pt *} \Oc_{\pt}$.
+	To compute this, note that 
+	\[
+		\Dc_{\pt \to U_0}(U_0) = \CC[z] / (z) \otimes_{\CC[z]} \CC\langle z, \partial_z\rangle = \oplus_{i \geq 0} \CC \cdot \delta \partial_z^i
+	\]
+	where $\delta$ denotes a (formal) $\delta$-function at $0$.
+	Since $U_0 \cong \AA^1$ has trivial canonical bundle, we also get $\Dc_{U_0 \leftarrow \pt}(U_0) = \oplus_{i \geq 0} \CC \cdot \partial_z^i \delta$.
+	It follows that
+	\[
+		\Gamma(X, \Mc_{\pt}) = \Mc_{\pt}(U_0) = \oplus_{i \geq 0} \CC \cdot \partial_z^i \delta = M(-2).
+	\]
+	Here the Lie algebra action is computed by taking the basis $m_k = \frac{(-1)^k}{k!} \partial_z^k \delta$ and using the fact that $z \delta = 0$.
+
+	David made some comments about why we can think of $\delta$ as a $\delta$-function: because $z \delta = 0$, any map $\Mc_{\pt} \to \Fc$ must send $\delta$ to some $f$ satisfying $zf = 0$.
+\end{ex}
+	
+We'd also like to understand the pushforward of the structure sheaf of the open orbit.
+For this, it's useful to start with some general remarks.
+If $i: U \hookrightarrow X$ is an open immersion and $\Mc$ is a $\Dc_U$-module, then $i_* \Mc(V) = \Mc(U \cap V)$.
+The $\Dc_X$-module structure on $i_* \Mc$ agrees with the $\Dc_U$-module structure on $\Mc$.
+That is, pushforwards of $D$-modules along open immersions are just the usual pushforwards with the ``obvious'' $D$-module structure!
+
+\begin{ex}
+	Let $\Mc_{\mathrm{open}} = i_{U_\infty *} \Oc_{U_\infty}$.
+	Then $\Gamma(X, \Mc_{\mathrm{open}}) = \Gamma(U_\infty, \Oc_{U_\infty}) = \CC[w]$ with its usual $\Dc_{U_\infty}$-module structure.
+	Choosing the basis $n_k = (-1)^k w^k$, we can compute the Lie algebra action and see that $\Gamma(X, \Mc_{\mathrm{open}}) = M(0)^\vee$, the dual Verma module.
+\end{ex}
 
 \end{document}
