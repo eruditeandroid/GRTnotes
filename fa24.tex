@@ -3,6 +3,7 @@
 \usepackage{notes}
 
 \title{GRT Seminar Fall 2024 -- Categorical Representation Theory}
+\author{Notes by John S.\ Nolan, speakers listed below}
 
 \begin{document}
 
@@ -143,7 +144,7 @@ David gave an exercise of finding all simple modules for $D_{\AA^1}$.
 \subsection{$D$-modules on general varieties}
 
 Let $X$ be a smooth affine variety over a field $k$ of characteristic zero.
-The endomorphism algebra $\Hom_k(\Oc_X, \Oc_X)$ contains $\Oc_X(X)$ (embedded via $f \mapsto (a \mapsto f \cdot a)$) as well as 
+The $k$-linear endomorphism algebra $\Hom_k(\Oc_X, \Oc_X)$ contains $\Oc_X(X)$ (embedded via $f \mapsto (a \mapsto f \cdot a)$) as well as 
 \[
 	\Vectrm_X = \{ F \in \Hom_k(\Oc_X, \Oc_X) \,|\, F(fg) = F(f)g + f F(g) \}.
 \]
@@ -581,5 +582,106 @@ Trying to find projective / injective hulls leads to the following.
 	\]
 	This gives $M(0) \hookrightarrow T$, and we can compute $T / M(0) \cong M(-2)$.
 \end{proof}
+
+\section{10/10 (Multiple Speakers) -- More on Beilinson-Bernstein} 
+
+\subsection{(Brian) -- Conclusion}
+
+As before, we work with $\gfr = \slfr_2(\CC)$.
+Last week we introduced category $\Oc$ and the principal block 
+
+Let $X = \PP^1$, and let $G = \SL_2(\CC)$ act on $X = G / B$ in the usual way.
+There is a corresnpondence between $\gfr$-modules and $\Dc_X$-modules:
+\begin{center}
+	\begin{tabular}{|c|c|} \hline
+		$\gfr$-modules & $\Dc_X$-modules (described over the $U_0$ chart) \\ \hline
+		$L(0)$ & $\Dc_{U_0} / \Dc_{U_0} \partial_z$ (aka $\CC[z]$) \\ \hline
+		$M(-2)$ & $\Dc_{U_0} / \Dc_{U_0} z$ (aka $\CC[\delta_z]$, aka $\delta_0$) \\ \hline
+		$M(0)^\vee$ & $\Dc_{U_0} / \Dc_{U_0} \partial_z z$ \\ \hline
+		$M(0)$ & $\Dc_{U_0} / \Dc_{U_0} z \partial_z$ \\ \hline
+		$T = M(-1) \otimes L(1)$ & $\Dc_{U_0} / \Dc_{U_0} z \partial_z z$ \\ \hline
+	\end{tabular}
+\end{center}
+
+\begin{rmk}
+	David commented that the $(-)^\vee$ operation on $\gfr$-modules corresponds to a ``Fourier transform'' on $\Dc_X$-modules.
+\end{rmk}
+
+Let's see how this works in some examples:
+
+\begin{ex}
+	The $\gfr$-module $M(0)^\vee$ arises from $i_* \Oc_{U_\infty}$.
+	The sections of this $\Dc_X$-module over $U_0$ are given by $\Oc_X(U_0 \cap U_\infty) = \CC[z, z\inv]$.
+	Here $\Dc_X(U_0) = \CC\angles{z, \partial_z}$, and $\partial_z$ acts by differentiation.
+	To see that this corresponds to $\Dc_{U_0} / \Dc_{U_0} \partial_z z$, we simply observe that $\Dc_{U_0} \partial_z z$ is the kernel of the surjection
+	\begin{align*}
+		\Dc_X(U_0) &\to \CC[z, z\inv] \\
+		\beta &\mapsto \beta \cdot z\inv.
+	\end{align*}
+	Similar methods work for $L(0)$ and $M(-2)$.
+\end{ex}
+
+The behavior of the sheaf corresponding to the tilting object is more complicated: it relies on a notion of ``maximal extension.''
+
+\subsection{(David) -- More comments on Beilinson-Bernstein}
+
+Ultimately, all of the $\Dc$-modules we are considering here have no jumps at $\infty$, which explains why it suffices to consider the expressions in $U_0$.
+These correspond to highest weight representations for our fixed Borel (itself corresponding to $0 \in \PP^1$).
+This explains why ``jumps'' in the $\Dc$-modules we consider can only occur at $0$.
+
+The $\Dc_X$-modules Brian wrote down are also important because they are \emph{indecomposable}.
+
+\begin{ex}
+	One might ask what $\Dc_X / \Dc_X z^2$ corresponds to.
+	But $\Dc_X / \Dc_X z^2 \cong \Dc_X / \Dc_X z \oplus \Dc_X / \Dc_X z$, so it would have to correspond to $M(-2)^{\oplus 2}$.
+\end{ex}
+
+\begin{ex}
+	Other $\Dc_X$-modules, like $\Dc_X / \Dc_X (z^2 - 2) = \delta_0 \oplus \delta_1$, correspond to representations that are not highest weight for our fixed Borel.
+\end{ex}
+
+\begin{ex}
+	The $\Dc$-module $\Dc_X / \Dc_X (\partial_z z \partial_z)$ can be built from two copies of $\Oc$ and one copy of $\delta_0$.
+	Swapnil pointed out that $h = \pm 2z \partial_z$ does not act semisimply (in particular, it acts nilpotently on $1$).
+	Thus the global sections of $\Dc_X / \Dc_X (\partial_z z \partial_z)$ are not in category $\Oc$.
+	This corresponds to monodromy of the $\Dc$-module around $\infty$: on the subspace $\spanop \{ 1, 2z \partial_z \}$, we have monodromy
+	\[
+		\exp \begin{bmatrix}0 & 0 \\ 1 & 0\end{bmatrix} = \begin{bmatrix}1 & 0 \\ 0 & 1\end{bmatrix}
+	\]
+	In particular, we can't extend solutions across $\infty$ without a jump.
+\end{ex}
+
+In general, jumps correspond to failure of the $\Dc$-module to be a vector bundle with flat connection (which is equivalent to the $\Dc$-module being coherent as an $\Oc$-module).
+
+One can also give a quiver description of category $\Oc$: it corresponds to representations of
+\[
+	\begin{tikzcd}
+		\bullet \rar[shift left, "q"] & \bullet \lar[shift left, "p"]
+	\end{tikzcd}
+\]
+satisfying $pq = 0$.
+Here the vector space at the left node is the $-2$ weight space and the vector space at the right node is the $0$ weight space.
+We can use this to see why the most recent example is not in category $\Oc$.
+
+\subsection{(Swapnil Garg) -- Beilinson-Bernstein in general}
+
+Let's recall the general statement of Beilinson-Bernstein.
+Let $G$ be a semisimple algebraic group and $K \subset G$ a subgroup.
+Then we have a diagram
+\[
+	\begin{tikzcd}
+		\gfr\dMod_0 \rar["\sim"] & \Dc_{G/B}\dMod \\
+		\gfr\dMod_0^K \uar \rar["\sim"] & \Dc_{G/B}\dMod^K \uar
+	\end{tikzcd}
+\]
+Here $\Dc_{G/B}\dMod^K$ consists of ``strongly $K$-equivariant $\Dc$-modules.''
+
+\begin{rmk}
+	David commented that this can all be understood naturally.
+	The group $G$ acts on $\gfr\dMod$, where $g$ sends $V$ to the representation $V^{\Ad_g}$, given by the same vector space with $\Ad_g$-twisted $\gfr$-action.
+	We can restrict this to any subgroup $K \subset G$.
+	A $K$-equivariant $\gfr$-representation is a $\gfr$-representation $V$ together with a coherent collection of isomorphisms $\alpha_k: V \xrightarrow{\sim} V^{\Ad_k}$ for all $k \in K$.
+	The vertical functors here are exactly given by forgetting this equivariant structure.
+\end{rmk}
 
 \end{document}
