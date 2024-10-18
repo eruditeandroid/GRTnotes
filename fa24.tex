@@ -684,4 +684,104 @@ Here $\Dc_{G/B}\dMod^K$ consists of ``strongly $K$-equivariant $\Dc$-modules.''
 	The vertical functors here are exactly given by forgetting this equivariant structure.
 \end{rmk}
 
+\section{10/17 (Swapnil Garg) -- Continued}
+
+Fix Lie groups $H \subset G$.
+Recall the commutative diagram
+\[
+	\begin{tikzcd}
+		\gfr\dMod_0 \rar & D(G/B) \\
+		\gfr\dMod_0^H \uar \rar & D(G/B)^H
+	\end{tikzcd}
+\]
+where $D(X)$ denotes the category of $\Dc_X$-modules on $X$.
+
+Here $(-)^H$ indicates that we consider $H$-equivariant objects, or equivalently $D(H)$-invariants in a module category (where $D(H)$ is an algebra under convolution).
+If $D(H) \curvearrowright \Cc$, the category $\Cc^H$ can be informally described as $V \in \Cc$ together with equivalences $V \xrightarrow{\sim} \Ad_{\delta_h}^* V$ varying smoothly / algebraically with $h \in H$.
+
+\begin{rmk}
+	David pointed out that we can think of $\Vect = D(\pt)$ as a trivial $D(H)$-module.
+	The $H$-invariants in $\Cc$ can be understood as $\Fun_{D(H)}(D(\pt), \Cc)$.
+\end{rmk}
+
+\begin{ex}
+	If $G$ is a finite group acting on a vector space $G$, this categorifies the classical statement that $V^G = \Hom_{\CC[G]}(\CC, V)$.
+\end{ex}
+
+\subsection{Harish-Chandra modules}
+
+\begin{dfn}
+	A \emph{(Harish-Chandra) $(\gfr, H)$-module} is a $\gfr$-module with $H$-action such that the action of $\hfr \subset \gfr$ agrees with the Lie algebra action coming from $\hfr = \Lie(H)$.
+\end{dfn}
+
+If $H$ is connected, then the $\hfr$-action determines the $H$-action, so $(\gfr, H)$-modules form a full subcategory of $\gfr$-modules.
+The essential question we are asking is: can the $\hfr$-action be integrated / exponentiated to an $H$-action?
+
+Writing
+\[
+	\exp(h) = 1 + h + \frac{h^2}{2} + \frac{h^3}{6} + \dots,
+\]
+we see that we need the $\hfr$-action to be locally finite on $V$, i.e.\ for all $v \in V$, we want the image $\Uc(\hfr) \cdot v$ to be finite-dimensional.
+If $\hfr$ is nilpotent, this is a sufficient condition: locally finite actions of nilpotent Lie algebras can be integrated.
+If $\hfr$ has non-nilpotent elements, we need to be a bit more careful.
+
+\begin{ex}
+	Suppose $H = \GG_m$.
+	Let $v$ be an eigenvector of a generator $h \in \hfr$, say $h \cdot v = \lambda v$.
+	If $\lambda = 1/2$ (or something else non-integral), we can't actually exponentiate this action: torus actions must have integral weights!
+\end{ex}
+
+Let's consider the cases of $H = N \subset G$ and $H = B \subset G$.
+\begin{enumerate}
+	\item Because $\nfr$ is nilpotent, an $\nfr$-action integrates to an $N$-action iff $\nfr$ acts locally finitely.
+	\item Because $\bfr$ is solvable and $[B, B]$ is unipotent (so $\nfr = [\bfr, \bfr]$ is nilpotent), a $B$-action corresponds to an action of $T = B / N$ together with a locally finite action of $\nfr$.
+		By one of Lie's / Engel's theorems, this is equivalent to $\nfr$ acting locally nilpotently (??).
+\end{enumerate}
+
+\begin{ex}
+	For $G = \SL_2$, we have $\bfr = \CC e \oplus \CC h$.
+	The Verma module $M(\lambda)$ always has a locally finite $\bfr$-action.
+	However, this gives an action of $T$ if and only if the $h$-weights are integral, i.e.\ $\lambda \in \ZZ$.
+	Thus $M(\lambda)$ is a $(\gfr, N)$-module for any $\lambda$, but is a $(\gfr, B)$-module if and only if $\lambda \in \ZZ$.
+\end{ex}
+
+\begin{ex}
+	Let $G = \SL_2$ again.
+	Fix $\eta, t \in \CC$.
+	We can define the Whittaker module as $\oplus_{i \in \NN} v_i$, where:
+	\begin{enumerate}
+		\item $e v_i = i v_{i-1} + \eta v_i$
+		\item $h v_i = (t - 2i - 1) v_i - 2 \eta v_{i+1}$
+		\item $f v_i = (t - i - 1) v_{i+1} - \eta v_{i+2}$.
+	\end{enumerate}
+	Here $\hfr$ does not act semisimply.
+	The corresponding $\Dc$-module is the pushforward of the structure sheaf of the open orbit ``twisted by the exponential.''
+	This gives something which is not in category $\Oc$.
+\end{ex}
+
+The point of this is to obtain $\gfr$-modules which are $N$-equivariant but not $B$-equivariant, though the above example might not actually work.
+
+\begin{rmk}
+	David suggested a simpler example, looking at $X = \AA^1$.
+	Then $\AA^1$-equivariant $\Dc$-modules on $\AA^1$ are built from $\Oc_{\AA^1} = D / D \partial$.
+	We can consider the ``exponential $\Dc$-module'' $M_{\exp} = D / D (\partial - 1)$.
+	As a quasicoherent sheaf, this looks like $\Oc$.
+	However, the connection is different: the flat sections of $M_{\exp}$ look like exponentials, which are not algebraic!
+	There are no homomorphisms between $D / D \partial$ and $M_{\exp}$.
+	The two are \emph{analytically} the same but not \emph{algebraically} the same.
+\end{rmk}
+
+Next time, we will discuss category $\Oc$ in more detail.
+
+\begin{dfn}
+	For a general semisimple $\gfr$, category $\Oc$ is the category of $\gfr$-modules such that:
+	\begin{itemize}
+		\item $\hfr$ acts semisimply,
+		\item The modules are finitely generated,
+		\item $\nfr$ acts locally nilpotently, and
+		\item The center $Z(\gfr) \subset \Uc(\gfr)$ acts locally finitely.
+	\end{itemize}
+	Within this we can define subcategories $\Oc_0$ and $\hat{\Oc}_0\inv$.
+\end{dfn}
+
 \end{document}
