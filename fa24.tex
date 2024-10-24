@@ -784,4 +784,139 @@ Next time, we will discuss category $\Oc$ in more detail.
 	Within this we can define subcategories $\Oc_0$ and $\hat{\Oc}_0\inv$.
 \end{dfn}
 
+\section{10/24 (Guest lecture by Sanath Devalapurkar) -- Trichotomies in Homotopy Theory and Geometric Langlands Duality}
+
+A good inspiration for the following is Arnold's paper on mathematical trinities.
+We have many ``trichotomies'' appearing in mathematics:
+\begin{center}
+	\begin{tabular}{|c|c|c|c|} \hline
+		Name & Additive & Multiplicative & Elliptic \\ \hline
+		Group laws & $\GG_a$, $x + y$, $f(x) = x$ & $\GG_m$, $xy$, $f(x) = \exp(x)$ & Elliptic curve $E$, $f(x) = \wp(x)$ \\ \hline
+		Representation theory & Lie algebra $\gf$ & Algebraic group $G$ & ``Elliptic group'' \\ \hline
+		Topology & \begin{tabular}{@{}c@{}}Ordinary cohomology \\ (classical rings)\end{tabular} & (Complex) $K$-theory & Elliptic cohomology $\mathrm{Ell}_E$ \\ \hline
+		Geometry & Cuspidal curves & Nodal curves & Elliptic curves \\ \hline
+		Division algebras & $\CC$ & $\HH$ & $\OO$ \\ \hline
+	\end{tabular}
+\end{center}
+We'd like to use topology to understand the rest of the entries here.
+
+\subsection{Langlands duality}
+
+Suppose we have a reductive group $G$ over $\CC$.
+Then we can study various aspects of $G$:
+\begin{enumerate}
+	\item The topology of $G$ and related spaces.
+	\item The algebra / representation theory of $G$ and related objects (e.g.\ $\tilde{N}$).
+\end{enumerate}
+Langlands duality transforms the topology of $G$ into the algebra of the dual group $\check{G}$.
+
+Given such a $G$, we can define the \emph{affine Grassmannian} $\Gr_G = G\big(\CC((t))\big) / G\big(\CC[[t]]\big)$.
+
+\begin{ex}
+	Let $G$ be a torus $T$.
+	Then $\Gr_T = \XX_\bullet(T)$, the cocharacter lattice of $T$ (at least at the level of underlying spaces).
+	There exists a \emph{dual torus} $\check{T}$ satisfying $\XX^\bullet(T) = \XX_\bullet(T)$.
+	We can identify
+	\[
+		\Sh(\Gr_T; k) \simeq \bigoplus_{\XX_\bullet(T)} \Sh(\pt; k) \simeq \bigoplus_{\XX_\bullet(T)} k\dMod \simeq \bigoplus_{\XX^\bullet(\check{T})} k\dMod \simeq \Rep \check{T}.
+	\]
+	Note here that ``$\check{T}$ lives over $k$.''
+	Actually, if we account for $T$-equivariance (and let $k_T$ denote the $T$-equivariant $k$-cohomology of a point), we get
+	\[
+		\Sh_{T(\CC[[t]])}(\Gr_T; k) \simeq \bigoplus_{\XX_\bullet(T)} \Sh_{T(\CC)}(\pt; k) \simeq \bigoplus_{\XX_\bullet(T)} k_T\dMod \simeq \bigoplus_{\XX^\bullet(\check{T})} k_T\dMod \simeq \QCoh(\Spec k_T \times B \check{T}_k).
+	\]
+	For ordinary cohomology, we have $H^*(BT; k) = \Sym \tfr^*[-2]$, so we end up with 
+	\[
+		\Sh_{T(\CC[[t]])}(\Gr_T; k) \simeq \QCoh(\tfr[2] \times B\check{T}).
+	\]
+\end{ex}
+
+At the underived level, we have more generally:
+
+\begin{thm}[Geometric Satake (Mirkovic-Vilonen, Ginzburg)]
+	For a reductive group $G$, we have
+	\[
+		\Sh_{G(\CC[[t]])}(\Gr_G; \ZZ)^\heartsuit \simeq \Rep(\check{G}_\ZZ)
+	\]
+	where $\heartsuit$ denotes the category of perverse sheaves.
+\end{thm}
+
+It is possible, but nontrivial, to extend this to a \emph{derived} statement.
+For simplicity, we'll assume $G$ is of ADE type.
+
+\begin{thm}[Derived Satake (Bezrukavnikov-Finkelberg)]
+	With the above caveat, we have
+	\[
+		\Sh_{G(\CC[[t]])}(\Gr_G; \QQ) \simeq \QCoh(\gfr_\QQ[2] / \check{G}_\QQ)
+	\]
+	where $\gfr = \check{\gfr}$ and $\check{G}$ acts by the adjoint action.
+\end{thm}
+
+\subsection{More general coefficients}
+
+How can we extend the derived Satake theorem to different coefficients?
+One general principle of Langlands is that everything should happen ``motivically,'' hence should be robust under changes of coefficients.
+
+Modern homotopy theory enlarges classical algebra by replacing sets with spaces.
+Abelian groups are replaced by spectra, and commutative rings are replaced by ``$\EE_\infty$-rings,'' which give multiplicative cohomology theories.
+In some cases, these can be described by simplicial abelian groups / rings.
+One should expect the Langlands program to work with these more general coefficients.
+
+\begin{ex}
+	Going back to our example of a torus $T$, we see that the only part of the computation that assumed $k$ was ordinary cohomology was our identification of $\Spec k_T$.
+	What is the correct description of $k_T$ for more general $k$?
+
+	Let's consider $k = \KU$.
+	If $X$ is compact, the group $\KU^0(X)$ is the Grothendieck group of complex vector bundles on $X$.
+	Taking $T = \GG_m$, we get $k_T = \KU_{S^1}$.
+	For an $S^1$-space $X$, the group $\KU_{S^1}^0(X)$ is the Grothendieck group of complex vector bundles on $X$ with compatible $S^1$-action.
+	In particular, $\KU_{S^1}(\pt) = \ZZ[q^\pm]$, the Grothendieck group of $S^1$-representations.
+	We can write $q = c_1(\Oc(1))$, and the tensor product of line bundles gives 
+	\begin{align*}
+		\ZZ[q^\pm] &\to \ZZ[q^\pm, (q')^\pm] \\
+		q &\mapsto q q'.
+	\end{align*}
+	We may identify $\Spec \KU_{S^1} = \GG_m$ as group schemes.
+	
+	More generally, we have $\Spec \KU_T = T$.
+	The corresponding geometric Satake theorem is
+	\[
+		\Sh_{T(\CC[[t]])}(\Gr_T; \KU) \simeq \QCoh(T \times B\check{T}).
+	\]
+\end{ex}
+
+For non-abelian $G$, we have the following.
+
+\begin{thm}[Devalapurkar]
+	Let $G$ be an ADE group with $\pi_1(G)$ torsion-free.
+	Then
+	\[
+		\Sh_{G(\CC[[t]])}(\Gr_G; \KU) \simeq \QCoh(G_\ZZ / \check{G}_\ZZ).
+	\]
+\end{thm}
+
+One can obtain a similar theorem in the non-ADE case by reducing to this.
+There isn't a reasonable ``perverse $t$-structure'' on the left-hand side, so we don't have an easier abelian case to rely on.
+
+We can also try to understand elliptic cohomology.
+(There are further theories appearing beyond elliptic cohomology, but we won't consider these.)
+
+\begin{enumerate}
+	\item For $k = \QQ, \ZZ, \dots$, we can identify $\check{\gfr} / \check{G}$ with the moduli stack of semistable $\check{G}$-bundles on a cuspidal curve.
+		This looks like the Chevalley base $\tfr \sslash W$.
+	\item For $k = \KU$, we can identify $\check{G} / \check{G}$ with the moduli stack of semistable $\check{G}$-bundles on a nodal curve.
+		This looks like $T \sslash W$.
+	\item For elliptic cohomology $\mathrm{Ell}_E$, the moduli stack should parametrize semistable $\check{G}$-bundles on $E$.
+		This looks like $\Bun_T^0(E) \sslash W$.
+\end{enumerate}
+
+It's somewhat strange and interesting that a moduli stack of bundles appears on the spectral side!
+We can still prove a theorem of the desired form.
+
+\begin{thm}[Devalapurkar]
+	\[
+		\Sh_{G(\CC[[t]])}(\Gr_G; \mathrm{Ell}_E) \simeq \QCoh(\mathrm{Bun}_G^{ss}(E)).
+	\]
+\end{thm}
+
 \end{document}
