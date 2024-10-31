@@ -919,4 +919,99 @@ We can still prove a theorem of the desired form.
 	\]
 \end{thm}
 
+\section{10/31 (Swapnil Garg) -- Continued}
+
+Recall that a $(\gfr, K)$-module is a $\gfr$-module and an \emph{algebraic} $K$-module such that the induced $\kfr$-actions agree.
+We can also define $(\gfr, \kfr)$-modules as $\gfr$-modules such that the induced $\kfr$-actions are locally finite.
+In nice cases, the category of $(\gfr, K)$-modules embeds into the category of $(\gfr, \kfr)$-modules.
+
+Fix $G \supset B \supset N$ as usual (and corresponding Lie algebras).
+Last time, we saw that an $\nfr$-action integrates to an $N$-action iff $\nfr$ acts locally nilpotently.
+In particular, the only simple representation of $\GG_a$ is trivial -- there's no algebraic exponential $\GG_a$-action.
+
+\begin{prop}
+	If $\bfr$ acts locally finitely, then $\nfr \subset \bfr$ acts locally nilpotently.
+\end{prop}
+
+\begin{proof}
+	By Lie's theorem, the inclusion $(\gfr, \bfr)\dMod \subset (\gfr, \nfr)\dMod$ factors through $(\gfr, N)\dMod$.
+\end{proof}
+
+\subsection{Category $\Oc$}
+
+We recall the na\"ive definition of category $\Oc$.
+
+\begin{dfn}
+	(Small) category $\Oc$ consists of $\gfr$-modules $M$ satisfying:
+	\begin{enumerate}
+		\item $M$ is finitely generated.
+		\item $\nfr$ acts locally nilpotently.
+		\item $\hfr$ acts semisimply (equivalently, there is a decomposition $M = \oplus_{\lambda \in \hfr^*} M_\lambda$ into $\hfr$-weight spaces).
+	\end{enumerate}
+\end{dfn}
+It is better to work with a definition of category $\Oc$ that allows for larger modules.
+
+\begin{dfn}
+	Category $\Oc$ consists of $\gfr$-modules $M$ satisfying:
+	\begin{enumerate}
+		\item $\nfr$ acts locally nilpotently.
+		\item $\hfr$ acts semisimply.
+	\end{enumerate}
+\end{dfn}
+
+One can show that the center $Z(\gfr) \subset \Uc(\gfr)$ acts locally finitely on any $M$ in category $\Oc$.
+This is proven by showing the claim for finitely generated modules and then writing an arbitrary $M$ as a union of its finitely generated submodules.
+
+Furthermore, $\Oc$ has a block decomposition $\Oc = \oplus_\chi \Oc_\chi$ in terms of central characters $\chi \in \Spec Z(\gfr)$ (so there are no nontrivial $\Hom$ or $\Ext$ groups between different blocks).
+By Harish-Chandra's theorem, $\Spec Z(\gfr) \cong \hfr^* \sslash W$ is a vector space, which can make things easier to think about.
+(We actually only consider closed points of $\Spec$.)
+For $M$ in category $\Oc$, we write $M = \oplus_\chi M_\chi$, where $M_\chi$ consists of $v \in M$ such that there exists $n \geq 0$ such that $(\chi(x) - x)^n v = 0$ for all $x \in Z(\gfr)$.
+
+\subsection{Variants of category $\Oc$}
+
+We introduce some standard notation for certain subcategories of some category $\Csf$ of representations:
+\begin{enumerate}
+	\item $\Csf_0$ is the subcategory on which $Z(\gfr)$ acts by $\chi_0$.
+	\item $\Csf_{\hat{0}}$ is the subcategory on which $Z(\gfr)$ acts by generalized character $\hat{\chi}_0$ (i.e.\ allowing for Jordan blocks).
+	\item $\Csf_\hfr$ is the subcategory on which $\hfr$ acts semisimply.
+	\item $\Csf_{\hat{\hfr}}$ is the subcategory on which $\hfr$ acts locally finitely.
+	\item $\Csf_{Z(\gfr)}$ is the subcategory on which $Z(\gfr)$ acts semisimply.
+	\item $\Csf_{\hat{Z(\gfr)}}$ is the subcategory on which $Z(\gfr)$ acts locally finitely.
+\end{enumerate}
+
+In this notation, we have $\Oc = (\gfr, \bfr)\dMod_\hfr$ and $\Oc = \Oc_\hfr = \Oc_{\hfr,\hat{Z(\gfr)}}$.
+
+\begin{dfn}
+	The category $\Oc_{\hat{Z(\gfr)}}$ consists of $\gfr$-modules such that:
+	\begin{enumerate}
+		\item $\nfr$ acts locally nilpotently.
+		\item $Z(\gfr)$ ats locally finitely.
+	\end{enumerate}
+\end{dfn}
+
+It follows from these axioms that $\hfr$ acts locally finitely on any $M \in \Oc_{\hat{Z(\gfr)}}$.
+Furthermore, $\Oc_{\hat{Z(\gfr)}}$ has a block decomposition.
+The idea of the proof is that, since $\nfr$ acts locally nilpotently, then we get highest weight vectors from the action of $\nfr$.
+By studying these, we can construct ``generalized weight spaces'' for $\hfr$ and show that $\gfr$ interacts nicely with these.
+We have $\Oc_{\hat{Z(\gfr)}} = \Oc_{\hat{Z(\gfr)},\hat{\hfr}} = \Oc_{\hat{\hfr}}$.
+
+We can also define a ``new category $\Oc$'' as $\Oc_{Z(\gfr)} = \Oc_{\hat{\hfr},Z(\gfr)}$.
+This consists of distinct objects from our usual category $\Oc$, but the categories are abstractly isomorphic!
+This follows from the theory of $D$-modules.
+
+\subsection{$D$-modules}
+
+Recall that:
+\begin{enumerate}
+	\item $(\gfr, B)\dMod_0 = \Oc_{\hfr,Z(\gfr)} \simeq D(B \backslash G / B)$.
+	\item $(\gfr, N)\dMod_0 = \Oc_{\hat{\hfr},Z(\gfr)} \simeq D(N \backslash G / B)$.
+	\item $(\gfr, B)\dMod_{\hat{0}} = \Oc_{\hfr,\hat{Z(\gfr)},0} \simeq D(B \backslash G / N)$.
+	\item $(\gfr, \bfr)\dMod_{\hat{0}} = \hat{\Oc}_0 \simeq D(N \backslash G / N)^{0\mathrm{-mon}}$.
+\end{enumerate}
+
+From the equivalence $N \backslash G / B \simeq B \backslash G / N$, we see the equivalence mentioned above.
+It can often be easy to study category $\Oc$ by studying $D$-modules.
+In particular, these naturally have actions of $D(G)$ (viewed as a monoidal category via convolution).
+
+One cautionary note: Beilinson-Bernstein only gives an equivalence for a \emph{fixed} central character -- the global story is more subtle.
 \end{document}
