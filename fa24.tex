@@ -1014,4 +1014,140 @@ It can often be easy to study category $\Oc$ by studying $D$-modules.
 In particular, these naturally have actions of $D(G)$ (viewed as a monoidal category via convolution).
 
 One cautionary note: Beilinson-Bernstein only gives an equivalence for a \emph{fixed} central character -- the global story is more subtle.
+
+\section{11/7 (Yuji Okitani) -- Hecke Algebras and Hecke Categories}
+
+Our goal is to give a uniform description of how Hecke algebras appear in Lie theory (alongside plenty of examples).
+
+\subsection{Some descent theory}
+
+Suppose we want to understand some $k$-linear category $\Csf$ (e.g.\ $\Csf = \Rep G$).
+If we fix an object $c \in \Csf$ (e.g.\ $\Indop_B^G \onebb_B$), we can probe $\Csf$ via the functor $\Hom(c, -): \Csf \to \Vect_k$.
+This upgrades to a functor $\Hom(c, -): \Csf \to \Mod(\End_\Csf(c))$, where $\End(c)$ acts via composition.
+If $\Csf$ is closed under suitable colimits, this functor admits a left adjoint $c \otimes_{\End(c)} -: \Mod(\End(c)) \to \Csf$.
+We'd like to understand when $c \otimes_{\End(c)} -$ is an equivalence, or at least fully faithful.
+
+\begin{rmk}
+	David said that, informally, one can view $\Csf$ as something like a space.
+	Here $c$ plays the role of a point, and $\End(c)$ plays the role of $\Omega_c C$.
+	``Descent'' here would be an equivalence $\Mod(\End(c)) \xrightarrow{\sim} \Csf$.
+\end{rmk}
+
+\begin{ex}
+	A tautological example is $\Csf = \Mod(A)$ with $c = A$.
+	Here descent is just saying that $\Mod(A) \sim \Mod(A)$.
+\end{ex}
+
+\begin{ex}
+	A topological / nonlinear version of this is: if $X$ is a path connected space with basepoint $x \in X$, then $B \Omega_x X \xrightarrow{\sim} X$.
+\end{ex}
+
+Informally, we say that $c$ is sufficiently small if $\Hom(c, -)$ preserves the colimits necessary to make the following proof hold.
+
+\begin{prop}
+	If $c$ is sufficiently small, then $c \otimes_{\End(c)} -$ is fully faithful.
+\end{prop}
+
+\begin{proof}[Informal proof]
+	Write $R = \End(c)$ for brevity.
+	As $c \otimes_R -$ is a left adjoint, it suffices to check that the unit map $M \to \Hom(c, c \otimes_R M)$ is an equivalence for every $M \in \Mod(\End(c))$.
+	For any such $M$, we take a resolution $\colim_i R^{\oplus J_i} \to M$.
+	Then 
+	\[
+		\Hom(c, c \otimes_R M) \simeq \Hom_c(c, \colim_i c^{\oplus J_i}) \simeq \colim_i \Hom(c, c)^{\oplus J_i} = \colim_i R^{\oplus J_i} \simeq M. \qedhere
+	\]
+\end{proof}
+
+\begin{prop}
+	If $c$ is sufficiently small and $\Hom(c, -)$ is conservative, then $c \otimes_{\End(c)} -$ is an equivalence.
+\end{prop}
+
+We can make these notions precise in many examples.
+
+\begin{ex}
+	If $\Csf$ is an abelian category, ``sufficiently small'' means compact and projective.
+	Conservativity means that, if $\Hom(c, d) \simeq 0$, then $d \simeq 0$.
+\end{ex}
+
+\begin{ex}
+	In our topological example, conservativity is equivalent to $X$ being path connected.
+\end{ex}
+
+The key example for us will be the following.
+
+\begin{ex}
+	Let $G$ be a finite group and $K \subset G$ a subgroup.
+	Take $\Csf = \Rep G$, and let $c = \Indop_K^G(\onebb_K) = k[G / K]$
+	We compute $R = \End_G(k[G / K])$ in two steps:
+	\begin{enumerate}
+		\item $\End_k(k[G / K]) \cong k[G / K \times G / K]$ as vector spaces (using the self-duality of $G / K$).
+			Here the product is given by matrix multiplications.
+		\item $\End_G(k[G / K])$ consists of $G$-invariants in the above.
+			We may compute this as $k[G \backslash (G / K \times G / K)] \cong k[K \backslash G / K]$.
+	\end{enumerate}
+	Thus $R$ is nothing but the Hecke algebra!
+\end{ex}
+
+In general, we want to think of $\End(c)$ as some version of a Hecke algebra.
+
+\subsection{Parabolic induction}
+
+Let $G$ be a group arising in some version of Lie theory, e.g.:
+\begin{enumerate}
+	\item a finite group of Lie type,
+	\item a compact Lie group,
+	\item a reductive algebraic group,
+	\item a loop group,
+	\item a $p$-adic group,
+	\item \dots.
+\end{enumerate}
+
+Let $\Csf = \Rep(G) = \Mod(\Dist(G))$ be the category of representations that interests us.
+Fix a Borel $B \subset G$ (or more generally a parabolic $P \subset G$), and let $c = \Indop_B^G \onebb_B$ (or more generally $\Ind_B^G \chi$ for any $\chi \in \Rep(H)$ where $H = B / N$).
+Let $\Hc = \End(c)$ be the corresponding Hecke algebra.
+By the formal pattern above, we obtain a functor $\Mod(\Hc) \to \Rep(G)$.
+
+Geometrically, we should equate $c = \Dist(G / B)$ and $\Hc = \Dist(B \backslash G / B)$.
+
+\begin{ex}
+	Let $B(\FF_q) \subset \GL_2(\FF_q)$ be the subgroup of upper triangular matrices.
+	The action $B \curvearrowright G / B$ has two orbits ($\AA^1$ and $\infty$), so $\Hc$ is two-dimensional.
+	A good exercise is to show that the indicator function $1_{\infty}$ is the unit of $\Hc$ and that $T = 1_{\AA^1}$ satisfies
+	\[
+		T^2 = (q - 1) T + q.
+	\]
+	More generally, finite groups of Lie type produce finite Hecke algebras $\Hc$.
+	We may view $\Hc$ as a deformation of $k[W]$ where $W$ is the Weyl group.
+	In fact, $\Hc \cong k[W]$, but not canonically so.
+	The Bruhat decomposition implies that the dimensions match up at least.
+\end{ex}
+
+\begin{ex}
+	Let $G = G(F)$ for $F$ a non-archimedean local field (e.g.\ $\QQ_p$).
+	We let $\Rep G$ be the category of smooth representations.
+	There are two popular choices of parabolic $P$:
+	\begin{enumerate}
+		\item maximal compact subgroups $P = G(\Oc_F)$, and 
+		\item Iwahori subgroups $P = I$.
+	\end{enumerate}
+	
+	The first case gives the \emph{spherical Hecke algebra} $\Hc^\sph$, consisting of compactly-supported functions on $G(\Oc) \backslash G(F) / G(\Oc)$.
+	The Satake isomorphism identifies $\Hc^\sph \cong k[T^\vee \sslash W]$.
+	In particular, $\Hc^\sph$ is commutative.
+
+	The second case gives the \emph{Iwahori-Hecke algebra} $\Hc^\aff$, consisting of compactly-supported functions on $I \backslash G(F) / I$.
+	This can be viewed as a deformation of $k_c[W^\aff]$.
+	Irreducible representations of the Iwahori-Hecke algebra were classified by the Deligne Langlands correspondence.
+\end{ex}
+
+In good situations, if $P$ is something like a Borel, then $\Hc$ is something like the associated Weyl group.
+More generally, we can write $P = P^I$ as a parabolic induced by a finite set of simple roots $I \subset \Delta$.
+A generalization of the Bruhat decomposition identifies $P^I \backslash G / P^I$ with $W^I \backslash W / W^I$.
+The Hecke algebra for $P^I$ is ``close to'' $k[W^I \backslash W / W^I]$.
+
+\begin{ex}
+	In the case of non-archimedean local fields, we should think of the simple roots as $\Delta^{\textrm{aff}} = \Delta \cup \{ \alpha_0 \}$, where $\alpha_0$ is the affine root.
+	Here $G(\Oc) = P^\Delta$, $W^\Delta = W^{\mathrm{fin}}$, and the Bruhat decomposition relates $G(\Oc) \backslash G(F) / G(\Oc)$ to $W^\fin \backslash W^\aff / W^\fin$.
+\end{ex}
+
 \end{document}
