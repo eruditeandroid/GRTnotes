@@ -1150,4 +1150,107 @@ The Hecke algebra for $P^I$ is ``close to'' $k[W^I \backslash W / W^I]$.
 	Here $G(\Oc) = P^\Delta$, $W^\Delta = W^{\mathrm{fin}}$, and the Bruhat decomposition relates $G(\Oc) \backslash G(F) / G(\Oc)$ to $W^\fin \backslash W^\aff / W^\fin$.
 \end{ex}
 
+\section{11/14 (Yuji Okitani) -- Categorical Group Algebras}
+
+Our objective is to introduce the categorical group algebras $\QCoh(G)$ and $\DMod(G)$.
+Ideally we'd like to discuss some Morita equivalences:
+\begin{enumerate}
+	\item Gaitsgory on 1-affineness: for all linear algebraic groups $G$ over a field of characteristic zero, we have $(\Rep G, \otimes) = (\QCoh(BG), \otimes) \simeq_\textrm{Morita} (\QCoh(G), \star)$ 
+	\item Ben-Zvi--Gunningham-Orem: for reductive $G$, we have $(\DMod(N \backslash G / N), \star) \simeq_\textrm{Morita} (\DMod(G), \star)$
+\end{enumerate}
+It is important to note that these only hold at this categorical level: the analogous statements for distributions fail.
+
+Everything here is derived / $\infty$-categorical.
+``Modules'' will typically mean left modules.
+
+\subsection{The Morita 2-category}
+
+Last time, we considered functors $c \otimes (-): \Mod \Hc \rightleftarrows \Mod \Ac : \Hom(c, -)$.
+Here $c$ can be viewed as an $(\Ac, \Hc)$-bimodule.
+We'd like to fit these into a more general context.
+
+In general, we like to consider \emph{colimit-preserving} functors between our categories of bimodules.
+Let's consider specifically functors between categories of modules which come from bimodules.
+More precisely:
+
+\begin{dfn}[{Lurie's paper on TQFT, 4.1.11}]
+	Let $\Ssf$ be a symmetric monoidal category.
+	Define a 2-category $\Alg(\Ssf)$ where: 
+	\begin{itemize}
+		\item Objects are algebra objects in $\Ssf$.
+		\item 1-morphisms $\Ac \to \Bc$ are bimodules ${}_{\Bc} \Mc_{\Ac}$.
+		\item Composition of 1-morphisms is given by tensor product: $({}_{\Cc} \Nc_{\Bc}) \circ ({}_{\Bc} \Mc_{\Ac}) = {}_{\Cc} (\Nc \otimes_{\Bc} \Mc)_{\Ac}$.
+		\item 2-morphisms are maps of bimodules.
+	\end{itemize}
+\end{dfn}
+
+\begin{rmk}
+	Algebra objects $\Ac$ and $\Bc$ are \emph{Morita equivalent} if they are equivalent as objects of $\Alg(\Ssf)$.
+	This is much weaker than saying that the algebras are isomorphic!
+\end{rmk}
+
+\begin{ex}
+	If $\Ssf = \Vect_k$, then algebra objects in $\Ssf$ are $k$-algebras.
+	The algebras $k$ and $\mathsf{M}_n(k)$ (the algebra of $n \times n$ matrices) are Morita equivalent via the bimodule $k^{\oplus n}$.
+\end{ex}
+
+\begin{ex}
+	If $\Ssf = \dgCat$, then algebra objects are monoidal categories.
+\end{ex}
+
+\subsection{Descent}
+
+In our original formal pattern, we consider module objects $\Mc \in \Mod \Ac$, define $\Hc = \End_\Ac(\Mc)$, and study adjunctions
+\[
+	{}_\Ac \Mc_\Hc: \Mod(\Hc) \rightleftarrows \Mod(\Ac) : \ol{\Hom}_\Ac(\Mc, -).
+\]
+Here $\Hom_\Ac(\Mc, -)$ may not be a morphism in $\Alg \Ssf$, but we can use the adjunction above to define $\ol{\Hom}_\Ac(\Mc, -)$.
+
+\begin{dfn}
+	Say that an $\Ac$-module $\Mc$ is \emph{$\Ac$-dualizable} the corresponding morphism (in $\Alg(\Ssf)$) $\Mc: \onebb_\Ssf \to \Ac$ has a right adjoint (also in $\Alg(\Ssf)$) $\Mc_\Ac^\vee$.
+\end{dfn}
+
+Roughly, this means that we have a right $\Ac$-module $\Mc^\vee_\Ac$ together with:
+\begin{itemize}
+	\item a \emph{coevaluation map} $\coev: \onebb_\Ssf \to \Mc^\vee \otimes_\Ac \Mc$ in $\Ssf$ and
+	\item an \emph{evaluation map} $\ev: \Mc^\vee \otimes_\Ac \Mc \to \Ac$ (of $(\Ac, \Ac)$-bimodules),
+	\item satisfying triangle identities.
+\end{itemize}
+One can draw nice TQFT pictures of these: $\Mc$ and $\Mc^\vee$ are domain walls between $\Ac$ and the trivial theory $\onebb_\Mc$.
+The (co)evaluation maps are caps and cups.
+
+In general, we will take $\Mc$ to be an $\Ac$-dualizable $\Ac$-module and let $\Hc = \Mc^\vee \otimes_\Ac \Mc$.
+Here $\Hc$ obtains the structure of an algebra object, and we consider an adjunction (in $\Alg(\Ssf)$)
+\[
+	{}_\Ac \Mc_\Hc: \Hc \rightleftarrows \Ac : {}_\Hc \Mc^\vee_\Ac.
+\]
+
+\begin{prop}
+	The functor ${}_\Ac \Mc_\Hc$ is fully faithful.
+\end{prop}
+
+\begin{proof}
+	This is a formal consequence of the coevaluation map $\coev: \Hc \to \Mc^\vee \otimes_\Ac \Mc$ being an equivalence.
+\end{proof}
+
+Thus we want to understand: when is $\ev: \Mc \otimes_\Hc \Mc^\vee \to \Ac$ an equivalence?
+If this is the case, then we obtain a Morita equivalence between $\Hc$ and $\Ac$.
+
+\subsection{Descent for $\QCoh(G)$}
+
+Let's focus on $\Ssf = \dgCat$, where $\Ac = \QCoh(G)$ and $\Mc = \Vect$ is the trivial / augmentation module.
+The algebra / monoidal category structure on $\QCoh(G)$ is given by
+\[
+	(F_1, F_2) \mapsto m_*(F_1 \boxtimes F_2),
+\]
+with unit given by $e_*: \QCoh(\pt) \to \QCoh(G)$.
+For any $G$-space $X$ with action map $a: G \times X \to X$, we can view $\QCoh(X)$ as a $\QCoh(G)$-module category via
+\[
+	F \cdot M = a_*(F \boxtimes M).
+\]
+In particular, taking $X = \pt$, we get the augmentation module $\Vect \simeq \QCoh(\pt)$.
+
+Here the Hecke category is $\Hc = \QCoh(\pt) \otimes_{\QCoh(G)} \QCoh(\pt) \simeq \QCoh(BG)$.
+For descent, we'd like to show that $\QCoh(\pt) \otimes_{\QCoh(BG)} \QCoh(\pt) \xrightarrow{\sim} \QCoh(G)$.
+This follows from 1-affineness of $BG$.
 \end{document}
