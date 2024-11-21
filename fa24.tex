@@ -203,7 +203,7 @@ As a quasicoherent sheaf, $f^* \Fc$ is just the usual $f^* \Fc := \Oc_X \otimes_
 
 	A standard right $D$-module is $\Omega_X^{\toprm}$, with sections looking like $f \cdot dx_1 \dots dx_n$ on charts.
 	Here $\Dc_X$ acts (in a chart) by Lie derivatives.
-	We can write $\Omega_x^{\toprm} = \det(T_X)^{\pm 1} \otimes (\Vectc_X \cdot \Dc_X) \backslash \Dc$.
+	We can write $\Omega_x^{\toprm} = \det(T_X)^{\pm 1} \otimes (\Vectc_X \cdot \Dc_X) \bs \Dc$.
 	Stated differently, distributions are a right $D$-module.
 	Note that we need to work with distributions to be able to pushforward.
 
@@ -1003,13 +1003,13 @@ This follows from the theory of $D$-modules.
 
 Recall that:
 \begin{enumerate}
-	\item $(\gfr, B)\dMod_0 = \Oc_{\hfr,Z(\gfr)} \simeq D(B \backslash G / B)$.
-	\item $(\gfr, N)\dMod_0 = \Oc_{\hat{\hfr},Z(\gfr)} \simeq D(N \backslash G / B)$.
-	\item $(\gfr, B)\dMod_{\hat{0}} = \Oc_{\hfr,\hat{Z(\gfr)},0} \simeq D(B \backslash G / N)$.
-	\item $(\gfr, \bfr)\dMod_{\hat{0}} = \hat{\Oc}_0 \simeq D(N \backslash G / N)^{0\mathrm{-mon}}$.
+	\item $(\gfr, B)\dMod_0 = \Oc_{\hfr,Z(\gfr)} \simeq D(B \bs G / B)$.
+	\item $(\gfr, N)\dMod_0 = \Oc_{\hat{\hfr},Z(\gfr)} \simeq D(N \bs G / B)$.
+	\item $(\gfr, B)\dMod_{\hat{0}} = \Oc_{\hfr,\hat{Z(\gfr)},0} \simeq D(B \bs G / N)$.
+	\item $(\gfr, \bfr)\dMod_{\hat{0}} = \hat{\Oc}_0 \simeq D(N \bs G / N)^{0\mathrm{-mon}}$.
 \end{enumerate}
 
-From the equivalence $N \backslash G / B \simeq B \backslash G / N$, we see the equivalence mentioned above.
+From the equivalence $N \bs G / B \simeq B \bs G / N$, we see the equivalence mentioned above.
 It can often be easy to study category $\Oc$ by studying $D$-modules.
 In particular, these naturally have actions of $D(G)$ (viewed as a monoidal category via convolution).
 
@@ -1083,7 +1083,7 @@ The key example for us will be the following.
 		\item $\End_k(k[G / K]) \cong k[G / K \times G / K]$ as vector spaces (using the self-duality of $G / K$).
 			Here the product is given by matrix multiplications.
 		\item $\End_G(k[G / K])$ consists of $G$-invariants in the above.
-			We may compute this as $k[G \backslash (G / K \times G / K)] \cong k[K \backslash G / K]$.
+			We may compute this as $k[G \bs (G / K \times G / K)] \cong k[K \bs G / K]$.
 	\end{enumerate}
 	Thus $R$ is nothing but the Hecke algebra!
 \end{ex}
@@ -1107,7 +1107,7 @@ Fix a Borel $B \subset G$ (or more generally a parabolic $P \subset G$), and let
 Let $\Hc = \End(c)$ be the corresponding Hecke algebra.
 By the formal pattern above, we obtain a functor $\Mod(\Hc) \to \Rep(G)$.
 
-Geometrically, we should equate $c = \Dist(G / B)$ and $\Hc = \Dist(B \backslash G / B)$.
+Geometrically, we should equate $c = \Dist(G / B)$ and $\Hc = \Dist(B \bs G / B)$.
 
 \begin{ex}
 	Let $B(\FF_q) \subset \GL_2(\FF_q)$ be the subgroup of upper triangular matrices.
@@ -1131,23 +1131,23 @@ Geometrically, we should equate $c = \Dist(G / B)$ and $\Hc = \Dist(B \backslash
 		\item Iwahori subgroups $P = I$.
 	\end{enumerate}
 	
-	The first case gives the \emph{spherical Hecke algebra} $\Hc^\sph$, consisting of compactly-supported functions on $G(\Oc) \backslash G(F) / G(\Oc)$.
+	The first case gives the \emph{spherical Hecke algebra} $\Hc^\sph$, consisting of compactly-supported functions on $G(\Oc) \bs G(F) / G(\Oc)$.
 	The Satake isomorphism identifies $\Hc^\sph \cong k[T^\vee \sslash W]$.
 	In particular, $\Hc^\sph$ is commutative.
 
-	The second case gives the \emph{Iwahori-Hecke algebra} $\Hc^\aff$, consisting of compactly-supported functions on $I \backslash G(F) / I$.
+	The second case gives the \emph{Iwahori-Hecke algebra} $\Hc^\aff$, consisting of compactly-supported functions on $I \bs G(F) / I$.
 	This can be viewed as a deformation of $k_c[W^\aff]$.
 	Irreducible representations of the Iwahori-Hecke algebra were classified by the Deligne Langlands correspondence.
 \end{ex}
 
 In good situations, if $P$ is something like a Borel, then $\Hc$ is something like the associated Weyl group.
 More generally, we can write $P = P^I$ as a parabolic induced by a finite set of simple roots $I \subset \Delta$.
-A generalization of the Bruhat decomposition identifies $P^I \backslash G / P^I$ with $W^I \backslash W / W^I$.
-The Hecke algebra for $P^I$ is ``close to'' $k[W^I \backslash W / W^I]$.
+A generalization of the Bruhat decomposition identifies $P^I \bs G / P^I$ with $W^I \bs W / W^I$.
+The Hecke algebra for $P^I$ is ``close to'' $k[W^I \bs W / W^I]$.
 
 \begin{ex}
 	In the case of non-archimedean local fields, we should think of the simple roots as $\Delta^{\textrm{aff}} = \Delta \cup \{ \alpha_0 \}$, where $\alpha_0$ is the affine root.
-	Here $G(\Oc) = P^\Delta$, $W^\Delta = W^{\mathrm{fin}}$, and the Bruhat decomposition relates $G(\Oc) \backslash G(F) / G(\Oc)$ to $W^\fin \backslash W^\aff / W^\fin$.
+	Here $G(\Oc) = P^\Delta$, $W^\Delta = W^{\mathrm{fin}}$, and the Bruhat decomposition relates $G(\Oc) \bs G(F) / G(\Oc)$ to $W^\fin \bs W^\aff / W^\fin$.
 \end{ex}
 
 \section{11/14 (Yuji Okitani) -- Categorical Group Algebras}
@@ -1156,7 +1156,7 @@ Our objective is to introduce the categorical group algebras $\QCoh(G)$ and $\DM
 Ideally we'd like to discuss some Morita equivalences:
 \begin{enumerate}
 	\item Gaitsgory on 1-affineness: for all linear algebraic groups $G$ over a field of characteristic zero, we have $(\Rep G, \otimes) = (\QCoh(BG), \otimes) \simeq_\textrm{Morita} (\QCoh(G), \star)$ 
-	\item Ben-Zvi--Gunningham-Orem: for reductive $G$, we have $(\DMod(N \backslash G / N), \star) \simeq_\textrm{Morita} (\DMod(G), \star)$
+	\item Ben-Zvi--Gunningham-Orem: for reductive $G$, we have $(\DMod(N \bs G / N), \star) \simeq_\textrm{Morita} (\DMod(G), \star)$
 \end{enumerate}
 It is important to note that these only hold at this categorical level: the analogous statements for distributions fail.
 
@@ -1253,4 +1253,125 @@ In particular, taking $X = \pt$, we get the augmentation module $\Vect \simeq \Q
 Here the Hecke category is $\Hc = \QCoh(\pt) \otimes_{\QCoh(G)} \QCoh(\pt) \simeq \QCoh(BG)$.
 For descent, we'd like to show that $\QCoh(\pt) \otimes_{\QCoh(BG)} \QCoh(\pt) \xrightarrow{\sim} \QCoh(G)$.
 This follows from 1-affineness of $BG$.
+
+\section{10/21 (Yuji Okitani) -- Highest Weights for Categorical Representations}
+
+The goal for this time is to discuss the result of Ben-Zvi--Gunningham--Orem:
+
+\begin{thm}
+	There is an equivalence
+	\[
+		i: \Mod(\DMod(N \bs G / N)) \xrightarrow{\sim} \Mod(\DMod(G)).
+	\]
+\end{thm}
+
+This can be understood as a Morita equivalence between the categories $D(N \bs G / N)$ and $D(G)$.
+This is false when we work at a lower category level (e.g.\ with representations of $G(\FF_q)$).
+
+\subsection{Outline of proof}
+
+We take $i$ to be the functor corresponding to the bimodule $\Mc = \DMod(G / N)$ (the ``principal series'' module).
+The proof proceeds in two steps:
+\begin{enumerate}
+	\item Show $i$ is fully faithful.
+		This can be accomplished by showing that $\Mc$ is dualizable over $\Ac = \DMod(G)$.
+	\item Show $i$ is essentially surjective.
+		This can be accomplished by showing that $\ol{\ev}: \Mc \otimes_{\Hc} \Mc^\vee \to \DMod(G)$ is an equivalence.
+		One can think of this loosely as saying that matrix coefficients generate $\DMod(G)$.
+\end{enumerate}
+
+\subsection{Fully faithfulness / dualizability}
+
+We would like to find a right $\DMod(G)$-module $\Mc^\vee$ such that $\Mc^\vee \otimes_\Ac (-) = \Hom_\Ac(\Mc, -)$.
+We'll categorify a standard construction in the representation theory of finite groups.
+
+\begin{exer}
+	Let $G$ be a finite group acting on a finite set $X$.
+	Show that $\CC[X]$ is $\CC[G]$-dualizable, with dual $\CC[X]^\vee = \CC[X^\vee]$ where $X^\vee = X$ with right $G$-action $x \cdot g = g\inv x$.
+	The evaluation map comes from push-pull along the span
+	\[
+		\begin{tikzcd}
+			& \ar[dl] X \times G \ar[dr] & \\
+			X \times X^\vee & & G
+		\end{tikzcd}
+	\]
+	where the left map is $(x, g) \mapsto (x, x \cdot g)$.
+\end{exer}
+
+The same idea holds here: the dual of $\Mc$ will be $\Mc^\vee = \DMod(N \bs G)$.
+The evaluation map has a similar description.
+Ultimately checking this relies on a result of Beraldo: 
+
+\begin{thm}[Beraldo]
+	Let $X \curvearrowleft G$ and $G \curvearrowright Y$.
+	Then $\DMod(X) \otimes_{\DMod(G)} \DMod(Y) \xrightarrow{\sim} \DMod(X \times Y /_\Delta G)$.
+\end{thm}
+
+\subsection{The category of correspondences}
+
+This discussion ultimately relates to the category of correspondences.
+We let $\Corr$ be the category where:
+\begin{itemize}
+	\item Objects of $\Corr$ are stacks.
+	\item Morphisms from $X$ to $Y$ are correspondences $X \leftarrow Z \rightarrow Y$.
+\end{itemize}
+This has a symmetric monoidal structure given by the usual Cartesian product of stacks.
+
+\begin{exer}
+	The group $G$ is an algebra object in $\Corr$, and if $G \curvearrowright X$, then $X$ is $G$-dualizable.
+\end{exer}
+
+When one restricts to suitable stacks and morphisms, $\DMod$ gives a symmetric monoidal functor from $(\Corr, \times)$ to $(\dgCat, \otimes)$.
+In particular, algebra objects in $\Corr$ (like $G$) get sent to algebra objects in $\dgCat$.
+One can use the above observations about dualizability in $\Corr$ to establish the desired results in $\dgCat$.
+
+\begin{rmk}
+	David pointed out that this can be understood using TQFT: we are essentially quantizing / linearizing a classical theory.
+\end{rmk}
+
+\subsection{Essential surjectivity}
+
+We also need to know when $\ol{\ev}: \DMod(G / N) \otimes_{\DMod(N \bs G / N)} \DMod(N \bs G) \to \DMod(G)$ is an equivalence.
+
+\begin{rmk}
+	This is not a formal statement!
+	If we replaced $N$ by $G$, we'd be comparing $\Mod(\DMod(BG))$ and $\Mod(\DMod(G))$, which are not equivalent in general.
+	Meanwhile, if we replaced $N$ by $\pt$, the statement would be trivial.
+	Really, the $N$ we use here is the ``sweet spot.''
+\end{rmk}
+
+To check this equivalence, we write $\DMod(G / N) \otimes_{\DMod(N \bs G / N)} \DMod(N \bs G) = \Mc \otimes_\Hc \Mc^\vee$ as a geometric realization $\colim \Mc \otimes \Hc^{\bullet} \otimes \Mc^\vee$.
+This replaces the $\otimes_\Hc$ (which is hard to understand) by $\otimes$ (which is much easier).
+We end up with $\ev: \Mc \otimes \Mc^\vee \to \Ac$.
+
+To get the desired equivalence, we'd like to apply the Beck-Chevalley theorem.
+We'd like to show that $\ev$ and $\coev$ have right adjoints.
+However, considering $\ev$ as push-pull along
+\[
+	\begin{tikzcd}
+		& \ar[dl, "p"] G / N \times G \ar[dr, "q"] & \\
+		G / N \times N \bs G & & G,
+	\end{tikzcd}
+\]
+we see that we need to use $q_*$, which won't have a right adjoint in general.
+
+This can be fixed by replacing $\Vect$ by $\Bc = \DMod(H)$, where $H = B / N$.
+That is, we take our tensor products over $\Bc$.
+The correspondence in question is replaced by
+\[
+	\begin{tikzcd}
+		& \ar[dl] (H \bs G / N) \times G \ar[dr] & \\
+		(G / N \times N \bs G) / H & & G,
+	\end{tikzcd}
+\]
+In this setting, $\ev$ and $\coev$ have right adjoints.
+
+Applying the Beck-Chevalley theorem, we see that $\ol{\ev}: \Mc \otimes_\Bc \Mc^\vee \rightleftarrows \Ac : \ol{\ev}^R$ is monadic.
+In particular, $\ol{\ev}$ is fully faithful.
+
+We still need to show that $\ev^R$ is conservative.
+For this, consider $\ev \circ \ev^R: \DMod(G) \to \DMod(G)$.
+One can calculate that this is the same as convolution with the Springer sheaf $\mathrm{Spr} = \mu_* \omega_{\tilde{N}}$, where $\mu: \tilde{\Nc} \to G$ ($\Nc$ here is the unipotent cone).
+A classical fact shows that the unit object is a direct summand of $\mathrm{Spr}$, so the identity functor is a direct summand of $\ev \circ \ev^R$, hence $\ev^R$ is conservative.
+
 \end{document}
