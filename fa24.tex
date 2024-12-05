@@ -1374,4 +1374,150 @@ For this, consider $\ev \circ \ev^R: \DMod(G) \to \DMod(G)$.
 One can calculate that this is the same as convolution with the Springer sheaf $\mathrm{Spr} = \mu_* \omega_{\tilde{N}}$, where $\mu: \tilde{\Nc} \to G$ ($\Nc$ here is the unipotent cone).
 A classical fact shows that the unit object is a direct summand of $\mathrm{Spr}$, so the identity functor is a direct summand of $\ev \circ \ev^R$, hence $\ev^R$ is conservative.
 
+\section{12/5 (Joe Hlavinka) -- The Telescope Conjecture}
+
+This talk is not directly related to the rest of the seminar (with the exception of maybe Sanath Devalapurkar's talk).
+Instead, it is more of an advertisement for next week's MSRI workshop on the telescope conjecture.
+
+\subsection{Spectra in homotopy theory}
+
+Classical algebraic topology is interested in the category of spaces (i.e.\ CW complexes).
+We also consider the category of based spaces.
+For various reasons, one is led to consider a ``derived abelianization,'' or in other words a \emph{stabilization}, of this category.
+This produces the category $\Sp$ of \emph{spectra}, which is the universal stable category receiving a map from the category of based spaces.
+
+To construct this, recall that the category of based spaces admits a based loop space endofunctor sending $(X, x)$ to $(\Omega_x X, *)$.
+The based loop space $\Omega X$ is a topological monoid (at least if we choose a nice enough model).
+Taking $\Omega^2 X$, we get something that is closer to an abelian group.
+
+A \emph{spectrum} $X$ is a collection of spaces $\{ X_i \}_{i \in \ZZ}$ together with equivalences $f_i: X_i \xrightarrow{\sim} \Omega X_{i+1}$
+In particular, $\Omega$ induces an automorphism of the category $\Sp$ (effectively sending $\{ X_i \}_{i \in \ZZ}$ to $\{ X_{i+1} \}_{i \in \ZZ}$).
+The loop space / suspension adjunction upgrades to a pair of inverse equivalences $\Omega$ and $\Sigma$ on $\Sp$.
+Thinking of $\Sp$ as a stable category, the shift functor is nothing but the suspension map $\Sigma$.
+
+A morphism of spectra $\phi: X \to Y$ is a collection $\{ \phi_i: X_i \to Y_i \}_{i \in \ZZ}$ such that $\Omega \phi_{i+1} = \phi_i$ for all $i$.
+Cones in $\Sp$ are componentwise homotopy cofibers, and cocones in $\Sp$ are componentwise homotopy fibers.
+
+We can construct the spectrum corresponding to a based space $X$ as follows.
+First construct the na\"ive suspension spectrum, which has spaces $\{ \Sigma^i X \}_{i \in \NN}$ and structure maps $\Sigma^i X \to \Omega \Sigma^{i+1} X$.
+This is not actually a spectrum according to our model of spectra.
+However, we can fix this by replacing the $i$th space $\Sigma^i X$ by $\colim_n \Omega^n \Sigma^{n+i} X$, and this produces a spectrum in our model.
+We call this the \emph{suspension spectrum}, written $\Sigma^\infty X$.
+
+\begin{ex}
+	Applying this to the (pointed) $0$-sphere $S^0$ produces the \emph{sphere spectrum} $\SS = \Sigma^\infty S^0$.
+	The $0$th space $\SS_0$ controls framed cobordism (by the Pontryagin-Thom theorem).
+\end{ex}
+
+\begin{ex}
+	For a commutative ring $R$, the spectrum $HR$ has $i$th component $K(R, i)$.
+	There is an embedding $\Dsf(R) \hookrightarrow \Sp$ with essential image consisting of spectra with an $HR$-module structure (i.e.\ a suitably coherent multiplication $HR \otimes X \to X$, where $\otimes$ is the smash product of spectra).
+\end{ex}
+
+\subsection{Homotopy groups} 
+
+The homotopy groups of a spectrum can be defined as
+\[
+	\pi_i(M) = [\SS[i], M].
+\]
+If $M$ is the suspension spectrum of a space $X$, these capture the \emph{stable} homotopy groups of $X$.
+
+\begin{thm}[Serre]
+	We have
+	\[
+		\pi_i(\SS) = \begin{cases}
+			0 & i < 0 \\
+			\ZZ & i = 0 \\
+			\textrm{finite} & i > 0.
+		\end{cases}
+	\]
+\end{thm}
+
+\begin{ex}
+	We have $\pi_7(S^4) = \ZZ \times \ZZ / 12 \ZZ$.
+	This relates to $\pi_3(\SS) = \ZZ / 24 \ZZ$.
+	Note that the $24$ here is the same $24$ that appears in the Euler characteristic of a K3 surface!
+\end{ex}
+
+We can simplify these spectra / homotopy groups by \emph{$p$-localizing}, i.e.\ inverting all primes away from $p$.
+This replaces a spectrum $M$ by $M_{(p)}$, which has $\pi_i(M_{(p)}) = \pi_i(M) \otimes \ZZ_{(p)}$.
+
+Things get a bit strange, though: $\pi_{2p-2}(S_{(p)}/p)$ has an element $v_1$ which is \emph{not} torsion.
+This appears despite Serre's result about there being no such element in $\pi_{2p-2}(\SS)$.
+We could try to fix this by killing $v_1$, but $\pi_{2p^2-2}(S_{(p)}/(p,v_1))$ has a non-torsion element $v_2$.
+Repeating this process gives elements $v_n \in \pi_{2p^n-2}(S_{(p)}/(p,v_1,\dots,v_{n-1}))$.
+These $v_n$ make it hard to compute stable homotopy groups of spheres!
+Explaining why these elements appear is accomplished using \emph{chromatic homotopy theory}.
+
+\subsection{Detour: a few more examples}
+
+Spectra are essentially the same as cohomology theories.
+We can use this correspondence to introduce some new examples of spectra.
+
+Let $\KU$ be the complex $K$-theory spectrum (so $\KU(X)$ is the complex $K$-theory of $X$).
+This has $i$th component
+\[
+	\KU_i = \begin{cases}
+		B\U \times \ZZ & i \textrm{ even} \\
+		\U & i \textrm{ odd} \\
+	\end{cases},
+\]
+where the structure maps come from Bott periodicity.
+
+We also define $\MU$ such that $\MU(X)$ consists of cobordisms of manifolds with stably almost complex framings of the normal bundle respecting maps to $X$.
+
+\begin{thm}[Quillen]
+	We have
+	\[
+		\pi_i(\MU) = \ZZ[t_1, t_2, \dots]
+	\]
+	where $|t_i| = 2i$.
+\end{thm}
+
+\subsection{Complex orientations}
+
+The preceding theorem of Quillen has an interesting connection to \emph{complex orientable cohomology theories}, defined as follows.
+
+\begin{dfn}
+	A spectrum $M$ is \emph{complex orientable} if $M(\CC\PP^\infty) \cong \pi_*(M)[[t]]$, where $|t| = 2$.
+\end{dfn}
+
+\begin{ex}
+	The spectrum $H\ZZ$ is complex orientable: we have $H\ZZ = \ZZ[[t]]$.
+\end{ex}
+
+If $M$ is complex orientable, then for any $n$, we have $M(B\U_n) = \pi_* X[[t_1, \dots, t_n]]$ with $|t_i| = 2i$.
+This gives a theory of Chern classes for the cohomology theory corresponding to $M$.
+Specifically, if $\phi: X \to B\U_n$ classifies a vector bundle $V_\phi$ on $X$, then we define the $i$th Chern class as $c_i(V_\phi) = M(\phi)(t_i) \in M(X)$.
+
+Quillen noticed that the following are equivalent, for complex orientable $M$:
+\begin{enumerate}
+	\item Maps $\MU \to X$.
+	\item Choices of isomorphism $M(\CC\PP^\infty) \cong \pi_* M [[t]]$.
+	\item Whitney formulas for Chern classes.
+\end{enumerate}
+
+\subsection{Bringing things together: the telescope conjecture}
+
+The $p$-localized extension of Quillen's calculation gives
+\[
+	\pi_* \MU_{(p)} = \ZZ_{(p)} [t_1, t_2, \dots, v_1, \dots]
+\]
+where $|t_i| = 2i$ and $|v_j| = 2p^j - 2$.
+
+Let $K(n)$ be the quotient of $\MU_{(p)}$ by every variable but $v_n$.
+Then $\pi_* K(n) = \FF_p[v_n^{\pm 1}]$.
+
+The smash product $(\SS_{(p)} / (p, v_1, \dots, v_{n-1})) \otimes K(n)$ has two automorphisms that (due to our abuse of notation) can be called ``multiplication by $v_n$.''
+One can show that these are the same!
+So our abuse of notation is justified.
+
+Given a spectrum $E$, we can construct a \emph{Bousfield localization} $L_E$ sending a spectrum $M$ to the universal spectrum under $M$ sending all maps which are isomorphisms after applying $\otimes E$ to actual isomorphisms.
+The telescope conjecture stated that
+\[
+	L_{K(n)} M \simeq L_{(\SS_{(p)} / (p, v_1, \dots, v_{n-1}))[v_n^{\pm 1}]} M.
+\]
+This is true for essentially all reasonably checkable $M$.
+However, it is false in general (for all $p$ and all $n \geq 2$)!
+
 \end{document}
