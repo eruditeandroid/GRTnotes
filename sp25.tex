@@ -1,0 +1,109 @@
+\documentclass{article}
+
+\usepackage{notes}
+
+\title{GRT Seminar Fall 2024 -- Rozansky-Witten Theory}
+\author{Notes by John S.\ Nolan, speakers listed below}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+	This semester, the GRT Seminar will focus on Rozansky-Witten theory.
+\end{abstract}
+
+\tableofcontents
+
+\section{9/5 (David Nadler) -- Introduction}
+
+Our goal is to discuss Rozansky-Witten theory.
+Some related topics include:
+\begin{itemize}
+	\item Quasicoherent sheaves of categories (as discussed last spring).
+	\item Categories of matrix factorizations.\footnote{In more detail: given a smooth variety $X$ and a function $f: X \to \AA^1$, we can construct a category $\MF_f$ which categorifies the vanishing cycles of $f$.}
+	\item The cobordism hypothesis.
+	\item Local structure theory of holomorphic symplectic varieties.
+\end{itemize}
+
+\subsection{What is Rozansky-Witten theory?}
+
+Suppose we have a hyperk\"ahler / holomorphic symplectic manifold $X$.
+This means that $X$ has a holomorphic $(2, 0)$-form $\omega$ satisfying the (complex analogues of) the usual symplectic form axioms.
+Given such an $X$, there is a conjectural 3-dimensional topological field theory $\Zc_X$, called \emph{Rozansky-Witten theory} with target $X$.
+
+What we mean by 3d TFT is as follows:
+\begin{itemize}
+	\item Given a closed 3-manifold\footnote{Typically with some extra structure, e.g.\ an orientation} $M^3$, we obtain a number $\Zc_X(M^3)$.
+	\item Closed 2-manifolds $M^2$ give vector spaces $\Zc_X(M^2)$.
+	\item Closed 1-manifolds $M^1$ give categories\footnote{As is standard for GRT, we use the implicit $\infty$ convention.} $\Zc_X(M^1)$.
+	\item Closed 0-manifolds $M^0$ give 2-categories $\Zc_X(M^0)$.
+\end{itemize}
+In particular, $\Zc_X(\pt)$ is a 2-category.
+The \emph{cobordism hypothesis} tells us that we can recover the entire theory $\Zc_X$ from the ``3-dualizable'' 2-category $\Zc_X(\pt)$.
+For purposes of geometric representation theory, we are most interested in the low-dimensional behavior, which captures more data about the theory.
+
+Rozansky-Witten theory should satisfy something like:
+\begin{itemize}
+	\item $Z_X(S^2) = \Oc(X)$.\footnote{By our conventions, this is what is classically called $\Rbf \Gamma(X, \Oc)$, so there is interesting derived information.}
+	\item $Z_X(S^1) = \Coh(X)$.
+\end{itemize}
+These end up inheriting interesting structure from the TFT.
+
+\subsection{Why do we care?}
+
+Recall that 2-dimensional mirror symmetry can be schematically understood as an equivalence between the following 2d TFTs:
+\begin{itemize}
+	\item An A-model $\Ac$ arising from symplectic geometry
+	\item A B-model $\Bc_X$, coming from some K\"ahler manifold $X$, satisfying $\Bc_X(\pt) \simeq \Coh(X)$.
+\end{itemize}
+In particular, $\Ac(\pt)$ is often some category of geometric interest, and the equivalence $\Ac(\pt) \simeq \Bc_X(\pt)$ lets us resolve questions about $\Ac(\pt)$.
+
+There's an analogue in higher dimensions: we'd like to take a 3d TFT $\Yc$ and give an equivalence $\Yc \simeq \Zc_X$ for some holomorphic symplectic $X$.
+This would give an equivalence between some 2-category and $\Zc_X(\pt)$.
+
+\begin{conj}[Teleman]
+	Let $G$ be a complex reductive group with maximal compact subgroup $G_c$.
+	There is an equivalence between:
+	\begin{itemize}
+		\item A suitable 2-category of ``categories with $G_c$-action.''
+		\item The Rozansky-Witten 2-category of $T^*(G^\vee / G^\vee)$.
+	\end{itemize}
+\end{conj}
+
+Note that $T^*(G^\vee / G^\vee)$ is stacky and non-proper, which makes it impossible for the corresponding 2-category to be 3-dualizable.
+Thus we typically won't obtain 3-manifold invariants from such a theory.
+That's terrible for 3-manifold topologists, but this isn't a 3-manifold seminar.
+
+Some other examples of interest for Rozansky-Witten theory include symplectic resolutions and cotangent bundles of smooth algebraic varieties.
+
+\subsection{What is the correct 2-category?}
+
+To rigorously construct Rozansky-Witten theory, we'd need to give a definition of the 2-category $\RW_2 = \Zc_X(\pt)$.
+This was studied by Kapustin, Rozansky, and Saulina, but much is still unknown.
+
+Roughly, we expect $\RW_2$ to be a 2-category where:
+\begin{itemize}
+	\item Objects are smooth Lagrangians $L \subset X$ (or some suitable generalization of these).
+	\item 1-morphisms from $L_1$ to $L_2$ are given by some sort of category associated to $L_1 \cap L_2$.
+		In the simplest possible case, where $X = T^* W$ is a cotangent bundle, $L_1$ is the zero-section, and $L_2$ is the graph of a differential $df$, then $L_1 \cap L_2$ is the critical locus of $X$ and we assign $\Hom(L_1, L_2) = \MF_f$, the matrix factorization category of $f$.
+		Work of Joyce and many others has focused on understanding how much the local setting looks like this.
+	\item 2-morphisms and higher are ``natural compatibilities'' between the 1-morphisms.
+\end{itemize}
+
+One should think of the matrix factorization category $\MF_f$ as giving a categorical way to measure the critical locus of $f$.
+When the critical points of $f$ are Morse, the category $\MF_f$ looks like a direct sum of copies of $\Vect$ (one for each critical point).
+
+There is an important distinction between Rozansky-Witten theory and the 2d A-model.
+In the complex setting, there are no ``instantons,'' so the theory is local and we don't run into the full difficulty of Floer theory.
+Thus Rozansky-Witten theory is a categorified version of Fukaya theory that avoids the need for instanton corrections.
+
+\subsection{An alternative viewpoint}
+
+If $X = T^* W$ is a cotangent bundle, then $\ShvCat(W)$, the 2-category of (quasicoherent) sheaves of categories on $W$, embeds into $\RW_2$.
+The image of this embedding consists of ``conic objects.''
+Thus we can understand a key part of Rozansky-Witten theory, at least in this simple case.
+
+The thesis (work in progress) of Enoch Yiu relates $\RW_2$ to $\ShvCat(W \times \AA^1)$.
+
+\end{document}
