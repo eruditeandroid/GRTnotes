@@ -106,4 +106,123 @@ Thus we can understand a key part of Rozansky-Witten theory, at least in this si
 
 The thesis (work in progress) of Enoch Yiu relates $\RW_2$ to $\ShvCat(W \times \AA^1)$.
 
+\section{1/30 (Daigo Ito) -- Theory of Critical Points and Matrix Factorizations}
+
+Recall that we wanted to understand the Rozansky-Witten theory of a holomorphic symplectic variety $M$.
+By the cobordism hypothesis, it suffices to understand the 2-category $\RW_2(M)$.
+We expect $\RW_2(M)$ to have some vague properties as follows.
+
+The objects of $\RW_2$ should be holomorphic Lagrangians in $M$ (possibly equipped with extra data).
+If $M = T^* L_1$, then we should have $\Hom_{\RW_2}(L_1, L_2) = \MF(L_1, f)$, the category of \emph{matrix factorizations} of $f$.
+This measures the local geometry of $p \in L_1 \cap L_2 = \Crit(f)$.
+
+Recall the two key differences between this and Lagrangian Floer homology:
+\begin{itemize}
+	\item There are no instantons, so the full subtleties of Floer theory don't appear.
+	\item We are working at a higher category level.
+\end{itemize}
+
+Today we will recall the theory of critical points for a function $f: X \to \AA^1$.
+
+\subsection{Milnor fibers}
+
+Let's start by considering a regular map $f: \CC^n \to \CC$.
+Assume that $0 \in \CC$ is a critical value.
+Call $X_0 = f\inv(0)$ the special fiber -- this is typically singular.
+For small $s \in \CC$, let $X_s = f\inv(s)$ be the nearby fiber.
+
+\begin{thm}[Milnor]
+	Let $x \in X_0$.
+	For $\epsilon > 0$ sufficiently small, let $B(x, \epsilon)$ be the closed ball of radius $\epsilon$ centered at $x$, and let $S(x, \epsilon) = \partial B(x, \epsilon)$.
+	Then:
+	\begin{enumerate}
+		\item $B(x, \epsilon) \cap X_0$ is homeomorphic to the cone over $K_x = S(x, \epsilon) \cap X_0$.
+		\item The map $\rho_f = \frac{f}{\abs{f}} : S(x, \epsilon)  \setminus K_x \to S^1$ is a locally trivial fibration.
+			We call $\rho_f$ the \emph{Milnor fibration} and the fiber $F_x$ the \emph{Milnor fiber}.
+	\end{enumerate}
+\end{thm}
+
+The Milnor fibers $F_x$ degenerate to the cone over $K_x$.
+
+\begin{ex}
+	If $x$ is nonsingular, then $K_x$ is a sphere, so the cone over $K_x$ is a ball.
+	The Milnor fibers $F_x$ are also balls.
+\end{ex}
+
+The topology of the Milnor fibers reflects ``how singular the point is'' -- a more singular point leads to a more complicated topology.
+
+\begin{ex}
+	Let $(X_0, x) = (z_1^2 - z_2^2 = 0, 0)$.
+	Then $F_x$ is homotopy equivalent to $S^1$.
+	Looking at real points, the map $f$ describes a family of hyperbolas degenerating to a union of lines.
+	Here $\partial B = S^3$ and $K_x = S^1 \sqcup S^1$, so topologically $K_x$ is a double cone.
+	The Milnor fibers form a family of cylinders degenerating to this double cone.
+\end{ex}
+
+\begin{ex}
+	Let $(X_0, x) = (z_1^3 - z_2^2 = 0, 0)$.
+	Then $K_x$ is a trefoil knot
+	\[
+		\bset{(r_1 e^{2\pi i t}, r_2 e^{2 \pi i t})}{t \in \RR} \subset S^1_{r_1} \times S^1_{r_2}.
+	\]
+	The closures of the Milnor fibers are genus one ``Seifert surfaces'' for $K_x$.
+	Thus the Milnor fibers are homotopy equivalent to $S^1 \wedge S^1$.
+\end{ex}
+
+More generally, if $(X, x)$ is an isolated hypersurface singularity, then we can write $F_x \simeq (S^n)^{\vee \mu_x}$, where $\mu_x$ is the \emph{Milnor number}.\footnote{There is an explicit formula for the Milnor number, but we won't write it here.}
+The $S^n$'s here are the \emph{vanishing cycles} of the singularity.
+
+\subsection{Monodromy}
+
+The singularity carries information beyond the Milnor fibers.
+We can capture some of this by looking at the monodromy.
+
+\begin{dfn}
+	The \emph{monodromy} of $f$ at $x$ is the map $h_f: F_x \to F_x$ induced by circling around the base.
+	This is a homeomorphism of $F_x$ which restricts to the identity on $\partial F_x$.
+	Note that $h_f$ is only well-defined up to isotopy (fixing $\partial F_x$).
+\end{dfn}
+
+\begin{ex}
+	For a Morse function $f = \sum_i x_i^2$, the Milnor fibers are homotopy equivalent to $S^n$.
+	We understand the singularity by studying the monodromy of the Milnor fibers as we move around the singular point.
+	This monodromy is a Dehn twist, ``corkscrewing'' the cylinder.
+\end{ex}
+
+\begin{thm}[Thom-Sebastiani]
+	Let $f: (\CC^{n+1}, 0) \to (\CC, 0)$ and $g: (\CC^{m+1}, 0) \to (\CC, 0)$ be germs of hypersurface singularities.
+	Define $f \boxplus g: (\CC^{n+1} \times \CC^{m+1}, 0) \to (\CC, 0)$ by $(f \boxplus g)(x, y) = f(x) + g(y)$.
+	Then there is a homotopy-commutative diagram
+	\[
+		\begin{tikzcd}
+			F_f * F_g \rar["\sim"] \dar["h_f * h_g"] & F_{f \boxplus g} \dar["h_{f \boxplus g}"] \\
+			F_f * F_g \rar["\sim"] & F_{f \boxplus g},
+		\end{tikzcd}
+	\]
+	where $*$ is the join of spaces.
+\end{thm}
+
+\subsection{Preview}
+
+Next time we will introduce sheaves that describe the homology of these spaces.
+We get a fiber sequence
+\[
+	\begin{tikzcd}
+		i^*\Fc \rar & \psi_f \Fc \rar & \phi_f \Fc \rar & {}
+	\end{tikzcd}
+\]
+of sheaves on $X_0$, where:
+\begin{itemize}
+	\item $i: X_0 \to X$ is the inclusion,
+	\item $\psi_f$ is nearby cycles, and
+	\item $\phi_f$ is vanishing cycles.
+\end{itemize}
+
+This will categorify to a sequence
+\[
+	\begin{tikzcd}
+		\Perf(X_0) \rar & \Dsfb \Coh(X_0) \rar & \Dsing(X_0), & {} 
+	\end{tikzcd}
+\]
+where $\Dsing(X_0)$ agrees with $\MF(X, f)$ in nice cases.
 \end{document}

@@ -6,12 +6,17 @@
 \usepackage{amsmath,amsthm,amssymb}
 \usepackage{tikz-cd}
 \usepackage{enumitem}
+\usepackage{mathtools}
 \usepackage{bbm}
 
 \usepackage{hyperref}
 \usepackage[capitalize]{cleveref}
 
 \newcommand{\SES}[3]{\begin{tikzcd}[ampersand replacement =\&]0 \rar \& {#1} \rar \& {#2} \rar \& {#3} \rar \& 0\end{tikzcd}}
+
+\DeclarePairedDelimiterX{\bangle}[2]{\langle}{\rangle}{{#1} \,\delimsize\vert\, {#2}}
+\DeclarePairedDelimiterX{\bset}[2]{\{}{\}}{{#1} \,\delimsize\vert\, {#2}}
+\DeclarePairedDelimiterX{\bparen}[2]{(}{)}{{#1} \,\delimsize\vert\, {#2}}
 
 \newcommand{\inv}{^{-1}}
 \newcommand{\ip}[2]{\left\langle #1, #2 \right\rangle}
@@ -40,6 +45,7 @@
 \DeclareMathOperator{\Coind}{Coind}
 \DeclareMathOperator{\colim}{colim}
 \DeclareMathOperator{\cone}{cone}
+\DeclareMathOperator{\Crit}{Crit}
 \DeclareMathOperator{\cut}{cut}
 \DeclareMathOperator{\cyl}{cyl}
 \DeclareMathOperator{\Der}{Der}
@@ -93,6 +99,10 @@
 \newcommand{\Vectrm}{\mathrm{Vect}}
 \newcommand{\Vectc}{\mathcal{V}\mathrm{ect}}
 \newcommand{\Diffc}{\mathcal{D}\mathrm{iff}}
+
+% Algebraic geometry
+\newcommand{\Perf}{\mathsf{Perf}}
+\newcommand{\Dsing}{\Dsf_{\mathrm{sing}}}
 
 % Homotopy theory
 \newcommand{\KU}{\mathrm{KU}}
