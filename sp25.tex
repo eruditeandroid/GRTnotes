@@ -221,8 +221,111 @@ of sheaves on $X_0$, where:
 This will categorify to a sequence
 \[
 	\begin{tikzcd}
-		\Perf(X_0) \rar & \Dsfb \Coh(X_0) \rar & \Dsing(X_0), & {} 
+		\Perf(X_0) \rar & \Dbcoh(X_0) \rar & \Dsing(X_0).
 	\end{tikzcd}
 \]
 where $\Dsing(X_0)$ agrees with $\MF(X, f)$ in nice cases.
+
+\section{2/6 (Daigo Ito) -- Continued}
+
+Last time we discussed the construction of Milnor fibers, vanishing cycles, monodromy, and Thom-Sebastiani isomorphisms for $f: \CC^{n+1} \to \CC$.
+Today we would like to discuss and categorify these stories in a sheaf-theoretic framework.
+
+\subsection{Vanishing and nearby cycles}
+
+Let $\DD \subset \CC$ be a small disk around $0$.
+Let $X$ be (an open subset of) a smooth algebraic variety over $\CC$, and let $f: X \to \DD$ be a map.
+Consider the diagram 
+\[
+	\begin{tikzcd}
+		X_0 \rar["i"] \dar & X \dar["f"] & \lar["j", swap] X^* \dar["f^*"] & \lar["\tilde{\pi}", swap] \tilde{X^*} \dar \\
+		\{0\} \rar & \DD & \lar \DD^* & \lar["\pi", swap] \tilde{\DD^*}
+	\end{tikzcd}
+\]
+where all squares are pullback squares and $\pi: \tilde{\DD^*} \to \DD^*$ is the universal cover $z \mapsto \exp(2\pi i z)$.
+Note that $X^* \simeq X_s$ for $s$ small, $s \neq 0$.
+
+Write $\Dbc(-)$ for the bounded constructible derived category of $A$-modules on a space (where $A$ is some fixed coefficient ring, typically $\ZZ$ or $\CC$).
+Recall that ``constructible'' means locally constant on the strata of a nice stratification and with finite-rank stalks.
+
+\begin{dfn}
+	The \emph{nearby cycle functor} associated with $f$ is $\psi_f: \Dbc(X) \to \Dbc(X_0)$, defined by\footnote{All functors here are derived.}
+	\[
+		\Fc \mapsto i^* (j \circ \tilde{\pi})_* (j \circ \tilde{\pi})^* \Fc.
+	\]
+\end{dfn}
+
+Morally, we have a (very non-analytic) specialization map $\spop: X_s \to X_0$, and $\psi_f = \spop_*(\Fc|_{X_s})$.
+The previous definition is used to avoid referencing $\spop$.
+
+\begin{ex}
+	Consider $f: \DD \to \DD$ by $f(z) = z^2$.
+	For $\Fc = \ul{A}_\DD$, we can compute $\psi_f(\Fc) = A_0 \oplus A_0$, reflecting the fact that the nearby fibers have two points.
+	The monodromy map swaps the two factors: this can be seen directly using the specialization definition or by considering deck transformations using the formal definition.
+\end{ex}
+
+\begin{rmk}
+	David mentioned that one can actually rephrase this story so that the only $f$ which we consider is projection to the first coordinate.
+	The cost is that we are forced to work with arbitrarily complicated sheaves.
+	The reverse (working with the constant sheaf but allowing arbitrarily complicated $f$) is not possible in general, though there is a related theory of ``sheaves of geometric origin.''
+\end{rmk}
+
+
+From the pushforward-pullback adjunction, there is a natural map $r: i^* \Fc \to i^* (j \circ \tilde{\pi})_* (j \circ \tilde{\pi})^* \Fc = \psi_f \Fc$.
+
+\begin{dfn}
+	We define the \emph{vanishing cycle functor} $\phi_f: \Dbc(X) \to \Dbc(X_0)$ by $\phi_f(\Fc) = \cone(r)$, so there is a cofiber sequence
+	\[
+		\begin{tikzcd}
+			i^*\Fc \rar & \psi_f \Fc \rar & \phi_f \Fc \rar & {}.
+		\end{tikzcd}
+	\]
+\end{dfn}
+
+We call $\psi_f \ul{A}_X$ (resp.\ $\phi_f \ul{A}_X$) the \emph{nearby (resp.\ vanishing) cycle complex} associated with $f$.
+From the cofiber sequence containing these, we obtain a long exact sequence (using $H^*(X) \cong H^*(X_0)$):
+\[
+	\begin{tikzcd}
+		\dots \rar & H^*(X_0) \rar & H^*(X_s) \rar & H^*(X, X_s) \rar & \dots
+	\end{tikzcd}
+\]
+This encompasses much of our discussion from last time.
+
+\begin{prop}
+	For $f: \CC^{n+1} \to \CC$, if $X_0$ has only isolated singularities (so $F_f \simeq \vee S^n$), then
+	\[
+		H^k(X_0, \phi_f \ul{A}_X) = \begin{cases}
+			0 & k \neq n \\
+			\oplus_{x \in \Sing(X_0)} H^n(F_{f,x}; A) & k = n.
+		\end{cases}
+	\]
+\end{prop}
+
+\begin{rmk}
+	One can obtain the monodromy of nearby / vanishing cycles using the deck transformations of $\tilde{\DD^*}$.
+	There's also a Thom-Sebastiani theorem in the sheaf-theoretic setting.
+\end{rmk}
+
+\subsection{Singularity categories and matrix factorizations}
+
+We can categorify the preceding story using the exact sequence of categories:
+\[
+	\begin{tikzcd}
+		\Perf(X_0) \rar & \Dbcoh(X_0) \rar & \Dsing(X_0),
+	\end{tikzcd}
+\]
+where $\Dsing(X_0)$ is defined as the quotient $\Dbcoh(X_0) / \Perf(X_0)$.
+In nice cases, $\Dsing(X_0)$ agrees with the \emph{matrix factorization category} $\MF(X, f)$.
+The reason $\Dsing$ is called the ``category of singularities'' is the following:
+
+\begin{prop}
+	$X_0$ is smooth if and only if $\Perf(X_0) \simeq \Dbcoh(X_0)$.
+\end{prop}
+
+\begin{ex}
+	If $x \in X_0$ is singular, then the skyscraper sheaf $k(x_0)$ is not in $\Perf(X)$.
+\end{ex}
+
+To decategorify our exact sequence to the sheaf-theoretic statement above, we take ``periodic cyclic homology.''
+
 \end{document}
