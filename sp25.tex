@@ -328,4 +328,106 @@ The reason $\Dsing$ is called the ``category of singularities'' is the following
 
 To decategorify our exact sequence to the sheaf-theoretic statement above, we take ``periodic cyclic homology.''
 
+\section{2/13 (Will Fisher) -- The Singular Category and Matrix Factorizations}
+
+Today's talk is based on Orlov's paper ``Triangulated categories of singularities \dots''
+We work over a field $k$.
+
+Last time, Daigo presented the exact sequence
+\[
+	\begin{tikzcd}
+		\Perf(X_0) \rar & \Dbcoh(X_0) \rar & \Dsing(X_0).
+	\end{tikzcd}
+\]
+One can think of this as a categorified version of the usual nearby / vanishing cycles exact sequence (which we recover by taking periodic cyclic homology): $\Dbcoh(X_0)$ knows something about a ``nearby smoothing'' of $X_0$.
+
+For nice $f: X \to \AA^1$ with $X_0 = f\inv(0)$, we can identify $\Dsing(X_0) \simeq \MF(X, f)$.
+Our goal is to discuss this result.
+
+\subsection{Definitions}
+
+First, we will need to define everything involved.
+
+\begin{dfn}
+	Let $A$ be a commutative ring.
+	A chain complex $M \in \Dsf(\Mod_A)$ is \emph{perfect} if it is quasi-isomorphic to a bounded complex of finite projective modules.
+	These form a subcategory $\Perf(A) \subset \Dsf(\Mod_A)$.
+	Equivalently, $\Perf(A)$ is the smallest triangulated subcategory containing $A$ and closed under and retracts.
+\end{dfn}
+
+\begin{dfn}
+	If $X$ is a scheme, then $\Perf(X)$ is the full subcategory of $\Dqc(X)$ consisting of objects which are perfect affine locally, i.e.\ locally they can be written as a quotient of vector bundles.
+\end{dfn}
+
+We will assume $X$ is a separated noetherian scheme of finite Krull dimension, and that $\Coh(X)$ ``has enough vector bundles,'' i.e.\ for all $\Fc \in \Coh(X)$, there exists a vector bundle $\Pc$ and a surjection $\Pc \twoheadrightarrow \Fc$.
+These conditions will hold $X$ is quasiprojective.
+
+\begin{dfn}
+	The category $\Dbcoh(X) \subset \Dqc(X)$ consists of objects with bounded and coherent cohomology.\footnote{In general, it is better to treat this as a \emph{property} than as \emph{structure}.}
+\end{dfn}
+
+Under the above hypotheses, we have $\Dbcoh(X) = \Dsfb(\Coh(X))$.
+
+\begin{dfn}
+	The category $\Dsing(X)$ is the Verdier quotient $\Dbcoh(X) / \Perf(X)$, constructed by formally inverting morphisms in $\Dbcoh(X)$ with cones in $\Perf(X)$.
+\end{dfn}
+
+\begin{ex}
+	Let $X = \Spec A$ for $A = k[x] / (x^2)$.
+	The $A$-module $k = A / (x)$ is coherent but not perfect: it has the infinite resolution
+	\[
+		\begin{tikzcd}
+			\dots \rar A \rar["\cdot x"] & A \rar["\cdot x"] & 0.
+		\end{tikzcd}
+	\]
+	We can use this to compute $\Ext^i(k, k) \cong k$ for $i \geq 0$, showing that $k$ is not perfect.
+	In particular, $\Dsing(X)$ is nontrivial.
+	This relates to Serre's criterion for regularity in algebraic geometry.
+\end{ex}
+
+\section{Basic properties}
+
+We state without proof some relevant (but hard) facts about $\Dsing(X)$:
+\begin{enumerate}
+	\item (Auslander-Buchsbaum-Serre) If $A$ is noetherian and finite-dimensional, then $\Dsing(\Spec A) = 0$ if and only if $A$ is regular.
+	\item (Thomason-Trobaugh) If $U \subset X$ is an open subscheme containing the singular locus of $X$, then $\Dsing(X) \xrightarrow{\sim} \Dsing(U)$.
+\end{enumerate}
+
+It turns out that $\Dsing(X)$ is smaller than we might initially expect:
+
+\begin{prop}
+	Every object of $\Dsing(X)$ is equivalent to $\Fc[k+1]$ for some coherent sheaf $\Fc$ and some $k \in \ZZ$.
+\end{prop}
+
+\begin{proof}
+	For $A^\bullet \in \Dbcoh(X)$, choose a quasi-isomorphism $P^\bullet \xrightarrow{\sim} A^\bullet$ with $P^\bullet$ a bounded above complex of vector bundles.
+	The stupid truncations $\sigma^{\geq -k} P^\bullet$ (obtained by replacing $P^\bullet$ by $0$ for $\bullet < -k$) are perfect.
+	Let $f_{-k}: \sigma^{\geq -k} P^\bullet \to A^\bullet$ be the natural map, and consider $\cone(f_{-k})$.
+	The long exact sequence of cohomology sheaves for the cofiber sequence shows that, for $k \gg 0$, we have $\Hc^i(\cone(f_{-k})) = 0$ unless $i = -k-1$.
+	Thus, taking $\Fc = \Hc^{-k}(\sigma^{\geq -k} P^\bullet)$, we obtain $\cone(f_{-k}) \simeq \Fc[k+1]$.
+	This gives $A^\bullet \simeq \Fc[k+1]$ in $\Dsing(X)$.
+\end{proof}
+
+We'd also like to be able to take right resolutions of coherent sheaves.
+If we were capable of ``dualizing'' in a way that preserves vector bundles, we could take a left resolution of $\Fc^\vee$ and dualize this to get a resolution of $\Fc^{\vee \vee} \simeq \Fc$.
+
+If $X$ is Gorenstein and satisfies our standing assumptions, then $\Oc_X$ has a finite injective resolution and
+\[
+	\Fc \xrightarrow{\sim} \Rbf\scHom(\Rbf\scHom(\Fc, \Oc_X), \Oc_X)
+\]
+for $\Fc \in \Coh(X)$.
+
+\begin{lem}
+	Let $X$ be as above, and let $\Fc \in \Coh(X)$.
+	TFAE:
+	\begin{enumerate}
+		\item $\scExt^i(\Fc, \Oc_X) = 0$ for all $i > 0$.
+		\item There exists a right resolution of $\Fc$ by vector bundles.
+	\end{enumerate}
+\end{lem}
+
+\begin{cor}
+	Every $A^\bullet \in \Dsing(X)$ is equivalent to $\Fc[0]$ for some $\Fc \in \Coh(X)$ with $\scExt^i(\Fc, \Oc_X) = 0$ for $i > 0$.
+\end{cor}
+
 \end{document}
