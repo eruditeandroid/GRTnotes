@@ -385,7 +385,7 @@ Under the above hypotheses, we have $\Dbcoh(X) = \Dsfb(\Coh(X))$.
 	This relates to Serre's criterion for regularity in algebraic geometry.
 \end{ex}
 
-\section{Basic properties}
+\subsection{Basic properties}
 
 We state without proof some relevant (but hard) facts about $\Dsing(X)$:
 \begin{enumerate}
@@ -429,5 +429,157 @@ for $\Fc \in \Coh(X)$.
 \begin{cor}
 	Every $A^\bullet \in \Dsing(X)$ is equivalent to $\Fc[0]$ for some $\Fc \in \Coh(X)$ with $\scExt^i(\Fc, \Oc_X) = 0$ for $i > 0$.
 \end{cor}
+
+\section{2/20 (Will Fisher) -- Continued}
+
+\subsection{Dualizing complexes}
+
+Let's review / clarify some points on dualizing complexes.
+This concerns something a bit different than the usual Serre duality context: we only care about the local setting and giving equivalences $\Dbcoh(X)\op \xrightarrow{\sim} \Dbcoh(X)$.
+
+\begin{dfn}
+	If $A$ is a noetherian ring, a \emph{dualizing complex} on $\Spec A$ is $\omega^\bullet \in \Dbcoh(\Spec A)$ such that:
+	\begin{enumerate}
+		\item $\omega^\bullet$ has finite injective dimension, and
+		\item $A \to \Rbf\Hom(\omega^\bullet, \omega^\bullet)$ is a quasi-isomorphism.
+	\end{enumerate}
+	If $X$ is a locally noetherian scheme, a \emph{dualizing complex} on $X$ is $\omega^\bullet \in \Dbcoh(X)$ such that $\omega^\bullet$ is affine locally a dualizing complex.
+\end{dfn}
+
+If $\omega$ is a dualizing complex on $X$, then $\Rbf\scHom(-, \omega^\bullet): \Dbcoh(X)\op \to \Dbcoh(X)$ is an equivalence (and in fact is its own inverse).
+
+\begin{rmk}
+	Peter Haine pointed out a few things:
+	\begin{itemize}
+		\item Dualizing complexes are unique up to tensoring with complete line bundles.
+		\item A result of Kawasaki (proving a conjecture of Sharp) shows that the commutative rings which admit dualizing complexes are those of finite Krull dimension which arise as quotients of Gorenstein rings.
+		\item Upper shriek functors preserve dualizing complexes in this sense.
+	\end{itemize}
+\end{rmk}
+
+\subsection{Gorenstein schemes}
+
+In the Gorenstein case, dualizing complexes are easy to understand.
+
+\begin{thm}
+	If $X$ is locally noetherian and has a dualizing complex, TFAE:
+	\begin{enumerate}
+		\item $X$ is Gorenstein.
+		\item $X$ has an invertible dualizing complex.
+		\item $\Oc_X[0]$ is a dualizing complex.
+	\end{enumerate}
+\end{thm}
+
+We have a few large classes of Gorenstein schemes:
+
+\begin{thm}
+	Smooth schemes are dualizing.
+\end{thm}
+
+\begin{thm}
+	Local complete intersections in Gorenstein schemes are dualizing.
+\end{thm}
+
+
+\subsection{Representing objects of $\Dsing(X)$}
+
+From now on we will assume $X$ is Gorenstein.
+Our goal is to show that objects of $\Dsing(X)$ can be represented by particularly nice sheaves and complexes.
+
+\begin{prop}
+	If $\Oc_X$ has a finite injective resolution, then there exists $n_0 > 0$ such that, for all $\Fc \in \QCoh(X)$ and all $i > n_0$, we have $\scExt^i(\Fc, \Oc_X) = 0$.
+\end{prop}
+
+\begin{prop}
+	For $\Fc \in \Coh(X)$, TFAE:
+	\begin{enumerate}
+		\item $\scExt^i(\Fc, \Oc_X) = 0$ for all $i > 0$.
+		\item $\Fc$ has a right resolution by vector bundles.
+	\end{enumerate}
+\end{prop}
+
+\begin{proof}
+	We only prove $\Rightarrow$.
+	To obtain the desired right resolution, take a left resolution $\Pc^\bullet \xrightarrow{\sim} \scHom(\Fc, \Oc_X) = \Rbf \scHom(\Fc, \Oc_X)$.
+	Then $\Fc \simeq \scHom(\scHom(\Fc, \Oc_X), \Oc_X) \simeq \scHom(\Pc^\bullet, \Oc_X)$ gives the desired right resolution.
+\end{proof}
+
+\begin{thm}
+	Every object in $\Dsing(X)$ is equivalent to $\Fc[0]$ for $\Fc$ coherent with $\scExt^i(\Fc, \Oc_X) = 0$ for all $i > 0$.
+\end{thm}
+
+\begin{proof}
+	Let $\Ac^\bullet \in \Dbcoh(X)$.
+	Take a left resolution $\Pc^\bullet \xrightarrow{\sim} \Ac^\bullet$.
+	For $k \gg 0$, we saw last time that if $\Gc = \Hc^{-k}(\sigma^{\geq -k} \Pc^\bullet)$, then $\Ac^\bullet \simeq \Gc[k+1]$ in $\Dsing(X)$.
+	Since $\Oc_X$ has bounded injective resolution, $\Rbf \scHom(\Ac^\bullet, \Oc_X)$ is cohomologically bounded.
+	Thus, for $k \gg 0$, we get
+	\[
+		\scExt^i(\Gc, \Oc_X) \cong \scExt^{i+k+1}(\Ac^\bullet, \Oc_X) = 0
+	\]
+	for $i > 0$.
+	Now take a right resolution $\Gc \to \Qc^\bullet$,\footnote{This is where the Gorenstein hypothesis appears.} and let $\Fc = \Hc^k(\sigma^{\leq k} \Qc^\bullet)$.
+	Then it is clear that $\Fc$ has the desired properties.
+\end{proof}
+
+\subsection{Equivalence with matrix factorizations}
+
+Let $X = \Spec A$ be smooth, let $f: X \to \AA^1$, and let $X_0 = f\inv(0) = \Spec A / (f)$.
+Write $j: X_0 \to X$ for the inclusion.
+We would like to show that $\Dsing(X_0) \simeq \MF(X, f)$, the matrix factorization category of $f$.
+
+\begin{prop}
+	Let $\Fc$ be coherent on $X_0$ with $\scExt^i(\Fc, \Oc_{X_0}) = 0$ for all $i > 0$.
+	Then there exist vector bundles $\Pc_0, \Pc_1$ on $X$ with maps $p_0: \Pc_0 \to \Pc_1$ and $p_1: \Pc_1 \to \Pc_0$ such that:
+	\begin{enumerate}
+		\item $p_0 p_1 = f \cdot \id_X$,
+		\item $p_1 p_0 = f \cdot \id_X$, and
+		\item $\coker p_1 = j_* \Fc$.
+	\end{enumerate}
+\end{prop}
+
+\begin{proof}[Sketch of proof]
+	Choose a surjection $\Pc_0 \to j_* \Fc$ with $\Pc_0$ a vector bundle.
+	Let $p_1: \Pc_1 \to \Pc_0$ be the kernel of this surjection.
+	Then the hypotheses on $\Fc$ imply that $\Pc_1$ is a vector bundle.\footnote{More details can be found on Will Fisher's website.}
+	Because multiplication by $f$ annihilates $j_* \Fc$, the composite
+	\[
+		\Pc_0 \xrightarrow{\cdot f} \Pc_0 \to j_* \Fc
+	\]
+	is zero, so it factors through $p_1$.
+	That is, there exists $p_0: \Pc_0 \to \Pc_1$ such that $p_1 p_0 = f \cdot \id$.
+	The computation $p_1 p_0 p_1 = (- \cdot f) \circ p_1 = p_1 \circ (- \cdot f)$ implies $p_0 p_1 = \id$ as well.
+\end{proof}
+
+Let $\Pc_0$ and $\Pc_1$ be as above.
+Then we get an exact sequence\footnote{This is left as a non-obvious exercise.}
+\[
+	\begin{tikzcd}
+		0 \rar & \Fc \rar & \Pc_1|_{X_0} \rar & \Pc_0|_{X_0} \rar & \Fc \rar & 0.
+	\end{tikzcd}
+\]
+In particular, we obtain $\Fc \simeq \Fc[2]$ in $\Dsing(X)$.
+
+\begin{dfn}
+	The \emph{matrix factorization category} of $(X, f)$ has objects given by pairs of vector bundles $\Pc_0, \Pc_1$ on $X$ with maps $p_0: \Pc_0 \to \Pc_1$ and $p_1: \Pc_1 \to \Pc_0$ such that:
+	\begin{enumerate}
+		\item $p_0 p_1 = f \cdot \id_X$ and 
+		\item $p_1 p_0 = f \cdot \id_X$.
+	\end{enumerate}
+	Morphisms are defined to be homotopy classes of commutative squares.
+\end{dfn}
+
+There is a functor $\coker: \MF(X, f) \to \Dsing(X_0)$ sending $(\Pc_0, \Pc_1, p_0, p_1)$ to $\coker(p_1)$.
+
+\begin{thm}[Orlov]
+	The functor $\coker: \MF(X, f) \to \Dsing(X_0)$ is an equivalence.
+\end{thm}
+
+\begin{ex}
+	Let $A = \CC[x]$, $f = x^n$, and $X_0 = \Spec \CC[x] / (x^n)$.
+	Then $\Dsing(X_0)$ has objects given by direct sums of $V_i = \CC[x] / (x^i)$ for $1 \leq i \leq n-1$.
+	Under the equivalence $\Dsing(X_0) \simeq \MF(X, f)$, $V_i$ corresponds to $(\CC[x], \CC[x], x^{n-i}, x^i)$.
+	One can decategorify this to obtain the usual nearby / vanishing cycle picture for $f$.
+\end{ex}
 
 \end{document}
