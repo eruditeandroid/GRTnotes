@@ -15,7 +15,7 @@
 
 \tableofcontents
 
-\section{9/5 (David Nadler) -- Introduction}
+\section{1/23 (David Nadler) -- Introduction}
 
 Our goal is to discuss Rozansky-Witten theory.
 Some related topics include:
@@ -581,5 +581,126 @@ There is a functor $\coker: \MF(X, f) \to \Dsing(X_0)$ sending $(\Pc_0, \Pc_1, p
 	Under the equivalence $\Dsing(X_0) \simeq \MF(X, f)$, $V_i$ corresponds to $(\CC[x], \CC[x], x^{n-i}, x^i)$.
 	One can decategorify this to obtain the usual nearby / vanishing cycle picture for $f$.
 \end{ex}
+
+\section{2/27 (Elliot Kienzle) -- Matrix Factorizations}
+
+\subsection{David -- Opening remarks}
+
+Next week we will have a guest speaker.
+We will also eventually hear from Enoch Yiu, discussing his thesis work on $\Hom$s in the Rozansky-Witten 2-category involving conormals (in $T^*X$) to subvarieties of $X$.
+
+\subsection{Elliot -- Quick review}
+
+Suppose we are given a function / superpotential $W: X \to \CC$.
+We get a singular fiber $X_0$ and nearby fibers $X_s$.
+These fit into a long exact sequence
+\[
+	\begin{tikzcd}
+		\dots \rar & H^\bullet(X_0) \rar & H^\bullet(X_s) \rar & H^\bullet(X, X_s) \rar & \dots
+	\end{tikzcd}
+\]
+which categorifies to
+\[
+	\begin{tikzcd}
+		\Perf(X_0) \rar & \Dbcoh(X_0) \rar & \Dsing(X_0) \rar[equal] & \MF(X, W).
+	\end{tikzcd}
+\]
+
+In the above, $\MF(X, W)$ is a category whose objects are ``matrix factorizations'' $P^\bullet = (P_0, P_1, p_0, p_1)$ where $P_0$ and $P_1$ are vector bundles on $X$, $p_0: P_0 \to P_1$, $p_1: P_1 \to P_0$, and $p_0 p_1 = W \cdot \id$ and $p_1 p_0 = W \cdot \id$.
+This allows us to factorize polynomials which we could not factorize in the original polynomial rings.
+
+\begin{ex}
+	Working on $\RR^2$, we cannot factor $W = x^2 + y^2$ in $\RR[x, y]$.
+	However, we do have
+	\[
+		\begin{bmatrix}
+			x & y \\
+			-y & x
+		\end{bmatrix}
+		\begin{bmatrix}
+			x & -y \\
+			y & x
+		\end{bmatrix}
+		=
+		\begin{bmatrix}
+			x^2 + y^2 & 0 \\
+			0 & x^2 + y^2
+		\end{bmatrix}.
+	\]
+\end{ex}
+
+One may view $P^\bullet$ as a $\ZZ/2$-graded vector space with an endomorphism of odd degree given by
+\[
+	\begin{bmatrix}
+		0 & p_0 \\
+		p_1 & 0
+	\end{bmatrix}.
+\]
+In particular, we get a $\ZZ/2$-graded morphism space $\Hom^\bullet(P, Q)$ (defined without reference to the endomorphisms).
+There is a natural differential $\partial$ on $P^\bullet$ given by $\partial \phi = q \phi - (-1)^{|\phi|} \phi p$.
+We define $\Mor^\bullet(P, Q) = H^\bullet(\Hom^\bullet(P, Q), \partial)$.
+In particular, $\Mor^0(P, Q)$ consists of ``chain maps modulo chain homotopy.''
+
+\subsection{Boring matrix factorizations}
+
+Say that $\MF(X, W)$ is \emph{boring} if every object is equivalent to $0 = (0 \rightleftarrows 0)$.
+
+\begin{lem}
+	The following are equivalent for a matrix factorization $P = (P_0 \rightleftarrows P_1)$:
+	\begin{enumerate}
+		\item $P$ is equivalent to $0$.
+		\item $\id_P \sim 0 \in \Mor(P, P)$.
+		\item There exists odd $\phi$ such that $\phi_1 p_0 + p_1 \phi_0 = \id_{P_0}$ and $p_1 \phi_1 + \phi_0 p_1 = \id_{P_1}$.
+	\end{enumerate}
+\end{lem}
+
+\begin{ex}
+	The matrix factorization category $\MF(X, 1)$ is boring: given $P$, we can define a chain homotopy $\phi$ from $\id_P$ to $0$ via $\phi = (0, p_0)$.
+	More generally, if $W$ is nonvanishing, then $\MF(X, W)$ is boring.
+\end{ex}
+
+\begin{ex}
+	The matrix factorization category $\MF(\CC, z)$ is boring.
+	For a special case of this claim, consider $P$ with $P_0 = P_1 = \Oc$.
+	At most one of $p_0$ and $p_1$ can vanish, so assume $p_1$ is nonvanishing.
+	Then we can take $\phi_0 = p_0 / z$ and $\phi_1 = 0$.
+	The general case is encompassed by the following.
+\end{ex}
+		
+\begin{ex}
+	The matrix factorization category $\MF(\CC^n, z_i)$ is boring.
+	To see this, note that $p_0 p_1 = z_i$ implies $(\partial_i p_0) p_1 + p_0 (\partial_i p_1) = \id$.
+	It's plausible that this generalizes to show that $\MF(\CC^n, W)$ is boring whenever $dW$ is nonvanishing.
+\end{ex}
+
+The upshot is that, if $W$ or $dW$ is nonvanishing, then $\MF(X, W)$ is trivial.
+
+\subsection{The first interesting matrix factorization category}
+
+Let $X = V = \CC^n$ and $W = Q(z, z) = z_1^2 + \dots + z_n^2$.
+To do this, let us recall some of the history of quantum field theory.
+
+Dirac wanted to find a square root of the Laplacian $\Delta = \partial_1^2 + \dots + \partial_n^2$.
+That is, he wanted $\Dslash$ such that $\Dslash^2 = \Delta$.
+This $\Dslash$ does not exist as a scalar function: it only exists as a \emph{matrix} of linear differential operators
+If we replace $\partial_i^2$ by $x_i$, we end up with a corresponding matrix factorization of our $W$.
+
+Our goal is to prove the following:
+
+\begin{thm}
+	Let $\Cl(V, Q)$ be the Clifford algebra of $(V, Q)$.
+	Then $\MF(\CC^n, Q) \simeq \Cl(V, Q)\dMod$.
+\end{thm}
+
+David pointed out that \emph{Kn\"orrer periodicity} tells us that
+\[
+	\Cl(\CC^n, Q)\dMod \simeq \begin{cases}
+		\MF(\CC, x^2) & n \textrm{ odd} \\
+		\MF(\CC^2, x^2 + y^2) & n \textrm{ even}.
+	\end{cases}
+\]
+The category $\MF(\CC, x^2)$ can be identified with $\ZZ/2$-graded $\CC[\epsilon] / (\epsilon^2 - 1)$-modules, where $|\epsilon| = 1$.
+The category $\MF(\CC^2, x^2 + y^2)$ can be identified with $\ZZ/2$-graded vector spaces.
+One can interpret this in terms of vanishing cycles: for $(\CC, x^2)$ we have nontrivial monodromy $(-1)$, whereas for $(\CC^2, x^2 + y^2)$ we have trivial monodromy.
 
 \end{document}
