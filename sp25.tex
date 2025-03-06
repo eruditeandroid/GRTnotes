@@ -703,4 +703,124 @@ The category $\MF(\CC, x^2)$ can be identified with $\ZZ/2$-graded $\CC[\epsilon
 The category $\MF(\CC^2, x^2 + y^2)$ can be identified with $\ZZ/2$-graded vector spaces.
 One can interpret this in terms of vanishing cycles: for $(\CC, x^2)$ we have nontrivial monodromy $(-1)$, whereas for $(\CC^2, x^2 + y^2)$ we have trivial monodromy.
 
+\section{3/6 (Lucas Mason-Brown) -- Some Progress on the Problem of the Unitary Dual}
+
+This is based on joint wirk with Losev, Matvieievskyi, and Davis.
+
+\subsection{Review of unitary representation theory}
+
+Let $G_\RR$ be a real reductive group (i.e.\ the real points of a reductive algebraic group over $\RR$, or a Lie group which is isogenous to one).
+A \emph{unitary representation} of $G_\RR$ is a complex Hilbert space $V$ (typically infinite-dimensional) with a continuous representation $G_\RR \times V \to V$ by unitary operators.\footnote{In general, asking for $G_\RR \to \U(V)$ to be continuous is not the right continuity condition.}
+Such a representation is \emph{irreducible} if it has no nontrivial \emph{closed} invariant subspaces.
+
+\begin{ex}
+	The trivial representation of any $G_\RR$ is unitary.
+\end{ex}
+
+\begin{ex}
+	If $G_\RR$ is compact, then every continuous finite-dimensional representation $V$ of $G_\RR$ is unitary (with respect to an inner product defined via averaging).
+\end{ex}
+
+\begin{ex}
+	Let $X$ be a smooth manifold with an action of $G_\RR$ by diffeomorphisms.
+	On $X$, there is a real line bundle of \emph{half-densities} $\Lc^{1/2} = \Fr(TX) \times^{\GL_n(\RR)} \RR_{\abs{\det}^{1/2}}$.
+	Local sections of $\Lc^{1/2}$ look like $f(x_1, \dots, x_n) \abs{dx_1 \wedge \dots \wedge dx_n}^{1/2}$.
+	There is a real inner product on $\Gamma_c(X, \Lc^{1/2})$ given by $\ip{s_1}{s_2} = \int_X s_1 \otimes s_2$.
+	Taking the completion of $\Gamma_c(X, \Lc^{1/2}) \otimes_\RR \CC$, we obtain a unitary $G_\RR$-representation $L^2(X)$.
+
+	If we let $P_\RR$ be a the real points of a parabolic, and $X = G_\RR / P_\RR$, then $L^2(X)$ is the (unnormalized) ``unitary induction'' of the trivial $P_\RR$-representation.
+	We can twist this to get $L^2(X, V) = \Ind_{P_\RR}^{G_\RR} V$.
+\end{ex}
+
+\begin{ex}
+	Let $G_\RR$ be the metaplectic group $\operatorname{Mp}(2n, \RR)$, a non-linear double cover of the real symplectic group.
+	This has an ``oscillator representation'' on $L^2(\RR^n)$ which does not come from an action of $G_\RR$ on $\RR^n$.
+	The oscillator representation is constructed using the Stone-von Neumann theorem.
+\end{ex}
+
+\subsection{The problem of the unitary dual}
+
+An important open problem in unitary representation theorem is to classify the space $\Pi_u(G_\RR)$ of irreducible unitary $G_\RR$-representations (up to unitary equivalence).
+Harish-Chandra proposed the following approach.
+Fix a maximal compact subgroup $K_\RR \subset G_\RR$, and let $K$ be the complexification of $K_\RR$.
+
+\begin{ex}
+	If $G_\RR = \SL_n(\RR)$, we can take $K_\RR = \SO_n(\RR)$ and $K = \SO_n(\CC)$.
+\end{ex}
+
+For a unitary $G_\RR$-representation, we can define the \emph{Harish-Chandra module}
+\[
+	\operatorname{HC}(V) = \bset{v \in V}{\dim \spanop K_\RR v < \infty}.
+\]
+Harish-Chandra showed that $\operatorname{HC}(V)$ is a $(\gfr, K)$-module with a $(\gfr_\RR, K_\RR)$-invariant positive definite inner product.
+
+\begin{thm}[Harish-Chandra]
+	The assignment $V \mapsto \operatorname{HC}(V)$ gives a bijection between $\Pi_u(G_\RR)$ and $\Pi_u(\gfr, K)$ (the set of irreducible unitarizable $(\gfr, K)$-modules).
+\end{thm}
+
+Note that $\Pi_u(\gfr, K)$ is quite algebraic, while $\Pi_u(G_\RR)$ is quite analytic!
+We can embed $\Pi_u(\gfr, K)$ into $\Pi(\gfr, K)$, the space of all irreducible $(\gfr, K)$-modules.
+This latter space is well-understood via Langlands parameters / Beilinson-Bernstein localization / etc.
+Thus the question turns into understanding the embedding $\Pi_u(\gfr, K) \hookrightarrow \Pi(g, K)$.
+
+This splits into two subquestions.
+The first subquestion, understanding which irreducible $(\gfr, K)$-modules admit a $(\gfr, K)$-invariant bilinear form, was solved in the 1970s.
+The remaining subquestion, understanding when this bilinear form is Hermitian, is open.
+
+\subsection{Conjectural solution}
+
+\begin{conj}
+	For every twisted Levi subgroup $L_\RR \subset G_\RR$, there are:
+	\begin{enumerate}
+		\item Standard inductive procedures $I$ producing finitely many elements of $\Pi_u(\gfr, K)$ from a given element of $\Pi_u(L_\RR)$.
+			(These include parabolic induction, cohomological induction, and complementary series.)
+		\item A finite set of explicit ``rigid'' cuspidal representations $\Pi_{\mathrm{rig}}(L_\RR)$.
+	\end{enumerate}
+	We may write $\Pi_u(G_\RR) = \cup_{L_\RR} I(\Pi_u(L_\RR))$.
+\end{conj}
+
+To make this conjecture worthwhile, we should explain what we mean by rigid representations.
+Let $\Oc \subset \gfr^*$ be a nilpotent coadjoint orbit in the dual of the complexified Lie algebra.
+Then $\CC[\Oc]$ is a finitely generated graded Poisson algebra.
+A quantization of $\CC[\Oc]$ is a nonnegatively filtered algebra $\Ac = \cup_m \Ac_{\leq m}$ such that $[\Ac_{\leq m}, \Ac_{\leq n}] \subset \Ac_{\leq m + n - 1}$ together with an isomorphism of graded Poisson algebras $\tau: \gr(\Ac) \xrightarrow{\sim} \CC[\Oc]$.
+This gives a unique quantum comoment map, i.e.\ a filtered algebra homomorphism $\Uc(\gfr) \to \Ac$ reducing to $\Sym \gfr \to \CC[\Oc]$ after passing to associated graded algebras.
+
+\begin{thm}[Namikawa, Losev]
+	The set of quantizations of $\CC[\Oc]$ is in natural bijection with points of the Namikawa space $\hfr_\Oc$, a finite-dimensional complex vector space constructed from the geometry of $\Oc$.\footnote{Specifically, $\hfr_\Oc$ is the second cohomology of a $\QQ$-factorial terminal resolution of $\Oc$ (e.g.\ a symplectic resolution of $\Oc$, if one exists).}
+\end{thm}
+
+\begin{dfn}
+	The \emph{canonical quantization} $\Ac_0$ of $\CC[\Oc]$ is the quantization of $\CC[\Oc]$ corresponding to $0 \in \hfr_\Oc$.
+	The \emph{unipotent ideal} for $\Oc$ is $I_0(\Oc) = \ker(\Uc(\gfr) \to \Ac_0)$.
+\end{dfn}
+
+\begin{prop}
+	The following are equivalent:
+	\begin{enumerate}
+		\item $\Spec \CC[\Oc]$ is smooth in codimension 2 and $H^2(\Oc, \CC) = 0$.
+		\item $\hfr_\Oc = 0$.
+		\item $\Oc$ is not induced from a proper Levi subgroup.
+		\item $I_0(\Oc)$ is not induced.
+	\end{enumerate}
+\end{prop}
+
+In this case, we say $\Oc$ is \emph{rigid}.
+
+\begin{dfn}
+	A \emph{rigid $(\gfr, K)$-module} is an irreducible $(\gfr, K)$-module $M$ such that $\Ann_{\Uc(\gfr)}(M) = I(\Oc)$ for $\Oc$ rigid.
+\end{dfn}
+
+\begin{ex}
+	If $\Oc = 0$, the corresponding rigid representations are exactly the one-dimensional representations of $G_\RR$ that factor through the component group of $G_\RR$.
+\end{ex}
+
+\begin{ex}
+	The oscillator representation of $\operatorname{Mp}_{2n}(\RR)$ is rigid.
+\end{ex}
+
+\begin{ex}
+	There is an interesting rigid representation related to rigid orbits of for the real split $E_8$-group.
+\end{ex}
+
+The speaker and collaborators showed that rigid representations are unitarizable using Hodge theory.
 \end{document}
