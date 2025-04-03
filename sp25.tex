@@ -979,4 +979,84 @@ Note that $[W, W] = \MF(X, 0)$ is a 2-periodic version of $\Dbcoh(X)$.
 For an arbitrary Lagrangian $L$, we can guess that $[L, L]$ should look like a 2-periodic version of $\Coh(L)$, with composition given by tensor product.
 In general, we expect that the category of ``2-quasicoherent sheaves'' on $X$ embeds as the ``conic part'' of $\RW_2(T^* X)$.
 Next time, Enoch will discuss how to allow conic and non-conic parts of $\RW_2(T^* X)$ to interact.
+
+\section{4/3 (Enoch Yiu) -- Sheaves of Categories with Non-Conic Singular Support}
+
+Let $X$ be a smooth algebraic variety.
+We want to understand Rozansky-Witten theory on $T^* X$ in terms of module categories over $\QCoh(X)$, $\Coh(X)$, or $\Perf(X)$.
+
+\subsection{Singular support of sheaves of categories}
+
+To define a notion of singular support, we should first recall some relevant notions.
+
+\begin{enumerate}
+	\item The \emph{loop space} of $X$ is the derived fiber product $\Lc X = \Hom(S^1, X) = X \times_{X \times X} X$.
+		If $X$ is a smooth algebraic variety, then the Hochschild-Kostant-Rosenberg isomorphism gives an equivalence
+		\[
+			\Lc X \simeq TX[-1] = \Spec_{\Oc_X} \Omega_X^{-\bullet}.
+		\]
+		Note that $\Lc X$ is an algebra over $X$.
+	\item Note that
+		\[
+			\Hom_{\Perf(S)}(\Perf(X), \Coh(Y)) \simeq \Coh(X \times_S Y).
+		\]
+		Taking $X = Y$ and $S = X \times X$, we see that 
+		\[
+			\End_{\Perf(X) \otimes \Perf(X)\op}(\Perf(X)) \simeq \Coh(\Lc X).
+		\]
+	\item We can compute
+		\[
+			\Ext_{\Sym_{\Oc_X} \Omega_X[1]}^*(\Oc_X, \Oc_X) = \Sym_{\Oc_X} \Omega_X^\vee[-2] = \Oc_{T^* X[2]}.
+		\]
+		This gives a Koszul duality equivalence between $\Coh(\Lc X)$ and a deformation of $\Perf(T^* X[2])$.
+	\item If $R$ is an algebra and $M$ is a module, then we get a homomorphism $Z(R) \to \End(M)$.
+		This can be understood in terms of a ``whistle'' cobordism in TQFT.
+\end{enumerate}
+
+\begin{dfn}
+	Let $M \in \Perf(X)\dMod$.
+	Then $\End(M)$ is a $\Coh(\Lc X)$-module.
+	This induces a map 
+	\[
+		\End_{\Coh(\Lc X)}(\Oc_X) \to \End_{\End(M)}(\onebb_{\End(M)}).
+	\]
+	We may think of $\Ext^*(\onebb_{\End(M)}, \onebb_{\End(M)})$ as a topological (i.e.\ non-quasicoherent) sheaf of categories on $T^* X[2]$.
+	The singular support $\SS(M)$ is the support of $\Ext^*(\onebb_{\End(M)}, \onebb_{\End(M)})$ over $T^* X[2]$.
+	This is a ``conic Lagrangian'' in $T^* X[2]$.
+\end{dfn}
+
+Here $\Oc_{T^* X[2]}$ is really an $\EE_3$-algebra.
+We are passing to $\Ext^*$'s so that we can work with commutative algebras rather than $\EE_3$-algebras.
+
+\begin{ex}
+	Let $i: Z \hookrightarrow X$ be a closed embedding of smooth varieties.
+	Then $\Perf(Z)$ is a $\Perf(X)$-module, and
+	\[
+		\End_{\Perf(X)}(\Perf(Z)) = \Coh(Z \times_X Z) = \Coh(N_Z X[-1]).
+	\]
+	We may view the shifted normal bundle $N_Z X[-1]$ as $\Lc_Z X / \Lc Z$, where $\Lc_Z X = Z \times_{X \times X} Z$ (?).
+	We can compute $\Ext^*(\onebb_{\End(\Perf(Z)}) = \Oc_{T_Z^* X[2]}$.
+\end{ex}
+
+\subsection{The conic part of $\RW_2$}
+
+The proposal is essentially that the conic part of $\RW_2(T^* X)$ is $\Perf(X)\dMod$.
+
+Let $M, N \in \Perf(X)\dMod$.
+Then $\Hom(M, N)$ is a $\Coh(\Lc X)$-module, and it defines a sheaf on $T^* X[2]$.
+The support (over $T^* X[2]$) of $\Hom(M, N)$ is contained in $\SS(M) \cap \SS(N)$.
+This agrees with expectations about $\RW_2$!
+
+\begin{ex}
+	Let $M = \Perf(X)$ and $N = \Perf(x)$ for some $x \in X$.
+	Then $\Hom_{\Perf(X)}(\Perf(X), \Perf(x)) = \Coh(X) \simeq \Vect$.
+	This confirms our intuition: the intersection of the singular supports here is just a point, so the $\Hom$ is just $\Vect$.
+\end{ex}
+
+Given $f: X \to Y$, we obtain $f^*: \Perf(Y) \to \Perf(X)$ and hence a restriction map $\Perf(X)\dMod \to \Perf(Y)\dMod$.
+There is also an induction map $\Perf(Y)\dMod \to \Perf(X)\dMod$.
+We can use these to define an external tensor product
+\[
+	M \boxtimes N = \Indop_{p_1} M \otimes \Indop_{p_2} N.
+\]
 \end{document}
