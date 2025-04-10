@@ -1021,7 +1021,7 @@ To define a notion of singular support, we should first recall some relevant not
 		\End_{\Coh(\Lc X)}(\Oc_X) \to \End_{\End(M)}(\onebb_{\End(M)}).
 	\]
 	We may think of $\Ext^*(\onebb_{\End(M)}, \onebb_{\End(M)})$ as a topological (i.e.\ non-quasicoherent) sheaf of categories on $T^* X[2]$.
-	The singular support $\SS(M)$ is the support of $\Ext^*(\onebb_{\End(M)}, \onebb_{\End(M)})$ over $T^* X[2]$.
+	The singular support $\SSrm(M)$ is the support of $\Ext^*(\onebb_{\End(M)}, \onebb_{\End(M)})$ over $T^* X[2]$.
 	This is a ``conic Lagrangian'' in $T^* X[2]$.
 \end{dfn}
 
@@ -1044,7 +1044,7 @@ The proposal is essentially that the conic part of $\RW_2(T^* X)$ is $\Perf(X)\d
 
 Let $M, N \in \Perf(X)\dMod$.
 Then $\Hom(M, N)$ is a $\Coh(\Lc X)$-module, and it defines a sheaf on $T^* X[2]$.
-The support (over $T^* X[2]$) of $\Hom(M, N)$ is contained in $\SS(M) \cap \SS(N)$.
+The support (over $T^* X[2]$) of $\Hom(M, N)$ is contained in $\SSrm(M) \cap \SSrm(N)$.
 This agrees with expectations about $\RW_2$!
 
 \begin{ex}
@@ -1059,4 +1059,66 @@ We can use these to define an external tensor product
 \[
 	M \boxtimes N = \Indop_{p_1} M \otimes \Indop_{p_2} N.
 \]
+
+\section{4/10 (Enoch Yiu) -- Continued}
+
+Last time, we discussed viewing $\Perf(X)$ as the conic part of $\RW_2(T^* X)$.
+Now, we'd like to understand the non-conic part of the Rozansky-Witten theory.
+
+\subsection{Towards the non-conic part of Rozansky-Witten theory}
+
+Consider $X \times \AA^1$, and equip $T^*(X \times \AA^1)$ with coordinates $(x \in X, y \in \AA^1, \xi \in T^*_x X, \tau \in T^*_y Y)$.
+Write $\mu: T^*(X \times \AA^1) \to (\AA^1)^\vee$ for the projection.
+Then we can write $T^* X = \mu\inv(1^\vee) / \AA^1$.
+In the shifted case, this doesn't quite work: there is not a point ``$1^\vee$'' of $(\AA^1)^\vee[\pm 2]$.
+Regardless, this gives a rough / moral picture of what we want to do.
+
+Let 
+\[
+	\Cc^\pre(X) = \Perf(X \times \AA^1)\dMod / \bset{M}{\SSrm(M) \subset \{ \tau = 0 \}}.
+\]
+This is our analogue of $\mu\inv(1^\vee)$.
+
+Define $\rho: T^* X \times T^*_{\tau \neq 0} \to T^* X$ by
+\[
+	\rho(x, \xi, y, \tau) = \left(x, \frac{\xi}{\tau} \right),
+\]
+and let $\mu\supp(M) := \rho(\SSrm(M) \cap \{ \tau \neq 0 \})$.
+
+Suppose $L \subset T^* X$ is an exact Lagrangian, i.e.\ if $\lambda$ is the canonical 1-form on $T^* X$, then there exists $f: L \to \AA^1$ such that $\lambda|_L = df$.
+Then we obtain a conic Lagrangian
+\[
+	\Lambda = \bset{(x, c \xi, f(x, \xi), c \cdot 1)}{(x, \xi) \in L} \subset T^*(X \times \AA^1).
+\]
+We may recover $L$ as $\rho(\Lambda)$.
+David pointed out that this is analogous to the relationship between projective varieties and their affine cones.
+
+\subsection{Examples}
+
+\begin{ex}
+	Suppose $i: Z \to X$ is a closed embedding, so $\SSrm(\Perf(Z)) = T^*_Z X$.
+	We also have $\Perf(Z) \boxtimes \Perf(0) = \Perf(Z \times 0)$, so $\SSrm(\Perf(Z \times 0)) = T^*_{Z \times 0}(X \times \AA^1)$ and $\mu\supp(\Perf(Z \times 0)) = T^*_Z X$ as desired.
+\end{ex}
+
+\begin{ex}
+	Let $X = \AA^n$ or $\GG_m^n$.
+	Take $Z = \{ y + f(x) = 0 \} \subset X \times \AA^1$.
+	Then $\SSrm(\Perf(Z)) = \{ (x, -f(x), c \cdot df, c) \}$ and $\mu\supp(\Perf(Z)) = \Gamma_{df}$.
+\end{ex}
+
+\begin{rmk}
+	David mentioned the following conjecture of Teleman: the $2$-category of ``stable categories with $S^1$-action'' is equivalent to $\RW_2(T^* \GG_m)$.
+	Taking the ``underlying category'' in the former should correspond to taking $\Hom$ from the zero section in the latter.
+	Taking the ``fixed point category'' should correspond to taking $\Hom$ from the conormal $T^*_1 \GG_m$.
+	Since there are objects that have no intersection with the zero section, there should be interesting ``$S^1$-categories with trivial underlying category.''
+	This is not so strange (it's analogous to the fact that $\pt$ and $ES^1$ are both contractible but are not equivalent as $S^1$-equivariant spaces).
+\end{rmk}
+
+\begin{ex}
+	Let $N = \{ f_1 = \dots = f_m = 0 \} \subset \AA^n$, and let $\alpha \in \Omega^1(N)$.
+	If $\alpha$ is closed, then $\alpha + T^*_N \AA^n$ is a Lagrangian; if $\alpha$ is exact, then $\alpha + T^*_N \AA^n$ is an exact Lagrangian.
+	Suppose $\alpha = dg$.
+	Taking $Z = \{ y + g(x) = f_1(x) = \dots = f_m(x) = 0 \}$, we get $\mu\supp(\Perf(Z)) = dg + T^*_N \AA^n$.
+\end{ex}
+
 \end{document}
