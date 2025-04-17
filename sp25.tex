@@ -1021,7 +1021,7 @@ To define a notion of singular support, we should first recall some relevant not
 		\End_{\Coh(\Lc X)}(\Oc_X) \to \End_{\End(M)}(\onebb_{\End(M)}).
 	\]
 	We may think of $\Ext^*(\onebb_{\End(M)}, \onebb_{\End(M)})$ as a topological (i.e.\ non-quasicoherent) sheaf of categories on $T^* X[2]$.
-	The singular support $\SSrm(M)$ is the support of $\Ext^*(\onebb_{\End(M)}, \onebb_{\End(M)})$ over $T^* X[2]$.
+	The singular support $\SSop(M)$ is the support of $\Ext^*(\onebb_{\End(M)}, \onebb_{\End(M)})$ over $T^* X[2]$.
 	This is a ``conic Lagrangian'' in $T^* X[2]$.
 \end{dfn}
 
@@ -1044,7 +1044,7 @@ The proposal is essentially that the conic part of $\RW_2(T^* X)$ is $\Perf(X)\d
 
 Let $M, N \in \Perf(X)\dMod$.
 Then $\Hom(M, N)$ is a $\Coh(\Lc X)$-module, and it defines a sheaf on $T^* X[2]$.
-The support (over $T^* X[2]$) of $\Hom(M, N)$ is contained in $\SSrm(M) \cap \SSrm(N)$.
+The support (over $T^* X[2]$) of $\Hom(M, N)$ is contained in $\SSop(M) \cap \SSop(N)$.
 This agrees with expectations about $\RW_2$!
 
 \begin{ex}
@@ -1075,7 +1075,7 @@ Regardless, this gives a rough / moral picture of what we want to do.
 
 Let 
 \[
-	\Cc^\pre(X) = \Perf(X \times \AA^1)\dMod / \bset{M}{\SSrm(M) \subset \{ \tau = 0 \}}.
+	\Cc^\pre(X) = \Perf(X \times \AA^1)\dMod / \bset{M}{\SSop(M) \subset \{ \tau = 0 \}}.
 \]
 This is our analogue of $\mu\inv(1^\vee)$.
 
@@ -1083,7 +1083,7 @@ Define $\rho: T^* X \times T^*_{\tau \neq 0} \to T^* X$ by
 \[
 	\rho(x, \xi, y, \tau) = \left(x, \frac{\xi}{\tau} \right),
 \]
-and let $\mu\supp(M) := \rho(\SSrm(M) \cap \{ \tau \neq 0 \})$.
+and let $\mu\supp(M) := \rho(\SSop(M) \cap \{ \tau \neq 0 \})$.
 
 Suppose $L \subset T^* X$ is an exact Lagrangian, i.e.\ if $\lambda$ is the canonical 1-form on $T^* X$, then there exists $f: L \to \AA^1$ such that $\lambda|_L = df$.
 Then we obtain a conic Lagrangian
@@ -1096,14 +1096,14 @@ David pointed out that this is analogous to the relationship between projective 
 \subsection{Examples}
 
 \begin{ex}
-	Suppose $i: Z \to X$ is a closed embedding, so $\SSrm(\Perf(Z)) = T^*_Z X$.
-	We also have $\Perf(Z) \boxtimes \Perf(0) = \Perf(Z \times 0)$, so $\SSrm(\Perf(Z \times 0)) = T^*_{Z \times 0}(X \times \AA^1)$ and $\mu\supp(\Perf(Z \times 0)) = T^*_Z X$ as desired.
+	Suppose $i: Z \to X$ is a closed embedding, so $\SSop(\Perf(Z)) = T^*_Z X$.
+	We also have $\Perf(Z) \boxtimes \Perf(0) = \Perf(Z \times 0)$, so $\SSop(\Perf(Z \times 0)) = T^*_{Z \times 0}(X \times \AA^1)$ and $\mu\supp(\Perf(Z \times 0)) = T^*_Z X$ as desired.
 \end{ex}
 
 \begin{ex}
 	Let $X = \AA^n$ or $\GG_m^n$.
 	Take $Z = \{ y + f(x) = 0 \} \subset X \times \AA^1$.
-	Then $\SSrm(\Perf(Z)) = \{ (x, -f(x), c \cdot df, c) \}$ and $\mu\supp(\Perf(Z)) = \Gamma_{df}$.
+	Then $\SSop(\Perf(Z)) = \{ (x, -f(x), c \cdot df, c) \}$ and $\mu\supp(\Perf(Z)) = \Gamma_{df}$.
 \end{ex}
 
 \begin{rmk}
@@ -1120,5 +1120,61 @@ David pointed out that this is analogous to the relationship between projective 
 	Suppose $\alpha = dg$.
 	Taking $Z = \{ y + g(x) = f_1(x) = \dots = f_m(x) = 0 \}$, we get $\mu\supp(\Perf(Z)) = dg + T^*_N \AA^n$.
 \end{ex}
+
+\section{4/17 (Wenyuan Li) -- Regular Functions on the Moduli of Microlocal Sheaves}
+
+This is a guest lecture based on joint work with Roger Casals (and partly with Chris Kuo).
+Fix $G = \GL(n, \CC)$.
+
+\subsection{Moduli of microlocal sheaves}
+
+A simple example of the sort of space we want to consider is the following:
+
+\begin{ex}[Moduli of local systems]
+	The \emph{character variety} of a real surface $\Sigma$ is $\Hom(\pi_1(\Sigma), G) / G^{\ad}$.
+	This has a symplectic form, the \emph{Goldman bracket}.
+	(For $n = 1$ this is induced by the intersection form on $H_1(\Sigma)$.)
+	Regular functions on this space are given by traces of monodromy around some loop.
+\end{ex}
+
+A more complicated and interesting example is:
+
+\begin{ex}[Moduli of Stokes data]
+	Consider a punctured real surface $\Sigma$.
+	We want to consider the moduli $M(\Sigma, \beta)$ of local systems on $\Sigma$ together with complete flags around each puncture such that the monodromy of the local system preserves each flag.
+	We can identify this space with the moduli of locally constant sheaves on $\Sigma$ with generic rank $n$ and with fibers over concentric circles around the punctures of decreasing rank.
+	The concentric circles arise from solutions to $\Dc$-modules with irregular singularities.
+	There are some pictures but I wasn't able to copy them down here.
+\end{ex}
+
+\subsection{The non-abelianization map}
+
+Studying rank $n$ local systems is difficult.
+Instead we try to reduce to studying rank $1$ local systems as follows.
+
+Given a punctured surface $\Sigma$, we consider a ``nice'' $n$-fold branched cover $L \to \Sigma$.
+There exists a (highly nontrivial) map $\Loc_1(L) \to \Loc_n(\Sigma)$, which gives an open subset of $\Loc_n(\Sigma)$.
+Essentially, we view $L$ as giving a Lagrangian in $T^* \Sigma$.
+Crossings near punctures extend to the interior of $\Sigma$ and give a constructible sheaf in $\Sigma \times \RR$.
+This can also be constructed combinatorially using ``ideal triangulations.''
+
+Anyway, the important thing is that we can understand an open subset of $\Loc_n(\Sigma)$ in terms of $\Loc_1(L)$.
+The monodromies along loops in $L$ give regular functions on open subsets of $M(\Sigma, \beta)$.
+Intersection forms for $L$ give closed 2-forms on open subsets of $M(\Sigma, \beta)$.
+We want to ask: when do such objects extend to all of $M(\Sigma, \beta)$?
+
+\subsection{Symplectic geometry}
+
+In terms of microlocal sheaves, we are interested in the category $\Cc = \Sh_\Lambda(\Sigma) = \Fuk_\Lambda(T^* \Sigma)$.
+Given a nice $L \subset T^* \Sigma$, we get a category $\Cc_L \subset \Cc$ consisting of rank $1$ local systems $\Lc$ on $L$.
+The monodromies are given by $m_\gamma: \Cc_L \to \CC$ for $\gamma$ lying along $L$.
+
+We should view $\Sh_\Lambda(\Sigma)$ as the global (co)sections of a constructible cosheaf of categories on the ``Lagrangian skeleton.''
+The Lagrangian skeleton is a stratified Lagrangian subset that is a deformation retract of $(T^* \Sigma, \Lambda)$.
+
+The non-abelianization map suggests that instead we want to work with $L \subset T^* \Sigma$.
+Note that $L$ is not a Lagrangian skeleton -- it has different topology from $\Sigma$!
+We can fix this by filling in loops (with Lagrangian disks) to kill parts of the first homology of $L$.
+The main theorem is that $m_\gamma$ extends to all of $M(\Sigma, \beta)$ if and only if $\gamma$ has nonnegative intersection with the boundaries of all such Lagrangian disks.
 
 \end{document}
