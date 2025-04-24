@@ -1162,7 +1162,7 @@ Anyway, the important thing is that we can understand an open subset of $\Loc_n(
 The monodromies along loops in $L$ give regular functions on open subsets of $M(\Sigma, \beta)$.
 Intersection forms for $L$ give closed 2-forms on open subsets of $M(\Sigma, \beta)$.
 We want to ask: when do such objects extend to all of $M(\Sigma, \beta)$?
-
+.
 \subsection{Symplectic geometry}
 
 In terms of microlocal sheaves, we are interested in the category $\Cc = \Sh_\Lambda(\Sigma) = \Fuk_\Lambda(T^* \Sigma)$.
@@ -1176,5 +1176,45 @@ The non-abelianization map suggests that instead we want to work with $L \subset
 Note that $L$ is not a Lagrangian skeleton -- it has different topology from $\Sigma$!
 We can fix this by filling in loops (with Lagrangian disks) to kill parts of the first homology of $L$.
 The main theorem is that $m_\gamma$ extends to all of $M(\Sigma, \beta)$ if and only if $\gamma$ has nonnegative intersection with the boundaries of all such Lagrangian disks.
+
+\section{4/24 (Enoch Yiu) -- Continued}
+
+\subsection{Refresher}
+
+We let
+\[
+	\Cc^\pre(X) = \Perf(X \times \AA^1)\dMod / \bset{M}{\SSop(M) \subset \{ \tau = 0 \}}.
+\]
+Recall that this is an analogue of $\mu\inv(1^\vee)$, and we'd like to think of $\Cc(X)$ as an analogue of $\mu\inv(1^\vee) / \AA^1)$.
+Consider $\rho: T^* X \times T^*_{\tau \neq 0} \AA^1 \to T^* X$ via $\rho(x, \xi, y, t) = (x, \xi / \tau)$ -- this gives a correspondence between exact Lagrangians in $T^* X$ and conic Lagrangians in $T^* X \times T^* \AA^1$.
+We'd like to think of $\Cc(X)$ as ``$\Coh(\AA^1)$-invariant $\Cc^\pre(X)$-modules.''
+
+\subsection{Definitions}
+
+Let $N = \{ f_1(x) = \dots = f_m(x) = 0 \} \subset X$, and consider $Z = \{y + g(x) = 0\} \cap (\AA^1 \times N)$.
+Note that $\mu\supp(Z) = dg + T^*_N X$.
+These give ``hybrid Lagrangians'' in $T^*(X \times \AA^1)$.
+The category $\Cc(X)$ has $\Ob \Cc(X) = \bset{\Perf(Z)}{Z \textrm{ as above}}$, where each $\Perf(Z)$ is viewed as a $\Perf(X \times \AA^1)$-module category.
+
+Letting $T_c: X \times \AA^1 \to X \times \AA^1$ be the translation, we get $\Res_{T_c}: \Perf(X \times \AA^1)\dMod \to \Perf(X \times \AA^1)\dMod$.
+We define the morphisms in $\Cc(X)$ by
+\[
+	\Hom_{\Cc(X)}(M, N) = \oplus_{c \in \AA^1} \Hom_{\Cc^\pre(X)}(M, \Res_{T_c}(N)).
+\]
+
+For $M, N \in \Cc(X)$, we define
+\[
+	\mu\Hom(M, N) = \Perf(\{\tau \neq 0\}) \otimes_{\Perf(T^*(X \times \AA^1)[2])} \Hom_{\Cc(X)}(M, N).
+\]
+
+\begin{ex}
+	Let $C_f = \Perf(\{ y + f(x) = 0\})$, so $\mu\supp C_f = \Gamma_{df}$.
+	We compute	
+	\[
+		\mu\Hom(C_f, C_g) = \oplus_{c \in \AA^1} k[\dots, \tau, \tau\inv]\dMod \otimes_{k[\dots, \tau]\dMod} \Hom_{\Cc^\pre(X)}(C_f, \Res_{T_c} C_g).
+	\]
+	We have $\Hom_{\Perf(X \times \AA^1)}(C_f, \Res_{T_c} C_g) = \Coh(\{y + f(x) = 0\} \times_{X \times \AA^1} \{y + g(x) = c\})$.
+	Eventually this gives $\mu\Hom(C_f, C_g) = \MF(X, f - g)$.
+\end{ex}
 
 \end{document}
