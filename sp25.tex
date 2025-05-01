@@ -1217,4 +1217,44 @@ For $M, N \in \Cc(X)$, we define
 	Eventually this gives $\mu\Hom(C_f, C_g) = \MF(X, f - g)$.
 \end{ex}
 
+\section{5/1 (David Nadler) -- Review and Open Problems}
+
+This semester we focused on the case of $M = T^* X$.
+We discussed a few models of the 2-category $\RW_M(\pt)$:
+\begin{enumerate}
+	\item Graphical: objects are graphs $\Gamma_{df}$ and morphisms are categories $\MF(f - g)$.
+		Work of Joyce and collaborators has dealt with the question of when and how we can reinterpret things in this context.
+	\item Conic: objects are (nice) $\Perf(X)$-module categories, e.g.\ $\Perf(Y)$ for $Y \subset X$ a closed subvariety.
+		This allows us to deal with conormals and zero-sections.
+	\item Enoch's approach (following Tamarkin): by adding a coordinate, we can model non-conic things by conic things.
+		This lets us work with ``hybrid Lagrangians'' (encompassing both of the above cases).
+		We don't know if this is the final answer -- the utility of this approach will depend on the answers to some of the following questions.
+\end{enumerate}
+
+Here are some open questions that David wants to understand:
+\begin{itemize}
+	\item What are the dualizability properties of $\RW_M(\pt)$?
+		Is it 3-dualizable?
+		What about tangential structures (does it give a framed / oriented / unoriented TQFT)?
+	\item Can we show $\RW_M(S^1) = \Coh(M)$ (or something similar)?
+		Can we show $\RW_M(S^2) = \Oc(M)$?
+		Can we get 3-manifold invariants?
+	\item To what extent can we reconstruct $M$ from $\RW_M(\pt)$?
+		Can we recognize when a 2-category is the Rozansky-Witten 2-category of some $M$?
+		If not, what happens when $M$ and $M'$ have the same Rozansky-Witten theory?
+	\item What are the automorphisms of $\RW_M(\pt)$?
+		If $M = T^* V$ for some vector space $V$, does $\RW_M(\pt)$ have a Fourier transform?
+	\item Do we have $\RW_{T^* V}(\pt) \simeq \RW_{T^* V^\vee}(\pt)$?
+	\item A conjecture of Teleman relates ``topological $G$-categories'' to $\RW_{T^*(G^\vee /_{\Ad} G^\vee)}(\pt)$.
+		We can ask similar questions about ``local Langlands'' and the relationship between $\Dc(G)$-categories and some sort of Rozansky-Witten theory.
+\end{itemize}
+
+To get a full answer to the last question, we should consider \emph{genuine} equivariance rather than just Borel equivariance.
+For a compact group $K$, \emph{Elmendorf's theorem} tells us that ``genuine'' $K$-spaces are modeled by diagrams of fixed spaces $X^L$ for all subgroups $L \subset K$.
+
+\begin{ex}
+	The $S^1$-spaces $\pt$ and $S^\infty$ are not the same from this perspective: the underlying spaces are equivalent but the $S^1$-fixed points are not.
+\end{ex}
+
+More on this next semester (possibly).
 \end{document}
