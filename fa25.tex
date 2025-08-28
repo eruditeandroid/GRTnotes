@@ -1,0 +1,95 @@
+\documentclass{article}
+
+\usepackage{notes}
+
+\title{GRT Seminar Fall 2024 -- Equivariant Mathematics}
+\author{Notes by John S.\ Nolan, speakers listed below}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+	This semester, the GRT Seminar will focus on equivariant mathematics (especially homotopy theory).
+  The goal is not necessarily to become homotopy theorists but rather to gain an appreciation for one of the most developed approaches to equivariance.
+\end{abstract}
+
+\tableofcontents
+
+\section{8/28 (David Nadler) -- $S^1$-Actions and Koszul Duality}
+
+A good reference for this material is GKM (Goresky--Kottwitz--Macpherson, ``Equivairant cohomology, Koszul duality, and the localization theorem'').
+We'll focus on the case of $G = S^1$ acting on a (reasonable) topological space $X$, e.g.\ a CW complex.
+
+\subsection{Linearization}
+
+We can ``linearize'' the space $X$ by taking cochains $C^*(X)$, say with coefficients in $k = \QQ$.
+Morally, this is like passing to ``functions'' on a space, except that in topology our notion of function is ``locally constant.''
+This is not as uninteresting as it sounds, since we also include ``derived'' information.
+
+Following this analogy, ``distributions'' on $S^1$ should act on ``functions'' on $X$ by convolution.
+The right notion of ``distributions'' on $S^1$ is captured by the chain complex $C_{-*}(S^1)$.
+We may write
+\[
+  C_{-*}(S^1) = \begin{cases}
+    k \cdot 1 & * = 0 \\
+    k \cdot \lambda & * = 1,
+  \end{cases}
+\]
+i.e.\ $C_{-*}(S^1) = k[\lambda] / \lambda^2$ with $|\lambda| = -1$.
+The multiplication $C_{-*}(S^1) \otimes_k C_{-*}(S^1) \to C_{-*}(S^1)$ is induced by the multiplication map $S^1 \times S^1 \to S^1$.
+We may view $C^*(X)$ as a $C_{-*}(S^1)$-module.
+In the following examples we'll often use Poincar\'e duality to identify $C^*(X) = C_{-*}(X)$.
+
+\begin{ex}
+  Let $S^1$ act on itself via translation.
+  This linearizes to $C_{-*}(S^1) \curvearrowright C^{*}(S^1)$ by ``sweeping out cochains along a chain.''
+  Algebraically, we may write $C^*(S^1) = k[\nu] / \nu^2$ where $|\nu| = 1$, and the action satisfies $\lambda \cdot \nu = 1$.
+  In topology, this is the ``slant product.''
+\end{ex}
+
+\begin{ex}
+  Let $S^1$ act on $X = \pt$.
+  This linearizes to $C_{-*}(S^1) \curvearrowright k$ via the augmentation action.
+\end{ex}
+
+\begin{ex}
+  Let $S^1$ act on $S^2$ by rotation.
+  The $S^1$ action here is trivial at the level of cohomology (any operation of degree $-1$ on $H_{-*}(S^2)$ is trivial).
+  However, there is some interesting and subtle behavior: if we sweep out a (the cocycle corresponding to a) longitudinal line, we get all of $S^1$.
+  The next example exhibits a similar phenomenon which is more cohomologically meaningful.
+\end{ex}
+
+\begin{ex}
+  Let $S^1$ act on $S^3$ via the Hopf action.
+  View $S^3 = \RR^3 \cup \{ \infty \}$.
+  Let $\nu$ be the cocycle corresponding to a point.
+  Sweeping $\nu$ out gives a circle (which we can take to be the compactified $z$-axis).
+  This is still trivial -- there is a disk $D$ with $\partial D = \lambda \cdot \nu$.
+  However, we have $\lambda \cdot D = S^3$.
+  
+  We end up with a ``secondary sweep'' operation $\lambda_{(2)}$, defined somewhat like the snake lemma: if $\lambda \cdot \nu$ is trivial, we write $\lambda \cdot \nu = \partial D$, and set $\lambda_{(2)} \nu = \lambda D$.
+  Note that $\lambda_{(2)}$ is defined in terms of the dg-algebras and dg-modules but cannot be constructed from the cohomology!
+  We say that the action $C_{-*}(S^1) \curvearrowright C^*(S^3)$ is not \emph{formal}.
+\end{ex}
+
+\subsection{Quotients and equivariant cohomology}
+
+From an action $S^1 \curvearrowright X$, we'd like to construct a quotient $[X / S^1]$.
+One way to do this that avoids issues with non-free actions is to choose a contractible space $ES^1$ on which $S^1$ acts freely and define
+\[
+  [X / S^1] = (X \times ES^1) / S^1.
+\]
+This space comes with a natural map to $BS^1 = [\pt / S^1] = (ES^1) / S^1$.
+In fact, we can take $ES^1 = S^\infty = \cup_n S^{2n+1}$.
+Then $BS^1 = \cup_n S^{2n} = \CC\PP^\infty$.
+
+By taking quotients, we've turned $S^1 \curvearrowright X$ into a space $[X / S^1]$ over $BS^1$.
+Koszul duality is about going back and forth between these perspectives.
+
+\begin{dfn}
+  We define the \emph{equivariant cochains} on $X$ to be $C^*_{S^1}(X) = C^*([X / S^1])$.
+  This is naturally a $C^*([\pt / S^1])$-module.
+\end{dfn}
+
+\end{document}
