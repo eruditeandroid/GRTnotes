@@ -92,4 +92,106 @@ Koszul duality is about going back and forth between these perspectives.
   This is naturally a $C^*([\pt / S^1])$-module.
 \end{dfn}
 
+\subsection{9/4 (David Nadler) -- Continued}
+
+Next week Peter Rowley will tell us about the $G$-Whitehead theorem and Elmendorf's theorem.
+
+\subsection{Review}
+
+Recall that we are focusing on actions $S^1 \curvearrowright X$ and linearizing by taking (co)chains valued in $k = \QQ$.
+This induces an action $C_{-*}(S^1) \curvearrowright C^*(X)$.
+Write $C_{-*}(S^1) = k[\lambda]$, where $\lambda$ is in degree $-1$ and acts by ``sweeps.''
+On cohomology we may have ``higher sweeps'' $\lambda_{(n)}$ related to differentials in a spectral sequence.
+
+Let
+\[
+  S^\infty = \cup_{n \geq 0} S^{2n+1} = ES^1 \subset \CC^\infty.
+\]
+We define $C^*_{S^1}(X) = C^*(X \times^{S^1} S^\infty)$.
+We have a natural map $X \times^{S^1} S^\infty \to \pt \times^{S^1} S^\infty$, where
+\[
+  \pt \times^{S^1} S^\infty = S^\infty / S^1 = \CC\PP^\infty = BS^1.
+\]
+This induces an action $C^*_{S^1}(\pt) \curvearrowright C^*_{S^1}(X)$.
+We have $C^*_{S^1}(\pt) = k[u]$ where $u$ is in degree $2$.
+
+\subsection{Koszul duality}
+
+Koszul duality lets us pass between the action $S^1 \curvearrowright X$ and the fibration $X \times^{S^1} ES^1 \to BS^1$.
+At the linear level, we pass between $k[\lambda] \curvearrowright C^*(X)$ and $k[u] \curvearrowright C^*_{S^1}(X)$.
+
+\begin{thm}[Algebraic Koszul duality]
+  \[
+    \Coh(k[\lambda]) = \Perf(k[u]).
+  \]
+\end{thm}
+
+\begin{rmk}
+  Note that $\Coh(k[\lambda]) \neq \Perf(k[\lambda])$.
+  For example, the augmentation module $k = k[\lambda] / (\lambda)$ is coherent but not perfect (any resolution must be infinite).
+\end{rmk}
+
+To understand Koszul duality, consiter $C^*(S^\infty)$.
+We have an action $S^1 \curvearrowright S^\infty$ and a fibration $S^\infty \to BS^1$.
+Because the $S^1$-action is fiberwise, the induced $k[\lambda]$ and $k[u]$-actions on $C^*(S^\infty)$ commute.
+That is, $C^*(S^\infty)$ is a $(k[\lambda], k[u])$-bimodule.
+We may write $C^*(S^\infty)$ as a free $(k[\lambda], k[u])$-bimodule on one generator (with nontrivial differential so that cohomology is concentrated in degree $0$).
+The Koszul duality equivalence is given by
+\[
+  M \mapsto M \otimes_{C_{-*}(S^1)} C^*(S^\infty) = \Hom_{C_{-*}(S^1)}(C^*(S\infty), M).
+\]
+To check that this is an equivalence, it suffices to show that it sends the generator $k \in \Coh(k[\lambda])$ to $k[u] \in \Perf(k[u])$ (up to a shift) and that this is an equivalence on endomorphisms.
+
+A related theorem gives an equivalence
+\[
+  \Perf(k[\lambda]) = \Tors(k[u])
+\]
+where $\Tors(k[u])$ consists of modules set-theoretically supported at zero.
+
+Suppose $X$ is a finite CW complex with $S^1$-action.
+(We need some sort of hypothesis to ensure everything is finite.)
+Then Koszul duality exchanges $C^*(X)$ and $C^*(X \times^{S^1} S^\infty)$.
+The GKM paper explains how one may extract non-equivariant information from the equivariant cohomology.
+
+\subsection{Cohomology and spectral sequences}
+
+The Koszul duality theorem we mentioned is a statement about cochains.
+What happens if we take cohomology?
+
+The fibration $X \hookrightarrow X \times^{S^1} S^\infty \twoheadrightarrow BS^1$ gives a Serre spectral sequence abutting to $H^*_{S^1}(X)$.
+The $E_2$ page of this spectral sequence has even columns given by $H^*(X)$ and odd columns all $0$.
+Because this is an $E_2$ page, the differentials increase horizontal degree by $2$ and decrease vertical degree by $1$.
+These differentials are the sweeps $d_2 = \lambda_{(1)}$.
+The differentials on the $E_3$ page are trivial by degree reasons (they go from even columns to odd columns).
+On the $E_4$ page, the differentials are higher sweeps $d_4 = \lambda_{(2)}$.
+In general, differentials on odd pages are trivial, while differentials on even pages are higher sweeps (sweep, fill, then sweep again).
+This is secretly what's powering the computation in the above proof of Koszul duality.
+
+\begin{ex}
+  Applying this method to the Hopf action $S^1 \curvearrowright S^3$, we get $H^*_{S^1}(S^3) = H^*(S^2)$ as expected.
+\end{ex}
+
+We say that $X$ is \emph{equivariantly formal} if the spectral sequence degenerates at $E_2$, i.e.\ if all sweeps are $0$.
+
+\begin{ex}
+  The action $S^1 \curvearrowright S^2$ is equivariantly formal.
+\end{ex}
+
+\subsection{Equivariant localization}
+
+We want to think of ``$\Spec C^*_{S^1}(\pt)$'' as something like an affine line.
+There is a torsion part (at ``$0$'') Koszul dual to $\Perf k[\lambda]$.
+The non-torsion part is governed by the augmentation module $k = C^*(\pt)$ for $k[\lambda]$.
+Note that this corresponds to $S^1$-fixed points.
+The \emph{Tate construction} gives $\Coh(k[\lambda]) / \Perf(k[\lambda]) = \Perf k[u, u\inv]$.
+These are two descriptions of ``$\Spec C^*_{S^1}(\pt)$.''
+
+\begin{thm}[Equivariant localization]
+  Let $X$ be a finite CW complex and let $S^1 \curvearrowright X$.
+  Then $C^*_{S^1}(X)[u\inv] = C^*_{S^1}(X^{S^1})[u\inv]$.
+\end{thm}
+
+The modern perspective is that equivariant localization allows us to compute $C^*_{S^1}(X)$ away from the origin.
+To compute $C^*_{S^1}(X)$ completely, we need to understand its behavior at the origin (i.e.\ the torsion part) and the gluing data.
+
 \end{document}
