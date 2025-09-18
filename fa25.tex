@@ -16,7 +16,7 @@
 
 \tableofcontents
 
-\section{8/28 (David Nadler) -- $S^1$-Actions and Koszul Duality}
+\section{(8/28) David Nadler -- $S^1$-Actions and Koszul Duality}
 
 A good reference for this material is GKM (Goresky--Kottwitz--Macpherson, ``Equivairant cohomology, Koszul duality, and the localization theorem'').
 We'll focus on the case of $G = S^1$ acting on a (reasonable) topological space $X$, e.g.\ a CW complex.
@@ -92,7 +92,7 @@ Koszul duality is about going back and forth between these perspectives.
   This is naturally a $C^*([\pt / S^1])$-module.
 \end{dfn}
 
-\subsection{9/4 (David Nadler) -- Continued}
+\section{(9/4) David Nadler -- Continued}
 
 Next week Peter Rowley will tell us about the $G$-Whitehead theorem and Elmendorf's theorem.
 
@@ -194,4 +194,138 @@ These are two descriptions of ``$\Spec C^*_{S^1}(\pt)$.''
 The modern perspective is that equivariant localization allows us to compute $C^*_{S^1}(X)$ away from the origin.
 To compute $C^*_{S^1}(X)$ completely, we need to understand its behavior at the origin (i.e.\ the torsion part) and the gluing data.
 
+\section{(9/11) Peter Rowley -- $G$-Spaces and the $G$-Whitehead Theorem}
+
+I wasn't here for this day.
+I obtained notes from Swapnil Garg and will try to type them up soon.
+
+\section{(9/18) Peter Rowley -- Elmendorf's Theorem}
+
+\subsection{Model categories}
+
+We will take a model-categorical perspective on Elmendorf's theorem.
+Recall that a \emph{model category} $\Cc$ is a category with distinguished (non-full) subcategories of fibrations, cofibrations, and weak equivalences (all satisfying conditions we won't get into).
+A trivial (co)fibration is a (co)fibration which is also a weak equivalence.
+
+\begin{dfn}
+  An object $A \in \Cc$ is \emph{cofibrant} if $\varnothing \to A$ is a cofibration.
+  Dually, an object $B \in \Cc$ is \emph{fibrant} if $A \to \pt$ is a cofibration.
+\end{dfn}
+
+These can be used to capture the homotopy theory of topological spaces:
+
+\begin{ex}
+  The category $\Top$ of (compactly generated weak Hausdorff) topological spaces has a model structure where:
+  \begin{itemize}
+    \item Fibrations are Serre fibrations.
+    \item Weak equivalences are weak homotopy equivalences.
+    \item Cofibrations are retracts of relative CW complexes.
+      In particular, the cofibrant objects are precisely the CW complexes.
+  \end{itemize}
+\end{ex}
+
+We may upgrade this to a $G$-equivariant version as follows.
+
+\begin{ex}
+  Let $G\Top$ be the category of (cgwh) $G$-spaces, where we say:
+\begin{itemize}
+  \item $f: X \to Y$ is a fibration if $f^H: X^H \to Y^H$ is a fibration for all $H$.
+  \item $f: X \to Y$ is a weak equivalence if $f^H: X^H \to Y^H$ is a weak equivalence for all $H$ (equivalently, $\pi_n^H(f)$ is an isomorphism for all $n$ and $H$).
+  \item Cofibrations are retracts of relative $G$-CW complexes.
+    In particular, cofibrant objects are $G$-CW complexes.
+\end{itemize}
+\end{ex}
+
+The right notion of adjunction between model categories is the following:
+
+\begin{dfn}
+  A \emph{Quillen adjunction} between model categories is an adjunction
+  \[
+    F: \Cc \rightleftarrows \Dc : G
+  \]
+  such that $F$ preserves cofibrations and trivial cofibrations, or equivalently $G$ preserves fibrations and trivial fibrations.
+\end{dfn}
+
+\begin{dfn}
+  The \emph{homotopy category} $\Ho \Cc$ is $\Cc[W\inv]$ where $W$ is the class of weak equivalences.
+\end{dfn}
+
+Under suitable hypotheses, we may define left and right derived functors between homotopy categories.
+These are essentially constructed by performing (co)fibrant replacement and then applying the functors as usual.
+We may use these to obtain a notion of \emph{equivalence} of model categories.
+
+\begin{dfn}
+  A \emph{Quillen equivalence} is a Quillen adjunction $F: \Cc \rightleftarrows \Dc :G$ such that $\Lbf F$ and $\Rbf G$ are mutually inverse equivalences $\Ho \Cc \simeq \Ho \Dc$.
+\end{dfn}
+
+\subsection{Orbit categories}
+
+To state Elmendorf's theorem, we need the following definition.
+
+\begin{dfn}
+  The \emph{orbit category} $\Oc_G$ is the full subcategory of $G\Top$ on objects of the form $G / H$.
+\end{dfn}
+
+Note that $\Map_{\Oc_G}(G/H, G/K)$ corresponds to subconjugacy relations $g\inv H g \subset K$ (since these correspond to maps $eH \mapsto gK$).
+In particular, we have
+\[
+  \Map_{\Oc_G}(G/H, G/H) = WH := N_G(H) / H.
+\]
+
+\begin{ex}
+  Let $G = \ZZ_2$.
+  Then $G$ has exactly two subgroups: $e$ and $\ZZ_2$.
+  The category $\Oc_G$ has:
+  \begin{itemize}
+    \item $\End(\ZZ_2 / e) = \ZZ_2$
+    \item $\End(\ZZ_2 / \ZZ_2) = \pt$.
+    \item $\Map(\ZZ_2 / e, \ZZ_2 / \ZZ_2) = \pt$.
+    \item $\Map(\ZZ_2 / \ZZ_2, \ZZ_2 / e) = \varnothing$.
+  \end{itemize}
+\end{ex}
+
+More generally, $G/e$ has $G$ as its group of automorphisms.
+
+\subsection{Elmendorf's theorem}
+
+Define a functor $\psi: G\Top \to \Fun(\Oc_G\op, \Top)$ by 
+\[
+  \psi(X)(G/H) = \Map(G/H, X) = X^H.
+\]
+We'd like to say that $\psi$ induces a Quillen equivalence.
+To accomplish this, we need to define a model structure on $\Fun(\Oc_G\op, \Top)$.
+We may use the \emph{projective model structure}, where fibrations and weak equivalences are defined pointwise.
+
+\begin{thm}[Elmendorf]
+  The functor $\psi$ is the right adjoint in a Quillen equivalence.
+  The left adjoint is given by $\theta: \Fun(\Oc_G\op, \Top) \to G\Top$ defined by $\theta(Y) = Y(G / e)$.
+\end{thm}
+
+At the level of $\infty$-categories, we may say that $\psi$ is an equivalence of $(\infty, 1)$-categories.
+In practice, Elmendorf's theorem lets us exchange the ``algebra of $G$'' for the ``geometry of $\Oc_G$.''
+
+Let's first understand why $\theta: \Fun(\Oc_G\op, \Top) \rightleftarrows G\Top :\psi$ is a Quillen adjunction.
+It follows from the definitions that $\psi$ preserves fibrations and trivial fibrations, so it suffices to show that we actually have an adjunction.
+That is, we need to show
+\[
+  \Hom_{G\Top}(Y(G/e), X) \cong \Hom(Y, X^{(-)}).
+\]
+The backwards map is just evaluation at $H$.
+The forwards map is given by assembling the maps
+\[
+  Y(G/H) \to Y(G/e)^H \to X^H.
+\]
+
+At the level of homotopy categories, $\Lbf \theta$ is equivalent to the bar construction.
+More precisely: let $M: \Oc_G \to \Top$ be the forgetful map, and let $\Phi: \Fun(\Oc_G\op, \Top) \to \Top$ be the geometric realization of the bar complex
+\[
+  \Phi(X) = |B_\bullet(X, \Oc_G, M)|.
+\]
+Here $B_\bullet(X, \Oc_G, M)$ is the simplicial space
+\[
+  [n] \mapsto \sqcup_{G / H_{n-1} \to \dots \to G / H_0} X(G / H_0) \times M(G / H_{n-1}).
+\]
+Then $\Phi$ gives an alternative construction of $\Lbf \theta$ on homotopy categories.
+
+One may understand this explicitly for $G = \ZZ_2$ but I couldn't make the pictures for that, sorry!
 \end{document}
