@@ -328,4 +328,131 @@ Here $B_\bullet(X, \Oc_G, M)$ is the simplicial space
 Then $\Phi$ gives an alternative construction of $\Lbf \theta$ on homotopy categories.
 
 One may understand this explicitly for $G = \ZZ_2$ but I couldn't make the pictures for that, sorry!
+
+\subsection{(9/25) Gabriel Beiner -- Bredon Cohomology}
+
+\subsection{Review}
+
+Recall that, given a group $G$, we can construct an \emph{orbit category} $\Oc_G$.
+The objects of $\Oc_G$ are quotients $G / H$, and maps are given by
+\[
+  \Mor_{\Oc_G}(G/H, G/K) = \Map^G(G/H, G/K).
+\]
+Elmendorf's theorem gives a (Quillen) equivalence
+\begin{align*}
+  G\Top &\simeq \Fun(\Oc_G\op, \Top) \\
+  X &\mapsto (G/H \mapsto X^H).
+\end{align*}
+
+Today we want to discuss a robust notion of cohomology for $G$-spaces which vastly generalizes the classical Borel cohomology.
+
+\subsection{Bredon cohomology}
+
+Suppose $G$ is a finite group.
+
+\begin{dfn}
+  A \emph{coefficient system} for $G$ is $M \in \Fun(\Oc_G\op, \Ab)$.
+\end{dfn}
+
+\begin{rmk}
+  If $G$ is a topological group, we'd replace $\Oc_G\op$ by the homotopy category $h\Oc_G\op$.
+\end{rmk}
+
+\begin{ex}
+  For any $G$, there is a constant coefficient system $\ul{Z}$ given by $G/H \mapsto \ZZ$.
+\end{ex}
+
+\begin{ex}
+  Given a $G$-space $X$, we may define coefficient systems:
+  \begin{itemize}
+    \item $\ul{\pi}_n(X)$ (for $n > 1$) by $G/H \mapsto \pi_n(X^H)$
+    \item $\ul{H}_n(X)$ by $G/H \mapsto H_n(X^H)$.
+  \end{itemize}
+\end{ex}
+
+For a $G$-CW complex $X$, let $\sk_n X$ denote the $n$-skeleton (built inductively out of disks $G / H \times D^k$ for $k < n$).
+Let
+\[
+  \ul{\Cc}_n(X) = \ul{H}_n(\sk_n X, \sk_{n-1} X; \ZZ)
+\]
+This sends $G/H$ to $H_n(\sk_n X^H, \sk_{n-1} X^H) = \Cc_n^{\textrm{CW}}(X^H)$.
+Allowing $n$ to vary, we get cellular chain complexes $\Cc_\bullet(X)(G/H)$ for all $H$.
+
+\begin{dfn}
+  Let $X$ be a $G$-CW complex and $M$ a coefficient system for $G$.
+  The \emph{Bredon cohomology} of $X$ with coefficients in $M$ is
+  \[
+    H^n_G(X; M) = H^n(\Hom_{\Fun(\Oc_G\op, \Ab)}(\Cc_\bullet(X), M))
+  \]
+  The \emph{Bredon homology} of $X$ with coefficients in $M$ is
+  \[
+    H_n^G(X; M) = \ul{\Cc}_\bullet(X) \otimes_{\Oc_G} M)
+  \]
+  where $\otimes_{\Oc_G}$ is a coend (sort of like the usual tensor product).
+\end{dfn}
+
+\begin{rmk}
+  David suggested that we can instead take an $\infty$-categorical perspective.
+  Let's think of the orbit category as (the exit-path category of) a stratified space with strata $B(WH) = B(N_G(H)/H)$ for $H \subset G$.
+  The coefficient systems are then constructible (co?)sheaves on this stratified space.
+  The $G$-CW complexes $X$ above give spaces $\Xc$ over our stratified space (with fiber over $B(WH)$ given by $X^H$)
+  Bredon cohomology computes the cohomology of the pullback of a constructible sheaf to $\Xc$.
+\end{rmk}
+
+\subsection{Examples}
+
+\begin{ex}
+  Let's consider $\ZZ_2$ acting on $S^2$ via rotation by $\pi$.
+  We'll compute $H^*_{\ZZ_2}(S^2; \ZZ)$.
+
+  To perform this computation, let's give $S^2$ the $\ZZ_2$-CW structure with:
+  \begin{itemize}
+    \item Two $0$-cells $\ZZ_2 / \ZZ_2 \times D^0$ (the north and south poles)
+    \item One $1$-cell $\ZZ_2 / e \times D^1$ (corresponding to the prime meridian and its opposite, which $\ZZ_2$ permutes)
+    \item One $2$-cell $\ZZ_2 / e \times D^2$ (corresponding to the eastern and western hemispheres, which $\ZZ_2$ permutes).
+  \end{itemize}
+  The category $\Oc_{\ZZ_2}$ was described in the last talk.
+  We may describe $\Cc_\bullet(X)$ as follows:
+  \begin{itemize}
+    \item For $e$-fixed points, the cellular chain complex $\Cc_\bullet(X^e)$ is
+      \[
+        \begin{tikzcd}
+          0 \rar & \ZZ^2 \rar["d_2"] & \ZZ^2 \rar["d_1"] & \ZZ^2 \rar & 0
+        \end{tikzcd}
+      \]
+      The differentials are $d_2(x, y) = (x-y, y-x)$ and $d_1(u, v) = (u+v, -u-v)$.
+      Here $\ZZ_2$ (acting on $\ZZ_2 / e$ by outer automorphisms) acts trivially on $\Cc_0$ and swaps the factors of $\Cc_1$ and $\Cc_2$.
+    \item For $\ZZ_2$-fixed points, the cellular chain complex $\Cc_\bullet(X^{\ZZ_2})$ is
+      \[
+        \begin{tikzcd}
+          0 \rar & 0 \rar & 0 \rar & \ZZ^2 \rar & 0.
+        \end{tikzcd}
+      \]
+      The automorphism group of $\ZZ_2 / \ZZ_2$ is trivial, so we don't need to care about the group actions.
+      However, we do want to remember the homomorphism from this complex to the above complex (given by the identity on $\ZZ^2 = \Cc_0$).
+  \end{itemize}
+  To compute Bredon cohomology, we take $\Hom(\Cc_\bullet(X), \ul{\ZZ})$, where
+  \[
+    \ul{\ZZ}(\ZZ_2 / H) = \begin{cases}
+      \ZZ \textrm{ with trivial action} & H = e \\
+      \ZZ & H = \ZZ_2.
+    \end{cases}
+  \]
+  Some computation (which I didn't entirely catch) shows that $\Hom(\Cc_\bullet(X), \ul{\ZZ})$ is
+  \[
+    \begin{tikzcd}
+      0 \rar & \ZZ^2 \rar["\delta_1"] & \ZZ \rar["\delta_2"] \rar & \ZZ \rar & 0.
+    \end{tikzcd}
+  \]
+  Here the middle $\ZZ$ is generated by $\phi$ satisfying $\phi(u, v) = u + v$.
+  The differential $\delta_1$ satisfies $\delta_1(a, b) = a - b$, and $\delta_2 = 0$.
+  Thus
+  \[
+    H^\bullet_{\ZZ_2}(S^2; \ul{\ZZ}) = \begin{cases}
+      \ZZ & \bullet = 0, 2 \\
+      0 & \textrm{else.}
+    \end{cases}
+  \]
+\end{ex}
+
 \end{document}
