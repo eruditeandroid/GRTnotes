@@ -329,7 +329,7 @@ Then $\Phi$ gives an alternative construction of $\Lbf \theta$ on homotopy categ
 
 One may understand this explicitly for $G = \ZZ_2$ but I couldn't make the pictures for that, sorry!
 
-\subsection{(9/25) Gabriel Beiner -- Bredon Cohomology}
+\section{(9/25) Gabriel Beiner -- Bredon Cohomology}
 
 \subsection{Review}
 
@@ -375,7 +375,7 @@ Let
 \[
   \ul{\Cc}_n(X) = \ul{H}_n(\sk_n X, \sk_{n-1} X; \ZZ)
 \]
-This sends $G/H$ to $H_n(\sk_n X^H, \sk_{n-1} X^H) = \Cc_n^{\textrm{CW}}(X^H)$.
+This sends $G/H$ to $H_n(\sk_n X^H, \sk_{n-1} X^H) = \Cc_n^{\mathrm{CW}}(X^H)$.
 Allowing $n$ to vary, we get cellular chain complexes $\Cc_\bullet(X)(G/H)$ for all $H$.
 
 \begin{dfn}
@@ -454,5 +454,149 @@ Allowing $n$ to vary, we get cellular chain complexes $\Cc_\bullet(X)(G/H)$ for 
     \end{cases}
   \]
 \end{ex}
+
+\section{(10/2) Gabriel Beiner -- Continued}
+
+Recall that, to define Bredon cohomology, we choose a coefficient system $M \in \Fun(\Oc_G\op, \Ab)$.
+For a $G$-CW complex $X$, we define
+\[
+  H^\bullet_G(X, M) = H^n(\Hom_{\Fun(\Oc_G\op, \Ab)}(\ul{\Cc}_\bullet^{\mathrm{CW}}(X), M)).
+\]
+Our goal today is to compute some more examples.
+
+Recall that we can think of $\Fun(\Oc_G\op, \Ab)$ as an exit path category.
+For $G = \ZZ_2$, the large ``open'' stratum corresponds to $\ZZ_2 / e$, while the small ``closed'' stratum corresponds to $\ZZ_2$.
+
+One advantage of this approach is that we may choose $M$ to recover different features of $X$: we can compute cohomology of $X$, $X / G$, or $X^G$ through suitable choices of coefficient.
+
+\subsection{An example}
+
+\begin{ex}
+  Let $G = \ZZ_4$ (with generator $\sigma$), and let $X$ be the star-shaped graph with six edges (it looks like $*$).
+  We may view $X$ as (a union of segments on) the axes in $xyz$-space, and we let $G$ rotate the $xy$-plane and swap the positive and negative $z$-axes.
+  Then $X$ has a natural $G$-CW complex structure, with:
+  \begin{itemize}
+    \item $0$-cells:
+      \begin{itemize}
+        \item A basepoint $\gamma = \ZZ_4 / \ZZ_4$.
+        \item An orbit $\{ \beta_1, \beta_2 \} = \ZZ_4 / \ZZ_2 \times D^0$ corresponding to endpoints on the $z$-axis.
+        \item An orbit $\{ \alpha_i \} = \ZZ_4 / e \times D^0$ corresponding to endpoints on the $x$- and $y$-axes.
+      \end{itemize}
+    \item $1$-cells:
+      \begin{itemize}
+        \item An orbit $\{ b_1, b_2 \} = \ZZ_4 / \ZZ_2 \times D^1$ corresponding to segments on the $z$-axis.
+        \item An orbit $\{ a_i \} = \ZZ_4 / \ZZ_4 \times D^1$ corresponding to segments on the $x$- and $y$-axes.
+      \end{itemize}
+  \end{itemize}
+  The cellular chain complex here is given by:
+  \begin{itemize}
+    \item $\ZZ_4 / e$ goes to $\ZZ^2 \oplus \ZZ^4 \to \ZZ \oplus \ZZ^2 \oplus \ZZ^4$.
+      The differential is
+      \[
+        \begin{bmatrix}
+          -1 & -1 & -1 & -1 & -1 & -1 \\
+          1 & 0 & 0 & 0 & 0 & 0 \\
+          0 & 1 & 0 & 0 & 0 & 0 \\
+          0 & 0 & 1 & 0 & 0 & 0 \\
+          0 & 0 & 0 & 1 & 0 & 0 \\
+          0 & 0 & 0 & 0 & 1 & 0 \\
+          0 & 0 & 0 & 0 & 0 & 1 
+        \end{bmatrix}.
+      \]
+    \item $\ZZ_4 / \ZZ_2$ goes to $\ZZ^2 \to \ZZ \oplus \ZZ^2$.
+      The differential is
+      \[
+        \begin{bmatrix}
+          -1 & -1 \\
+          1 & 0 \\
+          0 & 1
+        \end{bmatrix}
+      \]
+    \item $\ZZ_4 / \ZZ_4$ goes to $0 \to \ZZ$.
+  \end{itemize}
+  All of the transition maps (going from chain complexes below to chain complexes above) are given by the obvious inclusions.
+  Here the stabilizers act by rotation on each copy of $\ZZ^4$, swaps on each copy of $\ZZ^2$, and the identity on each copy of $\ZZ$.
+
+  If we use the constant coefficient system $\ZZ$, we get the total cochain complex
+  \[
+    \Hom(\ZZ, \ZZ) \oplus \Hom^{\ZZ_2}(\ZZ^2, \ZZ) \oplus \Hom^{\ZZ_4}(\ZZ^4, \ZZ) \to \Hom^{\ZZ_2}(\ZZ^2, \ZZ) \oplus \Hom^{\ZZ_4}(\ZZ^4, \ZZ).
+  \]
+  This may be identified with
+  \[
+    \ZZ^3 \xrightarrow{\delta} \ZZ^2
+  \]
+  where
+  \[
+    \delta = \begin{bmatrix}
+      -1 & 1 & 0 \\
+      -1 & 0 & 1
+    \end{bmatrix}
+  \]
+  Since $\delta$ has full rank, we get 
+  \[
+    H^\bullet_{\ZZ_4}(X) = H^\bullet(X/\ZZ_4) = \begin{cases}
+      \ZZ & \bullet = 0 \\
+      0 & \textrm{otherwise.}
+    \end{cases}
+  \]
+\end{ex}
+
+\subsection{Another example}
+
+We saw above that taking cohomology with respect to the constant coefficient system gives the cohomology of the usual quotient (not the Borel quotient).
+Let's see what happens for more interesting coefficient systems.
+
+\begin{ex}
+  Let $\ZZ_2$ act on $S^2$ by reflection across the equator.
+  Here we have a $G$-CW structure with:
+  \begin{itemize}
+    \item $0$-cell $\ZZ_2 / \ZZ_2 \times D^0$ sitting on the equator
+    \item $1$-cell $\ZZ_2 / \ZZ_2 \times D^0$ sitting on the equator (connecting the $0$-cell to itself)
+    \item $2$-cell $\ZZ_2 / e \times D^2$ giving the hemispheres.
+  \end{itemize}
+  The cellular chain complex sends:
+  \begin{itemize}
+    \item $\ZZ_2 / e$ to $\ZZ^2 \to \ZZ \to \ZZ$.
+    \item $\ZZ_2 / \ZZ_2$ to $0 \to \ZZ \to \ZZ$.
+  \end{itemize}
+  The transition maps between orbits are inclusions.
+  Here $\ZZ_2$ acts by swapping on the copy of $\ZZ^2$ and acts trivially on the copies of $\ZZ$.
+
+  Consider the coefficient system $\ZZ \to \ZZ[i]$, where $\ZZ_2$ acts on $\ZZ[i]$ by conjugation.
+  This is the sum of the constant coefficient system and a copy of $i\ZZ$ supported at $\ZZ_2 / e \in \Oc_G$.
+  We can compute that the corresponding cochain complex is
+  \[
+    \begin{tikzcd}
+      \ZZ \rar["0"] & \ZZ \rar & \ZZ^2
+    \end{tikzcd}
+  \]
+  and by understanding the maps we see
+  \[
+    H^\bullet_{\ZZ_2}(S^2; M) = \begin{cases}
+      \ZZ & \bullet = 0, 2 \\
+      0 & \textrm{otherwise.}
+    \end{cases}
+  \]
+\end{ex}
+
+\subsection{Some last remarks}
+
+Bredon cohomology may be characterized by Eilenberg--Steenrod axioms similarly to ordinary cohomology.
+However, the dimension axiom is replaced by the axiom that 
+\[
+  H^\bullet_G(G/H, M) = \begin{cases}
+    M(G/H) & \textrm{$\bullet = 0$} \\
+    0 & \textrm{otherwise}
+  \end{cases}
+\]
+We can define more general cohomology theories by relaxing the dimension axiom.
+
+However, in general we want to do better: cohomology should be graded by the representation ring $\RO(G)$ rather than just $\ZZ$.
+This can be done using \emph{Mackey functors}.
+
+The analogue of the universal coefficient theorem for Bredon cohomology gives a spectral sequence
+\[
+  \Ext^{p,q}(\ul{\Cc}_\bullet^{\textrm{CW}}(X), M) \Rightarrow H^{p+q}(X; M).
+\]
 
 \end{document}
