@@ -599,4 +599,154 @@ The analogue of the universal coefficient theorem for Bredon cohomology gives a 
   \Ext^{p,q}(\ul{\Cc}_\bullet^{\textrm{CW}}(X), M) \Rightarrow H^{p+q}(X; M).
 \]
 
+\section{(10/9) Gabriel Beiner -- Smith Theory}
+
+Our goal today is to discuss the following result in the context of equivariant homotopy theory.
+
+\begin{thm}
+  Let $G$ be a finite $p$-group.
+  Suppose $X$ is a finite $G$-CW complex which is an $\FF_p$-cohomology $n$-sphere (i.e.\ $H^\bullet(X; \FF_p) = H^\bullet(S^n; \FF_p)$).
+  Then $X^G$ is either empty or a $\FF_p$-homology for $m \leq n$.
+
+\end{thm}
+
+One can also show the following claims:
+\begin{itemize}
+  \item If $p$ is odd, then $n - m$ is even.
+  \item If $p$ is odd and $n$ is even, then $X^G$ is nonempty.
+\end{itemize}
+
+We'll follow an approach similar to Smith's original proof but with some simplifications using Bredon cohomology.
+
+\subsection{Proof of the Smith inequality}
+
+If $H \subset G$ is a normal subgroup, then we have $X^G = (X^H)^{G/H}$.
+Arguing by induction, we reduce to proving the result in the case $G = \ZZ / p$.
+We don't actually need to assume that $X$ is an $\FF_p$-homology sphere until the end of the proof, so let's drop this assumption for the moment.
+
+The idea of the proof is to find coefficient systems $L$, $M$, and $N$ such that:
+\begin{itemize}
+  \item $H^\bullet(X; L) = \tilde{H}^\bullet((X / X^G) /  G; \FF_p)$,
+  \item $H^\bullet(X; M) = H^\bullet(X; \FF_p)$, and
+  \item $H^\bullet(X; N) = H^\bullet(X^G; \FF_p)$.
+\end{itemize}
+By the Eilenberg--Steenrod axioms, it will suffice to check that these results hold when $X$ is a $0$-cell.
+
+The orbit category for $\ZZ/p$ is $\ZZ/p \to e$, where $\ZZ/p$ has automorphism group $\ZZ/p$.
+We'll take:
+\begin{itemize}
+  \item $L$ is $\FF_p \leftarrow 0$, where $\ZZ/p$ acts trivially on the first factor.
+  \item $M$ is $\FF_p[G] \leftarrow \FF_p$.
+  \item $N$ is $0 \leftarrow \FF_p$.
+\end{itemize}
+To check the above homology equivalences, we plug in $X = G \times D^0$ and $X = G / G \times D^0$.
+
+Consider the augmentation $\FF_p[G] \to \FF_p$ (given by $g \mapsto 1$), and let $I = \ker(\FF_p[G] \to \FF_p)$ be the augmentation ideal.
+This gives rise to coefficient systems $I^n = (I^n \leftarrow 0)$.
+We have two natural short exact sequences of coefficient systems:
+\[
+  \begin{tikzcd}
+    0 \rar & I \rar & M \rar & L \oplus N \rar & 0
+  \end{tikzcd}
+\]
+and
+\[
+  \begin{tikzcd}
+    0 \rar & L \rar & M \rar & I \oplus N \rar & 0.
+  \end{tikzcd}
+\]
+To understand the latter short exact sequence, note that:
+\begin{itemize}
+  \item At $e$, the SES becomes $0 \to \FF_p \to \FF_p$.
+  \item At $\ZZ/p$, the SES becomes $((t-1)^{p-1}) \to \FF_p[t] / (t^p - 1) \xrightarrow{\cdot (t-1)} (t - 1)$.
+\end{itemize}
+Both of these are exact, so the sequence is an SES.
+
+\begin{rmk}
+  David pointed out that these relate to (and partially generalize) the short exact sequence building $\FF_2[\Sigma_2]$ as a self-extension of the trivial representation.
+  Note that this short exact sequence does not split (because we are working with $\FF_2$ coefficients).
+\end{rmk}
+
+The SESes of coefficient systems give long exact sequences (where coefficients not mentioned are implicitly in $\FF_p$)
+\[
+  \begin{tikzcd}
+    \dots \rar & H^q_G(X; I) \rar & H^q(X) \rar & \tilde{H}^q((X / X^G) / G) \oplus H^q(X^G) \rar & \dots
+  \end{tikzcd}
+\]
+and
+\[
+  \begin{tikzcd}
+    \dots \rar & \tilde{H}^q((X / X^G) / G) \rar & H^q(X) \rar & H^q_G(X; I) \oplus H^q(X^G) \rar & \dots.
+  \end{tikzcd}
+\]
+Let's focus on Betti numbers for simplicity.
+Write:
+\begin{itemize}
+  \item $a_q = \dim \tilde{H}^q((X / X^G) / G)$,
+  \item $b_q = \dim H^q(X)$,
+  \item $\ol{a}_q = H^q_G(X; I)$, and
+  \item $c_q = \dim H^q(X^G)$.
+\end{itemize}
+Our long exact sequences give inequalities $a_q + c_q \leq b_q + \ol{a}_{q+1}$ and $\ol{a}_q + c_q \leq b_q + a_{q+1}$.
+Combining these gives the key inequality (for $q, r \geq 0$ and $r$ odd):
+\[
+  a_q + c_q + c_{q+1} + \dots + c_{q+r} \leq b_q + b_{q+1} + \dots + b_{q+r} + a_{q+r+1}.
+\]
+Starting at $q = 0$ and continuing to $r \gg 0$, this gives $\sum_i c_i \leq \sum_i b_i$.
+In other words,
+\[
+  \sum_i \rk H^i(X^G; \FF_p) \leq \sum_i \rk H^i(X; \FF_p).
+\]
+This is the ``Smith inequality'' and does not use anything other than the fact that $X$ is a finite $G$-CW complex.
+
+\subsection{Finishing the proof of Smith's theorem}
+
+Now taking $X$ to be an $\FF_p$-homology sphere, we see that
+\[
+  \sum_i \rk H^i(X^G; \FF_p) \leq 2.
+\]
+To see that $X^G$ is an $\FF_p$-homology sphere, it suffices to show that $\sum_i \rk H^i(X^G; \FF_p) \neq 1$.
+
+To show this, first note that $I^n / I^{n+1} \cong \FF_p$.
+From the short exact sequence
+\[
+  \begin{tikzcd}
+    0 \rar & I^{n+1} \rar & I^n \rar & L \rar & 0,
+  \end{tikzcd}
+\]
+we get $\chi(X; I^n) = \chi(X; I^{n+1}) + \chi(X; L)$.
+Summing these up gives
+\[
+  \sum_{i=1}^{p-1} \chi(X; I^i) = \sum_{i=1}^{p-1} \big(\chi(X; I^{i+1}) + \chi(X; L)\big)
+\]
+and hence (using $I^p = 0$)
+\[
+  \chi(X; I) = \chi(X; I^p) + (p - 1) \chi(X; L) = (p - 1) \chi(X; L).
+\]
+Using $\chi(X; M) = \chi(X; I) + \chi(X; L) + \chi(X; N)$, we obtain
+\[
+  \chi(X; M) = \chi(X; N) + p \chi(X; L).
+\]
+We may rewrite this as $\chi(X) = \chi(X^G) + p \tilde{\chi}((X / X^G) / G)$.
+This forces $\chi(X) \equiv \chi(X^G) \pmod p$.
+(Again, this claim doesn't need $X$ to be an $\FF_p$-homology sphere.)
+We never have $1 \equiv 2 \pmod p$, so we must have $\sum_i \rk H^i(X^G; \FF_p) \neq 1$.
+
+\subsection{Harnack's curve theorem}
+
+Here's an application of Smith theory to algebraic geometry.
+
+\begin{thm}[Harnack]
+  Let $X_\RR$ be the real locus of a smooth projective plane curve of genus $g$.
+  Then the number of connected components of $X_\RR$ is bounded above by $g + 1$.
+\end{thm}
+
+\begin{proof}
+  We have $X_\RR = (X_\CC)^{\ZZ/2}$, so
+  \[
+    \sum_i \rk H^i(X_\RR; \FF_2) \leq \sum_i \rk H^i(X_\CC; \FF_2).
+  \]
+  The former is twice the number of connected components of $X_\RR$ (which are copies of $S^1$), and the latter is $2 + 2g$.
+\end{proof}
+
 \end{document}
