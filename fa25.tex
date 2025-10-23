@@ -749,4 +749,271 @@ Here's an application of Smith theory to algebraic geometry.
   The former is twice the number of connected components of $X_\RR$ (which are copies of $S^1$), and the latter is $2 + 2g$.
 \end{proof}
 
+\section{(10/16) Joakim F{\ae}rgeman -- Local Constancy of Automorphic Sheaves over the Moduli of Curves}
+
+Today's talk is a research talk (not about equivariant homotopy theory).
+This is based on joint work with Marius Kj{\ae}rsgaard.
+
+\subsection{De Rham Geometric Langlands}
+
+Let $X$ be a smooth projective curve over $\CC$ and $G$ a connected reductive algebraic group (e.g.\ $G = \GL_n$, $\SL_n$, $\PGL_n$, $\SO_{2n+1}$, etc).
+The de Rham geometric Langlands correspondence relates the following data.
+
+On the automorphic side, we consider the moduli stack $\Bun_G(X)$ of $G$-bundles on $X$.
+We think about the (unbounded derived) category $D(\Bun_G(X))$ of $D$-modules on $\Bun_G(X)$.
+
+\begin{ex}
+  If $G = \GL_n$, $\Bun_G(X)(\CC)$ classifies rank $n$ vector bundles on $X$.
+\end{ex}
+
+On the spectral side, we have a Langlands dual group $\check{G}$ with root data dual to that of $G$.
+Let $\LS_{\check{G}}(X)$ be the stack of $\check{G}$-bundles equipped with a flat connection.
+We focus on the category $\QCoh(\LS_{\check{G}}(X))$ of quasicoherent sheaves on $\LS_{\check{G}}(X)$.
+
+\begin{ex}
+  Here are the Langlands duals of some common groups:
+  \begin{itemize}
+    \item The Langlands dual of $\GL_n$ is $\GL_n$.
+    \item The Langlands dual of $\SL_n$ is $\PGL_n$.
+    \item The Langlands dual of $\SO_{2n+1}$ is $\Sp_{2n}$.
+  \end{itemize}
+\end{ex}
+
+\begin{ex}
+  For $G = \GL_n$, we have $\check{G} = \GL_n$, so $\LS_{\check{G}}(X)(\CC)$ classifies rank $n$ vector bundles on $X$ with a flat connection.
+\end{ex}
+
+The de Rham geometric Langlands correspondence is something like an equivalence
+\[
+  D(\Bun_G(X)) \simeq \QCoh(\LS_{\check{G}}(X)).
+\]
+For this to be literally true, the right hand side of this should be replaced by ind-coherent sheaves with nilpotent singular support.
+Furthermore, we want the equivalence here to satisfy some nice expected properties.
+
+\subsection{Betti Geometric Langlands}
+
+Here's a modified version of the geometric Langlands correspondence, replacing $\LS_{\check{G}}(X)$ with topological local systems on $X$.
+This was proposed by David Ben-Zvi and our own David Nadler in 2016.
+
+On the spectral side, we let $\LS_{\check{G}}^\toprm(X) = \Map(\pi_1(X), \check{G}) / \check{G}$.
+More concretely, if $X$ has genus $g$, then we may write $\pi_1(X) = \langle \{ a_i \}_{i=1}^g, \{ b_i \}_{i=1}^g | \prod_i [a_i, b_i] = 1 \rangle$.
+This lets us write $\LS_{\check{G}}^\toprm(X) = (\check{G}^{2g} \times_{\check{G}} \{ 1 \}) / \check{G}$, where the map $\check{G}^{2g} \to \check{G}$ is given by the product of commutators.
+
+The automorphic side is a bit more complicated.
+Given a smooth algebraic stack $\Yfr$ over $\CC$, we may define a category $\Sh(\Yfr)$ of sheaves of $\CC$-vector spaces on the underlying topological space of $\Yfr^\mathrm{an}$.
+We don't assume that the fibers are finite dimensional.
+If $\Lambda \subset T^* \Yfr$ is a closed conical Lagrangian, we define $\Sh_\Lambda(\Yfr)$ to be the full subcategory of $\Sh(\Yfr)$ consisting of sheaves $\Fsc$ with singular support $\SS(\Fsc) \subset \Lambda$.
+Here $\SS(\Fsc)$ is a closed conical subset of $T^* \Yfr$ ``measuring where $\Fsc$ is not locally constant.
+
+\begin{ex}
+  If $\Lambda$ is the zero section, then $\Sh_\Lambda(\Yfr)$ is the category of local systems on $\Yfr$.
+\end{ex}
+
+\begin{ex}
+  Let $\Yfr = \AA^1$, and let $j: \AA^1 \setminus 0 \hookrightarrow \AA^1$ be the inclusion.
+  If $\Fsc = j_*(\CC_{\AA^1 \setminus 0})$, then $\SS(\Fsc)$ is the union of the coordinate axes in $T^* \AA^1 = \AA^2$.
+\end{ex}
+
+If $\Yfr = \Bun_G(X)$, then $T^*\Bun_G(X)$ is the moduli of pairs $(\Pc_G, \phi)$ where $\Pc_G$ is a $G$-bundle and $\phi \in \Gamma(X, \gfr^*_{\Pc_G} \otimes \Omega^1_X)$.
+(Proving this is an exercise in Serre duality.)
+We take $\Lambda$ to be the nilpotent cone $\Nilp(X) \subset T^*\Bun_G(X)$, i.e.\ the subset where $\phi$ is nilpotent.
+
+\begin{ex}
+  For $G = \GL_n$, we have $T^* \Bun_{\GL_n} = \{ (E, \phi: E \to E \otimes \Omega^1_X) \}$.
+\end{ex}
+
+The Betti geometric Langlands correspondence is an equivalence
+\[
+  \Sh_{\Nilp(X)}(\Bun_G(X)) \simeq \QCoh(\LS_{\check{G}}^\toprm(X)).
+\]
+
+\begin{rmk}
+  David explained that this came about as an attempt to understand what physicists call ``geometric Langlands.''
+  The left hand side is ``topology on top of algebra'' while the right hand side is ``algebra on top of topology.''
+\end{rmk}
+
+\begin{rmk}
+  The Riemann--Hilbert correspondence gives an analytic equivalence $\LS_{\check{G}}(X) \simeq \LS_{\check{G}}^\toprm(X)$.
+  This is not an algebraic equivalence!
+  Betti geometric Langlands and de Rham geometric Langlands are compatible with the Riemann--Hilbert equivalence.
+\end{rmk}
+
+\subsection{The problem}
+
+The space $\LS_{\check{G}}^\toprm$ depends only on the topological type of $X$, so Betti geometric Langlands implies that the category $\Sh_{\Nilp(X)}(\Bun_G(X))$ is independent of the complex structure of $X$.
+This is surprising, as $\Bun_G(X)$ and $\Nilp(X)$ depend on the complex structure of $X$!
+We'd like to understand why this claim is true.
+If $G$ is abelian, the claim is not too difficult to show directly.
+
+\begin{thm}[F--Kj{\ae}rsgaard]
+  The category $\Sh_{\Nilp(X)}(\Bun_G(X))$ is independent of the complex structure of $X$.
+  Furthermore, this can be proved without invoking Betti geometric Langlands.
+\end{thm}
+
+\begin{rmk}
+  David pointed out that what's happening here is based on topological field theory.
+  We'd really like to understand what happens for $S^1$ and the point.
+  These are hard!
+  The problem of extracting 3-manifold invariants is also quite difficult.
+\end{rmk}
+
+To understand the problems, let's focus on an example.
+
+\begin{ex}
+  Consider $G = \SL_2$.
+  Then $\Bun_{\SL_2}(X)$ is the moduli of rank $2$ vector bundles $E$ on $X$ with $\det(E) = \Osc_X$.
+  We may write $\Nilp(X) = \cup_{d \geq 1 - g} \ol{\Nilp(X)^d} \cup \Bun_G(X)$, where $\Nilp(X)^d$ consists of extensions
+  \[
+    \begin{tikzcd}
+      0 \rar & \Lsc \rar & E \rar & \Lsc^\vee \rar & 0
+    \end{tikzcd}
+  \]
+  (where $\deg \Lsc = d$) together with $0 \neq \phi: \Lsc^\vee \to \Lsc \otimes \Omega_X^1$.
+  The inclusion $\Nilp(X)^d \to \Nilp(X)$ comes from sending the above data to the pair
+  \[
+    (E, E \to \Lsc^\vee \xrightarrow[\phi] \Lsc \otimes \Omega^1_X \to E \otimes \Omega^1_X).
+  \]
+  The geometry of $\Nilp(X)^d$ depends on $\Hom(\Lsc^\vee, \Lsc \otimes \Omega^1_X) = \Gamma(X, \Lsc^2 \otimes \Omega^1_X)$.
+  We can try to compute this using Riemann--Roch.
+
+  If $\Lsc$ is a line bundle of degree $d$ on $X$, then Riemann--Roch tells us:
+  \begin{itemize}
+    \item If $\deg \Lsc < 0$, then $h^0(\Lsc) = 0$.
+    \item If $\deg \Lsc > 2g-2$, then $h^0(\Lsc) = d + 1 - g$.
+  \end{itemize}
+  When $0 < d < 2g-2$, we have to understand Brill--Noether theory.
+  Let $U^r_d(X)$ be the ``Brill--Noether locus'' of $\Lsc$ of degree $d$ with $h^0(\Lsc) = r + 1$.
+  The Brill--Noether theorem tells us that $U^0_d(X)$ is smooth and that $U^r_d(X)$ is smooth for a generic curve $X$.
+  Generically $\dim U^r_d(X) = g - (r + 1)(g - d + r)$.
+
+  The upshot is that the geometry of $\Nilp(X)$ is controlled by the geometry of the Brill--Noether loci, which in turn depend on the complex structure of $X$.
+\end{ex}
+
+To prove the theorem:
+\begin{itemize}
+  \item When $G$ has semisimple rank $1$, there is a direct proof based on na\"ive bounds for singular support.
+    This proof doesn't adapt well in general.
+  \item For general $G$, one shows that there is a specific part of $\Nilp(X)$ ``controlling'' $\Sh_{\Nilp(X)}(\Bun_G(X)$, and this part behaves well when you change $X$.
+    This is what you need to do to prove things in general, but it's hard!
+\end{itemize}
+
+\section{(10/23) Jakub L\"owit -- Equivariant $K$-Theory and Trace Maps in GRT}
+
+This is another guest talk.
+There will be no seminar next week (but there will still be lunch).
+In two weeks we will begin to talk about spectra and equivariant stable homotopy theory.
+
+\subsection{Fixed-point schemes}
+
+Let $k$ be a field, $G$ a reductive group over $k$ (usually taken to be $\GL_n$ or a diagonal torus), and $X$ a qcqs scheme over $k$ with $G$-action.
+
+\begin{dfn}
+  The \emph{fixed-point scheme} $\Fix_G(X)$ is the fiber product appearing in the Cartesian square
+  \[
+    \begin{tikzcd}
+      \Fix_G(X) \rar & G \times X \dar["\rho \times \pi_2"] \\
+      X \rar["\Delta"] & X \times X.
+    \end{tikzcd}
+  \]
+  In terms of $k$-points, we have $\Fix_G(X) = \{ (g, x) | g \cdot x = x \}$.
+  There is a natural $G$-action on $\Fix_G(X)$, and we write $\Fix_{G/G}(X)$ for the quotient.
+\end{dfn}
+
+\begin{rmk}
+  There are some important variants of this construction: we write $\Fix^\red$ for the reduced fixed-point scheme and $\Fix^\Lbf$ for the derived fixed-point scheme.
+\end{rmk}
+
+\begin{ex}
+  Let $X = \pt$ with the trivial $G$-action.
+  Then $\Fix_G(X) = G$, and $\Fix_{G/G}(X) = G/G$ is the adjoint quotient.
+\end{ex}
+
+\begin{ex}
+  Let $X = G / P$ be a partial flag variety, considered with its $G$-action.
+  (As a sub-example, we could consider the action of $\GL_n$ on projective space.)
+  Then $\Fix_G(X)$ is a (multiplicative, partial) version of the Grothendieck--Springer alteration.
+  The fibers of $\Fix_G(X)$ over points of $G$ may be understood in terms of the Jordan normal form of points of the base.
+  Fibers over regular semisimple elements are discrete.
+  The fiber over the identity is all of $G / P$.
+\end{ex}
+
+\begin{rmk}
+  David pointed out that $\Fix^\Lbf_{G/G}(X)$ may also be interpreted as the free loop space of $X / G$.
+\end{rmk}
+
+\subsection{Equivariant $K$-theory and trace maps}
+
+Continue with the above setup.
+The \emph{equivariant $K$-theory} $K^G(X)$ is $K(\Perf(G \backslash X))$, the non-connective algebraic $K$-theory spectrum.
+We get abelian groups $K^G_i(X)$ (indexed by $i \in \ZZ$) forming a $\ZZ$-graded ring.
+The group $K^G_0(X)$ is the Grothendieck ring of $G$-equivariant vector bundles on $X$.
+
+Here is the ``kindergarten'' / degree $0$ version of the Dennis trace map.
+This is a map $\tr: K_0^G(X) \otimes k \to H_0(\Fix_{G/G}(X), \Osc)$ sending an equivariant vector bundle $\Esc$ to the function
+\[
+  (g, x) \mapsto \tr_g \Esc_x.
+\]
+One may check that this gives a well-defined ring homomorphism.
+
+\begin{rmk}
+  This is still interesting when $X$ is singular.
+  In this case we want to use $\Perf$ instead of $\Coh$.
+\end{rmk}
+
+\begin{ex}
+  For $X = \pt$ with trivial $G$-action, the Dennis trace map is a map $K^G_0(\pt) \otimes k \to H_0(\Fix_{G/G}(pt), \Osc)$.
+  In other words, it is a map from the representation ring $R_G \otimes k$ to $H_0(G / G, \Osc)$, the ring of class functions on $G$.
+  In this case, the Dennis trace map is a ring isomorphism.
+\end{ex}
+
+\begin{ex}
+  Let's suppose for simplicity that $k = \CC$ and $G = \GL_n$.
+  For $X = G / P$, the Dennis trace map sends $K_0^G(X) \otimes k$ to $H_0(\Fix_{G/G}(X), \Osc)$.
+  This is an isomorphism, and both sides may be identified with $k[T]^{W_P}$.
+\end{ex}
+
+Let's get a more conceptual ``grown-up'' understanding of the Dennis trace map.
+As mentioned above, we may identify $\Fix^\Lbf_{G/G}(X) \simeq \Lc(G \backslash X) \simeq \Map(S^n, G \backslash X)$.
+This allows us to understand the Dennis trace via Hochschild homology $HH^G(X / k)$.
+There's a natural HKR map $HH^G(X / k) \to \Rbf \Gamma(\Fix^\Lbf_{G/G}(X), \Osc)$.
+In nice cases (e.g.\ in characteristic zero) this map is an equivalence.
+For general categorical reasons, we have a ``true'' Dennis trace map $K^G(X, k) \to HH^G(X / k)$.
+Composing the Dennis trace map and the HKR map gives a map $K^G(X, k) \to \Rbf \Gamma(\Fix^\Lbf_{G/G}(X), \Osc)$.
+
+\subsection{Perfection in characteristic $p$}
+
+Suppose now that $k = \FF_p$.
+Any scheme over $\FF_p$ has a Frobenius endomorphism $\phi$.
+We say that $X$ is perfect if $\phi$ is an isomorphism.
+
+\begin{ex}
+  The affine line $\AA^1$ is not perfect (we cannot take $p$th roots of arbitrary functions).
+\end{ex}
+
+Given a ring $R$, we can consider the \emph{perfection}
+\[
+  R_\perf = \colim(R \xrightarrow{\phi} R \xrightarrow{\phi} R \xrightarrow{\phi} \dots).
+\]
+This construction globalizes to give
+\[
+  X_\perf = \lim(X \xleftarrow{\phi} X \xleftarrow{\phi} \dots).
+\]
+The result is typically non-noetherian.
+However, it does have useful properties, e.g.\ it may be easier to compute resolutions of $X_\perf$.
+
+Let $\Gr$ be the perfection of the affine Grassmannian of $\GL_n$.
+This has a stratification by (perfected) affine Schubert varieties $X_{\leq \mu}$.
+Let $T \subset \GL_n$ be the diagonal torus.
+Then $T$ acts on each $X_{\leq \mu}$.
+
+\begin{thm}[L]
+  The trace map $K^T(X_{\leq \mu}, k) \to \Rbf \Gamma(\Fix_T/T(X_{\leq \mu}), \Osc)$ is an equivalence.
+  Moreover, the cohomologies on each side are concentrated in degree $0$.
+  We also have $K^T(X_{\leq \mu}) \simeq KH^T(X_{\leq \mu})$ where $KH$ is some homotopy-invariant version of $K$-theory.
+\end{thm}
+
+The idea of the proof is to show things for points and use projective bundles to extend the results.
+This allows us to establish the results for Bott--Samelson resolutions.
+Descending the results to affine Schubert varieties is more technical.
+
 \end{document}
