@@ -2,7 +2,7 @@
 
 \usepackage{notes}
 
-\title{GRT Seminar Fall 2024 -- Equivariant Mathematics}
+\title{GRT Seminar Fall 2025 -- Equivariant Mathematics}
 \author{Notes by John S.\ Nolan, speakers listed below}
 
 \begin{document}
@@ -16,7 +16,7 @@
 
 \tableofcontents
 
-\section{(8/28) David Nadler -- $S^1$-Actions and Koszul Duality}
+\section{(8/28) David Nadler -- \texorpdfstring{$S^1$}{S^1}-Actions and Koszul Duality}
 
 A good reference for this material is GKM (Goresky--Kottwitz--Macpherson, ``Equivairant cohomology, Koszul duality, and the localization theorem'').
 We'll focus on the case of $G = S^1$ acting on a (reasonable) topological space $X$, e.g.\ a CW complex.
@@ -197,7 +197,7 @@ To compute $C^*_{S^1}(X)$ completely, we need to understand its behavior at the 
 \section{(9/11) Peter Rowley -- $G$-Spaces and the $G$-Whitehead Theorem}
 
 I wasn't here for this day.
-I obtained notes from Swapnil Garg and will try to type them up soon.
+I obtained notes from Swapnil Garg and will try to type them up someday.
 
 \section{(9/18) Peter Rowley -- Elmendorf's Theorem}
 
@@ -1015,5 +1015,203 @@ Then $T$ acts on each $X_{\leq \mu}$.
 The idea of the proof is to show things for points and use projective bundles to extend the results.
 This allows us to establish the results for Bott--Samelson resolutions.
 Descending the results to affine Schubert varieties is more technical.
+
+\section{(11/6) Jackson Van Dyke -- Projective TQFTs}
+
+This is another guest research talk.
+
+\subsection{A classical example from quantum mechanics}
+
+Let $(V, \omega)$ be a $2n$-dimensional symplectic vector space over $\RR$.
+We may take $\omega$ to correspond to the matrix
+\[
+\begin{bmatrix}
+0 & I \\
+-I & 0
+\end{bmatrix}.
+\]
+The Heisenberg Lie algebra $\Heis$ associated with $V$ is a central extension of $V$ by $\RR$, where $u, v \in V$ satisfy $[u, v] = \omega(u, v) \in \RR$.
+The \emph{Stone--von Neumann theorem} says that, after fixing a central character, there exists a unique nontrivial unitary irrep $\Hc$ of $\Heis$.
+We end up with an action $\rho: \Heis \curvearrowright \Hc$ and an action of $\Sp_{2n}(\RR)$ on $\Heis$.
+
+Now recall that projective representations of a group $G$ correspond to representations of central extensions of $G$.
+For us, this means that for $g \in \Sp_{2n}$, we get $T_g \in \Urm(\Hc)$ such that
+\[
+  \rho(gX) = T_g \rho(x) T_g\inv
+\]
+for $X \in \Heis$.
+This assignment $g \mapsto T_g$ has an ambiguity: $T_g$ is only determined up to scaling.
+That is, $T$ really defines a homomorphism $\Sp_{2n} \to \Urm(\Hc) / \Urm(1)$.
+Alternatively, we can think of $T$ as a homomorphism $\tilde{\Sp}_{2n} \to \Urm(\Hc)$, where $\tilde{\Sp}_{2n}$ is a central extension of $\Sp_{2n}$ by $\Urm(1)$.
+We end up with fibration squares
+\[
+  \begin{tikzcd}
+    \Urm(1) \rar \dar & \tilde{\Sp}_{2n} \dar \\
+    \pt \rar & \Sp_{2n}
+  \end{tikzcd}
+  \textrm{ and }
+  \begin{tikzcd}
+    \RR \rar \dar & \Heis \dar \\
+    \pt \rar & V.
+  \end{tikzcd}
+\]
+
+We want to understand what happens for TQFT.
+Thinking of quantum mechanics as $1$-dimensional TQFT, when we quantize the above, we get (something like) a TQFT $\Bord_1 \to \Vect$ by $\pt \mapsto L^2(\RR^n)$.
+We'd like to be able to say that $\Sp_{2n}$ ``acts projectively'' on this theory.
+
+\subsection{A framework for projective theories}
+
+For us, a TQFT will be a symmetric monoidal functor $\alpha: \Bord_{n+1} \to \Tc_{n+1}$ where $\Tc_{n+1}$ is a symmetric monoidal $(\infty, n+1)$-category.
+Here $\Bord_{n+1}$ is fully extended (with objects given by $0$-manifolds and $k$-morphisms given by $k$-dimensional cobordisms).
+By the cobordism hypothesis, $\alpha$ is determined by $\alpha(\pt)$.
+
+A (topological) \emph{relative theory} is a morphism $R: 1 \to \alpha$.
+This may be viewed as a functor $\Bord_n \to \Tc_{n+1}^{1 \to}$, where $\Tc_{n+1}^{1 \to}$ is the (op)lax arrow category.
+Here:
+\begin{itemize}
+  \item Objects of $\Tc_{n+1}^{1 \to}$ are morphisms $1 \to A$, and
+  \item Morphisms are squares
+    \[
+      \begin{tikzcd}
+        1 \rar \dar[equal] & A \dar \\
+        1 \rar \ar[ur, Rightarrow] & B
+      \end{tikzcd}
+    \]
+    which may not commute but do come with a specified natural transformation.
+\end{itemize}
+See Johnson-Freyd--Scheimbauer for details.
+
+Projective theories are theories relative to an invertible theory.
+That is, projective theories are symmetric monoidal functors $\Bord_n \to \PP(\Omega \Tc_{n+1})$,
+where $\PP(\Omega \Tc_{n+1}) = \Tc_{n+1}^{1 \to \times}$ is the full subcategory of $\Tc_{n+1}^{1 \to}$ consisting of morphisms with invertible target.
+Here $\Omega \Tc_{n+1} = \End_{\Tc_{n+1}}(1) = \Tc_n$.
+
+\begin{ex}
+  Let $n = 1$ and let $\Tc_2 = \Mor_1(\Vect)$ be the Morita $2$-category of algebras, bimodules, and intertwiners.
+  Then $\Omega \Tc_2 = \Vect$, and $\PP\Vect$ is the category with objects being vector spaces up to the action of invertible algebras.
+  This is equivalent to a certain bicategory $\mathsf{Proj}$ with:
+  \begin{itemize}
+    \item objects given by vector spaces,
+    \item $1$-morphisms linear maps, and
+    \item $2$-morphisms $\phi \to \psi$ being scalars $\chi$ such that $\chi \phi = \psi$.
+  \end{itemize}
+\end{ex}
+
+The upshot is that, while a representation is a homomorphism $BG \to \PP\Vect$, a projective representation is a homomorphism $BG \to \PP\Vect$.
+
+\begin{ex}
+  Our original example corresponds to the relative theory $\Bord_1 \to \PP\Vect$ given by $\pt \mapsto (\CC \xrightarrow{\Hc} \CC[\Heis])$.
+Invertible theories $\alpha: \Bord_2^{B\Sp} \to \Mor_1(\Vect)$ are classified by maps $B\Spectra \to (\Mor_1(\Vect))^\times$.
+Working with $\CC$ coefficients, this is a map $B\Sp \to B^2 \CC^\times$, i.e.\ an \emph{anomaly class} $[c] \in H^2(B\Sp; \CC^\times)$.
+\end{ex}
+
+\begin{ex}
+  We can tell a similar story for Chern--Simons theory.
+  This was worked out in the speaker's thesis.
+\end{ex}
+
+\section{(11/13) Joe Hlavinka -- Spectra with a View towards ``\texorpdfstring{$G$}{G}''}
+
+We return to our regularly scheduled programming.
+
+\subsection{A viewpoint on spectra}
+
+We'd like to draw an analogy between the category $\Sc_*$ of pointed spaces and the abelian category $\QCoh(X)$ of quasicoherent sheaves on a scheme.
+Both are closed symmetric monoidal categories: $\QCoh$ has $\otimes$ and $\scHom$, while $\Sc_*$ has smash product $\wedge$ and its own internal Hom.
+Short exact sequences in $\QCoh$ behave like homotopy (co)fiber sequences in $\Sc_*$.
+The functor $H^0$ in $\QCoh$ behaves like $\pi_0$ in $\Sc_*$.
+Note a key difference: the functors $H^i$ for $i > 0$ are not (co)representable in $\QCoh(X)$, while the functors $\pi_i$ are corepresented by $S^i$ in $\Sc_*$.
+To fix this we pass to the derived category of $\QCoh$ (or something similar).
+
+Morally, the category $\Sp$ of spectra will behave like the ``derived category of $\Sc_*$.''
+Because of the above representability results, it is easier to construct $\Sp$ from $\Sc_*$ than it is to construct derived categories from $\QCoh$.
+
+Note that $\pi_*$ is not a homology theory on $\Sc_*$: in general, $\pi_i(X) \not\simeq \pi_{i+1}(\Sigma X)$.
+However, if $\Sigma$ were invertible, then $\pi_i$ would be a homology theory: we'd have
+\[
+  \pi_{i+1}(\Sigma X) = [S^{i+1}, \Sigma X] \simeq [\Sigma S^i, \Sigma X] \simeq [S^i, X] = \pi_i(X).
+\]
+Thus we define the ($\infty$-)category of spectra as $\Spectra = \Sc_*[\Sigma\inv]$.
+The induced functors $\pi_i^s: \Spectra \to \Ab$ form a homology theory.
+The Brown representability theorem implies that every generalized homology theory is representable by a spectrum.
+However, the category of spectra is better behaved than the category of generalized homology theories: e.g.\ the homotopy category of $\Sp$ is triangulated.
+
+\subsection{Diagram categories}
+
+\begin{dfn}
+  A \emph{diagram} $D$ is a $\Sc_*$-enriched category.
+  The category of (pointed) $D$-spaces is $D\Sc_* = \Fun(D, \Sc_*)$.
+\end{dfn}
+
+For us, all diagrams will be one of:
+\begin{itemize}
+  \item $\NN$ viewed as a discrete category.
+  \item The category $\Ic$ of finite dimensional inner product spaces and isometries, i.e.\ $\sqcup_{n \in \NN} B\Orm(n)$.
+\end{itemize}
+Both of these are naturally symmetric monoidal categories (with operation $\boxtimes$ given by addition in $\NN$).
+We want to construct a corresponding symmetric monoidal structure on $D\Sc_*$.
+
+Note that, if $F$ and $G$ are $D$-spaces, then defining
+\[
+  (F \ol{\wedge} G)(d_1, d_2)  := F(d_1) \wedge G(d_2)
+\]
+gives a $D \times D$-space.
+
+\begin{dfn}
+  If $(D, \boxtimes)$ is a symmetric monoidal category and $F, G \in D\Sc_*$, we define the \emph{smash product} $F \wedge G$ as the left Kan extension
+  \[
+    \begin{tikzcd}
+      D \times D \dar["\boxtimes"] \rar["F \ol{\wedge} G"] & \Sc_*. \\
+      D \ar[ur, dashed]
+    \end{tikzcd}
+  \]
+  This satisfies
+  \[
+    (F \wedge G)(z) = \colim_{x \boxtimes y \to z} F(x) \wedge G(y).
+  \]
+\end{dfn}
+
+\begin{ex}
+  Let $F, G \in \NN\Sc_*$.
+  Then
+  \[
+    (F \wedge G)(k) = \colim_{i+j=k} F(i) \wedge G(j) = \sqcup_{i+j=k} F(i) \wedge G(j).
+  \]
+\end{ex}
+
+For $d \in D$, we can define $\ev_d: D\Sc_* \to \Sc_*$ by $\ev_d(F) = F(d)$.
+The functor $\ev_d$ is adjoint to the functor $F_d: \Sc_* \to \in D\Sc_*$, i.e.\
+\[
+  F_d(X)(d') = \begin{cases}
+    * & d' \neq d \\
+    X & \textrm{else}
+  \end{cases}
+\]
+The unit in $D\Sc_*$ is $F_0 S^0$.
+
+For $R \in \CMon(D\Sc_*)$, we get $\Mod_R = \Mod_R(D\Sc_*)$ with 
+\[
+  M \wedge_R N = \coeq(M \wedge R \wedge N \rightrightarrows M \wedge N)
+\]
+and unit $R$.
+
+\begin{dfn}
+  Let $\SS^\pre$ by the commutative monoid in $\NN\Sc_*$ given by $\SS^\pre(n) = S^n$.
+  The category of prespectra is $\Mod_{\SS^\pre}$.
+\end{dfn}
+
+That is, a prespectrum is an $\NN$-space $X$ with maps $\Sigma^i X_j \simeq S^i \wedge X(j) \to X(i+j)$ for all $i, j$.
+
+We can use a similar approach to define orthogonal spectra.
+
+\begin{dfn}
+  Let $\SS^\Ic$ be the commutative monoid in $\Ic$-spaces given by $\SS^\Ic(V) = S(V \oplus \RR)$.
+  (If $V \neq 0$ this is the one-point compactification of $V$.)
+  The category of orthogonal spectra is $\Mod_{\SS^\Ic}$.
+\end{dfn}
+
+Orthogonal spectra are much easier to work with from a 1-categorical perspective!
+Furthermore, they generalize better to the $G$-equivariant context.
 
 \end{document}
