@@ -1214,4 +1214,107 @@ We can use a similar approach to define orthogonal spectra.
 Orthogonal spectra are much easier to work with from a 1-categorical perspective!
 Furthermore, they generalize better to the $G$-equivariant context.
 
+\section{(11/20) David Nadler -- Spectra}
+
+Joe is sick this week, so David is talking about the ``big picture'' of spectra.
+
+\subsection{Generalities}
+
+Spectra are, in one sense, the topological version of ``commutative groups.''
+Recall that there is a free-forgetful adjunction
+\[
+  \mathop{free}: \Set_* \rightleftarrows \Ab: \mathop{forget}
+\]
+In topology, the analogue is 
+\[
+  \Sigma^\infty: \Sc_* \rightleftarrows \Sp: \Omega^\infty.
+\]
+However, we note that spectra may not have ``underlying spaces'' (depending on our choice of model).
+
+The approach Joe was following was based on ``suspension spectra,'' where a spectrum is described by a sequence of spaces $X_0, X_1, \dots$ and maps $\Sigma X_i \to X_{i+1}$.
+We also like to account for some sort of symmetry (e.g.\ this showed up in the treatment of orthogonal spectra above).
+
+\begin{ex}
+  From this perspective, the sphere spectrum $\SS$ is easy to describe from this viewpoint: we take the sequence of spaces $S^i$ and equivalences $\Sigma S^i \xrightarrow{\sim} S^{i+1}$.
+  The space $\Omega^\infty \SS$ is quite complicated: its homotopy groups are given by the stable homotopy groups of spheres.
+\end{ex}
+
+Morally, each space $X_i$ is an approximate ``$n$-fold delooping'' of $\Omega^\infty X$.
+That is, we think of $\Omega^i X_i$ as an approximation to $X$.
+Finite questions about spectra can be answered by studying the spaces $\Omega^i X_i$.
+The image of $\Omega^\infty$ consists of ``infinite loop spaces,'' which naturally have ``commutative group structures.''
+David tends to prefer the infinite loop space picture.
+
+\subsection{The recognition principle}
+
+In topology, the notion of ``$\EE_1$-space'' is the ``correct'' homotopy-coherent notion of monoid.
+Just like how groups are a certain class of monoids, there's a suitable notion of ``grouplike $\EE_1$-space.''
+
+Given any pointed space $X$, the based loop space $\Omega X$ is a grouplike $\EE_1$-space.
+Conversely, given any $\EE_1$-space $M$, we can apply the ``bar construction'' to construct a pointed space $BM$.
+
+\begin{thm}
+  The above constructions give equivalences between the category of pointed connected spaces and grouplike $\EE_1$-spaces.
+  That is:
+  \begin{itemize}
+    \item If $X$ is pointed and connected, then $X = B\Omega X$.
+    \item If $G$ is a grouplike $\EE_1$-space, then $G = \Omega BG$.
+  \end{itemize}
+\end{thm}
+
+\begin{ex}
+  The group $\ZZ$ corresponds to the pointed connected space $S^1$.
+  More generally, a discrete group $\Gamma$ corresponds to a pointed connected space $B\Gamma = K(\Gamma, 1)$.
+\end{ex}
+
+\begin{ex}
+  The pointed connected space $S^2$ corresponds to the grouplike $\EE_1$-space $\Omega S^2$.
+  Bott showed that $\Omega S^2$ is the real affine Grassmannian.
+\end{ex}
+
+We can construct $BG$ as the geometric realization of the simplicial space with terms $G^i$ for $i \in \NN$.
+It is a good exercise to show that $BS^1 = \CC\PP^\infty$.
+
+More generally, one can define ``$\EE_n$-spaces'' for any $n$.
+
+\begin{thm}
+  The functor $\Omega^n$ gives an equivalence between the category of pointed $(n-1)$-connected spaces and grouplike $\EE_n$-spaces.
+\end{thm}
+
+Taking $n \to \infty$, we get ``grouplike $\EE_\infty$-spaces,'' which are one version of topologists' commutative groups.
+
+\begin{thm}
+  The functor $\Omega^\infty$ gives an equivalence between connective spectra and grouplike $\EE_\infty$-spaces.
+\end{thm}
+
+\subsection{Two theorems}
+
+Here are two key ways of understanding spectra.
+
+\begin{thm}[Dold--Kan?]
+  Tensoring the category of spectra over $\SS$ with $\QQ$ gives the category of chain complexes over $\QQ$.
+  Via this equivalence, homotopy groups of spectra correspond to homology groups of complexes.
+\end{thm}
+
+Thus, if we only care about things rationally, we can just work with chain complexes.
+
+\begin{thm}[Pontryagin--Thom]
+  The space $\Omega^\infty \SS$ is the space of framed cobordisms.
+\end{thm}
+
+That is, $\Omega^\infty \SS$ has:
+\begin{itemize}
+  \item ``points:'' framed $0$-manifolds,
+  \item ``paths:'' framed $1$-dimensional cobordisms,
+  \item ``homotopies:'' framed $2$-dimensional cobordisms,
+  \item et cetera.
+\end{itemize}
+
+This is a nontrivial theorem!
+The idea is that $\pi_n(\Omega^\infty \SS)$ can be calculated as $\pi_{n+k}(S^k)$ for large $k$.
+That is, we need to study based maps $S^{n+k} \to S^k$.
+We may as well assume that the basepoint in $S^k$ is a regular value, so its preimage is an $n$-manifold.
+In fact, everything is naturally framed.
+The preimage here gives the desired cobordism $\varnothing \to \varnothing$.
+
 \end{document}
