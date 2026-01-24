@@ -1317,4 +1317,83 @@ We may as well assume that the basepoint in $S^k$ is a regular value, so its pre
 In fact, everything is naturally framed.
 The preimage here gives the desired cobordism $\varnothing \to \varnothing$.
 
+\section{(12/4) Sam Lidz -- ???}
+
+I missed this week.
+If you have notes you would like to share, please contact me!
+
+\section{(12/11) Sam Lidz -- Real Equivariant $K$-Theory} 
+
+The goal for today is to discuss real equivariant $K$-theory.
+
+\subsection{Topological $K$-theory}
+
+Recall that $\KU^0(X)$ is the Grothendieck group of $\CC$-vector bundles on $X$ (with operation given by $\oplus$).
+We may represent $\KU^0$ by the space $\ZZ \times B\Urm$, where $\Urm$ is the infinite unitary group $\colim_n \Urm(n)$.
+That is, we have
+\[
+  \KU^0(X) = [X, \ZZ \times B\Urm].
+\]
+
+\begin{thm}[Bott periodicity]
+  There is a homotopy equivalence
+  \[
+    \Omega^2(\ZZ \times B\Urm) \simeq \ZZ \times B\Urm.
+  \]
+  This induces a natural isomorphism $\KU^0(X) \cong \KU^0(\Sigma^2 X)$.
+\end{thm}
+
+Thus we may define
+\[
+  \KU^i(X) = \begin{cases}
+    [X, \ZZ \times B\Urm] & i \equiv 0 \pmod{2} \\
+    [X, \Urm] & i \equiv 1 \pmod{2}.
+  \end{cases}
+\]
+The sequence of spaces $\dots, \ZZ \times B\Urm, \Urm, \ZZ \times B\Urm, \Urm, \dots$ gives a spectrum $\KU$.
+Bott periodicity may be understood as an equivalence $\KU \simeq \Sigma^2 \KU$.
+
+\subsection{Equivariance}
+
+\begin{dfn}
+  Let $X$ be a $C_2$-space, say with $C_2$-action given by the involution $\phi: X \to X$.
+  A \emph{real equivariant vector bundle} on $X$ is a complex vector bundle $E$ on $X$ together with a map $\tilde{\phi}: E \to E$ such that:
+  \begin{itemize}
+    \item The square
+      \[
+        \begin{tikzcd}
+          E \rar["\tilde{\phi}"] \dar & E \dar \\
+          X \rar["\phi"] & X.
+        \end{tikzcd}
+      \]
+    \item For all $x \in X$, the map $\tilde{\phi}: E_x \to E_{\phi(x)}$ is antilinear.
+  \end{itemize}
+  We define $\KR^0(X)$ to be the Grothendieck group of real equivariant vector bundles on $X$.
+\end{dfn}
+
+\begin{notn}
+  Let $\RR^+$ be the trivial representation of $C_2$, and let $\RR^-$ be the sign representation of $C_2$.
+  Let $\RR^{p,q} = (\RR^+)^p \oplus (\RR^-)^q$.
+  Write $\CC^n = \RR^{n,n}$.
+  Let $S^{p,q}$ be the one-point compactification of $\RR^{p,q}$.
+\end{notn}
+
+\begin{thm}[Bott periodicity]
+  There is an equivalence $\KR^0(S^{1,1} \wedge X) \simeq \KR^0(X)$.
+\end{thm}
+
+Thus we may define
+\[
+  \KR^{p,q}(X) = \KR^0(\Sigma^{n+p,n+q} X)
+\]
+for any $n > |p|, |q|$.
+We claim $\KR^{p,q}(X)$ is an $\RO(C_2)$-graded cohomology theory.
+This corresponds to a $C_2$-equivariant spectrum, i.e.\ a functor $\tilde{I}_{C_2} \to C_2\Top$.
+Here $\tilde{I}_{C_2}$ has objects $\RR^{p,q}$ and morphisms $V \to V'$ given by $\Th(E(V, V'))$, where $E(V, V')$ is the ``complement bundle'' over $V'$.
+
+To construct this $C_2$-equivariant spectrum, note that each $\RR^{p,q}$ embeds into $\CC^n$ for some $n$.
+Thus $\{ \CC^n \}$ is a family of cofinal objects, so the spectrum is determined by its behavior on these objects.
+We let $\KR^{n,n} = \ZZ \times B\Urm$, where $C_2$ acts trivially on $\ZZ$ and by ($B$ of) conjugation on $B\Urm$.
+The maps $S^{1,1} \wedge \KR^{n,n} \to \KR^{n+1,n+1}$ are the Bott periodicity maps.
+
 \end{document}

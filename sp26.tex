@@ -1,0 +1,122 @@
+\documentclass{article}
+
+\usepackage{notes}
+
+\title{GRT Seminar Spring 2026 -- Potent Categorical Representations}
+\author{Notes by John S.\ Nolan, speakers listed below}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+	This semester, the GRT Seminar will focus on potent categorical representations, following the 2026 ICM address of Nadler--Ben-Zvi (based on joint work with Stefanich).
+  There are many open questions!
+\end{abstract}
+
+\tableofcontents
+
+\section{(1/22) David Nadler -- Introduction}
+
+We're going to start with the first page or so of the paper.
+The rough idea here is to instantiate some of the ideas in Constantin Teleman's ICM address.
+
+\subsection{Categorical representations}
+
+Our motivation for studying categorical representations comes from the following analogy.
+
+If $\Gamma$ is a finite group, then we look at the group ring $\CC[\Gamma]$ 
+We may think of this as a ring of distributions, with multiplication given by convolution.
+Studying representations of $\Gamma$ corresponds to studying modules over $\CC[\Gamma]$.
+
+In general, if $\Cc$ is a symmetric monoidal ($\infty$-)category, e.g.\ $(\Vect_\CC, \otimes)$, we may consider an algebra object $A \in \Cc$.
+We can study the category of modules $\Mod_A(\Cc)$.
+
+We can specialize this very general framework to give a notion of categorical representations.
+Let $G$ be a connected reductive group over $\CC$.
+
+\begin{dfn}
+  A \emph{categorical $G$-representation} is a (presentable) stable $\CC$-linear $\infty$-category which is a module over $D(G)$, the derived $\infty$-category of $D$-modules on $G$.
+  We'll write $G\dCat$ for the $\infty$-category of categorical $G$-representations.
+\end{dfn}
+
+\begin{rmk}
+  Morally, the reason we use $D$-modules here is because they quantize the cotangent bundle.
+  The really important object is $T^*G$ (with two moment maps $T^*G \rightrightarrows\gfr^*$ corresponding to the left and right actions of $G$).
+  Everything here is secretly symplectic!
+\end{rmk}
+
+\begin{ex}
+  Let $G \curvearrowright X$.
+  Then we get an action $D(G) \curvearrowright D(X)$.
+  This really corresponds to the moment map $T^* X \to \gfr^*$.
+\end{ex}
+
+\subsection{Categorical representations of $\GG_m$}
+
+Let's see what happens when $G = \GG_m$.
+
+\begin{thm}
+  There is a monoidal equivalence $D(\GG_m) \simeq \QC(\AA^1 / \ZZ)$.
+\end{thm}
+
+Indeed, recall that a $D$-module on $\GG_m$ comes with two pieces of data:
+\begin{itemize}
+  \item An action of the Euler vector field $t \partial_t$, corresponding to the coordinate on $\AA^1$.
+  \item An action of $t$ and $t\inv$, corresponding to translation-equivariance.
+\end{itemize}
+This correspondence sends the $\delta$ distribution at $1$ to the structure sheaf.
+
+\begin{cor}
+  There is an equivalence $\GG_m\dCat \simeq \QC(\AA^1 / \ZZ)\dMod$.
+\end{cor}
+
+Reasonable objects within $\QC(\AA^1 / \ZZ)\dMod$ have ``singular support'' in (the 2-shifted version of) $T^*(\AA^1 / \ZZ)$.
+This translates into a notion of ``position'' and ``momentum'' for such objects.
+
+\begin{ex}
+  If we consider a point $\lambda \in \AA^1 / \ZZ$, the module category $\QC(\lambda)$ corresponds to
+  \[
+    D_\lambda(\GG_m) = \angles{\Osc_{\GG_m}, d - \frac{\lambda}{z} dz} \subset \Dsf(\GG_m).
+  \]
+  Roughly: the position of a $\QC(\AA^1 / \ZZ)$-module corresponds to the monodromy.
+  This relates to Langlands parameters.
+\end{ex}
+
+Momentum should correspond to ``equivariant parameters.''
+To capture this, we must work microlocally.
+This is the motivation for considering potent categorical representations.
+
+\subsection{Another motivation}
+
+Sufficiently dualizable $2$-categories give rise to 3d TQFTs.
+One can obtain some 3d TQFTs by taking $S^1$-compactifications of 4d TQFTs, i.e.\ setting $Z_3(\pt) = Z_4(S^1)$.
+If $Z_4$ is pure gauge theory, $Z_3$ corresponds to considering gauge theory with classical fields $G / G$.
+Remember that $G / G$ can be thought of as the free loop space $\Lsc BG$.
+The ``equivariant parameters'' here live in the numerator $G$, while the ``monodromies'' / ``$G$-representations'' come from the denominator $G$.
+
+\subsection{Defining potent categorical representations}
+
+We can write $G\dCat = 2\IndCoh(G_\dR)$.
+Thus a possible extension is:
+
+\begin{dfn}
+  Let $G\dCat^\pot = 2\IndCoh(G / G)^\Tate$.
+\end{dfn}
+
+This contains $G\dCat$ as the full $2$-subcategory set-theoretically supported at $1 \in G$.
+There are other subtleties (e.g.\ shearing, genuine equivariance) that should appear. 
+We end up with a theorem:
+
+\begin{thm}
+  There is an equivalence $\GG_m\dCat^\pot \simeq 2\IndCoh(\AA^1 / \ZZ)$.
+\end{thm}
+
+We may also define a Lie algebra version:
+
+\begin{dfn}
+  Let $G\dCat^{\pot,\gr} = 2\IndCoh(\gfr / G)^\Tate$.
+\end{dfn}
+
+Our goal this semester is to understand these definitions and theorems.
+\end{document}
