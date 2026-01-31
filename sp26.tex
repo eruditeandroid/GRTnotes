@@ -119,4 +119,100 @@ We may also define a Lie algebra version:
 \end{dfn}
 
 Our goal this semester is to understand these definitions and theorems.
+
+\section{(1/29) Samuel Mayonnaise -- Loop Spaces and $D$-Modules}
+
+Our goal for today is to prove the following.
+
+\begin{thm}
+  Let $X$ be a smooth scheme.
+  Then there is an equivalences
+  \[
+    D(X) \otimes k[u, u\inv] \simeq \IndCoh(\Lc X)^\Tate.
+  \]
+\end{thm}
+
+The ``Tate construction'' here captures an $S^1$-localization.
+To understand the above statement, we will need to recall some relevant definitions.
+
+\subsection{Loop stacks}
+
+Let $X$ be a derived stack, i.e.\ a (covariant) functor from derived commutative rings to spaces satisfying a sheaf condition.
+
+\begin{rmk}
+  There are many models for ``derived commutative rings'' that we can use.
+  In characteristic zero we may model derived commutative rings by connective commutative differential graded algebras.
+  In general we can work with simplicial commutative rings.
+\end{rmk}
+
+The \emph{loop stack} of $X$ is $\Lc X = \ul{\Hom}(S^1, X)$.
+Here $S^1$ is viewed as a derived stack by sheafifying the constant sheaf with value $S^1$.
+More generally, sheafifying constant sheaves gives a definition of the \emph{Betti stack} of any topological space.
+
+\begin{rmk}
+  The simplicial perspective can be useful in understanding this.
+  We may think of the Betti stack of $S^1$ as a coequalizer of $\pt \rightrightarrows \pt$.
+  This corresponds to building up $S^1$ as a simplicial set with nondegenerate $0$- and $1$-simplices.
+\end{rmk}
+
+\begin{ex}
+  If $X$ is a Betti stack, then $\Lc X$ is the Betti stack corresponding to the (topological) loop space of $X$.
+\end{ex}
+
+Let's think of $S^1$ as a (homotopy) pushout:
+\[
+  \begin{tikzcd}
+    S^0 \rar \dar & \pt \dar \\
+    \pt \rar & S^1.
+  \end{tikzcd}
+\]
+This allows us to write
+\[
+  \Lc X = \ul{\Hom}(\pt \sqcup_{S^1} \pt, X) = \ul{\Hom}(\pt, X) \times_{\ul{\Hom}(S^0, X)} \ul{\Hom}(\pt, X) = X \times_{X \times X} X. 
+\]
+Thus we may interpret $\Lc X$ as the derived self-intersection of the diagonal of $X$.
+This suggests that $D$-modules may potentially appear, since the normal bundle of the diagonal is the tangent bundle of $X$.
+
+Assuming $X$ has affine diagonal, we may write
+\[
+  \Lc X = \ul{\Spec}_{\Osc_X} (\Osc_X \otimes_{\Osc_X \otimes \Osc_X} \Osc_X)
+\]
+where all operations here are implicitly derived.
+
+\subsection{Hochschild homology}
+
+Suppose $X = \Spec R$ is affine.
+Then 
+\[
+  \Osc(\Lc X) = R \otimes_{R \otimes R} R = HC_*(R)
+\]
+the \emph{Hochschild chains} of $R$.
+The \emph{Hochschild homology} $HH^*(R)$ is the homology of this complex.
+In general, Hochschild chains are a ``derived version of the abelianization $R / [R, R]$''
+
+\begin{rmk}
+  When $X$ is a topological space / Betti stack, we have $\Osc(X) = C^*(X)$.
+  The above discussion roughly translates into something like $H^*(\Lc X) = HH_*(C^*(X))$, at least when $X$ is simply connected (so the diagonal is affine).
+\end{rmk}
+
+\begin{thm}[Hochschild--Kostant--Rosenberg]
+  Let $R$ be a commutative algebra with $X = \Spec R$ smooth.
+  Then there is an equivalence of dg-algebras $HC_*(R) \simeq \Omega^*_R = \Sym^* \Omega^1_R[1]$, the complex of differentials on $R$.
+  Geometrically, this translates into $\Osc(\Lc X) \simeq \Omega^*_X$.
+\end{thm}
+
+\begin{dfn}
+  Let $\TT_X[-1]$ be the odd tangent bundle of $X$, i.e.\ $\ul{\Spec}_{\Osc_X} \Sym^* \Omega^1_X[1]$.
+\end{dfn}
+
+HKR can be interpreted as an equivalence $\Lsc X \simeq \TT_X[-1]$ for any smooth scheme $X$.
+David pointed out that this equivalence should be thought of as an exponential map $\TT_X[-1] \to \Lsc X$.
+For stacks, the above statement of HKR fails.
+
+\begin{ex}
+  For $X = BG$, the loop space $\Lc G$ is the adjoint quotient $G / G$.
+  However, $\TT_X[-1]$ is $\gfr / G$, which is quite different.
+\end{ex}
+
+
 \end{document}
