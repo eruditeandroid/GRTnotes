@@ -214,5 +214,278 @@ For stacks, the above statement of HKR fails.
   However, $\TT_X[-1]$ is $\gfr / G$, which is quite different.
 \end{ex}
 
+\subsection{(2/5) Samuel Mayonnaise -- Continued}
+
+Let $X$ be a smooth scheme.
+Recall from last time that $\Lc X = \Hom(S^1, X)$ is the \emph{derived loop space} of $X$.
+(Here $\Hom$ indicates internal $\Hom$.)
+We may also understand $\Lc X$ as a fiber product $X \times_{X \times X} X$.
+If $X = \Spec R$ is affine, then $\Osc(\Lc X) = R \otimes_{R \otimes R} R = HC_*(R)$, the Hochschild chains of $R$.
+
+\subsection{HKR}
+
+We'll review the statement of HKR again in more detail.
+
+\begin{dfn}
+  The \emph{de Rham algebra} of $X$ is $\Omega^*_X = \Sym^*_{\Osc_X} \Omega_X[1]$.
+  The \emph{odd tangent bundle} of $X$ is $\TT_X[-1] = \Spec_{\Osc_X} \Omega^*_X$.
+\end{dfn}
+
+The object $\TT_X[-1]$ is a derived scheme.
+It consists of $X$ together with ``odd tangent vectors.''
+
+\begin{thm}[Hochschild--Kostant--Rosenberg]
+  For a smooth scheme $X$, there is an equivalence $\Lc X \simeq \TT_X[-1]$ (as derived schemes over $X$).
+  Via this equivalence, the constant loops correspond to the zero section.
+\end{thm}
+
+Part of the idea here is that the ``loops'' in a scheme are all infinitesimal.
+When we go to stacks, there are more interesting global loops, so the theorem fails.
+
+The statement of HKR is \'etale-local, so we can reduce to proving the theorem for $\AA^n$.
+This is not too hard to do!
+
+\begin{ex}
+  Let $X = \AA^n = \Spec k[x_1, \dots, x_n]$, and write $R = k[x_1, \dots, x_n]$.
+  We want to compute $HH_*(R) = R \otimes_{R \otimes R} R$.
+  There is a \emph{Koszul resolution}
+  \[
+    \begin{tikzcd}
+      0 \rar & \wedge^n (R \otimes R)^{\oplus n} \rar & \dots \rar & \wedge^1 (R \otimes R)^{\oplus n} \rar & R \otimes R \rar & 0
+    \end{tikzcd}
+  \]
+  of $R$, where:
+  \begin{itemize}
+    \item the resolution map $R \otimes R \to R$ is by $x_i \otimes 1 \mapsto x_i$ and $1 \otimes x_i \mapsto x_i$,
+    \item the map $\wedge^1 (R \otimes R)^{\oplus n} \to R \otimes R$ sends the $i$th standard basis vector to $x_i \otimes 1 - 1 \otimes x_i$, and
+    \item other maps are defined using alternating sums generalizing the above.
+  \end{itemize}
+  Let's call this complex $K^*$ and compute $K^* \otimes_{R \otimes R} R$.
+  We get
+  \[
+    \begin{tikzcd}
+      0 \rar & \wedge^n R^{\oplus n} \rar & \dots \rar & \wedge^1 R^{\oplus n} \rar & R \otimes R \rar & R
+    \end{tikzcd}
+  \]
+  where all differentials are $0$.
+  Then $HH_i(\AA^n) = \wedge^i R^n = \Omega^i_{\AA^n}$, and this upgrades to an isomorphism of complexes $HC_*(\AA^n) \simeq \Omega^{-*}_{\AA^n}$.
+  Thus HKR holds for $X = \AA^n$.
+
+  David and Yuji worked out on the board that, when we work on $\AA^1$, the Koszul complex is
+  \[
+    \begin{tikzcd}
+      \Isc_\Delta \rar & \Osc_{\AA^1 \times \AA^1}.
+    \end{tikzcd}
+  \]
+  Tensoring with $\Osc_{\Delta}$ gives 
+  \[
+    \begin{tikzcd}
+      \Isc_\Delta / \Isc_{\Delta}^2 \rar["0"] & \Osc_{\Delta}.
+    \end{tikzcd}
+  \]
+  Using $\Isc_\Delta / \Isc_{\Delta}^2 = \Omega_X$, we get a ``coordinate--free'' proof of HKR in this case.
+\end{ex}
+
+\subsection{Loop rotation}
+
+So far we have not encountered the de Rham differential.
+Where does this come from?
+How can we see it from the loop space perspective?
+
+There's a natural action of $S^1 \curvearrowright \Lc X$ coming from the rotation action $S^1 \curvearrowright S^1$.
+This makes sense as an action of ``group objects'' or at the level of functors of points.
+Because $S^1$ is connected, every point of $S^1$ acts by ``the identity'' on $\Lc X$, but the action has interesting monodromy (by moving around $S^1$).
+In other words, the action corresponds to an interesting self-homotopy of the identity map $\id: \Lc X \to \Lc X$.
+To linearize this action, let $\Lambda = C_*(S^1) = k[\epsilon] / \epsilon^2$ (where $\deg \epsilon = -1$).
+Then $S^1 \curvearrowright \Lc X$ corresponds to a $\Lambda$-module structure on $\Osc(\Lc X)$.
+
+Let's think about what this means.
+Here $\epsilon$ acts on $\Osc(\Lc X)$ by degree $-1$.
+We have $\epsilon^2 = 0$ (since $S^1$ has no higher homology).
+The fact that $S^1 \curvearrowright \Lc X$ is a group action corresponds to the Leibniz rule $\epsilon (fg) = (\epsilon f) g + f (\epsilon g)$.
+In other words, $\epsilon$ serves as a differential making $\Osc(\Lc X)$ into a cdga!
+
+\begin{thm}
+  Under the HKR isomorphism, the loop rotation action $S^1 \curvearrowright \Lc X$ corresponds to the de Rham differential $d$ on $\Omega^*_X$.
+\end{thm}
+
+\section{(1/12) Will Fisher -- Tate Objects and $D$-Modules}
+
+Our goal for today is to discuss an equivalence
+\[
+  \IndCoh(\Lc X)^\Tate \simeq \Dsc_X\dMod.
+\]
+Here $X$ is a (not necessarily smooth) scheme.
+
+\begin{rmk}
+  We may understand the categories appearing here as the periodic cyclic homology of $2\IndCoh(X)$.
+\end{rmk}
+
+\begin{rmk}
+  Recall that $\Lc X = X \times_{X \times X} X$.
+  If $X$ is smooth, then $\Lc X$ is ``quasi-smooth,'' and the homological algebra here behaves nicely.
+  ``Quasi-smooth'' may be understood as a derived analogue of the lci condition.
+
+  If $\Lc X$ is smooth with smooth diagonal, then $\Lc X$ is smooth.
+  This is typically a stacky phenomenon, i.e.\ $\Lc BG = G / G$ is smooth.
+\end{rmk}
+
+\subsection{$S^1$-invariants in HKR}
+
+In the previous talks we learned that, when $X$ is a smooth scheme, there is an equivalence $\Lc X \simeq \TT_X[-1] = \Spec_{\Osc_X} \Omega_X^{-*}$.
+There is a loop rotation action of $S^1$ on $\Lc X$.
+Under the above equivalence, this corresponds to the action of $C_{-*}(S^1) = k[\lambda]$ on $\Omega_X^{-*}$ induced by the de Rham differential.
+(Here $|\lambda = -1$, so $\lambda^2 = 0$.)
+How can we upgrade the HKR equivalence $\QCoh(\Lc X) \simeq \Omega_X^{-*}\dMod$ to incorporate this $C_{-*}(S^1)$-action?
+
+Let $(C^*, d)$ be a dg $k$-module with $S^1$-action, i.e.\ $(C^*, d) \in \QCoh(BS^1)$.
+Descent along $\pt \to BS^1$ (i.e.\ comonadic Barr-Beck) gives an equivalence $\QCoh(BS^1) \simeq \Osc(S^1)\dComod \simeq C^*(S^1)\dComod$.
+By $k$-linear duality (or descent using $!$-functors), we may identify this further with $C_{-*}(S^1)\dMod \simeq k[\lambda]\dMod$.
+That is, we have an equivalence
+\[
+  \QCoh(BS^1) \simeq k[\lambda]\dMod.
+\]
+Taking invariants of objects of $\QCoh(BS^1)$ produces modules over $\Osc(BS^1) = C^*(BS^1) = k[u]$ (with $|u| = 2$).
+For $k[\lambda] / \lambda^2$-modules, ``taking invariants'' corresponds to taking $\Hom$ out of the trivial representation $k$.
+The resulting complexes have an action of $\Hom_{k[\lambda]}(k, k)$.
+It is a good exercise to compute that $\Hom_{k[\lambda]}(k, k) = C^*(BS^1) = k[u]$.
+
+\subsection{Why work with $\IndCoh$?}
+
+When we pass from $k[\lambda]\dMod$ to $k[u]\dMod$, we send $k[\lambda]$ to $k$.
+Every object of $k[\lambda]\dMod$ can be built as a colimit of copies of $k[\lambda]$.
+Thus the images of such objects are always torsion modules over $k[u]$.
+We can actually see that $k[\lambda]\dMod$ can be identified with the (colimit-completion of the) category of $u$-torsion $k[u]$-modules.
+
+We can fix things by working with ind-coherent modules over $k[\lambda]$.
+The category $\IndCoh(k[\lambda])$ is compactly generated by $k$.
+Thus we get $\IndCoh(k[\lambda]) \simeq \End_{k[\lambda]}(k)\dMod \simeq k[u]\dMod$.
+The Tate construction will serve as a generalization of this.
+
+\begin{ex}
+  The $k[u]$-module $k[u, u\inv]$ corresponds to the ind-coherent $k[\lambda]$-module built out of infinitely many shifts of $k[\lambda]$.
+  Here the shifts are cooked up so that we have one copy of $k$ (or $k \cdot \lambda$) in each degree, with the $k[\lambda]$-module structure sending odd degrees to the next even degrees.
+  The ``underlying module'' of this is trivial, but it is still interesting as an ind-coherent module!
+\end{ex}
+
+\subsection{(2/19) Will Fisher -- Continued}
+
+The speaker is posting his own notes online, so look at those for an alternative viewpoint.
+
+Our goal is to show the following: for $X$ a smooth underived scheme, we have
+\[
+  \IndCoh(\Lc X)^\Tate \simeq \Dc_X[u, u\inv]\dMod.
+\]
+Here $u$ is a formal variable of degree $2$.
+
+\subsection{The Tate construction}
+
+Let $\Cc$ be a $k$-linear category with $S^1$-action.
+Then $\Cc^{S^1}$ is a module over $\Mod_k^{S^1}$ (considered with respect to the trivial $S^1$-action).
+We can write $\Mod_k^{S^1} = \QC(\pt)^{S^1} = \QC(BS^1)$.
+This last category is $k[[u]]$-linear where $|u| = 2$, so $\Cc^{S^1}$ must also be $k[[u]]$-linear.
+We would like to ``invert $u$ on each $\Hom$-space.''
+
+\begin{dfn}
+  The \emph{Tate construction} applied to $\Cc$ is
+  \[
+    \Cc^\Tate = \Cc^{S^1} \otimes_{k[[u]]} k((u)).
+  \]
+\end{dfn}
+
+\begin{rmk}
+  The $0$-categorical analogue of the Tate construction is as follows.
+  Take a chain complex $C^\bullet$ with $S^1$-action.
+  Note that $C_{-\bullet}(S^1) = k[\lambda]$, so $(C^\bullet)^{S^1} = \Hom_{k[\lambda]}(k, C^\bullet)$.
+  The result is linear over $k[[u]] = \End_{k[\lambda]}(k)$, and we can invert $u$ to get the Tate construction $C_{-\bullet}^\Tate$.
+
+  If $X$ is a reasonable compact space with $S^1$-action, then $C^\bullet(X)^{S^1} = C^\bullet_{S^1}(X)$.
+  We can show that $C^\bullet(X)^\Tate = C^\bullet(X^{S^1})[u, u\inv]$.
+\end{rmk}
+
+\begin{rmk}
+  Given a variety $X$ with a function to $\GG_m$, we get an $S^1$-action on $\QC(X)$.
+  The Tate construction here gives a definition of the corresponding matrix factorization category.
+\end{rmk}
+
+Here's another way to define a ``Tate construction.''
+
+\begin{dfn}
+  Let $\Cc$ be a compactly generated $k$-linear category, i.e.\ $\Cc = \Indsf(\Cc^\omega)$.
+  Suppose there is an $S^1$-action on $\Cc^{\omega}$ inducing $S^1 \curvearrowright \Cc$.
+  Then define $\Cc^{\omega S^1} = \Indsf((\Cc^\omega)^{S^1})$, and let the \emph{$\omega$-Tate construction} be
+  \[
+    \Cc^{\omega \Tate} = \Cc^{\omega S^1} \otimes_{k[[u]]} k((u)).
+  \]
+\end{dfn}
+
+Note that $\Indsf((\Cc^\omega)^{S^1}) \neq \Indsf(\Cc^\omega)^{S^1}$ in general, so the $\omega$-Tate and Tate constructions do not agree in general.
+We'll see this in the next section.
+
+\subsection{The case $X = \pt$}
+
+To work out what happens for $X = \pt$, we need to understand the $k[[u]]$-linearity on $\QC(\pt)^{S^1} = \QC(BS^1)$.
+The affinization map $\pi: BS^1 \to \Aff(BS^1)$ gives an adjunction
+\[
+  \pi^*: \QC(\Aff(BS^1)) \rightleftarrows \QC(BS^1) : \pi_*.
+\]
+We may rewrite this adjunction as
+\[
+  \Osc(BS^1)\dMod \rightleftarrows k[\lambda]\dMod : \Hom_{k[\lambda]}(k, -).
+\]
+The object $k \in k[\lambda]\dMod$ is not compact, so $\pi_*$ doesn't preserve colimits.
+In particular, this adjunction is not an equivalence.
+
+Koszul duality tells us that $\pi^*$ and $\pi_*$ do restrict to equivalences $\Coh(BS^1) \simeq \Perf(k[[u]])$.
+Equivalently, we get $\Indsf(\Coh(BS^1)) \simeq \Indsf\Perf(k[[u]]) = k[[u]]\dMod$.\footnote{There is an unfortunate subtlety here:
+$\IndCoh(BS^1) \neq \Indsf(\Coh(BS^1))$.
+Indeed, the Gaitsgory-type definition of $\IndCoh(BS^1)$ comes from descent, not ``taking $\Indsf$ of $\Coh$.''
+In fact, $\IndCoh(BS^1) = \QCoh(BS^1)$ by our above descent argument.
+We will ignore these issues and instead focus on $\Indsf(\Coh(BS^1))$, which doesn't satisfy descent.}
+
+\begin{rmk}
+  Here's another way of understand what's going on.
+  The category $k[[u]]\dMod$ has two ``basic'' compact objects: $k[[u]]$ and $k$.
+  The former object corresponds to the compact object $k[\lambda] \in k[\lambda]\dMod$.
+  The latter corresponds to $k \in k[\lambda]\dMod$, which is not compact!
+  However, if we replace $k[\lambda]\dMod$ by $\Indsf(\Coh(BS^1))$, we are able to match up our compact objects.
+
+  This is analogous to the difference between $S^1 \curvearrowright \pt$ and $S^1 \curvearrowright S^\infty$ in genuine equivariant homotopy theory.
+  We can understand this difference by looking at the $S^1$-fixed points of each.
+  The differences between $k[\lambda] \curvearrowright C^\bullet(\pt)$ and $k[\lambda] \curvearrowright C^\bullet(S^\infty)$ becomes more transparent in the world of $\Indsf$-coherent sheaves.
+\end{rmk}
+
+Let's think about the equivalence $\Indsf(\Coh(BS^1)) \simeq k[[u]]\dMod$.
+The induced map $\QCoh(BS^1) \to k[[u]]\dMod$ is \emph{not} given by the usual pushforward.
+Instead, we have to resolve a quasicoherent sheaf by perfect complexes and then push forward each perfect complex.
+The category $\Perf(BS^1) = \Perf(k[\lambda])$ is generated by $k[\lambda]$, and $\pi_* k[\lambda] = \Hom_{k[\lambda]}(k, k[\lambda]) = k[[u]] / u$.
+Thus our equivalence sends $\QCoh(BS^1)$ to the category $(k[[u]]\dMod)^{u\textrm{-nil}}$ of filtered colimits of torsion modules.
+This gives our desired description of the $k[[u]]$-linear structure.
+
+\begin{cor}
+  $\IndCoh(\pt)^\Tate = \QCoh(\pt)^\Tate = 0$.
+\end{cor}
+
+When we work with the $\omega$-Tate construction, we get a more interesting answer.
+
+\begin{cor}
+  $\IndCoh(\pt)^{\omega\Tate} = k((u))\dMod$.
+\end{cor}
+
+\begin{proof}
+  We have 
+  \begin{align*}
+    \IndCoh(\pt)^{\omega S^1} &= \Indsf(\Coh(\pt)^{S^1}) \\
+                              &= \Indsf(\Vect_{k,\textrm{fg}}^{S^1}) \\
+                              &= \Indsf(\Coh(BS^1)) \\
+                              &\simeq k[[u]]\dMod.
+  \end{align*}
+  Tensoring over $k[[u]]$ with $k((u))$ gives $k((u))\dMod$.
+\end{proof}
+
+\begin{rmk}
+  The big picture here: we started with ``na\"ive $S^1$-equivariance'' and then passed to ``genuine $S^1$-equivariance'' (by allowing an ``$S^1$-fixed theory'').
+  The Tate construction kills the original na\"ive $S^1$-equivariant theory and only remembers the ``extra information'' governing the fixed points.
+\end{rmk}
 
 \end{document}
