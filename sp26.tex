@@ -488,4 +488,170 @@ When we work with the $\omega$-Tate construction, we get a more interesting answ
   The Tate construction kills the original na\"ive $S^1$-equivariant theory and only remembers the ``extra information'' governing the fixed points.
 \end{rmk}
 
+\section{(2/26) Will Fisher -- Continued}
+
+Recall that our goal is to show $\Indsf(\Coh(\Lc X))^\Tate = \Dsc_X\dMod \otimes_k k[u, u\inv]$.
+We previously showed a $k[[u]]$-linear equivalence $\Indsf(\pi_*|_\Coh) = \Indsf(\Hom_{k[\lambda]}(k, -))$ from $\Indsf(\Coh(k[\lambda]\dMod))$ to $k[[u]]\dMod$.
+
+\subsection{The local case}
+
+Let $R$ be a $k$-algebra with $S^1$-action, i.e.\ an algebra object in $(k[\lambda]\dMod, \star)$.
+Suppose that $R$ is coherent as a $k$-module.\footnote{Otherwise one needs to use $t$-structures to fix things. See work of Preygel.}
+Then $S^1 \curvearrowright R$ gives an action $S^1 \curvearrowright \Coh(R)$.
+We may write $\Coh(R) = \Mod_R(\Coh(k))$ and
+\[
+  \Coh(R)^{S^1} = \Coh(R \rtimes k[\lambda]) = \Mod_R(\Coh(k[\lambda]))
+\]
+where $R \rtimes k[\lambda] = R\angles{\lambda} / (\lambda^2, [\lambda, r] = \lambda \cdot r)$.
+Koszul duality gives a $k[[u]]$-linear equivalence $\Coh(R)^{S^1} \simto R^{S^1}\dMod(\Perf(k[[u]]))$.
+Now we need to understand how to compute $R^{S^1} = \Hom_{k[\lambda]}(k, R)$.
+
+Suppose $R = (C^\bullet, d)$.
+Using the resolution of $k$ by shifts of $k[\lambda]$ presented in Swapnil's talks, we get $R^{S^1} = (C^\bullet[[u]], d + u\lambda)$.
+Thus $\Coh(R)^{S^1} = \Coh(R^{S^1}) = \Coh((C^\bullet[[u]], d + u\lambda))$.
+
+\begin{rmk}
+  David stressed that the expression $u\lambda$ involves $u \in k[[u]] = C^\bullet(BS^1; k)$ and $\lambda \in k[\lambda] = C_\bullet(S^1; k)$.
+  These live in Koszul dual spaces, and combining them gives something ``dimensionless'' / ``natural'' (in the same way that $d$ is).
+\end{rmk}
+
+\subsection{Proving the equivalence}
+
+Let's assume that our story works over a more general base.
+Let $X$ be a scheme, and consider the map $p: \Lc X \to X$.
+Note that $p$ is affine and $\Osc_{\Lc X}$ is coherent as an $\Osc_X$-module because
+\[
+  \Lsc X = \TT_X[-1] = \Spec_{\Osc_X} \Omega_X^{-\bullet},
+\]
+Working locally and using the above results we get
+\[
+  \Coh(\Lsc X)^{S^1} = (\Omega_X^{-\bullet})^{S^1}\dMod(\Coh(X)) = (\Omega_X^{-\bullet}[[u]], u d_\dR)\dMod(\Coh(X)).
+\]
+When we invert $u$, we get
+\[
+  \Coh(\Lsc X)^{S^1} \otimes_{k[[u]]} k((u)) = (\Omega_X^{-\bullet}, d_\dR)\dMod(\Coh(X)) \otimes_k k((u)).
+\]
+We'll call objects of $(\Omega_X^{-\bullet}, d_\dR)\dMod(\Coh(X))$ (coherent) $\Omega$-modules.
+We can relate these to $\Dsc$-modules using $\Omega$-$\Dsc$ duality.
+The moral is that, for a Lie algebra $\gfr$, Koszul duality relates modules over the Chevalley--Eilenberg algebra $\wedge^\bullet \gfr^*$ to modules over the universal enveloping algebra $\Uc(\gfr)$.
+
+\begin{rmk}
+  David gave a general idea for Koszul duality (originally due to Quillen): the classifying space of a based loop group is a formal neighborhood of the basepoint.
+  In symbols, for $x \in X$, we should have $\hat{X}_x = B \Omega_x X$.
+  If we specify $y \in \hat{X}_x$ which is ``infinitesimally close'' to $x$, then the $\Omega_x$-torsor of paths from $x$ to $y$ is the universal $\Omega_x$-torsor.
+
+  The above discussion fits into this paradigm: we can think of an odd shift of $\gfr$ as $\hat{X}_x$.
+  Taking $\End$ of the augmentation module gives $\Sym \gfr$.
+  Turning on the Chevalley--Eilenberg differential (on $\wedge^\bullet \gfr^*$) deforms $\Sym \gfr$ to $\Uc \gfr$.
+\end{rmk}
+
+Following the above moral, we can think of $(\Omega^{-\bullet}_X, d_\dR) = \wedge^{-\lambda} \Tsc_X^\vee$, so we get a Koszul duality with $\Dsc_X = \Uc(\Tsc_X)$.
+We note that $\scEnd_{(\Omega_X^{-\bullet}, d_\dR)}(\Osc_X) = \Dsc_X$.
+Koszul duality gives 
+\[
+  (\Omega_X^{-\bullet}, d_\dR)\dMod(\Coh(X)) = \Perf(\Dsc_X^\bullet).
+\]
+Taking $\Indsf$ of both sides gives
+\[
+  \Indsf(\Coh(\Lsc X)^{S^1}) \otimes_{k[[u]]} k((u)) = \Dsc_X\dMod \otimes_k k((u)).
+\]
+
+\begin{rmk}
+  David gave the following teaser for next time.
+  So far, given a scheme $X$, we have looked at $\TT_X[-1]$ with the de Rham differential.
+  This is Koszul dual to $T^*_X[2]$ with its symplectic form $\omega$.
+
+  More generally, for a stack $X$, we should think of $T_X[-1]$ as the Lie algebra of the loop space $\Lsc X$.
+  We don't know what the correct dual to this is!
+  Potent categorical representations should help us understand things away from the ``identity section'' of $\Lsc X$.
+\end{rmk}
+
+\section{(3/5) Jacob Erlikhman -- Potent $\Dsc$-Modules versus Ordinary $\Dsc$-Modules}
+
+Our goal is to discuss how some of the above results break down for stacks.
+We shall begin by reviewing some basic stack theory.
+
+\subsection{Classifying stacks}
+
+The classifying stack $BG$ can be constructed as the geometric realization of the simplicial diagram 
+\[
+  \begin{tikzcd}
+    \dots G^2 \rar[shift left] \rar \rar[shift right] & G \rar[shift left] \rar[shift right] & \pt.
+  \end{tikzcd}
+\]
+The maps here come from projections and multiplication maps.
+We can also think of $BG$ as the sheafification of the na\"ive quotient $S \mapsto \pt(S) / G(S)$.
+Given a map $\gamma: S \to BG$, pulling back $\pt \to BG$ gives a principal $G$-bundle $P \to S$.
+Thus maps to $BG$ classify (and are classified by) principal $G$-bundles.
+
+\subsection{Quotient stacks}
+
+Quotient stacks $X / G$ behave similarly.
+For instance, they are the geometric realization of the simplicial diagram 
+\[
+  \begin{tikzcd}
+    \dots X \times G^2 \rar[shift left] \rar \rar[shift right] & X \times G \rar[shift left] \rar[shift right] & X.
+  \end{tikzcd}
+\]
+We may also view $X / G$ as the sheafification of $S \mapsto X(S) / G(S)$.
+
+\begin{rmk}
+  One can construct a simplicial diagram $X^\bullet$ for any space $X$ (using the projection maps as natural maps).
+  If we replace some factors by $G$ and quotient the whole thing out by $G$, we get the diagram mentioned above.
+  David suggested thinking of this as a ``free $G$-resolution of $X$.''
+\end{rmk}
+
+\begin{ex}
+  If $P$ is a principal $G$-bundle on $X$, then $P = S \times_{BG} \pt$.
+  We can compute
+  \[
+    P / G = S \times_{BG} \colim_{\Delta\op} G^n = S \times_{BG} BG = S.
+  \]
+  That is, quotienting a $G$-torsor by $G$ gives the underlying space.
+\end{ex}
+
+\begin{ex}
+  For $H \subset G$ a subgroup, we have $G \bs (G / H) = BH$.
+\end{ex}
+
+Given any $S \to X / G$, we get an induced map $S \to BG$, and hence a principal $G$-bundle $P \to S$.
+We let $P \times^G X = S \times_{BG} X / G$.
+We can construct a cube
+\[ % taken from TikZcd documentation
+\begin{tikzcd}
+& X \times^G P \arrow[rr] \arrow[dd] & & X / G \arrow[dd] \\
+  X \times P \ar[ur] \arrow[rr, crossing over] \arrow[dd] & & X \ar[ur] \\
+& S \arrow[rr] & & BG \\
+  P \arrow[rr] \ar[ur] & & \pt \arrow[from=uu, crossing over] \ar[ur] \\
+\end{tikzcd}
+\]
+
+and show that $X \times^G P = (X \times P) / G$.
+By studying this cube we see that $G$-torsors on $S$ correspond to $G$-torsors $P$ on $S$ together with:
+\begin{itemize}
+  \item a section of $X \times^G P \to S$, or equivalently:
+  \item a $G$-equivariant map $P \to X$.
+\end{itemize}
+
+\begin{ex}
+  Let $X = \AA^1$ and $G = \GG_m$.
+  Then $(\AA^1 / \GG_m)(S)$ parametrizes line bundles $\Lsc$ on $S$ together with a choice of section $\sigma \in H^0(X, \Lsc)$.
+  The data of the section may also be understood as a $\GG_m$-equivariant map from $\Lsc^\times$ to $\AA^1$.
+  Roughly, $\sigma$ corresponds to $s \mapsto [\ell_s, \phi(\ell_s)] \in (\Lsc^\times) \times^{\GG_m} \AA^1$, and the $\GG_m$-equivariant map is $\phi$.
+\end{ex}
+
+\subsection{Loops on $BG$}
+
+Let's compute $\Lc BG = \Map(S^1, BG)$.
+This has $S$-points $\Map(S \times S^1, BG)$.
+Because $S^1 = B\ZZ$, we have $S \times S^1 = S / \ZZ$ (where the $\ZZ$-action on $S$ is trivial).
+Thus $S$-points of $\Lc BG$ correspond to $G$-torsors on $S / \ZZ$, or equivalently $\ZZ$-equivariant $G$-torsors $P$ on $S$.
+The data of each such object corresponds to a $G$-torsor on $S$ together with a choice of automorphism $a: P \to P$.
+
+Now let's consider the adjoint quotient $G / G$.
+This has $S$-points given by $G$-torsors $P$ on $S$ together with a $G$-equivariant map $f: P \to G$.
+Given $a \in \Aut(P)$, we may define $f: P \to G$ via $a(p) = p f(p)$.
+One checks that $a$ is a bundle automorphism if and only if $f$ is $G$-equivariant for the adjoint action.
+This construction is invertible, so we get an identification $\Lc BG = G / G$.
+
 \end{document}
