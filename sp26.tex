@@ -625,7 +625,6 @@ We can construct a cube
   P \arrow[rr] \ar[ur] & & \pt \arrow[from=uu, crossing over] \ar[ur] \\
 \end{tikzcd}
 \]
-
 and show that $X \times^G P = (X \times P) / G$.
 By studying this cube we see that $G$-torsors on $S$ correspond to $G$-torsors $P$ on $S$ together with:
 \begin{itemize}
@@ -653,5 +652,92 @@ This has $S$-points given by $G$-torsors $P$ on $S$ together with a $G$-equivari
 Given $a \in \Aut(P)$, we may define $f: P \to G$ via $a(p) = p f(p)$.
 One checks that $a$ is a bundle automorphism if and only if $f$ is $G$-equivariant for the adjoint action.
 This construction is invertible, so we get an identification $\Lc BG = G / G$.
+
+\section{(3/12) Jacob Erlikhman -- Continued}
+
+\subsection{Review of $\Lc BG$}
+
+Last time we talked about $\Lc BG \simeq G / G$.
+Recall:
+\begin{itemize}
+  \item $\Lc BG$ has $S$-points given by $G$-torsors $P$ on $S$ together with $a \in \Aut(P)$.
+    Here $S^1$ acts on $(\Lc BG)(S)$ by $a$ (thought of as an automorphism of $\id_{(P,a)}$).
+  \item $G / G$ has $S$-points given by $G$-torsors $P$ on $S$ together with $G$-equivariant maps $P \to G$.
+    The $S^1$-action here is by the distinguished automorphism $a$, defined by $a(p) = p \cdot f(p)$.
+\end{itemize}
+When $G = T$ is commutative (e.g.\ a torus), we have $\Lc BT = T \times BT$.
+\begin{itemize}
+  \item $T \times BT$ has $S$-points given by $T$-torsors $P$ on $S$ together with $S$-points of $T$.
+    The $S^1$-action is again by the distinguished automorphism $a$.
+\end{itemize}
+
+\begin{rmk}
+  Peisheng asked about the relationship between $G / G$ and $T \sslash W$.
+  David explained that we have $\Osc(G / G) = \Osc(G)^G = \Osc(T)^W = \Osc(T \sslash W)$.
+  There are many relationships between these: for example, there is a characteristic polynomial map $\chi: \gfr / G \to \cfr = \tfr \sslash W$.
+  This has a \emph{Kostant section} $\kappa: \tfr \sslash W \to \gfr / G$.
+\end{rmk}
+
+\subsection{The $S^1$-action on $\Coh(G / G)$}
+
+Let's consider the action map $\act: S^1 \times G / G \to G / G$.
+Recall that coherent sheaves on $S^1 \times X$ are coherent sheaves on $X$ together with an automorphism.
+Pulling back along $\act^*$ therefore sends $\Fsc \in \Coh(G / G)$ to a pair $(\Fsc, a_\Fsc)$ where $a_\Fsc$ is a distinguished automorphism.
+What is this?
+
+Suppose we are given an $S$-point $g: S \to G / G$.
+Then we get $a_g: \Fsc_g \to \Fsc_g$, defined by the action of $g$.
+
+\begin{ex}
+  Let $S = \Spec k$, and let $g: \Spec k \to G / G$.
+  Then $\Fsc_g \in \Coh(\Spec k)$ is just a (dg-)vector space.
+  The element $g$ centralizes itself, and the action $a_g$ is the induced conjugation action on the stalk.
+\end{ex}
+
+\subsection{$S^1$-invariants in $\Coh(T \times BT)$}
+
+\begin{ex}
+  We'd like to classify $S^1$-invariant sheaves on $\Osc_{T \times BT}$ for $T = \GG_m$.
+  These are sheaves on which, at every $t \in T$, $t$ acts by $1$.
+  We can describe these as follows:
+  \begin{itemize}
+    \item Any pullback of a coherent sheaf on $T$ is $S^1$-invariant.
+    \item Any twist $\Osc_1 \otimes \Osc(k)$ is $S^1$-invariant.
+    \item Any twist $\Osc_{\zeta_k} \otimes \Osc(k)$ (with $\zeta_k$ a $k$th root of unity) is $S^1$-invariant.
+  \end{itemize}
+\end{ex}
+
+A similar (but harder) computation may be performed for $G / G$ with $G$ nonabelian (?).
+
+\begin{ex}
+  Let $T$ be an algebraic torus.
+  Then we can write
+  \[
+    \Coh(T \times BT) = \Coh(T) \boxtimes \Rep^\coh(T) = \oplus_{\lambda \in \weight(T)} \Coh(T)_\lambda.
+  \]
+  We can compute $S^1$-invariants and get
+  \begin{itemize}
+    \item $\Coh(T)_\lambda^{S^1} = \Osc(T) / (t^\lambda - 1)\dMod$ for $\lambda \neq 0$.
+      This is secretly $k[\epsilon]$-linear (where $|\epsilon| = -1$) and $\epsilon$ acts essentially by $t^\lambda - 1$ (?).
+    \item $\Coh(T)_0^{S^1} = \Osc(T)[\epsilon]\dMod$.
+  \end{itemize}
+  Both essentially come from computing $\Osc(T) \otimes_{\Osc(\GG_m)} k$.
+\end{ex}
+
+Geometrically, what is going on here is that we have a map $X \to \GG_m$ (here $X = T / T$) classifying the action of automorphisms.
+Coherent sheaves on the (derived) fiber $X_1 = X \times_{\GG_m} 1$ correspond to coherent sheaves on $X$ with the automorphism identified with $1$.
+That is, $\Coh(X_1) = \Coh(X)^{S^1}$.
+Now observe that $X_1$ has an action of $1 \times_{\GG_m} 1 = \Spec k[\epsilon]$ (with $|\epsilon| = -1$).
+This induces $\Coh(1 \times_{\GG_m} 1) \curvearrowright \Coh(X_1)$, where $\Coh(1 \times_{\GG_m} 1)$ is equipped with the convolution product.
+The monoidal unit of $\Coh(1 \times_{\GG_m} 1)$ is the augmentation module $\onebb = \Osc_1$.
+We have $\End(\onebb) = k[u]$, so Koszul duality should turn $\Coh(X_1)$ into a $k[u]$-linear category.
+
+\begin{ex}
+  We can show that $\Osc(T)[\epsilon]\dMod^\coh$ is Koszul dual to $\Osc(T)[u]\dMod^\coh$.
+  Inverting $u$ takes this to $\Osc(T)[u, u\inv]\dMod^\coh$.
+  This is $\Coh(T / T)^\Tate$.
+  Completing this around $1 \in T$ would give coherent modules over $\Osc(\hat{T})[u, u\inv] = H^*(BT)[u, u\inv]$, which agrees with the category of $\Dsc$-modules on $BT$ (with $u, u\inv$ adjoined).
+  Potent categorical representations should somehow capture global data (which is much more subtle than this).
+\end{ex}
 
 \end{document}
