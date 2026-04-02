@@ -214,7 +214,7 @@ For stacks, the above statement of HKR fails.
   However, $\TT_X[-1]$ is $\gfr / G$, which is quite different.
 \end{ex}
 
-\subsection{(2/5) Samuel Mayonnaise -- Continued}
+\section{(2/5) Samuel Mayonnaise -- Continued}
 
 Let $X$ be a smooth scheme.
 Recall from last time that $\Lc X = \Hom(S^1, X)$ is the \emph{derived loop space} of $X$.
@@ -368,7 +368,7 @@ The Tate construction will serve as a generalization of this.
   The ``underlying module'' of this is trivial, but it is still interesting as an ind-coherent module!
 \end{ex}
 
-\subsection{(2/19) Will Fisher -- Continued}
+\section{(2/19) Will Fisher -- Continued}
 
 The speaker is posting his own notes online, so look at those for an alternative viewpoint.
 
@@ -566,7 +566,7 @@ Taking $\Indsf$ of both sides gives
   Potent categorical representations should help us understand things away from the ``identity section'' of $\Lsc X$.
 \end{rmk}
 
-\section{(3/5) Jacob Erlikhman -- Potent $\Dsc$-Modules versus Ordinary $\Dsc$-Modules}
+\section{(3/5) Jacob Erlikhman -- Potent $D$-Modules versus Ordinary $D$-Modules}
 
 Our goal is to discuss how some of the above results break down for stacks.
 We shall begin by reviewing some basic stack theory.
@@ -740,4 +740,90 @@ We have $\End(\onebb) = k[u]$, so Koszul duality should turn $\Coh(X_1)$ into a 
   Potent categorical representations should somehow capture global data (which is much more subtle than this).
 \end{ex}
 
+\section{(4/2) David Nadler -- Potent Categorical Representations}
+
+Let $G$ be a reductive algebraic group over $\CC$ associated with a compact Lie group $G_c$.
+We may also define a Langlands dual group $G^\vee$ (over $\CC$).
+
+In his ICM address, Teleman proposed an equivalence between:
+\begin{itemize}
+  \item (A-model) ``$G_c$-categories.''
+    Na\"ively this means objects of $\Loc(G_c)\dMod$ (where the monoidal structure on $\Loc(G_c)$ is convolution).
+    We'll be deliberately vague about what conditions (presentability, stability, etc.) we impose on these $\Loc(G_c)$-modules.
+  \item (B-model) Rozansky--Witten theory of the holomorphic symplectic group scheme $J_{G^\vee}$.
+\end{itemize}
+The goal of David's work here (joint with Ben-Zvi and Stefanich) is to give a proper definition of the left hand side.
+We'll discuss many possible definitions and the relations between the two.
+
+\subsection{The de Rham story}
+
+Teleman's story is a ``Betti'' story.
+Potent categorical representations will a ``de Rham analogue.''
+
+For any algebraic group $G$, we can construct a derived subgroup $G^\der = [G, G] \subset G$ and an abelianization map $a: G \to G^\ab = G / G^\der$.
+The left action of $G^\der$ on $G$ gives a moment map $T^* G \to (\gfr^\der)^*$.
+Working with $D$-modules, we define $D(G_\ssrm)$ as the full subcategory of $D(G)$ consisting of $D$-modules with singular support above $0 \in (\gfr^\der)^*$.
+We think of ``$G_\ssrm$-categories'' as $D(G_\ssrm)$-module categories.
+
+\begin{rmk}
+  The group $G_c$ arises if we think of $G$ as a homotopy type.
+  Conjecturally, $G_\ssrm$ is what we get if we think of $G$ as an $\AA^1$-homotopy type.
+\end{rmk}
+
+\begin{ex}
+  Let $T \cong \GG_m^n$ be an algebraic torus, and let $\Lambda = \Hom(\GG_m, T)$.
+  Then $\Loc(T_c) = \CC[\Lambda]\dMod = \QC(T^\vee)$.
+  Meanwhile, we have $D(T_\ssrm) = D(T) = \QC(\tfr^\vee / \Lambda^\vee)$.
+  The two theories here are not the same algebraically, but they do look the same from an analytic perspective.
+  Both of these equivalences can be made symmetric monoidal (working with convolution on the left and tensor product on the right).
+
+  Let's understand why $D(T) = \QC(\tfr^\vee / \Lambda^\vee)$, at least for $T = \GG_m = \Spec \CC[z, z\inv]$.
+  Here $D$-modules are modules over $D_T = \CC\angles{z, z\inv, z\partial_z}$.
+  We think of $\tfr^\vee = \AA^1 = \Spec \CC[z \partial_z]$.
+  The operators $z, z\inv$ give $\ZZ$-equivariance on this.
+  Under this equivalence, $D_T$ corresponds to $\pi_* \Osc_{\tfr^\vee}$, where $\pi: \tfr^\vee \to \tfr^\vee / \Lambda^\vee$ is the ``universal cover.''
+
+  On the Betti side, we get an equivalence 
+  \[
+    \Loc(T_c)\dMod = \QC(T^\vee)\dMod = 2\QC(T^\vee).
+  \]
+  This sits within $\RW(J_{T^\vee})$, where $J_{T^\vee} = T^* T^\vee$.
+  Likewise, on the de Rham side, we get 
+  \[
+    D(T_\ssrm)\dMod = \QC(\tfr^\vee / \Lambda^\vee)\dMod = 2\QC(\tfr^\vee / \Lambda^\vee).
+  \]
+  This sits within $\RW(J_{T^\vee}^\nabla$, where $J_{T^\vee}^\nabla = T^*(\tfr^\vee / \Lambda^\vee))$.
+\end{ex}
+
+In general, we will get an equivalence between:
+\begin{itemize}
+  \item (A-model) ``$G_\ssrm$-categories.''
+    Na\"ively this is $D(G_\ssrm)\dMod$.
+  \item (B-model) Rozansky--Witten theory of $J_{G^\vee}^\nabla$.
+    Here $J_{G^\vee}^\nabla$ is the ``de Rham group scheme of regular centralizers.''
+\end{itemize}
+
+\begin{rmk}
+  To see more of these stories, we should enhance both sides.
+  For example, we can replace $2\QC(J_{G^\vee}^\nabla$ by $2\IndCoh(J_{G^\vee}^\nabla)$.
+  Maybe this is too large for our purposes, maybe not.
+\end{rmk}
+
+\subsection{What is $J_{G^\vee}$?}
+
+David first encountered $J_{G^\vee}$ in Ng\^o's proof of the Fundamental Lemma.
+Drinfeld has some handwritten notes on this subject which David says may be the best reference for these.
+(If you find these notes let me know and I can put a link in!)
+
+At the beginning of time we have to make a choice: do we study $\gfr^\vee / G^\vee$ or $(\gfr^\vee)^* / G^\vee$?
+Drinfeld focuses on the former, while we focus on the latter.
+We can think of this as a shifted cotangent bundle.
+
+Chevalley tells us that the invariant-theoretic quotient here is $(\hfr^\vee)^* \sslash W \cong \hfr \sslash W = \cfr_\gfr$.
+This is the \emph{Chevalley base} for $\gfr$, and there's a map $\chi: (\gfr^\vee)^* / G^\vee \to \cfr_\gfr$.
+We also have a Kostant section $\cfr_\gfr \to (\gfr^\vee)^{*,\textrm{reg}} / G^\vee \subset (\gfr^\vee)^* / G^\vee$
+The stack $(\gfr^\vee)^{*,\textrm{reg}} / G^\vee$ is the classifying stack $BJ_{G^\vee}$.
+In other words, $J_{G^\vee}$ is the stabilizer of the Kostant section.
+
+It is a good exercise to compute this all for $\SL_2$.
 \end{document}
