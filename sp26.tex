@@ -812,8 +812,7 @@ In general, we will get an equivalence between:
 \subsection{What is $J_{G^\vee}$?}
 
 David first encountered $J_{G^\vee}$ in Ng\^o's proof of the Fundamental Lemma.
-Drinfeld has some handwritten notes on this subject which David says may be the best reference for these.
-(If you find these notes let me know and I can put a link in!)
+Drinfeld has some handwritten notes on this subject which David says may be the best reference for these.\footnote{The notes can be found at \url{https://math.uchicago.edu/~drinfeld/langlands/Regular_centralizers.pdf} -- thanks to Sam Mayo for finding the reference.}
 
 At the beginning of time we have to make a choice: do we study $\gfr^\vee / G^\vee$ or $(\gfr^\vee)^* / G^\vee$?
 Drinfeld focuses on the former, while we focus on the latter.
@@ -826,4 +825,109 @@ The stack $(\gfr^\vee)^{*,\textrm{reg}} / G^\vee$ is the classifying stack $BJ_{
 In other words, $J_{G^\vee}$ is the stabilizer of the Kostant section.
 
 It is a good exercise to compute this all for $\SL_2$.
+
+\section{(4/16) David Nadler -- $J$-Day}
+
+Let $G$ be a reductive group over $\CC$ and $\gfr$ its Lie algebra.
+We like to study the adjoint representation, encoded by the quotient stack $\gfr / G = T[-1] BG$.
+This is equivalent to $\gfr^* / G = T^*[1] BG$ via a choice of inner product.
+However, we will keep the two distinct to keep track of ``tangent versus cotangent'' differences.
+We'll focus on the $\gfr^* / G$ perspective, though Drinfeld's notes focus on $\gfr / G$.
+
+\subsection{The definition of $J$}
+
+The affinization of $\gfr^* / G$ is the \emph{Chevalley base} $\cfr_{\gfr^*} = \gfr^* \sslash G$.
+A theorem of Chevalley identifies $\gfr^* \sslash G = \hfr^* \sslash W$.
+The affinization map $\chi: \gfr^* / G \to \cfr_{\gfr^*}$ can be thought of as a characteristic polynomial map.
+There's a \emph{Kostant section} $\kappa: \cfr_{\gfr^*} \to (\gfr^*)^\reg$ (landing in the regular locus).
+We define
+\[
+  J_G = \Stab(\kappa)
+\]
+as the group scheme of regular centralizers (this is a smooth abelian group scheme over $\cfr_{\gfr^*}$).
+We can think of the map $J_G \to \cfr_{\gfr^*}$ as a symplectic integrable system.
+We may also write $(\gfr^*)^\reg / G = BJ_G$.
+
+\subsection{Examples}
+
+\begin{ex}
+  Let $G = T$ be a torus.
+  Then $\tfr^* / T = \tfr^* \times BT$, and the map $\chi: \tfr^* \times BT \to \tfr^*$ is just the projection.
+  The Kostant section here is the identity.
+  Thus $J = \tfr^* \times T$ is the cotangent bundle of $T$.
+\end{ex}
+
+\begin{ex}
+  Let $G = \SL_2$.
+  The map $\chi: \slfr_2^* / G \to \cfr_{\slfr_2^*}$ is the determinant:
+  \[
+    \chi \begin{pmatrix}
+      a & b \\
+      c & -a
+    \end{pmatrix} = -a^2 - bc.
+  \]
+  Every conjugacy class in $\slfr_2^*$ other than $0$ is regular.
+  The Kostant section (which depends on a choice of Borel) is given by matrices in rational normal form:
+  \[
+    \kappa(\lambda) = \begin{pmatrix}
+      0 & -1 \\
+      \lambda & 0
+    \end{pmatrix}.
+  \]
+  Note that we do not want to use diagonal matrices here (there are two diagonal matrices in $\slfr_2^*$ for any choice of determinant, so we don't get a well-defined section).
+  We can think of the image of the Kostant section as a translation of $\bfr^\bot$.
+
+  The stabilizer over a regular semisimple element of the Kostant section has two components, with one given by the maximal torus $T \subset \SL_2$.
+  The stabilizer of the nilpotent conjugacy class is the group of matrices
+  \[
+    \begin{pmatrix}
+      \pm 1 & u \\
+      0 & \pm 1
+    \end{pmatrix},
+  \]
+  which we can think of as the center of $\SL_2$ times the unipotent subgroup of $B$.
+  
+  Note that $\pi_1(\cfr_{\gfr^*} \setminus 0) = \ZZ$, so we can try to understand the monodromy of the fibers $T_\lambda$.
+  Let's start by computing each $T_\lambda$: from the centralization equation, we see that the stabilizer consists of matrices
+  \[
+    \begin{pmatrix}
+      a & b \\
+      -b\lambda & a
+    \end{pmatrix}.
+  \]
+  with $a^2 + b^2 \lambda = 1$.
+  This has eigenvalues $a \pm i \sqrt{\lambda} b$.
+  As we move around $0$, we swap the eigenvalues $\sqrt{\lambda}$ and $-\sqrt{\lambda}$.
+  We can think of $\tfr^* \setminus 0 \to \cfr_{\gfr^*} \setminus 0$ as a double cover (more generally, a $W$-fold cover over the regular semisimple locus) over which the monodromy trivializes.
+  We should think of the central fiber (over $0$) as a degeneration of these.
+\end{ex}
+
+\begin{ex}
+  For $\GL_n$, consider the action $W \curvearrowright \tfr$.
+  For every $\lambda \in \cfr_{\glfr_n^*}$, we get a finite subscheme $\tfr_\lambda \subset \tfr$ (the fiber of $\tfr \to \tfr \sslash W$ over $\lambda$).
+  We can write $J|_\lambda = \Osc(\tfr_\lambda)^\times$.
+  David claims that this is Cayley--Hamilton in disguise.
+  There's a paper of Donagi and Gaitsgory doing a (complicated) version of this for more general groups.
+
+  For $\GL_2$, this looks like the projection of $\mu^2 = \lambda$ onto the $\lambda$ coordinate.
+  The fiber over any $\lambda \neq 0$ is two points, so $J_\lambda = \Osc(\tfr_\lambda)^\times = \GG_m \times \GG_m$.
+  The fiber over $0$ is $\Spec \CC[\epsilon] / \epsilon^2$, so $J_0$ consists of $a_0 + a_1 \epsilon$ with $a_0 \neq 0$.
+\end{ex}
+
+\subsection{The Ng\^{o} homomorphism}
+
+Consider the fiber product $\tilde{J}_G = J_G \times_{\cfr_{\gfr^*}} \gfr^*$.
+Let $I_G$ be the set of $(x, g) \in \gfr^* \times G$ with $\Ad_g^* x = x$.
+
+\begin{thm}
+  There is a homomorphism of group schemes (over $\gfr^*$) $n: \tilde{J}_G \to I_G$ which is an isomorphism over $(\gfr^*)^\reg$.
+\end{thm}
+
+\begin{proof}
+  The irregular locus in $\gfr^*$ has codimension at least $3$, so we can extend the identity homomorphism uniquely by working at the level of functions and using Hartogs' theorem.
+\end{proof}
+
+The Ng\^{o} homomorphism $n$ gives us a way to control $\gfr^* / G$ using the regular part.
+This is useful in relating $J$ to the Hitchin fibration.
+
 \end{document}
