@@ -930,4 +930,92 @@ Let $I_G$ be the set of $(x, g) \in \gfr^* \times G$ with $\Ad_g^* x = x$.
 The Ng\^{o} homomorphism $n$ gives us a way to control $\gfr^* / G$ using the regular part.
 This is useful in relating $J$ to the Hitchin fibration.
 
+\section{(4/30) David Nadler -- Continued}
+
+No seminar next week, but there will be a hike.
+David recommends you watch the documentary ``Hands on a Hard Body'' for an idea of what we will be in for.
+You can watch David's recent talk at SLMath for more on potent categorical representations.
+
+\subsection{Review}
+
+Let $G$ be a reductive group.
+There's a natural characteristic polynomial map $\chi: \gfr^* \to \cfr_\gfr$, and there's a Kostant section $\kappa: \cfr_\gfr \to \gfr^\reg$.
+We define $J_G^{\textrm{tangent}}$ as the stabilizer group scheme of $\kappa$.
+This is a commutative group scheme over $\cfr_\gfr$.
+
+We can tell a similar story in the cotangent picture, giving $J_G \to \cfr_{\gfr^*}$.
+This is a completely integrable system.
+The fibers are Lagrangian and generically look like the maximal torus of the group (the map is generically $(T \times \tfr) / W \to \tfr / W$).
+As we degenerate to the origin, the fibers get closer and closer to unipotent groupss.
+
+For today we will focus on $J_{\check{G}}$ (the universal centralizer for $(\check{\gfr})^*$), which lives over $\cfr_\gfr$.
+
+\begin{ex}
+  For $\check{G} = \SL_2$, we are looking at a group scheme over $\AA^1$ with:
+  \begin{itemize}
+    \item Generic fiber $\GG_m$, and
+    \item Special fiber $Z(\SL_2) \cdot \GG_a$.
+  \end{itemize}
+  This is an open in $\Stab_{\check{G}}((\check{\gfr})^*)$.
+\end{ex}
+
+\subsection{Why do we care?}
+
+Here's a quick explanation of why we should care about $J$.
+We care about the geometry of $(\check{\gfr})^*$ with its adjoint action.
+This is complicated!
+To simplify this, we can throw away the irregular locus.
+This locus has codimension $3$, so throwing it away doesn't change the functions on our space.
+Furthermore, everything that shows up when we study $J$ is commutative, so things are much simpler.
+
+\subsection{A de Rham version of $J$}
+
+We can think of $J_{\check{G}}$ as a ``Betti-type object'' -- it is based on understanding a sort of monodromy.
+We can write $J_{\check{G}} = \Hom(BZ, BJ_{\check{G}})$, where $\Hom$ is abelian group stack homomorphisms.
+
+The ``de Rham version'' is 
+\[
+  J_{\check{G}}^\nabla = \Hom((\GG_m)_\dR, BJ_{\check{G}}).
+\]
+This is again a symplectic commutative group scheme over $\cfr_\gfr$.
+Generically, $J_{\check{G}}^\nabla$ looks like $(\check{t} / \check{\Lambda} \times (\check{t})^*) / W \to \cfr_{\gfr}$.
+
+\subsection{Automorphic realizations of $J_{\check{G}}$}
+
+Note that 
+\[
+  \cfr_{\check{\gfr}^*} = \cfr_{\gfr} = \gfr \sslash G = \Spec H^*_G(\pt).
+\]
+We'd like to understand if there's a related topological construction of $J_{\check{G}}$.
+
+Consider the affine Grassmannian $\Gr_G = G((t)) / G[[t]]$.
+The quotient 
+\[
+  \Gsc_{S^2} = G[[t]] \bs \Gr_G = G[[t]] \bs G((t)) / G[[t]]
+\]
+is equivalent to $\Bun_G$ of the raviolo $\DD \times_{\DD^\times} \DD$ (which is topologically $S^2$).
+Here's the reason we've worked with $\check{G}$ throughout:
+
+\begin{thm}[Bezrukavnikov--Finkelberg--Mirkovic]
+  The map $J_{\check{G}} \to \cfr_\gfr$ is can be written as $\Spec$ of the natural map
+  \[
+    H_G^*(\pt) \to H_*(\Gsc_{S^2})
+  \]
+  induced by $BG \simeq G[[t]] \bs G[[t]] / G[[t]] \hookrightarrow \Gsc_{S^2}$.
+\end{thm}
+
+\begin{rmk}
+  One can describe the group structure on $J_{\check{G}}$ using this picture, but we won't do this here.
+\end{rmk}
+
+The above is a Betti theorem -- how does the de Rham story work?
+Let's assume for simplicity that $\check{G}$ is of adjoint type (or more generally has connected center).
+Then $J_{\check{G}}^\nabla = T^* \cfr_\gfr / L$, where $L$ is the ``coweight lattice'' $\Hom(\GG_m, J_{\check{G}}$ (varying with fibers).
+That is, $J_{\check{G}}^\nabla$ can be understood entirely in terms of $\cfr_\gfr$ and a (varying) discrete group.
+
+\begin{ex}
+  For $\PGL_2$, $L \to \AA^1$ has fiber $\ZZ$ away from $0$ and has fiber $0$ over $0$.
+  There is a $-1$ monodromy as we move around $0$.
+\end{ex}
+
 \end{document}
